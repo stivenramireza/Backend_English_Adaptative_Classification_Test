@@ -1,23 +1,27 @@
 {
-  "name": "EACIApp",
+  "name": "eaciapp",
   "version": "1.0.0",
   "description": "Web Application",
-  "main": "index.js",
+  "main": "app/index.js",
   "scripts": {
-    "start": "node index.js",
-    "test": "npm ."
+    "start": "node app/index.js",
+    "test": "./node_modules/.bin/mocha test/test.js --exit --recursive --timeout 5000"
   },
   "author": "Stiven Ramírez Arango, Camilo Cruz Villegas, Juan Pablo Gonzales, Anderson Daniel Grajales Alzate",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^3.0.3",
+    "bcrypt": "^3.0.5",
+    "body-parser": "^1.18.3",
     "chai": "^4.2.0",
+    "chai-http": "^4.2.1",
     "express": "^4.16.4",
     "https": "^1.0.0",
+    "jsonwebtoken": "^8.5.1",
     "jwt-simple": "^0.5.5",
     "mocha": "^6.0.2",
     "moment": "^2.24.0",
     "mongodb": "^3.1.13",
-    "mongoose": "^5.4.7"
+    "mongoose": "^5.4.19",
+    "nodemon": "^1.18.10"
   }
 }

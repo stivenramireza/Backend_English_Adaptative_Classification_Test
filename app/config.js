@@ -4,21 +4,21 @@ var path = require('path'),
 
 var config = {
   development: {
-    port: process.env.PORT || 3000,
-    db: process.env.MONGODB_URI || 'mongodb://localhost/database-geolocator',
-    SECRET_TOKEN: 'tokenGeolocator' 
+    PORT: process.env.PORT || 3000,
+    DB_HOST: process.env.MONGODB_URI || 'localhost:27017/eacidb',
+    DB_USER: process.env.DB_USER || '',
+    DB_PASSWORD: process.env.DB_PASSWORD || '',
+    SECRET_TOKEN: process.env.JWT_TOKEN || 'mikey' 
   },
-
   test: {
-    port: process.env.PORT || 3000,
-    db: process.env.MONGODB_URI || 'mongodb://mongo-server/database-geolocator',
-    SECRET_TOKEN: 'tokenGeolocator'
+    PORT: process.env.PORT || 3000,
+    DB_HOST: process.env.MONGODB_URI || 'localhost/eacidb',
+    DB_USER: process.env.DB_USER || '',
+    DB_PASSWORD: process.env.DB_PASSWORD || '',
+    SECRET_TOKEN: process.env.JWT_TOKEN || 'mikey'
   },
-
   production: {
-    port: process.env.PORT || 3000,
-    db: process.env.MONGODB_URI || 'mongodb://mongo-server/database-geolocator',
-    SECRET_TOKEN: 'tokenGeolocator'
+    //Not yet
   }
 };
 

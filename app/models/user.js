@@ -3,21 +3,20 @@ const Schema = mongoose.Schema
 const bcrypt = require('bcrypt')
 
 const UserSchema = new Schema({
-    displayName: String,
-    email: { type: String, unique: true },
-    username: {type: String, unique: true },
-    password: { type: String, select: false },
-    gps_location: []
-})
+    _id: mongoose.Schema.Types.ObjectId,
+    firstname: { type: String, unique: false, required: true },
+    lastname: { type: String, unique: false, required: true },
+    lastname: { type: String, unique: false, required: true },
+    username: {type: String, unique: true, required: true },
+    doctype: {type: String, required: true},
+    docnumber: {type: String, required: true},
+    birthdate: {type: Date, required: true},
+    maritalstatus: {type: String, required: false},
+    email: {type: String, required: true, unique: true},
+    password: {type: String, required: true}
+},
+{
+    timestamps: true
+});
 
-UserSchema.pre('save', function (next) {
-    let user = this
-    bcrypt.hash(user.password, 10, function (err, hash) {
-        if (err) return next(err)
-        user.password = hash
-        next()
-    });
-})
-
-module.exports = mongoose.model('User', UserSchema)
-
+module.exports = mongoose.model('User', UserSchema, 'users');

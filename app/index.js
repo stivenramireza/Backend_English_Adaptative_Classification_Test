@@ -1,16 +1,38 @@
-'use strict'
+/**
+ * /app/index.js
+ * Exports an express server.
+*/
 
-var config = require('./config')
-const mongoose = require('mongoose')
-const app = require("./app")
+const express = require('express');
+const server = express();
+const routes = require('./routes/routes');
+const config = require('./config');
+const mongoose = require('mongoose');
 
-mongoose.connect(config.db,{ useCreateIndex: true,
-                             useNewUrlParser: true } , (err, res) => {
-    if (err) {
-    return console.log(`Error al conectar a la base de datos: ${err}`)
-  }
-  console.log('Conexión a la base de datos establecida...')
-    app.listen(config.port, function () {
-        console.log(`App web corriendo en ${config.port}`)
-    })
+
+// Connection String
+let dbConn = "mongodb://" + config.DB_USER + ":" + config.DB_PASSWORD + "@" + config.DB_HOST;
+
+
+mongoose.connect(dbConn, {useNewUrlParser: true}).then( () => {
+  console.log(`Connected to ${dbConn} successfully...`);
+}).catch( err => {
+  console.log(`Error connecting to ${dbConn}, cause: ${err}`);
+  process.exit();
 });
+
+ // Middleware
+const bodyParser = require('body-parser');
+
+server.use(bodyParser.urlencoded( { extended: false } ) );
+server.use(bodyParser.json());
+
+ // Attach routes as middleware
+
+server.use(routes);
+
+ server.get('/', (req, res) => {
+   res.send('EACI Team App');
+ });
+
+module.exports = server;
