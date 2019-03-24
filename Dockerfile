@@ -11,9 +11,9 @@ HEALTHCHECK --interval=5s \
 # tell docker what port to expose
 EXPOSE 8000
 
-RUN mkdir -p /opt/app
+RUN mkdir -p /opt/app   
 WORKDIR /opt/app
-RUN cp -R /* /opt/app
+RUN cp -R ./* /opt/app
 RUN npm install
 
 WORKDIR /opt/app
