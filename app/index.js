@@ -31,6 +31,13 @@ server.use(bodyParser.json());
 
 server.use(routes);
 
+const PORT = 3000;
+const HOST = '0.0.0.0'; // Listen from everywhere
+
+server.listen(PORT, HOST, function(){
+  console.log(`Listening to ${PORT} on ${HOST}.\n`);
+});
+
  server.get('/', (req, res) => {
    res.send('EACI Team App');
  });
