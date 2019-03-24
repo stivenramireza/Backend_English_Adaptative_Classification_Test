@@ -10,7 +10,7 @@ node {
     stage('Build image') {
         /* This builds the actual image */
 
-        app = docker.build("agrajal7/nodeapp")
+        app = docker.build("agrajal7/eaciapp")
     }
 
     stage('Test image') {
