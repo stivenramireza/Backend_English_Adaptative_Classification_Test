@@ -18,7 +18,7 @@ mongoose.connect(dbConn, {useNewUrlParser: true}).then( () => {
   console.log(`Connected to ${dbConn} successfully...`);
 }).catch( err => {
   console.log(`Error connecting to ${dbConn}, cause: ${err}`);
-  process.exit();
+  //process.exit();
 });
 
  // Middleware
