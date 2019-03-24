@@ -2,36 +2,36 @@ node {
     def app
 
     stage('Clone repository') {
-        
-        /*Clone repo to our workspace*/
+        /* Cloning the Repository to our Workspace */
 
         checkout scm
     }
 
     stage('Build image') {
+        /* This builds the actual image */
 
-        /*
-        Builds the actual image; synonimous to docker build on
-        the command line
-        */
-        app = docker.build("agrajal7/eaciapp")
+        app = docker.build("agrajal7/nodeapp")
     }
 
     stage('Test image') {
-
+        
         app.inside {
-            sh 'echo "Tests passed"'
+            echo "Tests passed"
         }
     }
 
     stage('Push image') {
-        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub'){
+        /* 
+			You would need to first register with DockerHub before you can push images to your account
+		*/
+        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
             app.push("${env.BUILD_NUMBER}")
             app.push("latest")
-        }
+            } 
+                echo "Trying to Push Docker Build to DockerHub"
     }
 
-    stage('Run app') {
+    stage('run app') {
         sh 'bash ./deploy.sh'
     }
 }
