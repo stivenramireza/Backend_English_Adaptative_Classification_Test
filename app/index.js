@@ -31,7 +31,7 @@ server.use(bodyParser.json());
 
 server.use(routes);
 
-const PORT = 3000;
+const PORT = 8000;
 const HOST = '0.0.0.0'; // Listen from everywhere
 
 server.listen(PORT, HOST, function(){
