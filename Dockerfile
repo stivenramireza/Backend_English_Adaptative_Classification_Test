@@ -17,4 +17,4 @@ COPY . /opt/app
 
 EXPOSE 3000
 
-CMD ["npm", "test"]
+CMD ["npm", "start"]
