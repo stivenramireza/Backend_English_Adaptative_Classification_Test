@@ -39,7 +39,7 @@ server.listen(PORT, HOST, function(){
 });
 
  server.get('/', (req, res) => {
-   res.send('Este es un caso de prueba');
+   res.send('EACI Team App');
  });
 
 module.exports = server;
