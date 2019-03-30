@@ -43,11 +43,7 @@ server.listen(PORT, HOST, function(){
 });
 
  server.get('/', (req, res) => {
-   res.send('EACI Team App Test');
+   res.redirect('/admin');
  });
-
- server.get('/test', function(req, res){  
-  res.redirect('/test/pre-started')
-});
 
 module.exports = server;

@@ -16,6 +16,8 @@ const userCtlr = require('../controllers/user');
  const router = express.Router();
 
  router.get('/test/pre-started', userCtlr.loadTest);
+ router.get('/admin', userCtlr.loadLoginAdmin);
+ router.get('/candidate', userCtlr.loadLoginCandidate);
 
  router.post('/user/register', (req, res, next) => {
      let hasErrors = false;

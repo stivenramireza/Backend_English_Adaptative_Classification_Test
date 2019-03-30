@@ -7,6 +7,14 @@ function loadTest(req, res){
     res.render("../views/test/test.ejs")
 }
 
+function loadLoginCandidate(req, res){
+    res.render("../views/login-user/login-user.ejs")
+}
+
+function loadLoginAdmin(req, res){
+    res.render("../views/login-admin/login-admin.ejs")
+}
+
 function registrar(req, res) {
     const user = new User({
         displayName: req.body.displayName,
@@ -51,5 +59,7 @@ function loguear(req, res) {
 module.exports = {
     registrar,
     loguear,
-    loadTest
+    loadTest,
+    loadLoginCandidate,
+    loadLoginAdmin
 }
