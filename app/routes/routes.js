@@ -10,11 +10,12 @@
 
  //to encrypt
 const bcrypt = require('bcrypt');
-
-
+const userCtlr = require('../controllers/user');
 
  // It will contain all the end points
  const router = express.Router();
+
+ router.get('/test/pre-started', userCtlr.loadTest);
 
  router.post('/user/register', (req, res, next) => {
      let hasErrors = false;
