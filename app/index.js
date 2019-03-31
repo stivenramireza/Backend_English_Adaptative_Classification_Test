@@ -8,6 +8,7 @@ const server = express();
 const routes = require('./routes/routes');
 const config = require('./config');
 const mongoose = require('mongoose');
+const path = require('path');
 
 
 // Connection String
@@ -24,8 +25,11 @@ mongoose.connect(dbConn, {useNewUrlParser: true}).then( () => {
  // Middleware
 const bodyParser = require('body-parser');
 
+server.use(express.static(path.join(__dirname, 'views')));
 server.use(bodyParser.urlencoded( { extended: false } ) );
 server.use(bodyParser.json());
+server.set('views', path.join(__dirname, 'views'));
+server.set('view engine', 'ejs');
 
  // Attach routes as middleware
 
@@ -39,7 +43,11 @@ server.listen(PORT, HOST, function(){
 });
 
  server.get('/', (req, res) => {
-   res.send('EACI Team App 1');
+   res.redirect('/login/candidate');
  });
+
+ server.get('/test', (req, res) => {
+  res.redirect('/test/pre-started');
+});
 
 module.exports = server;
