@@ -43,11 +43,7 @@ server.listen(PORT, HOST, function(){
 });
 
  server.get('/', (req, res) => {
-<<<<<<< HEAD
-   res.send('Wizards Team App');
-=======
    res.redirect('/login/candidate');
->>>>>>> dev
  });
 
  server.get('/test', (req, res) => {
