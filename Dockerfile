@@ -1,4 +1,4 @@
-FROM node:7-onbuild
+FROM node:10-alpine
 
 # set maintainer
 LABEL maintainer "agrajal7@eafit.edu.co"
