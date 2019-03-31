@@ -17,6 +17,7 @@ HEALTHCHECK --interval=5s \
 # tell docker what port to expose
 RUN mkdir -p /opt/app
 WORKDIR /opt/app
+RUN rm -rf /opt/app/*
 ADD package.json /opt/app/
 RUN npm install
 RUN cp -R ./* /opt/app
