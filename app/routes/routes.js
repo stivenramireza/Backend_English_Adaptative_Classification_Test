@@ -168,6 +168,17 @@ const bcrypt = require('bcrypt');
     }  
   });
 
+  router.post('/user', (req, res, next) => {
+      const email = req.body.email;
+      User.findOne({email: email}).then((found_user, err) => {
+        if(!found_user){
+            throw err;
+        }else{
+            res.status(200);
+        }
+      });
+  });
+
  module.exports = router;
 
 

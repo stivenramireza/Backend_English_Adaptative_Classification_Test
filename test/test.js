@@ -95,3 +95,20 @@ describe('User Login', () => {
             });
     });
 });
+
+
+describe('User Profile', () => {
+    it('should return 200 and user name', (done) => {
+        const data = {
+            "email": "agrajal7@eafit.edu.co"
+        }
+        chai.request(server).post('/user')
+        .send(data)
+        .then((res) => {
+            expect(res).to.have.status(200);
+            done();
+        }).catch(err => {
+            console.log("Error: " +err);
+        });
+    });
+});
