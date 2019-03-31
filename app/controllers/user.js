@@ -8,7 +8,7 @@ function loadTest(req, res){
 }
 
 function loadLoginCandidate(req, res){
-    res.render("../views/login-user/login-user.ejs")
+    res.render("../views/login-candidate/login-candidate.ejs")
 }
 
 function loadLoginAdmin(req, res){
