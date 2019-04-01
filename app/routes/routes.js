@@ -15,7 +15,9 @@ const userCtlr = require('../controllers/user');
  // It will contain all the end points
  const router = express.Router();
 
- router.get('/test/pre-started', userCtlr.loadTest);
+ router.get('/profile/admin', userCtlr.loadProfileAdmin);
+ router.get('/profile/candidate', userCtlr.loadProfileCandidate);
+ router.get('/login/users', userCtlr.loadLoginUsers);
  router.get('/login/admin', userCtlr.loadLoginAdmin);
  router.get('/login/candidate', userCtlr.loadLoginCandidate);
 

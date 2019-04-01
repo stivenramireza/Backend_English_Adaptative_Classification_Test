@@ -3,8 +3,12 @@ const User = require("../models/user")
 const service = require("../services")
 const fs = require('fs');
 
-function loadTest(req, res){
-    res.render("../views/test/test.ejs")
+function loadProfileCandidate(req, res){
+    res.render("../views/profile-candidate/profile-candidate.ejs")
+}
+
+function loadProfileAdmin(req,res){
+    res.render("../views/profile-admin/profile-admin.ejs")
 }
 
 function loadLoginCandidate(req, res){
@@ -13,6 +17,10 @@ function loadLoginCandidate(req, res){
 
 function loadLoginAdmin(req, res){
     res.render("../views/login-admin/login-admin.ejs")
+}
+
+function loadLoginUsers(req, res){
+    res.render("../views/login-users/login-users.ejs")
 }
 
 function registrar(req, res) {
@@ -59,7 +67,9 @@ function loguear(req, res) {
 module.exports = {
     registrar,
     loguear,
-    loadTest,
+    loadProfileCandidate,
+    loadProfileAdmin,
     loadLoginCandidate,
-    loadLoginAdmin
+    loadLoginAdmin,
+    loadLoginUsers
 }
