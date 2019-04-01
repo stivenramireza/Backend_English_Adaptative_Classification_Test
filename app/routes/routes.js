@@ -39,5 +39,6 @@ router.post('/student/register', [
     check('phonenumber').isMobilePhone().isLength({max: 12}),
     check('email').isEmail().isLength({min: 7})
 ], studentCtrlr.register);
-
+router.get('/student/profile', studentCtrlr.userProfile);
+//router.get('/student/logout', studentCtrlr.logout);
 module.exports = router;

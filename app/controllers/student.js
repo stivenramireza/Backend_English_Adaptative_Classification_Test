@@ -19,6 +19,7 @@ function login(req, res){
     if(!errors.isEmpty()){
         return res.status(422).json({ errors: errors.array() });
     }
+    console.log(fromNumberToDocType(req.body.doctype) + " : " + req.body.docnumber);
     Student.findOne({doctype: fromNumberToDocType(req.body.doctype), docnumber: req.body.docnumber}).then((found_student, err) => {
         if(!found_student){
             res.status(401).json({
@@ -35,11 +36,8 @@ function login(req, res){
                     expiresIn: "1h"
                 }
             );
-            res.status(200).json({
-                message: 'Student authenticated.',
-                token: token,
-                errors: errors.array()
-            });
+            res.header('x-access-token', token);
+            res.status(200).redirect('/student/profile');
         }
     });
 }
@@ -76,7 +74,33 @@ function register(req, res) {
     });
 }
 
+function userProfile(req, res) {
+    var token = req.headers['x-access-token'] || req.body.token;
+    console.log(token);
+    if(!token){
+        //res.status(401).send({
+        //    error: "It's required an authorization token."   
+        //});
+        res.status(401).redirect('/student/login').end();
+    }else{
+        jwt.verify(token, (process.env.JWT_KEY || 'mykey'), (err, student) => {
+            if(err){
+                res.status(500).redirect('/student/login').end();
+            }else{
+                Student.findOne({docnumber: student.docnumber}, (err, student) => {
+                    if(!student){
+                        res.status(404).redirect('/student/login').end();
+                    }else{
+                        res.status(200).redirect('/student/profile').end();
+                    }
+                });
+            }
+        });
+    }
+}
+
 function fromNumberToDocType(_number){
+    _number = parseInt(_number);
     switch(_number){
         case 1:
             return "Cédula de Ciudadanía";
@@ -122,6 +146,7 @@ function fromNumberToGenre(_number){
 module.exports = {
     loadTest,
     loadLoginCandidate,
+    userProfile,
     login,
     register
 };
