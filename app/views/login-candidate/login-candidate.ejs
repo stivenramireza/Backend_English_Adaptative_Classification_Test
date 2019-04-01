@@ -39,11 +39,41 @@
   <img class="mb-4" src="http://www.eafit.edu.co/SiteCollectionImages/logo_idiomas_eafit.png" alt="" width="300" height="72">
   <h1 class="h3 mb-3 font-weight-normal">Candidate</h1>
   <label for="inputIdentification" class="sr-only"></label>
-  <input type="identification" id="inputIdentification" class="form-control" placeholder="Identification" required autofocus>
+  <select class="form-control" id="doctype">
+    <option value="0">Identification Type</option>
+    <option value="1">Cédula de Ciudadanía</option>
+    <option value="2">Cédula de Ciudadanía Ecuatoriana</option>
+    <option value="3">Cédula de Extranjería</option>
+    <option value="4">Cédula de Guatemala</option>
+    <option value="5">Cédula de Panamá</option>
+    <option value="6">Código de Estudiante</option>
+    <option value="7">Documento Nacional de Identidad</option>
+    <option value="8">Documento Personal Identificación</option>
+    <option value="9">Nro Único Identificación Personal</option>
+    <option value="10">Otro</option>
+    <option value="11">Pasaporte</option>
+    <option value="12">Registro</option>
+    <option value="13">Tarjeta de Identidad</option>
+  </select>
+  <br/>
+  <input id="docnumber" type="identification" id="inputIdentification" class="form-control" placeholder="Identification" required autofocus>
   <div class="checkbox mb-3">
   </div>
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+  <button class="btn btn-lg btn-primary btn-block" type="submit" id="login">Sign in</button>
   <p class="mt-5 mb-3 text-muted">&copy; 2019</p>
 </form>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+</script>
+<script type="text/javascript">
+  $("#login").on('click', (e) => {
+    e.preventDefault();
+    var docnumber = $("#docnumber").val();
+    var doctype = $("#doctype").val();
+    $.post('/student/login', {
+      doctype: doctype,
+      docnumber: docnumber
+    });
+  });
+</script>
 </html>

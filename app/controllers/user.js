@@ -15,6 +15,7 @@ function loadLoginAdmin(req, res){
     res.render("../views/login-admin/login-admin.ejs")
 }
 
+
 function registrar(req, res) {
     const user = new User({
         displayName: req.body.displayName,

@@ -43,7 +43,7 @@ server.listen(PORT, HOST, function(){
 });
 
  server.get('/', (req, res) => {
-   res.redirect('/login/candidate');
+   res.redirect('/student/login');
  });
 
  server.get('/test', (req, res) => {
