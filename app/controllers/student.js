@@ -14,6 +14,10 @@ function loadLoginCandidate(req, res){
     res.render("../views/login-candidate/login-candidate.ejs")
 }
 
+function updateProfile(req, res){
+    res.render("../views/candidate-update/candidate-update.ejs")
+}
+
 function login(req, res){
     var errors = validationResult(req);
     if(!errors.isEmpty()){
@@ -161,6 +165,7 @@ module.exports = {
     loadTest,
     loadLoginCandidate,
     userProfile,
+    updateProfile,
     login,
     register
 };
