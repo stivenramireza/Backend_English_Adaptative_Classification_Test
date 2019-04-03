@@ -43,5 +43,7 @@ router.post('/register/candidate', [
     check('email').isEmail().isLength({min: 7})
 ], studentCtrlr.register);
 router.get('/candidate/profile', studentCtrlr.userProfile);
+router.get('/candidate/update-profile', studentCtrlr.updateProfile);
+
 //router.get('/student/logout', studentCtrlr.logout);
 module.exports = router;
