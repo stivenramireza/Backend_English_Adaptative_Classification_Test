@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 
 function loadLogin(req, res){
-    res.render('../views/login/login.ejs');
+    res.render('../views/main/main.ejs');
 }
 
 module.exports = {
