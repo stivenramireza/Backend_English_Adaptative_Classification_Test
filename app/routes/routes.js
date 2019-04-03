@@ -40,14 +40,7 @@ router.post('/register/candidate', [
     check('phonenumber').isMobilePhone().isLength({max: 12}),
     check('email').isEmail().isLength({min: 7})
 ], studentCtrlr.register);
-<<<<<<< HEAD
 router.get('/candidate/profile', studentCtrlr.userProfile); // Carga el perfil del aspirante
 router.get('/candidate/test/pre-started', testCtlr.loadPreStarted); // Carga las instrucciones del examen
 //router.get('/student/logout', studentCtrlr.logout); // Cierra sesión del estudiante
-=======
-router.get('/candidate/profile', studentCtrlr.userProfile);
-router.get('/candidate/update-profile', studentCtrlr.updateProfile);
-
-//router.get('/student/logout', studentCtrlr.logout);
->>>>>>> 612205b8b7608b9e66f7fc3c10a474b63e75b32b
 module.exports = router;
