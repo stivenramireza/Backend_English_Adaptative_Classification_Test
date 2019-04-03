@@ -12,6 +12,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const userCtlr = require('../controllers/user');
 const studentCtrlr = require('./../controllers/student');
+const loginCtlr = require('../controllers/login')
 
  // It will contain all the end points
 const router = express.Router();
@@ -19,10 +20,12 @@ const router = express.Router();
 const {check, validationResult} = require('express-validator/check');
 
 //router.get('/test/pre-started', userCtlr.loadTest);
-//router.get('/login/admin', userCtlr.loadLoginAdmin);
+
 //router.get('/login/candidate', userCtlr.loadLoginCandidate);
 
 router.get('/signin/candidate', studentCtrlr.loadLoginCandidate);
+router.get('/signin/admin', userCtlr.loadLoginAdmin);
+router.get('/signin', loginCtlr.loadLogin);
 router.post('/signin/candidate', [
     check('doctype').isNumeric().isIn([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]), //validate,
     check('docnumber').isNumeric().isLength({min: 5})
