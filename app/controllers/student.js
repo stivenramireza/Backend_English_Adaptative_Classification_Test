@@ -36,8 +36,10 @@ function login(req, res){
                     expiresIn: "1h"
                 }
             );
-            res.header('x-access-token', token);
-            res.status(200).redirect('/student/profile');
+            res.status(400).json({
+                token: token,
+                message: "Token has been sent."
+            });
         }
     });
 }
@@ -75,23 +77,35 @@ function register(req, res) {
 }
 
 function userProfile(req, res) {
-    var token = req.headers['x-access-token'] || req.body.token;
-    console.log(token);
+    var token = req.headers['x-access-token'];
     if(!token){
         //res.status(401).send({
         //    error: "It's required an authorization token."   
         //});
-        res.status(401).redirect('/student/login').end();
+        res.status(401).send({
+            admit: false,
+            message: "Invalid token"
+        });
     }else{
         jwt.verify(token, (process.env.JWT_KEY || 'mykey'), (err, student) => {
             if(err){
-                res.status(500).redirect('/student/login').end();
+                console.log("Verfied.");
+                res.status(400).json({
+                    admit: false,
+                    message: "The token doesn't exist."
+                });
             }else{
                 Student.findOne({docnumber: student.docnumber}, (err, student) => {
                     if(!student){
-                        res.status(404).redirect('/student/login').end();
+                        res.status(500).json({
+                            admit: false,
+                            message: "The student doesn't exists"
+                        });
                     }else{
-                        res.status(200).redirect('/student/profile').end();
+                        res.status(201).json({
+                            admit: true,
+                            message: "Student logged in."
+                        });
                     }
                 });
             }

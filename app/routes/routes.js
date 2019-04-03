@@ -22,12 +22,12 @@ const {check, validationResult} = require('express-validator/check');
 //router.get('/login/admin', userCtlr.loadLoginAdmin);
 //router.get('/login/candidate', userCtlr.loadLoginCandidate);
 
-router.get('/student/login', studentCtrlr.loadLoginCandidate);
-router.post('/student/login', [
+router.get('/signin/candidate', studentCtrlr.loadLoginCandidate);
+router.post('/signin/candidate', [
     check('doctype').isNumeric().isIn([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]), //validate,
     check('docnumber').isNumeric().isLength({min: 5})
 ], studentCtrlr.login);
-router.post('/student/register', [
+router.post('/register/candidate', [
     check('doctype').isNumeric().isIn([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]), //validate,
     check('docnumber').isNumeric().isLength({min: 5}),
     check('firstname').matches('[a-zA-Z\\s]+').isLength({min: 4}),
@@ -39,6 +39,6 @@ router.post('/student/register', [
     check('phonenumber').isMobilePhone().isLength({max: 12}),
     check('email').isEmail().isLength({min: 7})
 ], studentCtrlr.register);
-router.get('/student/profile', studentCtrlr.userProfile);
+router.get('/candidate/profile', studentCtrlr.userProfile);
 //router.get('/student/logout', studentCtrlr.logout);
 module.exports = router;
