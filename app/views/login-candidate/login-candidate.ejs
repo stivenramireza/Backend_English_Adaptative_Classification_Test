@@ -30,40 +30,51 @@
       .bd-placeholder-img-lg {
         font-size: 3.5rem;
       }
-    </style>
-    <!-- Custom styles for this template -->
-    <link href="https://getbootstrap.com/docs/4.3/examples/sign-in/signin.css" rel="stylesheet">
-  </head>
-  <body class="text-center">
-    <form class="form-signin">
-  <img class="mb-4" src="http://www.eafit.edu.co/SiteCollectionImages/logo_idiomas_eafit.png" alt="" width="300" height="72">
-  <h1 class="h3 mb-3 font-weight-normal">Aspirante</h1>
-  <label for="inputIdentification" class="sr-only"></label>
-  <select class="form-control" id="doctype">
-    <option value="0">Seleccione el tipo de identificación...</option>
-    <option value="1">Cédula de Ciudadanía</option>
-    <option value="2">Cédula de Ciudadanía Ecuatoriana</option>
-    <option value="3">Cédula de Extranjería</option>
-    <option value="4">Cédula de Guatemala</option>
-    <option value="5">Cédula de Panamá</option>
-    <option value="6">Código de Estudiante</option>
-    <option value="7">Documento Nacional de Identidad</option>
-    <option value="8">Documento Personal Identificación</option>
-    <option value="9">Nro Único Identificación Personal</option>
-    <option value="10">Otro</option>
-    <option value="11">Pasaporte</option>
-    <option value="12">Registro</option>
-    <option value="13">Tarjeta de Identidad</option>
-  </select>
-  <br/>
-  <input id="docnumber" type="identification" id="inputIdentification" class="form-control" placeholder="Número de Identificación" required autofocus>
-  <div class="checkbox mb-3">
-  </div>
-  <button class="btn btn-lg btn-primary btn-block" type="submit" id="login">Ingresar</button>
-  <div class="alert alert-danger" id="alert1" role="alert">
-  </div>
-  <p class="mt-5 mb-3 text-muted">&copy; 2019</p>
-</form>
+    }
+  </style>
+  <!-- Custom styles for this template -->
+  <link href="https://getbootstrap.com/docs/4.3/examples/sign-in/signin.css" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/header.css">
+</head>
+
+<body class="text-center">
+  <header class="enca">
+    <div class="wrapper">
+      <div class="logo">
+        <img src="https://i.imgur.com/9xpkUdY.png" height="40px" style="vertical-align:middle;">
+      </div>
+      <nav>
+        <a style="color: white">Ingreso de aspirantes</a>
+      </nav>
+    </div>
+  </header>
+  <form class="form-signin">
+    <label for="inputIdentification" class="sr-only"></label>
+    <select class="form-control" id="doctype">
+      <option value="0">Seleccione el tipo de identificación...</option>
+      <option value="1">Cédula de Ciudadanía</option>
+      <option value="2">Cédula de Ciudadanía Ecuatoriana</option>
+      <option value="3">Cédula de Extranjería</option>
+      <option value="4">Cédula de Guatemala</option>
+      <option value="5">Cédula de Panamá</option>
+      <option value="6">Código de Estudiante</option>
+      <option value="7">Documento Nacional de Identidad</option>
+      <option value="8">Documento Personal Identificación</option>
+      <option value="9">Nro Único Identificación Personal</option>
+      <option value="10">Otro</option>
+      <option value="11">Pasaporte</option>
+      <option value="12">Registro</option>
+      <option value="13">Tarjeta de Identidad</option>
+    </select>
+    <br />
+    <input id="docnumber" type="identification" id="inputIdentification" class="form-control"
+      placeholder="Número de Identificación" required autofocus>
+    <div class="checkbox mb-3">
+    </div>
+    <br>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" id="login">Ingresar</button>
+    <p class="mt-5 mb-3 text-muted">&copy; 2019</p>
+  </form>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js">
 </script>
