@@ -10,6 +10,11 @@ function loadPreStarted(req, res){
     res.render('../views/test-prestarted/test-prestarted.ejs');
 }
 
+function loadTest(req, res){
+    res.render('../views/examen/examen.ejs');
+}
+
 module.exports = {
-    loadPreStarted
+    loadPreStarted,
+    loadTest
 };

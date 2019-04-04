@@ -10,10 +10,8 @@ const config = require('./config');
 const mongoose = require('mongoose');
 const path = require('path');
 
-
 // Connection String
 let dbConn = "mongodb://" + config.DB_USER + ":" + config.DB_PASSWORD + "@" + config.DB_HOST;
-
 
 mongoose.connect(dbConn, {useNewUrlParser: true}).then( () => {
   console.log(`Connected to ${dbConn} successfully...`);
@@ -42,12 +40,8 @@ server.listen(PORT, HOST, function(){
   console.log(`Listening to ${PORT} on ${HOST}.\n`);
 });
 
- server.get('/', (req, res) => {
-   res.redirect('/signin');
- });
-
- server.get('/test', (req, res) => {
-  res.redirect('/test/pre-started');
+server.get('/', (req, res) => {
+  res.redirect('/signin');
 });
 
 module.exports = server;

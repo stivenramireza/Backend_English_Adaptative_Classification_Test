@@ -5,7 +5,6 @@
 
 const express = require('express');
 const jwt = require('jsonwebtoken');
-const User = require('./../models/user');
 const mongoose = require('mongoose');
 
  //to encrypt
@@ -20,16 +19,22 @@ const router = express.Router();
 
 const {check, validationResult} = require('express-validator/check');
 
-router.get('/signin/candidate', studentCtrlr.loadLoginCandidate);
-router.get('/signin/admin', adminCtlr.loadLoginAdmin);
-router.get('/signin', loginCtlr.loadLogin);
+// GET
+router.get('/signin', loginCtlr.loadLogin); // Carga el signin (página principal)
+router.get('/signin/candidate', studentCtrlr.loadLoginCandidate); // Carga el signin del aspirante
+router.get('/signin/admin', adminCtlr.loadLoginAdmin); // Carga el signin del administrador
+router.get('/candidate/profile', studentCtrlr.userProfile); // Carga el perfil del aspirante
+router.get('/candidate/update-profile', studentCtrlr.updateProfile); // Carga el perfil de actualización
+router.get('/candidate/test/pre-started', testCtlr.loadPreStarted); // Carga las instrucciones del examen
+router.get('/candidate/test/', testCtlr.loadTest); // Cargas las preguntas y opciones de respuesta
 
+// POST
 router.post('/signin/candidate', [
-    check('doctype').isNumeric().isIn([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]), //validate,
+    check('doctype').isNumeric().isIn([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]),
     check('docnumber').isNumeric().isLength({min: 5})
-], studentCtrlr.login);
+], studentCtrlr.login); // Postea para el signin del aspirante
 router.post('/register/candidate', [
-    check('doctype').isNumeric().isIn([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]), //validate,
+    check('doctype').isNumeric().isIn([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]),
     check('docnumber').isNumeric().isLength({min: 5}),
     check('firstname').matches('[a-zA-Z\\s]+').isLength({min: 4}),
     check('lastname').matches('[a-zA-Z\\s]+').isLength({min: 4}),
@@ -39,8 +44,6 @@ router.post('/register/candidate', [
     check('address').matches('[a-zA-Z0-9\\#\\-\\°\\s]+').isLength({min: 4}),
     check('phonenumber').isMobilePhone().isLength({max: 12}),
     check('email').isEmail().isLength({min: 7})
-], studentCtrlr.register);
-router.get('/candidate/profile', studentCtrlr.userProfile); // Carga el perfil del aspirante
-router.get('/candidate/test/pre-started', testCtlr.loadPreStarted); // Carga las instrucciones del examen
-//router.get('/student/logout', studentCtrlr.logout); // Cierra sesión del estudiante
+], studentCtrlr.register); // Postea para el registro del aspirante
+
 module.exports = router;
