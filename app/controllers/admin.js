@@ -1,29 +1,13 @@
 const bcrypt = require('bcrypt');
-const User = require("../models/user")
+const User = require("../models/admin")
 const service = require("../services")
 const fs = require('fs');
-
-function loadProfileCandidate(req, res){
-    res.render("../views/profile-candidate/profile-candidate.ejs")
-}
-
-function loadProfileAdmin(req,res){
-    res.render("../views/profile-admin/profile-admin.ejs")
-}
-
-function loadLoginCandidate(req, res){
-    res.render("../views/login-candidate/login-candidate.ejs")
-}
 
 function loadLoginAdmin(req, res){
     res.render("../views/login-admin/login-admin.ejs")
 }
 
-function loadLoginUsers(req, res){
-    res.render("../views/login-users/login-users.ejs")
-}
-
-function registrar(req, res) {
+function registrarAdmin(req, res) {
     const user = new User({
         displayName: req.body.displayName,
         username: req.body.username,
@@ -39,7 +23,7 @@ function registrar(req, res) {
         })
     }
 
-function loguear(req, res) {
+function loguearAdmin(req, res) {
     User.findOne({ username: req.body.username }).select('username +password').exec(function (err, user) {
         if (err) return res.status(500).send({ 
             message: err 
@@ -65,11 +49,7 @@ function loguear(req, res) {
 }
 
 module.exports = {
-    registrar,
-    loguear,
-    loadProfileCandidate,
-    loadProfileAdmin,
-    loadLoginCandidate,
-    loadLoginAdmin,
-    loadLoginUsers
+    registrarAdmin,
+    loguearAdmin,
+    loadLoginAdmin
 }
