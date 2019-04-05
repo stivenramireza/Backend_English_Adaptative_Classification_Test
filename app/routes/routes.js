@@ -47,9 +47,6 @@ router.post('/register/candidate', [
     check('email').isEmail().isLength({min: 7})
 ], studentCtrlr.register); // Postea para el registro del aspirante
 
-<<<<<<< HEAD
-module.exports = router;
-=======
 // POST del Admin
 router.post('/signin/admin', [
     check('username').matches('[a-zA-Z\\s]+').isLength({min: 4}),
@@ -72,4 +69,3 @@ router.post('/register/admin', [
 ], adminCtlr.registrarAdmin); // Postea para el registro del admin
 
 module.exports = router;
->>>>>>> dev
