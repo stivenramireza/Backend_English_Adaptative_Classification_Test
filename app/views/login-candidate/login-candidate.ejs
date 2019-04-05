@@ -71,7 +71,7 @@
     e.preventDefault();
     var docnumber = $("#docnumber").val();
     var doctype = $("#doctype").val();
-    $.post('/student/login', {
+    $.post('/signin/candidate', {
       doctype: doctype,
       docnumber: docnumber
     });
