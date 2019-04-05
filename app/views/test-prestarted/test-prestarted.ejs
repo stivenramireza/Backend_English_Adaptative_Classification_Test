@@ -1,56 +1,123 @@
-
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Jekyll v3.8.5">
-    <title>Instrucciones</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/navbar-bottom/">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Jekyll v3.8.5">
+  <title>Instrucciones</title>
 
-    <!-- Bootstrap core CSS -->
-<link href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/navbar-bottom/">
 
 
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
+  <!-- Bootstrap core CSS -->
+  <link href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="../styles/header.css">
+
+
+
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
       }
+    }
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-        <center>
-            <h1>Examen Adaptativo de Clasificación de Inglés</h1>
+    .enca {
+      background: #001a72;
+      overflow: hidden;
+      width: 100%;
+      margin-bottom: 5px;
+      top: 0;
+      left: 0;
+      position: relative;
+    }
+
+    .wrapper {
+      width: 90%;
+      max-width: 1180px;
+      margin: auto;
+      overflow: hidden;
+    }
+
+    .logo {
+      float: right;
+      line-height: 60px;
+    }
+
+    nav {
+      line-height: 60px;
+      float: left;
+    }
+
+    nav a {
+      color: #fff;
+      text-emphasis-color: #fff;
+      text-decoration: none;
+      display: inline-block;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-weight: bold;
+      font-size: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="enca">
+    <div class="wrapper">
+      <div class="logo">
+        <img src="https://i.imgur.com/9xpkUdY.png" height="40px" style="vertical-align:middle;">
+      </div>
+      <nav>
+        <a style="color:white">Guía para la realización del examen</a>
+      </nav>
+    </div>
+  </header>
+  <br>
+  <br>
+
+  <center>
+    <div class="card" style="width:900px; background-color:#e9ecef">
+      <div class="card-body">
+        <p class="card-text">Antes de dar click en el botón "Comenzar", es necesario ver el
+          siguiente vídeo corto que contiene
+          las instrucciones necesarias para la realización exitosa del examen.</p>
+        <br>
+        <div>
+          <center>
+            <iframe width="720" height="410" src="https://www.youtube.com/embed/PzOiV9D7_x0?start=1" frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </center>
-  <div class="jumbotron mt-3">
-    
-        <p class="lead">Antes de dar click en el botón "Comenzar", es necesario ver el siguiente vídeo corto que contiene las instrucciones necesarias para la realización exitosa del examen.</p>
-      <div>
+        </div>
         <center>
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/PzOiV9D7_x0?start=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </center>
-  </div>
-    <center>
-    <a class="btn btn-lg btn-primary" href="https://getbootstrap.com/docs/4.3/components/navbar/" role="button">Comenzar &raquo;</a>
+          <br>
+          <a class="btn btn-lg btn-primary" href="/candidate/test" role="button">Comenzar &raquo;</a>
+        </center>
+      </div>
+    </div>
   </center>
-  </div>
-</div>
+  <br>
+  <br>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-      <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="/docs/4.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script></body>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+  <script src="/docs/4.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>
