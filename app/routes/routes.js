@@ -13,6 +13,7 @@ const adminCtlr = require('../controllers/admin');
 const studentCtrlr = require('./../controllers/student');
 const loginCtlr = require('../controllers/login');
 const testCtlr = require('../controllers/examen');
+const auth = require('../middlewares/auth')
 
  // It will contain all the end points
 const router = express.Router();
@@ -23,7 +24,7 @@ const {check, validationResult} = require('express-validator/check');
 router.get('/signin', loginCtlr.loadLogin); // Carga el signin (página principal)
 router.get('/signin/candidate', studentCtrlr.loadLoginCandidate); // Carga el signin del aspirante
 router.get('/signin/admin', adminCtlr.loadLoginAdmin); // Carga el signin del administrador
-router.get('/admin/profile', adminCtlr.loadProfile); // Carga el perfil del administrador
+router.get('/admin/profile', auth, adminCtlr.loadProfile); // Carga el perfil del administrador
 //router.get('/candidate/profile', studentCtrlr.userProfile); // Carga el perfil del aspirante
 router.get('/candidate/update-profile', studentCtrlr.updateProfile); // Carga el perfil de actualización
 router.get('/candidate/test/pre-started', testCtlr.loadPreStarted); // Carga las instrucciones del examen

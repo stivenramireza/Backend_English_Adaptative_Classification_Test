@@ -7,11 +7,11 @@ const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 
 function loadLoginAdmin(req, res){
-    res.render("../views/login-admin/login-admin.ejs")
+    res.render("../views/login-admin/html/login-admin.ejs")
 }
 
 function loadProfile(req, res){
-    res.render("../views/admin-profile/admin-profile.ejs")
+    res.render("../views/admin-profile/html/admin-profile.ejs")
 }
 
 function registrarAdmin(req, res) {

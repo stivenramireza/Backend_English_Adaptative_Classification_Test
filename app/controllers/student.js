@@ -6,16 +6,12 @@ const {check, validationResult} = require('express-validator/check');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 
-function loadTest(req, res){
-    res.render("../views/test/test.ejs")
-}
-
 function loadLoginCandidate(req, res){
-    res.render("../views/login-candidate/login-candidate.ejs")
+    res.render("../views/login-candidate/html/login-candidate.ejs")
 }
 
 function updateProfile(req, res){
-    res.render("../views/candidate-update/candidate-update.ejs")
+    res.render("../views/candidate-update/html/candidate-update.ejs")
 }
 
 function login(req, res){
@@ -162,7 +158,6 @@ function fromNumberToGenre(_number){
     return "";
 }
 module.exports = {
-    loadTest,
     loadLoginCandidate,
     userProfile,
     updateProfile,

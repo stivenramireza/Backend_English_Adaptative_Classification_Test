@@ -7,11 +7,11 @@ const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 
 function loadPreStarted(req, res){
-    res.render('../views/test-prestarted/test-prestarted.ejs');
+    res.render('../views/test-prestarted/html/test-prestarted.ejs');
 }
 
 function loadTest(req, res){
-    res.render('../views/examen/examen.ejs');
+    res.render('../views/examen/html/examen.ejs');
 }
 
 module.exports = {
