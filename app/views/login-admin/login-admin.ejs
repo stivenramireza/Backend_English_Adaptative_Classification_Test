@@ -42,9 +42,32 @@
   <input type="password" id="inputPassword" class="form-control" placeholder="Clave" required>
   <br>
   <button id="btnLogin"class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
+  <p id="failed" style="color:#bd1a1a ;display: none;text-align: center";>Falló el inicio de sesión. Intente de nuevo. </p>
   <br><br>
   <p class="mt-5 mb-3 text-muted">© 2019 Universidad EAFIT</p>
 </form>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#btnLogin").click(function(){
+    
+        $.post("/api/signin/admin" ,{ 
+            username: $("#inputUsername").val(), 
+            password: $("#inputPassword").val()
+        }).
+        done(function(res) {
+          if(res.status === "success"){
+            window.location.assign('/admin/profile')
+          }else{
+            $("#failed").show();
+          }
+    
+          })
+        error: (error) => {
+            console.log(JSON.stringify(error));
+        }
+    });
+});
+</script>
 </body>
-<script src="./../js/login-admin.js"></script>
 </html>

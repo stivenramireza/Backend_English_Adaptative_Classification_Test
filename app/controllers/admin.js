@@ -2,16 +2,22 @@ const Admin = require("../models/admin")
 const bcrypt = require('bcrypt');
 const service = require("../services")
 const fs = require('fs');
+const path = require('path');
+
 const {check, validationResult} = require('express-validator/check');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 
 function loadLoginAdmin(req, res){
-    res.render("../views/login-admin/html/login-admin.ejs")
+    res.render("../views/login-admin/login-admin.ejs");
 }
 
 function loadProfile(req, res){
-    res.sendFile(path.resolve('views/admin-profile/html/admin-profile.ejs'))
+    res.render("../views/admin-profile/admin-profile.ejs");
+}
+
+function logout(req, res){
+    res.redirect('/');
 }
 
 function registrarAdmin(req, res) {
@@ -66,11 +72,13 @@ function loguearAdmin(req, res) {
             res.status(200).send({
                 message: 'Login correcto del administrador',
                 token: service.createToken(new_admin),
+                status: "success"
             })
         }else {
             res.status(500).send({
                 message: 'Login incorrecto del administrador',
                 token: service.createToken(new_admin),
+                status: "success"
             })
         }
     })
@@ -125,5 +133,6 @@ module.exports = {
     registrarAdmin,
     loguearAdmin,
     loadLoginAdmin,
-    loadProfile
+    loadProfile,
+    logout
 }
