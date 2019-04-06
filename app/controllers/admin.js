@@ -11,7 +11,7 @@ function loadLoginAdmin(req, res){
 }
 
 function loadProfile(req, res){
-    res.render("../views/admin-profile/html/admin-profile.ejs")
+    res.sendFile(path.resolve('views/admin-profile/html/admin-profile.ejs'))
 }
 
 function registrarAdmin(req, res) {
@@ -37,13 +37,12 @@ function registrarAdmin(req, res) {
     });
     //save in the database
     new_admin.save((err) => {
-        if (err) return res.status(500).send({ message: `Error al crear el administrador: ${err}` })
-
-        return res.status(201).send({
+        if (err) return res.status(500).send({ 
+            message: `Error al crear el administrador: ${err}` 
+        })
+        return res.status(200).send({
             message: 'Registro exitoso del administrador',
-            token: service.createToken(new_admin),
-            adminId: new_admin._id,
-            adminUsername: new_admin.username
+            token: service.createToken(new_admin)
         })
     })
 }
@@ -53,21 +52,25 @@ function loguearAdmin(req, res) {
     if(!errors.isEmpty()){
         return res.status(422).json({ errors: errors.array() });
     }
-    Admin.findOne({ username: req.body.username }).select('username password').exec(function (err, new_admin) {
-        if (err) return res.status(500).send({ message: err })
-        if (!new_admin) return res.status(404).send({ message: 'Administrador no registrado' })
-
-        if (bcrypt.compareSync(req.body.password, new_admin.password)) {
-            
-            res.status(200).send({
-                message: 'Login exitoso del administrador',
-                token: service.createToken(user),
-                adminId: new_admin._id,
-                adminUsername: new_admin.username,
+    Admin.findOne({ username: req.body.username }).select('username +password').exec(function (err, new_admin) {
+        if (err) return res.status(500).send({ 
+            message: err 
+        })
+        if (new_admin == null) {
+            return res.status(404).send({ 
+                message: 'Admin incorrecto' 
             })
-        } else {
-            res.status(400).send({
-                message: 'Clave incorrecta. Intenta de nuevo.'
+        }
+        if (bcrypt.compareSync(req.body.password, new_admin.password)) {
+            req.new_admin = new_admin
+            res.status(200).send({
+                message: 'Login correcto del administrador',
+                token: service.createToken(new_admin),
+            })
+        }else {
+            res.status(500).send({
+                message: 'Login incorrecto del administrador',
+                token: service.createToken(new_admin),
             })
         }
     })

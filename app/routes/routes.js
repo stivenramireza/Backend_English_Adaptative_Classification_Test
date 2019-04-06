@@ -4,11 +4,6 @@
 */
 
 const express = require('express');
-const jwt = require('jsonwebtoken');
-const mongoose = require('mongoose');
-
- //to encrypt
-const bcrypt = require('bcrypt');
 const adminCtlr = require('../controllers/admin');
 const studentCtrlr = require('./../controllers/student');
 const loginCtlr = require('../controllers/login');
@@ -18,13 +13,13 @@ const auth = require('../middlewares/auth')
  // It will contain all the end points
 const router = express.Router();
 
-const {check, validationResult} = require('express-validator/check');
+const {check} = require('express-validator/check');
 
 // GET
 router.get('/signin', loginCtlr.loadLogin); // Carga el signin (página principal)
 router.get('/signin/candidate', studentCtrlr.loadLoginCandidate); // Carga el signin del aspirante
 router.get('/signin/admin', adminCtlr.loadLoginAdmin); // Carga el signin del administrador
-router.get('/admin/profile', auth, adminCtlr.loadProfile); // Carga el perfil del administrador
+router.get('/admin/profile', adminCtlr.loadProfile); // Carga el perfil del administrador
 //router.get('/candidate/profile', studentCtrlr.userProfile); // Carga el perfil del aspirante
 router.get('/candidate/update-profile', studentCtrlr.updateProfile); // Carga el perfil de actualización
 router.get('/candidate/test/pre-started', testCtlr.loadPreStarted); // Carga las instrucciones del examen
@@ -49,11 +44,11 @@ router.post('/register/candidate', [
 ], studentCtrlr.register); // Postea para el registro del aspirante
 
 // POST del Admin
-router.post('/signin/admin', [
+router.post('/api/signin/admin', [
     check('username').matches('[a-zA-Z\\s]+').isLength({min: 4}),
     check('password').matches('[a-zA-Z0-9\\#\\-\\°\\s]+').isLength({min: 8})
 ], adminCtlr.loguearAdmin); // Postea para el signin del admin
-router.post('/register/admin', [
+router.post('/api/register/admin', [
     check('doctype').isNumeric().isIn([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]),
     check('docnumber').isNumeric().isLength({min: 5}),
     check('firstname').matches('[a-zA-Z\\s]+').isLength({min: 4}),

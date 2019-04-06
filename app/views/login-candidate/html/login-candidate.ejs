@@ -61,6 +61,7 @@
   <input id="docnumber" type="identification" id="inputIdentification" class="form-control" placeholder="Número de Identificación" required autofocus>
   <div class="checkbox mb-3">
   </div>
+  <br>
   <button class="btn btn-lg btn-primary btn-block" type="submit" id="login">Ingresar</button>
   <p class="mt-5 mb-3 text-muted">© 2019 Universidad EAFIT</p>
   <div></div>
@@ -69,15 +70,5 @@
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js">
 </script>
-<script type="text/javascript">
-  $("#login").on('click', (e) => {
-    e.preventDefault();
-    var docnumber = $("#docnumber").val();
-    var doctype = $("#doctype").val();
-    $.post('/signin/candidate', {
-      doctype: doctype,
-      docnumber: docnumber
-    });
-  });
-</script>
+<script src="../js/login-candidate.js"></script>
 </html>

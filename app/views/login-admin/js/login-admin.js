@@ -1,20 +1,15 @@
 $(document).ready(function () {
-    $('#alert1').hide();
-    $('#alert2').hide();
-
     $('#btnLogin').click(function () {
         var usernameAdmin = $("#inputUsername").val();
         var passwordAdmin = $("#inputPassword").val();
 
         if (usernameAdmin == '' || passwordAdmin == '') {
-            $('#alert1').html('Completa todos los campos. Intenta de nuevo.');
-            $('#alert1').show();
-
+            console.log("Completa todos los campos");
         } else {
             var settings = {
                 "async": false,
                 "crossDomain": true,
-                "url": "/api/signin",
+                "url": "/api/signin/admin",
                 "method": "POST",
                 "headers": {
                     "content-type": "application/json",
@@ -28,12 +23,11 @@ $(document).ready(function () {
 
             $.ajax(settings).done(function (data) {
                 Cookies.set('token', "Bearer " + data.token);
-                Cookies.set('userId', data.userId);
-                Cookies.set('userName', data.userName);
+                Cookies.set('username', usernameAdmin);
+                Cookies.set('password', passwordAdmin);
                 window.location.replace('/admin/profile');
             }).fail(function (data) {
-                $('#alert1').html(data.responseJSON.message);
-                $('#alert1').show();
+               console.log(data.responseJSON.message);
             });
 
         }
