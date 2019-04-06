@@ -25,7 +25,7 @@ $(document).ready(function () {
                 Cookies.set('token', "Bearer " + data.token);
                 Cookies.set('username', usernameAdmin);
                 Cookies.set('password', passwordAdmin);
-                window.location.replace('/admin/profile');
+                window.location.assign('/admin/profile');
             }).fail(function (data) {
                console.log(data.responseJSON.message);
             });
