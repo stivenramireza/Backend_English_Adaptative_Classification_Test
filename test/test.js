@@ -9,7 +9,7 @@ const http = require('chai-http');
 
 // Require user
 const Student = require('./../app/models/student');
-const Admin = require('../app/models/admin');
+
 
 // App
 
@@ -43,32 +43,30 @@ describe('EACI Team App Tests', () => {
     });
 });
 
-
-// Admin Registration
-
-describe('Admin Registration', () => {
-    it('Should return 200 and confirmation for valid input', (done) => {
+describe('Student Registration', () => {
+    it('Should return 201 and confirmation for valid input', (done) => {
         const new_user = {
-            "doctype" : 1,
-            "docnumber" : "1029472679",
-            "adminType" : "General",
-            "firstname" : "Sandra",
-            "lastname" : "Gaviria",
-            "genre" : 2,
-            "birthdate" : "13/05/1980",
-            "currentcity" : "Medellin",
-            "address" : "Calle 49 B Sur # 41-116",
-            "phonenumber" : "3017179748",
-            "email" : "sgaviria4@eafit.edu.co",
-            "username" : "sgaviria4",
-            "password" : "sgaviria4"
+            "doctype": 1,
+	        "docnumber": 1036965733,
+	        "firstname": "Anderson Daniel",
+	        "lastname": "Grajales Alzate",
+	        "genre": 1,
+	        "birthdate": "25/01/1999",
+	        "currentcity": "Medellin",
+	        "address": "Corregimiento Santa Elena - Vereda Mazo",
+	        "phonenumber": "3128149251",
+	        "email": "agrajal7@eafit.edu.co"
         }
-        chai.request(server).post('/api/register/admin')
+        chai.request(server).post('/student/register')
             .send(new_user)
             .then((res) => {
-                expect(res).to.have.status(200);
-                expect(res.body.message).to.be.equal('Registro exitoso del administrador');
+                expect(res).to.have.status(201);
+                expect(res.body.message).to.be.equal("Student created!");
                 expect(res.body.errors.length).to.be.equal(0);
+                // Validate creation
+                expect(res.body.student._id).to.exist;
+                expect(res.body.student.createdAt).to.exist;
+                //validation to confirm password is encrypted
                 done();
             }).catch(err => {
                 console.log(err.message);
@@ -76,5 +74,23 @@ describe('Admin Registration', () => {
     });
 });
 
-// Admin Login
-
+// User Login
+describe('Student Login', () => {
+    it('should return 200 and token for valid credentials', (done) => {
+        const credentials = {
+            "doctype": 1,
+            "docnumber": 1036965733
+        }
+        chai.request(server).post('/student/login')
+            .send(credentials)
+            .then((res) => {
+                expect(res).to.have.status(200);
+                expect(res.body.token).to.exist;
+                expect(res.body.message).to.be.equal("Student authenticated.");
+                expect(res.body.errors.length).to.be.equal(0);
+                done();
+            }).catch(err => {
+                console.log(err.message);
+            });
+    });
+});
