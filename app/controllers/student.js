@@ -38,7 +38,8 @@ function login(req, res){
             );
             res.status(400).json({
                 token: token,
-                message: "Token has been sent."
+                message: "Token has been sent.",
+                status: "success"
             });
         }
     });
@@ -79,9 +80,6 @@ function register(req, res) {
 function userProfile(req, res) {
     var token = req.headers['x-access-token'];
     if(!token){
-        //res.status(401).send({
-        //    error: "It's required an authorization token."   
-        //});
         res.status(401).send({
             admit: false,
             message: "Invalid token"
@@ -89,7 +87,7 @@ function userProfile(req, res) {
     }else{
         jwt.verify(token, (process.env.JWT_KEY || 'mykey'), (err, student) => {
             if(err){
-                console.log("Verfied.");
+                console.log("Verified.");
                 res.status(400).json({
                     admit: false,
                     message: "The token doesn't exist."
@@ -104,7 +102,8 @@ function userProfile(req, res) {
                     }else{
                         res.status(201).json({
                             admit: true,
-                            message: "Student logged in."
+                            message: "Student logged in.",
+                            status: "success"
                         });
                     }
                 });

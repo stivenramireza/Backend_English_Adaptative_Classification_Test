@@ -21,17 +21,17 @@ router.get('/signin/candidate', studentCtrlr.loadLoginCandidate); // Carga el si
 router.get('/signin/admin', adminCtlr.loadLoginAdmin); // Carga el signin del administrador
 router.get('/admin/profile', adminCtlr.loadProfile); // Carga el perfil del administrador
 router.get('/admin/logout', auth, adminCtlr.logout); // Cerrar sesión del administrador
-//router.get('/candidate/profile', studentCtrlr.userProfile); // Carga el perfil del aspirante
+router.get('/candidate/profile', studentCtrlr.userProfile); // Carga el perfil del aspirante
 router.get('/candidate/update-profile', studentCtrlr.updateProfile); // Carga el perfil de actualización
 router.get('/candidate/test/pre-started', testCtlr.loadPreStarted); // Carga las instrucciones del examen
 router.get('/candidate/test/', testCtlr.loadTest); // Cargas las preguntas y opciones de respuesta
 
 // POST del Aspirante
-router.post('/signin/candidate', [
+router.post('/api/signin/candidate', [
     check('doctype').isNumeric().isIn([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]),
     check('docnumber').isNumeric().isLength({min: 5})
 ], studentCtrlr.login); // Postea para el signin del aspirante
-router.post('/register/candidate', [
+router.post('/api/register/candidate', [
     check('doctype').isNumeric().isIn([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]),
     check('docnumber').isNumeric().isLength({min: 5}),
     check('firstname').matches('[a-zA-Z\\s]+').isLength({min: 4}),

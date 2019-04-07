@@ -78,7 +78,7 @@ function loguearAdmin(req, res) {
             res.status(500).send({
                 message: 'Login incorrecto del administrador',
                 token: service.createToken(new_admin),
-                status: "success"
+                status: "failed"
             })
         }
     })

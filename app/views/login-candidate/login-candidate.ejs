@@ -58,7 +58,7 @@
     <option value="13">Tarjeta de Identidad</option>
   </select>
   <br/>
-  <input id="docnumber" type="identification" id="inputIdentification" class="form-control" placeholder="Número de Identificación" required autofocus>
+  <input id="docnumber" type="identification" class="form-control" placeholder="Número de Identificación" required autofocus>
   <div class="checkbox mb-3">
   </div>
   <br>
@@ -68,7 +68,35 @@
 </form>
 
 </body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#login").click(function(){
+      var token = ''
+        $.post("/api/signin/candidate" ,{ 
+          doctype: $("#doctype").val(), 
+          docnumber: $("#docnumber").val()
+        }).
+        done(function(res) {
+          if(res.status === "success"){
+            var token = res.token;
+            $.get("/candidate/update-profile",{
+              headers: {"x-access-token": token}
+            }).
+            done(function(res){
+              if(res.status === "success"){
+                window.location.assign('/candidate/update-profile');
+              }
+            })
+          }else{
+            console.log("Failed");
+          }
+    
+          })
+        error: (error) => {
+            console.log(JSON.stringify(error));
+        }
+    });
+});
 </script>
-<script src="../js/login-candidate.js"></script>
 </html>
