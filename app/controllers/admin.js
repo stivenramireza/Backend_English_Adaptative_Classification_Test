@@ -2,12 +2,22 @@ const Admin = require("../models/admin")
 const bcrypt = require('bcrypt');
 const service = require("../services")
 const fs = require('fs');
+const path = require('path');
+
 const {check, validationResult} = require('express-validator/check');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 
 function loadLoginAdmin(req, res){
-    res.render("../views/login-admin/login-admin.ejs")
+    res.render("../views/login-admin/login-admin.ejs");
+}
+
+function loadProfile(req, res){
+    res.render("../views/admin-profile/admin-profile.ejs");
+}
+
+function logout(req, res){
+    res.redirect('/');
 }
 
 function registrarAdmin(req, res) {
@@ -32,16 +42,15 @@ function registrarAdmin(req, res) {
         password: req.body.password
     });
     //save in the database
-    new_admin.save().then(saved_admin => {
-        //return 201, message and user details
-        res.status(201).json({
-            message: 'Admin created!',
-            admin: saved_admin,
-            errors: errors.array()
-        });
-    }).catch((err) => {
-        console.log(err);
-    });
+    new_admin.save((err) => {
+        if (err) return res.status(500).send({ 
+            message: `Error al crear el administrador: ${err}` 
+        })
+        return res.status(200).send({
+            message: 'Registro exitoso del administrador',
+            token: service.createToken(new_admin)
+        })
+    })
 }
 
 function loguearAdmin(req, res) {
@@ -49,66 +58,30 @@ function loguearAdmin(req, res) {
     if(!errors.isEmpty()){
         return res.status(422).json({ errors: errors.array() });
     }
-    console.log(fromNumberToDocType(req.body.doctype) + " : " + req.body.docnumber);
-    Admin.findOne({username: req.body.username, password: req.body.password}).then((found_admin, err) => {
-        if(!found_admin){
-            res.status(401).json({
-                message: 'Auth error, admin not found.',
-                errors: errors.array()
-            });
-        }else{
-            const token = jwt.sign(
-                {
-                    docnumber: req.body.docnumber,
-                },  
-                (process.env.JWT_KEY || 'mykey'), 
-                {
-                    expiresIn: "1h"
-                }
-            );
-            res.status(400).json({
-                token: token,
-                message: "Token has been sent."
-            });
+    Admin.findOne({ username: req.body.username }).select('username +password').exec(function (err, new_admin) {
+        if (err) return res.status(500).send({ 
+            message: err 
+        })
+        if (new_admin == null) {
+            return res.status(404).send({ 
+                message: 'Admin incorrecto' 
+            })
         }
-    });
-}
-
-function userProfile(req, res) {
-    var token = req.headers['x-access-token'];
-    if(!token){
-        //res.status(401).send({
-        //    error: "It's required an authorization token."   
-        //});
-        res.status(401).send({
-            admit: false,
-            message: "Invalid token"
-        });
-    }else{
-        jwt.verify(token, (process.env.JWT_KEY || 'mykey'), (err, admin) => {
-            if(err){
-                console.log("Verified.");
-                res.status(400).json({
-                    admit: false,
-                    message: "The token doesn't exist."
-                });
-            }else{
-                Admin.findOne({docnumber: admin.docnumber}, (err, admin) => {
-                    if(!admin){
-                        res.status(500).json({
-                            admit: false,
-                            message: "The admin doesn't exists"
-                        });
-                    }else{
-                        res.status(201).json({
-                            admit: true,
-                            message: "Admin logged in."
-                        });
-                    }
-                });
-            }
-        });
-    }
+        if (bcrypt.compareSync(req.body.password, new_admin.password)) {
+            req.new_admin = new_admin
+            res.status(200).send({
+                message: 'Login correcto del administrador',
+                token: service.createToken(new_admin),
+                status: "success"
+            })
+        }else {
+            res.status(500).send({
+                message: 'Login incorrecto del administrador',
+                token: service.createToken(new_admin),
+                status: "failed"
+            })
+        }
+    })
 }
 
 function fromNumberToDocType(_number){
@@ -160,5 +133,6 @@ module.exports = {
     registrarAdmin,
     loguearAdmin,
     loadLoginAdmin,
-    userProfile
+    loadProfile,
+    logout
 }

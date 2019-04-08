@@ -9,31 +9,29 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
     <title>Login Administrador</title>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/login-admin/login-admin.js"></script>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/sign-in/">
 
     <!-- Bootstrap core CSS -->
 <link href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<style>
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
 
-
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
+  @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+    }
+  }</style>
     <!-- Custom styles for this template -->
-    <link href="https://getbootstrap.com/docs/4.3/examples/sign-in/signin.css" rel="stylesheet">
+<link href="https://getbootstrap.com/docs/4.3/examples/sign-in/signin.css" rel="stylesheet">
   </head>
   <body class="text-center">
     <form class="form-signin">
@@ -43,13 +41,11 @@
   <input type="username" id="inputUsername" class="form-control" placeholder="Usuario" required autofocus>
   <label for="inputPassword" class="sr-only">Clave</label>
   <input type="password" id="inputPassword" class="form-control" placeholder="Clave" required>
-  <div class="checkbox mb-3">
-    <label>
-      <input type="checkbox" value="remember-me"> Recuérdame
-    </label>
-  </div>
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
-  <p class="mt-5 mb-3 text-muted">&copy; 2019</p>
+  <br>
+  <button id="btnLogin"class="btn btn-lg btn-primary btn-block" onclick=login() type="button">Ingresar</button>
+  <p id="failed" style="color:#bd1a1a ;display: none;text-align: center";>Falló el inicio de sesión. Intente de nuevo. </p>
+  <br><br>
+  <p class="mt-5 mb-3 text-muted">© 2019 Universidad EAFIT</p>
 </form>
 </body>
 </html>

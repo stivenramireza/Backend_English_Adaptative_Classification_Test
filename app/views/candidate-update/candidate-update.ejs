@@ -15,27 +15,24 @@
     <!-- Bootstrap core CSS -->
     <link href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-
     <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
+    .bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-    </style>
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}</style>
     <!-- Custom styles for this template -->
     <link href="https://getbootstrap.com/docs/4.3/examples/checkout/form-validation.css" rel="stylesheet">
-    <link rel="stylesheet" href="../styles/header.css">
+    <link rel="stylesheet" href="../../styles/header.css">
 </head>
 
 <body class="bg-light">
@@ -74,7 +71,8 @@
                     </div>
                 </div>
 
-                <div class="mb-3">
+                <div class="row">
+                <div class=" col mb-3">
                     <label for="username">Fecha de nacimiento</label>
                     <div class="input-group">
                         <input type="text" class="form-control" id="username" placeholder="AAAAMMDD" required>
@@ -83,16 +81,19 @@
                         </div>
                     </div>
                 </div>
+            
 
-                <div class="mb-3">
+                <div class="col mb-3">
                     <label for="email">Dirección de residencia</label>
                     <input type="email" class="form-control" id="email" placeholder="">
                     <div class="invalid-feedback">
                         Se requiere que llene el campo "Dirección" correctamente.
                     </div>
                 </div>
+            </div>
 
-                <div class="mb-3">
+            <div class="row">
+                <div class="col mb-3">
                     <label for="address">Teléfono</label>
                     <input type="text" class="form-control" id="address" placeholder="(999) 9999999" required>
                     <div class="invalid-feedback">
@@ -100,12 +101,15 @@
                     </div>
                 </div>
 
-                <div class="mb-3">
+                <div class="col mb-3">
                     <label for="address2">Celular</label>
                     <input type="text" class="form-control" id="address2" placeholder="">
                 </div>
 
-                <div class="mb-3">
+            </div>
+
+            <div class="row">
+                <div class="col-md-5 mb-3">
                     <label for="address">Email</label>
                     <input type="text" class="form-control" id="address" placeholder="" required>
                     <div class="invalid-feedback">
@@ -114,8 +118,8 @@
                 </div>
 
 
-                <div class="row">
-                    <div class="col-md-5 mb-3">
+                
+                    <div class="col mb-3">
                         <label for="country">Ciudad</label>
                         <select class="custom-select d-block w-100" id="country" required>
                             <option value="">Escoger...</option>
@@ -253,7 +257,7 @@
                             Por favor seleccione un municipio.
                         </div>
                     </div>
-                    <div class="col-md-4 mb-3">
+                    <div class="col-md-3 mb-3">
                         <label for="state">Género</label>
                         <select class="custom-select d-block w-100" id="state" required>
                             <option value="">Escoger...</option>
@@ -324,7 +328,7 @@
                 </div>
                 <hr class="mb-4">
                 <center>
-                    <button class="btn btn-primary" type="submit">Guardar</button>
+                    <button class="btn btn-primary" href="/candidate/test/pre-started" type="button">Guardar</button>
                 </center>
             </form>
         </div>
