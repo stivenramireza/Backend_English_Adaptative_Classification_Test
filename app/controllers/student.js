@@ -12,6 +12,10 @@ function loadLoginCandidate(req, res){
     res.render("../views/login-candidate/login-candidate.ejs")
 }
 
+function loadSignupCandidate(req, res){
+    res.render("../views/signup-candidate/signup-candidate.ejs")
+}
+
 function updateProfile(req, res){
     res.render("../views/candidate-update/candidate-update.ejs")
 }
@@ -113,6 +117,7 @@ function fromNumberToGenre(_number){
 }
 module.exports = {
     loadLoginCandidate,
+    loadSignupCandidate,
     updateProfile,
     login,
     register
