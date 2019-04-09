@@ -7,6 +7,7 @@ const AdminSchema = new Schema({
     doctype: {type: String, required: true},
     docnumber: {type: String, required: true, unique: true},
     adminType: {type: String, required: true},
+    estado: {type: Boolean, required: true},
     firstname: { type: String, required: true },
     lastname: { type: String, required: true },
     genre: {type: String, required: true},
