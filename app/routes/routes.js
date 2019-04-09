@@ -20,8 +20,10 @@ router.get('/candidate/test/', testCtlr.loadTest); // Cargas las preguntas y opc
 
 // GET del Administrador
 router.get('/signin/admin', adminCtlr.loadLoginAdmin); // Carga el signin del administrador
+router.get('/signup/admin', adminCtlr.loadSignupAdmin); //Carga el egistro del aspirante
 router.get('/admin/profile', adminCtlr.loadProfile); // Carga el perfil del administrador
 router.get('/admin/logout', adminCtlr.logout); // Cerrar sesión del administrador
+
 
 // POST del Aspirante
 router.post('/api/signin/candidate', [

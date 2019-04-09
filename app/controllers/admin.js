@@ -12,6 +12,10 @@ function loadLoginAdmin(req, res){
     res.render("../views/login-admin/login-admin.ejs");
 }
 
+function loadSignupAdmin(req, res){
+    res.render("../views/signup-admin/signup-admin.ejs");
+}
+
 function loadProfile(req, res){
     res.render("../views/admin-profile/admin-profile.ejs");
 }
@@ -133,6 +137,7 @@ module.exports = {
     registrarAdmin,
     loguearAdmin,
     loadLoginAdmin,
+    loadSignupAdmin,
     loadProfile,
     logout
 }
