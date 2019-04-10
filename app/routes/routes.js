@@ -4,9 +4,22 @@ const studentCtrlr = require('./../controllers/student');
 const loginCtlr = require('../controllers/login');
 const testCtlr = require('../controllers/examen');
 const auth = require('../middlewares/auth')
+var cors = require('cors')
+var request = require('request')
+
+var corsOptions = {
+    origin: 'http://ec2-34-207-193-227.compute-1.amazonaws.com',
+    optionsSuccessStatus: 200
+}
 
 const router = express.Router();
 const {check} = require('express-validator/check');
+
+router.get('/test/prestart', cors(corsOptions), function(req, res, next){
+    request.get('http://ec2-34-207-193-227.compute-1.amazonaws.com/test/prestart', function(error, response, data){
+        res.send(data); 
+    });
+});
 
 // GET de la Principal Page 
 router.get('/signin', loginCtlr.loadLogin); // Carga el signin (página principal)
