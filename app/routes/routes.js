@@ -20,6 +20,16 @@ router.get('/test/prestart', cors(corsOptions), function(req, res, next){
         res.send(data); 
     });
 });
+/** 
+router.post('/test/next_question', cors(corsOptions), function(req, res, next){
+    request.post('http://ec2-34-207-193-227.compute-1.amazonaws.com/test/next_question', function(error, response, data){
+        res.send(JSON.stringify({
+            "n_item": 0,
+            "n_response": 2
+        }))
+        console.log(req.body);
+    }); 
+});*/
 
 // GET de la Principal Page 
 router.get('/signin', loginCtlr.loadLogin); // Carga el signin (página principal)
