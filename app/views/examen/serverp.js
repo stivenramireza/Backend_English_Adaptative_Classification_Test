@@ -18,6 +18,6 @@ app.post('/test/next_question', cors(corsOptions), function(req, res, next){
     });
 });
 
-app.listen(3000, function(){
-    console.log('CORS-enabled web server listening on port: 3000');
+app.listen(80, function(){
+    console.log('CORS-enabled web server listening on port: 80');
 });

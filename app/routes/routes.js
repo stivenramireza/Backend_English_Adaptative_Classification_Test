@@ -58,11 +58,12 @@ router.post('/api/register/candidate', [
     check('docnumber').isNumeric().isLength({min: 5}),
     check('firstname').matches('[a-zA-Z\\s]+').isLength({min: 4}),
     check('lastname').matches('[a-zA-Z\\s]+').isLength({min: 4}),
-    check('genre').isNumeric().isIn([1, 2, 3]),
+    check('genre').isNumeric().isIn([0, 1, 2, 3]),
     check('birthdate').matches("[0-9]+\/[0-9]+\/[0-9]+").isLength({min: 6}),
     check('currentcity').isAlphanumeric().isLength({min: 3}),
     check('address').matches('[a-zA-Z0-9\\#\\-\\°\\s]+').isLength({min: 4}),
-    check('phonenumber').isMobilePhone().isLength({max: 12}),
+    check('phonenumber').isNumeric().isLength({min: 5}),
+    check('mobilephonenumber').isMobilePhone().isLength({max: 12}),
     check('email').isEmail().isLength({min: 7})
 ], studentCtrlr.register); // Postea para el registro del aspirante
 

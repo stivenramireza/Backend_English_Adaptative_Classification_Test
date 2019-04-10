@@ -1,12 +1,7 @@
 const Student = require('../models/student');
-const bcrypt = require('bcrypt');
 const service = require("../services")
-const fs = require('fs');
-const path = require('path');
-
-const {check, validationResult} = require('express-validator/check');
+const {validationResult} = require('express-validator/check');
 const mongoose = require('mongoose');
-const jwt = require('jsonwebtoken');
 
 function loadLoginCandidate(req, res){
     res.render("../views/login-candidate/login-candidate.ejs")
@@ -57,6 +52,7 @@ function register(req, res) {
         currentcity: req.body.currentcity,
         address: req.body.address,
         phonenumber: req.body.phonenumber,
+        mobilephonenumber: req.body.mobilephonenumber,
         email: req.body.email
     });
     //save in the database
