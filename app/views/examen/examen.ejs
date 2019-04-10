@@ -497,7 +497,6 @@
             </div>
         </div>
     </div>
-    <br><br><br><br><br>
     <footer>
         <center>
             <div style="align-items: center; margin-bottom: 40px">
@@ -542,17 +541,26 @@
             }).ajaxStop(function () {
                 loading.hide();
             });
+        
+            var count = 1;
 
         $("label.btn").on('click', function () {
-            var choice = $(this).find('input:radio').val();
+            count++;
+            var n_response = ($(this).find('input:radio').val())-1;
+            var n_item  = localStorage.getItem("n_item");
             $('#loadbar').show();
             $('#quiz').fadeOut();
             setTimeout(function () {
-                $("#answer").html($(this).checking(choice));
+                $("#answer").html($(this).checking(n_response));
+                document.getElementById("qid").innerHTML = count;
+                questionPost(n_item, n_response);
                 $('#quiz').show();
                 $('#loadbar').fadeOut();
                 /* something else */
             }, 1500);
+            if (count == 21){
+                window.location.replace("/signin/candidate");
+            }
         });
 
         $ans = 3;
