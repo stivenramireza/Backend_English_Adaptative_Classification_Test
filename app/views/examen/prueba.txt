@@ -1,0 +1,11 @@
+{
+  "question": {
+    "n_item": 0,
+    "title": "A: A storm was brewing. Nonetheless, the fisherman still went out to the sea.<br>B: ___________________________",
+    "responses": [
+      "a) I can&#8217;t believe he was that stupid!",
+      "b) At least, he&#146;ll do better than last time.",
+      "c) Good for him!"
+    ]
+  }
+}

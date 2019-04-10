@@ -436,7 +436,7 @@ label .glyphicon {
     }
 }
 </style>
-<body>
+<body onload="cargarTexto()">
     <header class="enca">
         <div class="wrapper">
             <div class="logo">
@@ -456,8 +456,7 @@ label .glyphicon {
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3><span class="label label-warning" style="background-color:#001a72" id="qid">1</span> I ___ an
-                        English student.</h3>
+                    <h3><span class="label label-warning" style="background-color:#001a72" id="qid">1</span><span id="qidc"></span></h3>
                 </div>
                 <div class="modal-body">
                     <div class="col-xs-3 col-xs-offset-5">
@@ -556,6 +555,25 @@ label .glyphicon {
                 return 'CORRECT';
         };
     });
+
+</script>
+
+<script type="text/javascript">
+var req = new XMLHttpRequest();
+    req.open('GET', 'prueba.txt'); 
+    if (req.status == 200)
+        var textoJSON = req.responseText;
+        console.log(textoJSON);
+
+
+    function cargarTexto(textoJSON){
+        var title = textoJSON.question.title;
+        document.getElementById("qid").innerHTML = title;
+        var responseA = textoJSON.question.responses[0];
+        var responseB = textoJSON.question.responses[1];
+        var responseC = textoJSON.question.responses[2];
+}
+
 
 </script>
 
