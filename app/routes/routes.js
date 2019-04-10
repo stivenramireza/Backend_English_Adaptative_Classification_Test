@@ -20,7 +20,12 @@ router.get('/test/prestart', cors(corsOptions), function(req, res, next){
         res.send(data); 
     });
 });
-/** 
+router.post('/test/next_question', cors(corsOptions), function(req, res, next) {
+    request.post({url: 'http://ec2-34-207-193-227.compute-1.amazonaws.com/test/next_question', body: {n_item: req.body.n_item, n_response: req.body.n_response}, json: true},  function(error, response, data){
+        res.send(data);
+    });
+});
+/* 
 router.post('/test/next_question', cors(corsOptions), function(req, res, next){
     request.post('http://ec2-34-207-193-227.compute-1.amazonaws.com/test/next_question', function(error, response, data){
         res.send(JSON.stringify({
