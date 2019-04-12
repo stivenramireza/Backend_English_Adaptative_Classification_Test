@@ -15,26 +15,28 @@ var corsOptions = {
 const router = express.Router();
 const {check} = require('express-validator/check');
 
+// GET desde Amazon Web Services
 router.get('/test/prestart', cors(corsOptions), function(req, res, next){
     request.get('http://ec2-34-207-193-227.compute-1.amazonaws.com/test/prestart', function(error, response, data){
         res.send(data); 
     });
 });
+
+router.get('/test/statistics', cors(corsOptions), function(req, res, next){
+    request.get('http://ec2-34-207-193-227.compute-1.amazonaws.com/test/statistics', function(error, response, data){
+        res.send(data); 
+    });
+});
+
+// POST desde Amazon Web Services
 router.post('/test/next_question', cors(corsOptions), function(req, res, next) {
-    request.post({url: 'http://ec2-34-207-193-227.compute-1.amazonaws.com/test/next_question', body: {n_item: req.body.n_item, n_response: req.body.n_response}, json: true},  function(error, response, data){
+    request.post({url: 'http://ec2-34-207-193-227.compute-1.amazonaws.com/test/next_question', 
+        body: {n_item: req.body.n_item, 
+               n_response: req.body.n_response}, 
+               json: true},  function(error, response, data){
         res.send(data);
     });
 });
-/* 
-router.post('/test/next_question', cors(corsOptions), function(req, res, next){
-    request.post('http://ec2-34-207-193-227.compute-1.amazonaws.com/test/next_question', function(error, response, data){
-        res.send(JSON.stringify({
-            "n_item": 0,
-            "n_response": 2
-        }))
-        console.log(req.body);
-    }); 
-});*/
 
 // GET de la Principal Page 
 router.get('/signin', loginCtlr.loadLogin); // Carga el signin (página principal)
@@ -45,6 +47,7 @@ router.get('/signup/candidate', studentCtrlr.loadSignupCandidate); //Carga el eg
 router.get('/candidate/profile', studentCtrlr.updateProfile); // Carga el perfil del aspirante
 router.get('/candidate/test/pre_started', testCtlr.loadPreStarted); // Carga las instrucciones del examen
 router.get('/candidate/test/', testCtlr.loadTest); // Cargas las preguntas y opciones de respuesta
+router.get('/candidate/test/final_result', testCtlr.loadResult); // Muestra la nota final
 
 // GET del Administrador
 router.get('/signin/admin', adminCtlr.loadLoginAdmin); // Carga el signin del administrador

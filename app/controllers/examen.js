@@ -14,7 +14,12 @@ function loadTest(req, res){
     res.render('../views/examen/examen.ejs');
 }
 
+function loadResult(req, res){
+    res.render('../views/examen-results/examen-results.ejs');
+}
+
 module.exports = {
     loadPreStarted,
-    loadTest
+    loadTest,
+    loadResult
 };

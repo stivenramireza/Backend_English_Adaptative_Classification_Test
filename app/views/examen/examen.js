@@ -1,4 +1,4 @@
-//var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+// Obtiene la 1era pregunta
 var req = new XMLHttpRequest();
 req.responseType = 'json';
 req.open("GET", '/test/prestart', true);
@@ -22,6 +22,7 @@ req.onreadystatechange = function () {
     }
 }
 
+// Obtiene las siguientes preguntas
 let questionPost = function (id, answer) {
     var sendData = "{ \"n_item\" : " + id + ", \"n_response\" : " + answer + "  }"
     var req = new XMLHttpRequest();
