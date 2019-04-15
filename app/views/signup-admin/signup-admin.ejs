@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>Registro de administradores</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/checkout/">
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="https://getbootstrap.com/docs/4.3/examples/checkout/form-validation.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles/header.css">
+</head>
+
+<body class="bg-light">
+    <header class="enca" style="position: relative">
+        <div class="wrapper">
+            <div class="logo">
+                <img src="https://i.imgur.com/9xpkUdY.png" height="40px" style="vertical-align:middle;">
+            </div>
+            <nav>
+                <a style="color: white;">Registro de administradores</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container" style="max-width: 700px">
+        <div class="py-5 text-center">
+            <p class="lead">Señor Administrador, complete los campos desplegados a continuación para lograr un correcto
+                registro.</p>
+        </div>
+        <div class="row">
+            <form class="needs-validation" novalidate>
+                <div class="row">
+                    <div class="col mb-3">
+                        <label for="country">Tipo de documento</label>
+                        <select class="custom-select d-block w-100" id="dt" required>
+                            <option value="0">Seleccione el tipo de identificación...</option>
+                            <option value="1">Cédula de Ciudadanía</option>
+                            <option value="2">Cédula de Ciudadanía Ecuatoriana</option>
+                            <option value="3">Cédula de Extranjería</option>
+                            <option value="4">Cédula de Guatemala</option>
+                            <option value="5">Cédula de Panamá</option>
+                            <option value="6">Código de Estudiante</option>
+                            <option value="7">Documento Nacional de Identidad</option>
+                            <option value="8">Documento Personal Identificación</option>
+                            <option value="9">Nro Único Identificación Personal</option>
+                            <option value="10">Otro</option>
+                            <option value="11">Pasaporte</option>
+                            <option value="12">Registro</option>
+                            <option value="13">Tarjeta de Identidad</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Por favor seleccione un tipo de documento.
+                        </div>
+                    </div>
+
+                    <div class="col mb-3">
+                        <label for="firstName">Documento de identidad</label>
+                        <input type="text" class="form-control" id="docnumber" placeholder="" value="" required>
+                        <div class="invalid-feedback">
+                            Se requiere que llene el campo "Documento de identidad" correctamente.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col mb-3">
+                        <label for="firstName">Nombres</label>
+                        <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                        <div class="invalid-feedback">
+                            Se requiere que llene el campo "Nombres" correctamente.
+                        </div>
+                    </div>
+                    <div class="col mb-3">
+                        <label for="lastName">Apellidos</label>
+                        <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                        <div class="invalid-feedback">
+                            Se requiere que llene el campo "Apellidos" correctamente.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                        <div class="col mb-3">
+                            <label for="firstName">Usuario</label>
+                            <input type="text" class="form-control" id="username" placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                                Se requiere que llene el campo "Usuario" correctamente.
+                            </div>
+                        </div>
+                        <div class="col mb-3">
+                            <label for="lastName">Contraseña</label>
+                            <input type="text" class="form-control" id="password" placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                                Se requiere que llene el campo "Contraseña" correctamente.
+                            </div>
+                        </div>
+                        <div class="col mb-3">
+                            <label for="state">Tipo de administrador</label>
+                            <select class="custom-select d-block w-100" id="state" required>
+                                <option value="">Escoger...</option>
+                                <option>Profesor clasificador</option>
+                                <option>Administrador general</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Please provide a valid state.
+                            </div>
+                        </div>
+                    </div>
+
+                <div class="row">
+                    <div class=" col mb-3">
+                        <label for="username">Fecha de nacimiento</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="username" placeholder="AAAAMMDD" required>
+                            <div class="invalid-feedback" style="width: 100%;">
+                                Se requiere que llene el campo "Fecha de nacimiento" con el formato indicado.
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col mb-3">
+                        <label for="email">Dirección de residencia</label>
+                        <input type="email" class="form-control" id="email" placeholder="">
+                        <div class="invalid-feedback">
+                            Se requiere que llene el campo "Dirección" correctamente.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col mb-3">
+                        <label for="address">Teléfono</label>
+                        <input type="text" class="form-control" id="address" placeholder="(999) 9999999" required>
+                        <div class="invalid-feedback">
+                            Se requiere que llene el campo "Teléfono" correctamente.
+                        </div>
+                    </div>
+
+                    <div class="col mb-3">
+                        <label for="address2">Celular</label>
+                        <input type="text" class="form-control" id="address2" placeholder="">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-5 mb-3">
+                        <label for="address">Email</label>
+                        <input type="text" class="form-control" id="address" placeholder="" required>
+                        <div class="invalid-feedback">
+                            Se requiere que llene el campo "Email" correctamente.
+                        </div>
+                    </div>
+
+                    <div class="col mb-3">
+                        <label for="country">Ciudad</label>
+                        <select class="custom-select d-block w-100" id="country" required>
+                            <option value="">Escoger...</option>
+                            <option value="001">MEDELLÍN</option>
+                            <option value="002">ABEJORRAL</option>
+                            <option value="004">ABRIAQUI</option>
+                            <option value="021">ALEJANDRIA</option>
+                            <option value="030">AMAGA</option>
+                            <option value="031">AMALFI</option>
+                            <option value="034">ANDES</option>
+                            <option value="036">ANGELÓPOLIS</option>
+                            <option value="038">ANGOSTURA</option>
+                            <option value="040">ANORI</option>
+                            <option value="042">SANTA FE DE ANTIOQUIA</option>
+                            <option value="044">ANZA</option>
+                            <option value="045">APARTADÓ</option>
+                            <option value="051">ARBOLETES</option>
+                            <option value="055">ARGELIA</option>
+                            <option value="059">ARMENIA</option>
+                            <option value="079">BARBOSA</option>
+                            <option value="086">BELMIRA</option>
+                            <option value="088">BELLO</option>
+                            <option value="091">BETANIA</option>
+                            <option value="093">BETULIA</option>
+                            <option value="101">BOLIVAR</option>
+                            <option value="107">BRICENO</option>
+                            <option value="113">BURITICA</option>
+                            <option value="120">CACERES</option>
+                            <option value="125">CAICEDO</option>
+                            <option value="129">CALDAS</option>
+                            <option value="134">CAMPAMENTO</option>
+                            <option value="138">CANAS GORDAS</option>
+                            <option value="142">CARACOLÍ</option>
+                            <option value="145">CARAMANTA</option>
+                            <option value="146">CAREPA NO USAR</option>
+                            <option value="147">CAREPA</option>
+                            <option value="148">EL CARMEN DE VIBORAL</option>
+                            <option value="150">CAROLINA</option>
+                            <option value="151">CASABE</option>
+                            <option value="154">CAUCASIA</option>
+                            <option value="172">CHIGORODÓ</option>
+                            <option value="190">CISNEROS</option>
+                            <option value="197">COCORNA</option>
+                            <option value="206">CONCEPCION</option>
+                            <option value="209">CONCORDIA</option>
+                            <option value="212">COPACABANA</option>
+                            <option value="234">DABEIBA</option>
+                            <option value="237">DONMATIAS</option>
+                            <option value="240">EBEJICO</option>
+                            <option value="250">EL BAGRE</option>
+                            <option value="264">ENTRERRIOS</option>
+                            <option value="266">ENVIGADO</option>
+                            <option value="282">FREDONIA</option>
+                            <option value="284">FRONTINO</option>
+                            <option value="306">GIRALDO</option>
+                            <option value="308">GIRARDOTA</option>
+                            <option value="310">GÓMEZ PLATA</option>
+                            <option value="313">GRANADA</option>
+                            <option value="315">GUADALUPE</option>
+                            <option value="318">GUARNE</option>
+                            <option value="321">GUATAPÉ</option>
+                            <option value="347">HELICONIA</option>
+                            <option value="353">HISPANIA</option>
+                            <option value="360">ITAGÜÍ</option>
+                            <option value="361">ITUANGO</option>
+                            <option value="364">JARDÍN</option>
+                            <option value="368">JERICÓ</option>
+                            <option value="376">LA CEJA</option>
+                            <option value="380">LA ESTRELLA</option>
+                            <option value="387">LA MAGDALENA</option>
+                            <option value="390">LA PINTADA</option>
+                            <option value="400">LA UNION</option>
+                            <option value="411">LIBORINA</option>
+                            <option value="425">MACEO</option>
+                            <option value="440">MARINILLA</option>
+                            <option value="467">MONTEBELLO</option>
+                            <option value="475">MURINDO</option>
+                            <option value="480">MUTATA</option>
+                            <option value="483">NARINO</option>
+                            <option value="490">NECOCLI</option>
+                            <option value="495">NECHI</option>
+                            <option value="501">OLAYA</option>
+                            <option value="541">EL PEÑOL</option>
+                            <option value="543">PEQUE</option>
+                            <option value="576">PUEBLO RICO</option>
+                            <option value="579">PUERTO BERRIO</option>
+                            <option value="585">PUERTO NARE</option>
+                            <option value="591">PUERTO TRIUNFO</option>
+                            <option value="604">REMEDIOS</option>
+                            <option value="607">EL RETIRO</option>
+                            <option value="615">RIONEGRO</option>
+                            <option value="628">SABANALARGA</option>
+                            <option value="631">SABANETA</option>
+                            <option value="642">SALGAR</option>
+                            <option value="647">SAN ANDRES</option>
+                            <option value="648">SAN ANTONIO DE PRADO</option>
+                            <option value="649">SAN CARLOS</option>
+                            <option value="652">SAN FRANCISCO</option>
+                            <option value="656">SAN JERONIMO</option>
+                            <option value="658">SAN JOSE DE LA MONTANA</option>
+                            <option value="659">SAN JUAN DE URABA</option>
+                            <option value="660">SAN LUIS</option>
+                            <option value="664">SAN PEDRO</option>
+                            <option value="665">SAN PEDRO DE URABA</option>
+                            <option value="667">SAN RAFAEL</option>
+                            <option value="670">SAN ROQUE</option>
+                            <option value="674">SAN VICENTE</option>
+                            <option value="679">SANTA BARBARA</option>
+                            <option value="686">SANTA ROSA DE OSOS</option>
+                            <option value="690">SANTO DOMINGO</option>
+                            <option value="697">EL SANTUARIO</option>
+                            <option value="736">SEGOVIA</option>
+                            <option value="756">SONSÓN</option>
+                            <option value="761">SOPETRÁN</option>
+                            <option value="789">TAMESIS</option>
+                            <option value="790">TARAZA</option>
+                            <option value="792">TARSO</option>
+                            <option value="809">TITIRIBI</option>
+                            <option value="819">TOLEDO</option>
+                            <option value="837">TURBO</option>
+                            <option value="842">URAMITA</option>
+                            <option value="847">URRAO</option>
+                            <option value="854">VALDIVIA</option>
+                            <option value="856">VALPARAISO</option>
+                            <option value="858">VEGACHI</option>
+                            <option value="861">VENECIA</option>
+                            <option value="873">VIGIA DEL FUERTE</option>
+                            <option value="885">YALI</option>
+                            <option value="887">YARUMAL</option>
+                            <option value="890">YOLOMBO</option>
+                            <option value="893">YONDO</option>
+                            <option value="895">ZARAGOZA</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Por favor seleccione un municipio.
+                        </div>
+                    </div>
+                
+
+                    <div class="col-md-3 mb-3">
+                        <label for="state">Género</label>
+                        <select class="custom-select d-block w-100" id="state" required>
+                            <option value="">Escoger...</option>
+                            <option>MASCULINO</option>
+                            <option>FEMENINO</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Please provide a valid state.
+                        </div>
+                    </div>
+                </div>
+
+                    <hr class="mb-4">
+
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="same-address">
+                        <label class="custom-control-label" for="same-address">Consiento y autorizo de manera previa,
+                            expresa e inequívoca que mis datos personales sean tratados conforme a lo previsto en el
+                            presente documento y/o autorización. </label>
+                    </div>
+                    <hr class="mb-4">
+                    <center>
+                        <button class="btn btn-primary" type="submit">Confirmar registro</button>
+                    </center>
+            </form>
+        </div>
+
+        <footer class="my-5 pt-5 text-muted text-center text-small">
+            <p class="mb-1">&copy; 2019 Universidad EAFIT</p>
+        </footer>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="/docs/4.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
+        crossorigin="anonymous"></script>
+    <script src="form-validation.js"></script>
+</body>
+
+</html>
