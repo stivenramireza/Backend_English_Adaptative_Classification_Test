@@ -41,6 +41,12 @@ router.post('/test/next_question', cors(corsOptions), function(req, res, next) {
 // GET de la Principal Page 
 router.get('/signin', loginCtlr.loadLogin); // Carga el signin (página principal)
 
+router.get('/ci/test', function(req, res, next){
+    res.json({
+        "msg": "CI Passed"
+    });
+});
+
 // GET del Aspirante
 router.get('/signin/candidate', studentCtrlr.loadLoginCandidate); // Carga el signin del aspirante
 router.get('/signup/candidate', studentCtrlr.loadSignupCandidate); //Carga el egistro del aspirante
