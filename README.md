@@ -8,7 +8,7 @@ Web application for the English Adaptative Classification Test in EAFIT Language
 
 - [ ] Mostrar resultados individuales. (Camilo)
 - [ ] Terminar dashboard administrativo. (Juan)
-- [ ] Registro de administradores. (Juan)
+- [x] Registro de administradores. (Juan)
 
 ### Backend:
 
