@@ -17,7 +17,11 @@ const AdminSchema = new Schema({
     phonenumber: {type: String, required: true},
     email: {type: String, required: true, unique: true},
     username: {type: String, required: true, unique: true},
-    password: {type: String, select: false}
+    password: {type: String, select: false},
+    habilitar_examenes: {type: Boolean, required: true},
+    reactivar_examenes: {type: Boolean, required: true},
+    gestionar_estadisticas: {type: Boolean, required: true},
+    clasificar_aspirantes: {type: Boolean, required: true}
 })
 
 AdminSchema.pre('save', function (next) {

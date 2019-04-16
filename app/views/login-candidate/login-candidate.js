@@ -12,3 +12,15 @@ let login = function () {
     http.send(JSON.stringify({ doctype: document.getElementById("doctype").value, 
                         docnumber: document.getElementById("docnumber").value }));
 }
+
+$(document).ready(function () {
+    $('#failed').hide();
+    $('#btnLogin').click(function () {
+        var doctype = $("#doctype").val();
+        var docnumber = $("#docnumber").val();
+
+        if (doctype == '' || docnumber == '') {
+            $('#failed').show();
+        } 
+    });
+});

@@ -51,10 +51,9 @@ router.get('/candidate/test/final_result', testCtlr.loadResult); // Muestra la n
 
 // GET del Administrador
 router.get('/signin/admin', adminCtlr.loadLoginAdmin); // Carga el signin del administrador
-router.get('/signup/admin', adminCtlr.loadSignupAdmin); //Carga el egistro del aspirante
 router.get('/admin/profile', adminCtlr.loadProfile); // Carga el perfil del administrador
 router.get('/admin/logout', adminCtlr.logout); // Cerrar sesión del administrador
-
+router.get('/admin/profile/register', adminCtlr.loadProfileRegister) // Registrar administradores
 
 // POST del Aspirante
 router.post('/api/signin/candidate', [
