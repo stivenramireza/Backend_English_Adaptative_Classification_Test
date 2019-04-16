@@ -23,3 +23,4 @@ let signup = function () {
         email: document.getElementById("correo").value,
     }));
 }
+
