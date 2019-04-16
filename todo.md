@@ -9,6 +9,7 @@ Backend:
 - [ ] Construir esquemas para los datos generados por la API para la BD. (Stiven y Juan)
 - [ ] Registro de administradores. (Camilo)
 - [ ] Actualización de los datos. (Stiven)
+- [ ] Manejo de sesiones. (Anderson)
 
 
 API:
