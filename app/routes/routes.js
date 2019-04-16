@@ -86,6 +86,7 @@ router.post('/api/register/admin', [
     check('firstname').matches('[a-zA-Z\\s]+').isLength({min: 4}),
     check('lastname').matches('[a-zA-Z\\s]+').isLength({min: 4}),
     check('adminType').matches('[a-zA-Z\\s]+').isLength({min: 5}),
+    check('estado').isBoolean(),
     check('genre').isNumeric().isIn([1, 2, 3]),
     check('birthdate').matches("[0-9]+\/[0-9]+\/[0-9]+").isLength({min: 6}),
     check('currentcity').isAlphanumeric().isLength({min: 3}),

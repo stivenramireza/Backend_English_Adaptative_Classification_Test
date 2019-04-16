@@ -34,6 +34,7 @@ function registrarAdmin(req, res) {
         doctype: fromNumberToDocType(req.body.doctype),
         docnumber: req.body.docnumber,
         adminType: req.body.adminType,
+        estado: req.body.estado,
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         genre: fromNumberToGenre(req.body.genre),
