@@ -2,13 +2,15 @@
 
 Web application for the English Adaptative Classification Test in EAFIT Language Center using Machine Learning and Deep Learning models.
 
-## Frontend:
+## Listado de Tareas (Holy Week)
+
+### Frontend:
 
 - [ ] Mostrar resultados individuales. (Camilo)
 - [ ] Terminar dashboard administrativo. (Juan)
 - [ ] Registro de administradores. (Juan)
 
-## Backend:
+### Backend:
 
 - [ ] Construir esquemas para los datos generados por la API para la BD. (Stiven y Juan)
 - [ ] Registro de administradores. (Camilo)
@@ -16,11 +18,11 @@ Web application for the English Adaptative Classification Test in EAFIT Language
 - [ ] Manejo de sesiones. (Anderson)
 
 
-## API de Inteligencia Artificial:
+### API de Inteligencia Artificial:
 
 - [ ] Manejo del examen por sesiones. (Anderson)
 
-## Inteligencia Artificial:
+### Inteligencia Artificial:
 
 - [ ] Conectar red neuronal de clasificacion. (Anderson)
 - [ ] Agregar más datos a la red neuronal. (Camilo)
