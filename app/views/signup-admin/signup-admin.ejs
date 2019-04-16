@@ -53,6 +53,7 @@
             <p class="lead">Señor Administrador, complete los campos desplegados a continuación para lograr un correcto
                 registro.</p>
         </div>
+        <div class="container" style="width: 100%">
         <div class="row">
             <form class="needs-validation" novalidate>
                 <div class="row">
@@ -106,32 +107,21 @@
                 </div>
 
                 <div class="row">
-                        <div class="col mb-3">
-                            <label for="firstName">Usuario</label>
-                            <input type="text" class="form-control" id="username" placeholder="" value="" required>
-                            <div class="invalid-feedback">
-                                Se requiere que llene el campo "Usuario" correctamente.
-                            </div>
-                        </div>
-                        <div class="col mb-3">
-                            <label for="lastName">Contraseña</label>
-                            <input type="text" class="form-control" id="password" placeholder="" value="" required>
-                            <div class="invalid-feedback">
-                                Se requiere que llene el campo "Contraseña" correctamente.
-                            </div>
-                        </div>
-                        <div class="col mb-3">
-                            <label for="state">Tipo de administrador</label>
-                            <select class="custom-select d-block w-100" id="state" required>
-                                <option value="">Escoger...</option>
-                                <option>Profesor clasificador</option>
-                                <option>Administrador general</option>
-                            </select>
-                            <div class="invalid-feedback">
-                                Please provide a valid state.
-                            </div>
+                    <div class="col mb-3">
+                        <label for="firstName">Usuario</label>
+                        <input type="text" class="form-control" id="username" placeholder="" value="" required>
+                        <div class="invalid-feedback">
+                            Se requiere que llene el campo "Usuario" correctamente.
                         </div>
                     </div>
+                    <div class="col mb-3">
+                        <label for="lastName">Contraseña</label>
+                        <input type="text" class="form-control" id="password" placeholder="" value="" required>
+                        <div class="invalid-feedback">
+                            Se requiere que llene el campo "Contraseña" correctamente.
+                        </div>
+                    </div>
+                </div>
 
                 <div class="row">
                     <div class=" col mb-3">
@@ -316,7 +306,7 @@
                             Por favor seleccione un municipio.
                         </div>
                     </div>
-                
+
 
                     <div class="col-md-3 mb-3">
                         <label for="state">Género</label>
@@ -331,20 +321,54 @@
                     </div>
                 </div>
 
-                    <hr class="mb-4">
+                <hr class="mb-4">
+                <div class="text-center">
+                    <p class="lead">Seleccione los roles que tendrá el administrador.</p>
+                </div>
+                <br>
 
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="same-address">
-                        <label class="custom-control-label" for="same-address">Consiento y autorizo de manera previa,
-                            expresa e inequívoca que mis datos personales sean tratados conforme a lo previsto en el
-                            presente documento y/o autorización. </label>
+                    <div class="row">
+                        <div class="col mb-3" style="text-align: center">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="habilitaExamenes">
+                                <label class="custom-control-label" for="same-address">Habilitar exámenes</label>
+                            </div>
+                        </div>
+                        
+                        <div class="col mb-3" style="text-align: center">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="reactivaExamenes">
+                                <label class="custom-control-label" for="same-address">Reactivar exámenes</label>
+                            </div>
+                        </div>                   
                     </div>
-                    <hr class="mb-4">
-                    <center>
-                        <button class="btn btn-primary" type="submit">Confirmar registro</button>
-                    </center>
+
+                    <br>
+
+                    <div class="row">
+                        <div class="col mb-3" style="text-align: center">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="habilitaExamenes">
+                                <label class="custom-control-label" for="same-address">Gestionar estadísticas</label>
+                            </div>
+                        </div>
+                        
+                        <div class="col mb-3" style="text-align: center">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="reactivaExamenes">
+                                <label class="custom-control-label" for="same-address">Clasificar aspirantes</label>
+                            </div>
+                        </div>                   
+                    </div>
+
+                <hr class="mb-4" style="width: 100%">
+
+                <center>
+                    <button class="btn btn-primary" type="submit">Confirmar registro</button>
+                </center>
             </form>
         </div>
+    </div>
 
         <footer class="my-5 pt-5 text-muted text-center text-small">
             <p class="mb-1">&copy; 2019 Universidad EAFIT</p>
