@@ -9,7 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin Profile - Dashboard</title>
+    <title>Dashboard</title>
+    <script src="/admin-profile/admin-register.js"></script>
     <!-- Custom fonts for this template-->
     <link href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/fontawesome-free/css/all.min.css"
         rel="stylesheet" type="text/css">
@@ -311,7 +312,7 @@
                                     <div class=" col mb-3">
                                         <label for="username">Fecha de nacimiento</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="username" placeholder="AAAAMMDD" required>
+                                            <input type="text" class="form-control" id="birthday" placeholder="AAAAMMDD" required>
                                             <div class="invalid-feedback" style="width: 100%;">
                                                 Se requiere que llene el campo "Fecha de nacimiento" con el formato indicado.
                                             </div>
@@ -321,7 +322,7 @@
                 
                                     <div class="col mb-3">
                                         <label for="email">Dirección de residencia</label>
-                                        <input type="email" class="form-control" id="email" placeholder="">
+                                        <input type="email" class="form-control" id="direccion" placeholder="">
                                         <div class="invalid-feedback">
                                             Se requiere que llene el campo "Dirección" correctamente.
                                         </div>
@@ -331,7 +332,7 @@
                                 <div class="row">
                                     <div class="col mb-3">
                                         <label for="address">Teléfono</label>
-                                        <input type="text" class="form-control" id="address" placeholder="(999) 9999999" required>
+                                        <input type="text" class="form-control" id="telefono" placeholder="(999) 9999999" required>
                                         <div class="invalid-feedback">
                                             Se requiere que llene el campo "Teléfono" correctamente.
                                         </div>
@@ -339,14 +340,14 @@
                 
                                     <div class="col mb-3">
                                         <label for="address2">Celular</label>
-                                        <input type="text" class="form-control" id="address2" placeholder="">
+                                        <input type="text" class="form-control" id="celular" placeholder="">
                                     </div>
                                 </div>
                 
                                 <div class="row">
                                     <div class="col-md-5 mb-3">
                                         <label for="address">Email</label>
-                                        <input type="text" class="form-control" id="address" placeholder="" required>
+                                        <input type="text" class="form-control" id="correo" placeholder="" required>
                                         <div class="invalid-feedback">
                                             Se requiere que llene el campo "Email" correctamente.
                                         </div>
@@ -354,137 +355,136 @@
                 
                                     <div class="col mb-3">
                                         <label for="country">Ciudad</label>
-                                        <select class="custom-select d-block w-100" id="country" required>
+                                        <select class="custom-select d-block w-100" id="city" required>
                                             <option value="">Escoger...</option>
-                                            <option value="001">MEDELLÍN</option>
-                                            <option value="002">ABEJORRAL</option>
-                                            <option value="004">ABRIAQUI</option>
-                                            <option value="021">ALEJANDRIA</option>
-                                            <option value="030">AMAGA</option>
-                                            <option value="031">AMALFI</option>
-                                            <option value="034">ANDES</option>
-                                            <option value="036">ANGELÓPOLIS</option>
-                                            <option value="038">ANGOSTURA</option>
-                                            <option value="040">ANORI</option>
-                                            <option value="042">SANTA FE DE ANTIOQUIA</option>
-                                            <option value="044">ANZA</option>
-                                            <option value="045">APARTADÓ</option>
-                                            <option value="051">ARBOLETES</option>
-                                            <option value="055">ARGELIA</option>
-                                            <option value="059">ARMENIA</option>
-                                            <option value="079">BARBOSA</option>
-                                            <option value="086">BELMIRA</option>
-                                            <option value="088">BELLO</option>
-                                            <option value="091">BETANIA</option>
-                                            <option value="093">BETULIA</option>
-                                            <option value="101">BOLIVAR</option>
-                                            <option value="107">BRICENO</option>
-                                            <option value="113">BURITICA</option>
-                                            <option value="120">CACERES</option>
-                                            <option value="125">CAICEDO</option>
-                                            <option value="129">CALDAS</option>
-                                            <option value="134">CAMPAMENTO</option>
-                                            <option value="138">CANAS GORDAS</option>
-                                            <option value="142">CARACOLÍ</option>
-                                            <option value="145">CARAMANTA</option>
-                                            <option value="146">CAREPA NO USAR</option>
-                                            <option value="147">CAREPA</option>
-                                            <option value="148">EL CARMEN DE VIBORAL</option>
-                                            <option value="150">CAROLINA</option>
-                                            <option value="151">CASABE</option>
-                                            <option value="154">CAUCASIA</option>
-                                            <option value="172">CHIGORODÓ</option>
-                                            <option value="190">CISNEROS</option>
-                                            <option value="197">COCORNA</option>
-                                            <option value="206">CONCEPCION</option>
-                                            <option value="209">CONCORDIA</option>
-                                            <option value="212">COPACABANA</option>
-                                            <option value="234">DABEIBA</option>
-                                            <option value="237">DONMATIAS</option>
-                                            <option value="240">EBEJICO</option>
-                                            <option value="250">EL BAGRE</option>
-                                            <option value="264">ENTRERRIOS</option>
-                                            <option value="266">ENVIGADO</option>
-                                            <option value="282">FREDONIA</option>
-                                            <option value="284">FRONTINO</option>
-                                            <option value="306">GIRALDO</option>
-                                            <option value="308">GIRARDOTA</option>
-                                            <option value="310">GÓMEZ PLATA</option>
-                                            <option value="313">GRANADA</option>
-                                            <option value="315">GUADALUPE</option>
-                                            <option value="318">GUARNE</option>
-                                            <option value="321">GUATAPÉ</option>
-                                            <option value="347">HELICONIA</option>
-                                            <option value="353">HISPANIA</option>
-                                            <option value="360">ITAGÜÍ</option>
-                                            <option value="361">ITUANGO</option>
-                                            <option value="364">JARDÍN</option>
-                                            <option value="368">JERICÓ</option>
-                                            <option value="376">LA CEJA</option>
-                                            <option value="380">LA ESTRELLA</option>
-                                            <option value="387">LA MAGDALENA</option>
-                                            <option value="390">LA PINTADA</option>
-                                            <option value="400">LA UNION</option>
-                                            <option value="411">LIBORINA</option>
-                                            <option value="425">MACEO</option>
-                                            <option value="440">MARINILLA</option>
-                                            <option value="467">MONTEBELLO</option>
-                                            <option value="475">MURINDO</option>
-                                            <option value="480">MUTATA</option>
-                                            <option value="483">NARINO</option>
-                                            <option value="490">NECOCLI</option>
-                                            <option value="495">NECHI</option>
-                                            <option value="501">OLAYA</option>
-                                            <option value="541">EL PEÑOL</option>
-                                            <option value="543">PEQUE</option>
-                                            <option value="576">PUEBLO RICO</option>
-                                            <option value="579">PUERTO BERRIO</option>
-                                            <option value="585">PUERTO NARE</option>
-                                            <option value="591">PUERTO TRIUNFO</option>
-                                            <option value="604">REMEDIOS</option>
-                                            <option value="607">EL RETIRO</option>
-                                            <option value="615">RIONEGRO</option>
-                                            <option value="628">SABANALARGA</option>
-                                            <option value="631">SABANETA</option>
-                                            <option value="642">SALGAR</option>
-                                            <option value="647">SAN ANDRES</option>
-                                            <option value="648">SAN ANTONIO DE PRADO</option>
-                                            <option value="649">SAN CARLOS</option>
-                                            <option value="652">SAN FRANCISCO</option>
-                                            <option value="656">SAN JERONIMO</option>
-                                            <option value="658">SAN JOSE DE LA MONTANA</option>
-                                            <option value="659">SAN JUAN DE URABA</option>
-                                            <option value="660">SAN LUIS</option>
-                                            <option value="664">SAN PEDRO</option>
-                                            <option value="665">SAN PEDRO DE URABA</option>
-                                            <option value="667">SAN RAFAEL</option>
-                                            <option value="670">SAN ROQUE</option>
-                                            <option value="674">SAN VICENTE</option>
-                                            <option value="679">SANTA BARBARA</option>
-                                            <option value="686">SANTA ROSA DE OSOS</option>
-                                            <option value="690">SANTO DOMINGO</option>
-                                            <option value="697">EL SANTUARIO</option>
-                                            <option value="736">SEGOVIA</option>
-                                            <option value="756">SONSÓN</option>
-                                            <option value="761">SOPETRÁN</option>
-                                            <option value="789">TAMESIS</option>
-                                            <option value="790">TARAZA</option>
-                                            <option value="792">TARSO</option>
-                                            <option value="809">TITIRIBI</option>
-                                            <option value="819">TOLEDO</option>
-                                            <option value="837">TURBO</option>
-                                            <option value="842">URAMITA</option>
-                                            <option value="847">URRAO</option>
-                                            <option value="854">VALDIVIA</option>
-                                            <option value="856">VALPARAISO</option>
-                                            <option value="858">VEGACHI</option>
-                                            <option value="861">VENECIA</option>
-                                            <option value="873">VIGIA DEL FUERTE</option>
-                                            <option value="885">YALI</option>
-                                            <option value="887">YARUMAL</option>
-                                            <option value="890">YOLOMBO</option>
-                                            <option value="893">YONDO</option>
-                                            <option value="895">ZARAGOZA</option>
+                                            <option value="MEDELLIN">MEDELLÍN</option>
+                                            <option value="ABEJORRAL">ABEJORRAL</option>
+                                            <option value="ABRIAQUI">ABRIAQUI</option>
+                                            <option value="ALEJANDRIA">ALEJANDRIA</option>
+                                            <option value="AMAGA">AMAGA</option>
+                                            <option value="AMALFI">AMALFI</option>
+                                            <option value="ANDES">ANDES</option>
+                                            <option value="ANGELOPOLIS">ANGELÓPOLIS</option>
+                                            <option value="ANGOSTURA">ANGOSTURA</option>
+                                            <option value="ANORI">ANORI</option>
+                                            <option value="SANTA FE DE ANTIOQUIA">SANTA FE DE ANTIOQUIA</option>
+                                            <option value="ANZA">ANZA</option>
+                                            <option value="APARTADO">APARTADÓ</option>
+                                            <option value="ARBOLETES">ARBOLETES</option>
+                                            <option value="ARGELIA">ARGELIA</option>
+                                            <option value="ARMENIA">ARMENIA</option>
+                                            <option value="BARBOSA">BARBOSA</option>
+                                            <option value="BELMIRA">BELMIRA</option>
+                                            <option value="BELLO">BELLO</option>
+                                            <option value="BETANIA">BETANIA</option>
+                                            <option value="BETULIA">BETULIA</option>
+                                            <option value="BOLIVAR">BOLIVAR</option>
+                                            <option value="BRICEÑO">BRICENO</option>
+                                            <option value="BURITICA">BURITICA</option>
+                                            <option value="CACERES">CACERES</option>
+                                            <option value="CAICEDO">CAICEDO</option>
+                                            <option value="CALDAS">CALDAS</option>
+                                            <option value="CAMPAMENTO">CAMPAMENTO</option>
+                                            <option value="CAÑAS GORDAS">CAÑAS GORDAS</option>
+                                            <option value="CARACOLI">CARACOLÍ</option>
+                                            <option value="CARAMANTA">CARAMANTA</option>
+                                            <option value="CAREPA">CAREPA</option>
+                                            <option value="EL CARMEN DE VIBORAL">EL CARMEN DE VIBORAL</option>
+                                            <option value="CAROLINA">CAROLINA</option>
+                                            <option value="CASABE">CASABE</option>
+                                            <option value="CAUCASIA">CAUCASIA</option>
+                                            <option value="CHIGORODO">CHIGORODÓ</option>
+                                            <option value="CISNEROS">CISNEROS</option>
+                                            <option value="COCORNA">COCORNA</option>
+                                            <option value="CONCEPCION">CONCEPCION</option>
+                                            <option value="CONCORDIA">CONCORDIA</option>
+                                            <option value="COPACABANA">COPACABANA</option>
+                                            <option value="DABEIBA">DABEIBA</option>
+                                            <option value="DONMATIAS">DONMATIAS</option>
+                                            <option value="EBEJICO">EBEJICO</option>
+                                            <option value="EL BAGRE">EL BAGRE</option>
+                                            <option value="ENTRERRIOS">ENTRERRIOS</option>
+                                            <option value="ENVIGADO">ENVIGADO</option>
+                                            <option value="FREDONIA">FREDONIA</option>
+                                            <option value="FRONTINO">FRONTINO</option>
+                                            <option value="GIRALDO">GIRALDO</option>
+                                            <option value="GIRARDOTA">GIRARDOTA</option>
+                                            <option value="GOMEZ PLATA">GÓMEZ PLATA</option>
+                                            <option value="GRANADA">GRANADA</option>
+                                            <option value="GUADALUPE">GUADALUPE</option>
+                                            <option value="GUARNE">GUARNE</option>
+                                            <option value="GUATAPE">GUATAPÉ</option>
+                                            <option value="HELICONIA">HELICONIA</option>
+                                            <option value="HISPANIA">HISPANIA</option>
+                                            <option value="ITAGUI">ITAGÜÍ</option>
+                                            <option value="ITUANGO">ITUANGO</option>
+                                            <option value="JARDIN">JARDÍN</option>
+                                            <option value="JERICO">JERICÓ</option>
+                                            <option value="LA CEJA">LA CEJA</option>
+                                            <option value="LA ESTRELLA">LA ESTRELLA</option>
+                                            <option value="LA MAGDALENA">LA MAGDALENA</option>
+                                            <option value="LA PINTADA">LA PINTADA</option>
+                                            <option value="LA UNION">LA UNION</option>
+                                            <option value="LIBORINA">LIBORINA</option>
+                                            <option value="MACEO">MACEO</option>
+                                            <option value="MARINILLA">MARINILLA</option>
+                                            <option value="MONTEBELLO">MONTEBELLO</option>
+                                            <option value="MURINDO">MURINDO</option>
+                                            <option value="MUTATA">MUTATA</option>
+                                            <option value="NARIÑO">NARIÑO</option>
+                                            <option value="NECOCLI">NECOCLÍ</option>
+                                            <option value="NECHI">NECHI</option>
+                                            <option value="OLAYA">OLAYA</option>
+                                            <option value="EL PEÑOL">EL PEÑOL</option>
+                                            <option value="PEQUE">PEQUE</option>
+                                            <option value="PUEBLO RICO">PUEBLO RICO</option>
+                                            <option value="PUERTO BERRIO">PUERTO BERRIO</option>
+                                            <option value="PUERTO NARE">PUERTO NARE</option>
+                                            <option value="PUERTO TRIUNFO">PUERTO TRIUNFO</option>
+                                            <option value="REMEDIOS">REMEDIOS</option>
+                                            <option value="EL RETIRO">EL RETIRO</option>
+                                            <option value="RIONEGRO">RIONEGRO</option>
+                                            <option value="SABANALARGA">SABANALARGA</option>
+                                            <option value="SABANETA">SABANETA</option>
+                                            <option value="SALGAR">SALGAR</option>
+                                            <option value="SAN ANDRES">SAN ANDRES</option>
+                                            <option value="SAN ANTONIO DE PRADO">SAN ANTONIO DE PRADO</option>
+                                            <option value="SAN CARLOS">SAN CARLOS</option>
+                                            <option value="SAN FRANCISCO">SAN FRANCISCO</option>
+                                            <option value="SAN JERONIMO">SAN JERÓNIMO</option>
+                                            <option value="SAN JOSE DE LA MONTAÑA">SAN JOSE DE LA MONTAÑA</option>
+                                            <option value="SAN JUAN DE URABA">SAN JUAN DE URABA</option>
+                                            <option value="SAN LUIS">SAN LUIS</option>
+                                            <option value="SAN PEDRO">SAN PEDRO</option>
+                                            <option value="SAN PEDRO DE URABA">SAN PEDRO DE URABÁ</option>
+                                            <option value="SAN RAFAEL">SAN RAFAEL</option>
+                                            <option value="SAN ROQUE">SAN ROQUE</option>
+                                            <option value="SAN VICENTE">SAN VICENTE</option>
+                                            <option value="SANTA BARBARA">SANTA BARBARA</option>
+                                            <option value="SANTA ROSA DE OSOS">SANTA ROSA DE OSOS</option>
+                                            <option value="SANTO DOMINGO">SANTO DOMINGO</option>
+                                            <option value="EL SANTUARIO">EL SANTUARIO</option>
+                                            <option value="SEGOVIA">SEGOVIA</option>
+                                            <option value="SONSON">SONSÓN</option>
+                                            <option value="SOPETRAN">SOPETRÁN</option>
+                                            <option value="TAMESIS">TÁMESIS</option>
+                                            <option value="TARAZA">TARAZÁ</option>
+                                            <option value="TARSO">TARSO</option>
+                                            <option value="TITIRIBI">TITIRIBÍ</option>
+                                            <option value="TOLEDO">TOLEDO</option>
+                                            <option value="TURBO">TURBO</option>
+                                            <option value="URAMITA">URAMITA</option>
+                                            <option value="URRAO">URRAO</option>
+                                            <option value="VALDIVIA">VALDIVIA</option>
+                                            <option value="VALPARAISO">VALPARAÍSO</option>
+                                            <option value="VEGACHI">VEGACHI</option>
+                                            <option value="VENECIA">VENECIA</option>
+                                            <option value="VIGIA DEL FUERTE">VIGIA DEL FUERTE</option>
+                                            <option value="YALI">YALÍ</option>
+                                            <option value="YARUMAL">YARUMAL</option>
+                                            <option value="YOLOMBO">YOLOMBO</option>
+                                            <option value="YONDO">YONDO</option>
+                                            <option value="ZARAGOZA">ZARAGOZA</option>
                                         </select>
                                         <div class="invalid-feedback">
                                             Por favor seleccione un municipio.
@@ -494,13 +494,14 @@
                 
                                     <div class="col-md-3 mb-3">
                                         <label for="state">Género</label>
-                                        <select class="custom-select d-block w-100" id="state" required>
-                                            <option value="">Escoger...</option>
-                                            <option>MASCULINO</option>
-                                            <option>FEMENINO</option>
+                                        <select class="custom-select d-block w-100" id="genero" required>
+                                            <option value="0">Seleccionar...</option>
+                                            <option value="1">Masculino</option>
+                                            <option value="2">Femenino</option>
+                                            <option value="3">Otro</option>
                                         </select>
                                         <div class="invalid-feedback">
-                                            Please provide a valid state.
+                                            Por favor seleccione un género.
                                         </div>
                                     </div>
                                 </div>
@@ -548,9 +549,12 @@
                                 <hr class="mb-4" style="width: 100%">
                 
                                 <center>
-                                    <button class="btn btn-primary" type="submit">Confirmar registro</button>
+                                    <button class="btn btn-primary" onclick=signup() type="button">Confirmar registro</button>
                                 </center>
                             </form>
+                            <br>
+                            <p id="failed" style="color:#bd1a1a ;display: none;text-align: center";>No se ha asignado ningún rol.</p>
+                            <br><br>
                         </div>
                     </div>
                     <br>
@@ -617,7 +621,7 @@
     <!-- Page level custom scripts -->
     <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/demo/chart-area-demo.js"></script>
     <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/demo/chart-pie-demo.js"></script>
-
+    
 </body>
 
 </html>

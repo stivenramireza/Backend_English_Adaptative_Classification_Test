@@ -1,4 +1,5 @@
 let signup = function () {
+    $('#failed').hide();
     var http = new XMLHttpRequest();
     http.responseType = 'json';
     http.open("POST", "/api/register/candidate", true); 
@@ -6,9 +7,11 @@ let signup = function () {
     http.onreadystatechange = function () {
         if (http.readyState == 4 && http.status == 200) {
             localStorage.setItem("mikey", http.response.token);
-            window.location.replace('/candidate/test/pre-started');
+            window.location.replace('/candidate/test/pre_started');
         }
     }
+    var isChecked = document.getElementById("same-address").checked;
+    if(isChecked){
     http.send(JSON.stringify({
         doctype: document.getElementById("dt").value,
         docnumber: document.getElementById("docnumber").value,  
@@ -22,5 +25,9 @@ let signup = function () {
         mobilephonenumber: document.getElementById("celular").value,
         email: document.getElementById("correo").value,
     }));
+    }else{
+        $('#failed').show();
+        console.log("isChecked is not selected");
+    }
 }
 

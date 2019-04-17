@@ -293,7 +293,7 @@
                     <div class="col-md-3 mb-3">
                         <label for="state">Género</label>
                         <select class="custom-select d-block w-100" id="genero" required>
-                            <option value="0">Seleccionar...</option>
+                            <option value="">Seleccionar...</option>
                             <option value="1">Masculino</option>
                             <option value="2">Femenino</option>
                             <option value="3">Otro</option>
@@ -317,6 +317,9 @@
                     <button class="btn btn-primary" onclick=signup() type="button">Confirmar registro</button>
                 </center>
             </form>
+            <br><br>
+            <p id="failed" style="color:#bd1a1a ;display: none;text-align: center";>No se ha asignado ningún rol.</p>
+            <br><br>
         </div>
 
         <footer class="my-5 pt-5 text-muted text-center text-small">
