@@ -44,7 +44,11 @@ function registrarAdmin(req, res) {
         phonenumber: req.body.phonenumber,
         email: req.body.email,
         username: req.body.username,
-        password: req.body.password
+        password: req.body.password,
+        habilitar_examenes: req.body.habilitar_examenes,
+        reactivar_examenes: req.body.reactivar_examenes,
+        gestionar_estadisticas: req.body.gestionar_estadisticas,
+        clasificar_aspirantes: req.body.clasificar_aspirantes
     });
     //save in the database
     new_admin.save((err) => {

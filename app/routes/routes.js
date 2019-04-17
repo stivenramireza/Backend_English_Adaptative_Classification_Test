@@ -93,7 +93,12 @@ router.post('/api/register/admin', [
     check('phonenumber').isMobilePhone().isLength({max: 12}),
     check('email').isEmail().isLength({min: 7}),
     check('username').matches('[a-zA-Z\\s]+').isLength({min: 4}),
-    check('password').matches('[a-zA-Z0-9\\#\\-\\°\\s]+').isLength({min: 8})
+    check('password').matches('[a-zA-Z0-9\\#\\-\\°\\s]+').isLength({min: 8}),
+    check('habilitar_examenes').isBoolean(),
+    check('reactivar_examenes').isBoolean(),
+    check('gestionar_estadisticas').isBoolean(),
+    check('clasificar_aspirantes').isBoolean()
+
 ], adminCtlr.registrarAdmin); // Postea para el registro del admin
 
 module.exports = router;
