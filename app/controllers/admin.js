@@ -24,6 +24,10 @@ function loadProfileRegister(req, res){
     res.render("../views/admin-profile/admin-register.ejs");
 }
 
+function loadExamEnable(req, res){
+    res.render("../views/admin-profile/admin-exam-enable.ejs");
+}
+
 function registrarAdmin(req, res) {
     var errors = validationResult(req);
     if(!errors.isEmpty()){
@@ -142,6 +146,7 @@ module.exports = {
     registrarAdmin,
     loguearAdmin,
     loadLoginAdmin,
+    loadExamEnable,
     loadProfile,
     logout,
     loadProfileRegister
