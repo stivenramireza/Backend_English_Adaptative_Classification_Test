@@ -15,6 +15,17 @@ function updateProfile(req, res){
     res.render("../views/candidate-update/candidate-update.ejs")
 }
 
+function getInfoCandidate(req, res) {
+    let docnumber = req.params.docnumber;
+
+    Route.find({ docnumber: docnumber }, (err, info) => {
+        if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}` })
+        if (!info) return res.status(404).send({ message: `El aspirante no tiene información` })
+
+        res.status(200).send({ info })
+    })
+}
+
 function login(req, res){
     var errors = validationResult(req);
     if(!errors.isEmpty()){
@@ -116,7 +127,8 @@ module.exports = {
     loadSignupCandidate,
     updateProfile,
     login,
-    register
+    register,
+    getInfoCandidate
 };
 
 

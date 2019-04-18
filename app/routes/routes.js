@@ -48,6 +48,7 @@ router.get('/candidate/profile', studentCtrlr.updateProfile); // Carga el perfil
 router.get('/candidate/test/pre_started', testCtlr.loadPreStarted); // Carga las instrucciones del examen
 router.get('/candidate/test/', testCtlr.loadTest); // Cargas las preguntas y opciones de respuesta
 router.get('/candidate/test/final_result', testCtlr.loadResult); // Muestra la nota final
+router.get('/candidate/info', studentCtrlr.getInfoCandidate); // Obtiene la info del aspirante
 
 // GET del Administrador
 router.get('/signin/admin', adminCtlr.loadLoginAdmin); // Carga el signin del administrador
