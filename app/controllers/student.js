@@ -16,13 +16,10 @@ function updateProfile(req, res){
 }
 
 function getInfoCandidate(req, res) {
-    let docnumber = req.params.docnumber;
-
-    Route.find({ docnumber: docnumber }, (err, info) => {
+    Student.findOne({ doctype: req.body.doctype, docnumber: req.body.docnumber }, (err, info_candidate) => {
         if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}` })
-        if (!info) return res.status(404).send({ message: `El aspirante no tiene información` })
-
-        res.status(200).send({ info })
+        if (!info_candidate) return res.status(404).send({ message: `El aspirante no tiene informacion` })
+        res.status(200).send({ info_candidate })
     })
 }
 
@@ -42,6 +39,7 @@ function login(req, res){
         }
         return res.status(200).send({
             message: 'Login exitoso del aspirante',
+            docnumber: req.body.docnumber,
             token: service.createToken(new_candidate)
         })
     })

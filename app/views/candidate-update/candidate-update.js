@@ -1,25 +1,15 @@
-let update = function () {
-    var http = new XMLHttpRequest();
-    http.responseType = 'json';
-    http.open("GET", "/api/register/candidate", true); 
-    http.setRequestHeader("Content-type", "application/json");
-    http.onreadystatechange = function () {
-        if (http.readyState == 4 && http.status == 200) {
-            localStorage.setItem("mikey", http.response.token);
-            //window.location.replace('/candidate/test/pre-started');
-        }
+var req = new XMLHttpRequest();
+var doc_type = localStorage.getItem("doctype");
+console.log("doctype: ", doc_type);
+var doc_number = localStorage.getItem("docnumber");
+console.log("docnumber: ", doc_number);
+req.responseType = 'json';
+req.open("GET", '/api/candidate/list', true);
+req.setRequestHeader("Content-type", "application/json");
+req.send(JSON.stringify({doctype: doc_type, docnumber: doc_number}));
+req.onreadystatechange = function () {
+    if (req.readyState == 4 && req.status == 200) {
+        var texto = req.response;
+        console.log(texto);
     }
-    http.send(JSON.stringify({
-        doctype: document.getElementById("dt").value,
-        docnumber: document.getElementById("docnumber").value,  
-        firstname: document.getElementById("firstName").innerHTML = firstname,
-        lastname: document.getElementById("lastName").value,
-        genre: document.getElementById("genero").value,
-        birthdate: document.getElementById("birthday").value,
-        currentcity: document.getElementById("city").value,
-        address: document.getElementById("direccion").value,
-        phonenumber: document.getElementById("telefono").value,
-        mobilephonenumber: document.getElementById("celular").value,
-        email: document.getElementById("correo").value,
-    }));
 }
