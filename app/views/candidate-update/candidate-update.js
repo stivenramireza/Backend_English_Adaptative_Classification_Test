@@ -1,5 +1,4 @@
-/** 
-var req = new XMLHttpRequest();
+/** request();
 var doc_number = localStorage.getItem("docnumber");
 req.responseType = 'json';
 req.open("GET", '/api/candidate/list', true);
