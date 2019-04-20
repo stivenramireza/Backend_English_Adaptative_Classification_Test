@@ -36,6 +36,10 @@ function loadGrade(req, res){
     res.render("../views/admin-profile/admin-grade.ejs");
 }
 
+function loadAddQuestion(req, res){
+    res.render("../views/admin-profile/admin-add-question.ejs");
+}
+
 
 function registrarAdmin(req, res) {
     var errors = validationResult(req);
@@ -161,5 +165,6 @@ module.exports = {
     loadGrade,
     loadProfile,
     logout,
-    loadProfileRegister
+    loadProfileRegister,
+    loadAddQuestion
 }
