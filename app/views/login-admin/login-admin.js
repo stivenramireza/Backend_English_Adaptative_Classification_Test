@@ -12,3 +12,16 @@ let login = function () {
     http.send(JSON.stringify({ username: document.getElementById("inputUsername").value, 
     password: document.getElementById("inputPassword").value }));
 }
+
+$(document).ready(function () {
+    $('#failed').hide();
+    $('#btnLogin').click(function () {
+        var emailUser = $("#inputUsername").val();
+        var passwordUser = $("#inputPassword").val();
+
+        if (emailUser == '' || passwordUser == '') {
+            $('#failed').show();
+        } 
+    });
+});
+

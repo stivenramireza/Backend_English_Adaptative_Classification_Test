@@ -1,4 +1,5 @@
 const Student = require('../models/student');
+const Examen = require('../models/examen');
 const service = require("../services")
 const {validationResult} = require('express-validator/check');
 const mongoose = require('mongoose');
@@ -13,6 +14,14 @@ function loadSignupCandidate(req, res){
 
 function updateProfile(req, res){
     res.render("../views/candidate-update/candidate-update.ejs")
+}
+
+function getInfoCandidate(req, res) {
+    Student.find({ docnumber: req.body.docnumber }, (err, info_candidate) => {
+        if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}` })
+        if (!info_candidate) return res.status(404).send({ message: `El aspirante no tiene informacion` })
+        res.status(200).send({ info_candidate })
+    })
 }
 
 function login(req, res){
@@ -31,6 +40,7 @@ function login(req, res){
         }
         return res.status(200).send({
             message: 'Login exitoso del aspirante',
+            docnumber: req.body.docnumber,
             token: service.createToken(new_candidate)
         })
     })
@@ -101,6 +111,7 @@ function fromNumberToDocType(_number){
 }
 
 function fromNumberToGenre(_number){
+    _number = parseInt(_number);
     switch(_number){
         case 1:
             return "Masculino";
@@ -116,7 +127,8 @@ module.exports = {
     loadSignupCandidate,
     updateProfile,
     login,
-    register
+    register,
+    getInfoCandidate
 };
 
 

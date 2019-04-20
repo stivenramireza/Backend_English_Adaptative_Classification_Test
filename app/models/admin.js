@@ -6,7 +6,6 @@ const AdminSchema = new Schema({
     _id: mongoose.Schema.Types.ObjectId,
     doctype: {type: String, required: true},
     docnumber: {type: String, required: true, unique: true},
-    adminType: {type: String, required: true},
     estado: {type: Boolean, required: true},
     firstname: { type: String, required: true },
     lastname: { type: String, required: true },
@@ -14,10 +13,15 @@ const AdminSchema = new Schema({
     birthdate: {type: String, required: true},
     currentcity: {type: String, required: true },
     address: {type: String, required: true},
-    phonenumber: {type: String, required: true},
+    phonenumber: {type: String},
+    mobilephonenumber: {type: String},
     email: {type: String, required: true, unique: true},
     username: {type: String, required: true, unique: true},
-    password: {type: String, select: false}
+    password: {type: String, select: false},
+    habilitar_examenes: {type: Boolean, required: true},
+    reactivar_examenes: {type: Boolean, required: true},
+    gestionar_estadisticas: {type: Boolean, required: true},
+    clasificar_aspirantes: {type: Boolean, required: true}
 })
 
 AdminSchema.pre('save', function (next) {

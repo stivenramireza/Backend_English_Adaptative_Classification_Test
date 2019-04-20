@@ -1,25 +1,37 @@
-let update = function () {
-    var http = new XMLHttpRequest();
-    http.responseType = 'json';
-    http.open("GET", "/api/register/candidate", true); 
-    http.setRequestHeader("Content-type", "application/json");
-    http.onreadystatechange = function () {
-        if (http.readyState == 4 && http.status == 200) {
-            localStorage.setItem("mikey", http.response.token);
-            //window.location.replace('/candidate/test/pre-started');
-        }
+/** request();
+var doc_number = localStorage.getItem("docnumber");
+req.responseType = 'json';
+req.open("GET", '/api/candidate/list', true);
+req.setRequestHeader("Content-type", "application/json");
+var sendData = "{ \"docnumber\" : \"1152224425\"}"
+req.send(sendData);
+req.onreadystatechange = function () {
+    if (req.readyState == 4 && req.status == 200) {
+        var texto = req.response;
+        console.log(texto);
     }
-    http.send(JSON.stringify({
-        doctype: document.getElementById("dt").value,
-        docnumber: document.getElementById("docnumber").value,  
-        firstname: document.getElementById("firstName").innerHTML = firstname,
-        lastname: document.getElementById("lastName").value,
-        genre: document.getElementById("genero").value,
-        birthdate: document.getElementById("birthday").value,
-        currentcity: document.getElementById("city").value,
-        address: document.getElementById("direccion").value,
-        phonenumber: document.getElementById("telefono").value,
-        mobilephonenumber: document.getElementById("celular").value,
-        email: document.getElementById("correo").value,
-    }));
+}*/
+var token = localStorage.getItem("mikey");
+console.log("token: ", token);
+var doc_number = localStorage.getItem("docnumber");
+console.log("docnumber", doc_number);
+var settings = {
+    "url": "/api/candidate/list",
+    "method": "GET",
+    "headers": {
+        "content-type": "application/json",
+        "authorization": token,
+    },
+    "data": JSON.stringify({
+        "docnumber": doc_number
+    })
 }
+$.ajax(settings).done(function (response) {
+    if (response.info_candidate.length != 0) {
+        console.log(response.info_candidate);
+    } else {
+        console.log("No tienes información almacenada");
+    }
+}).fail(function (err) {
+    console.log(err);
+});

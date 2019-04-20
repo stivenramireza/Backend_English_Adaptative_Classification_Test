@@ -12,10 +12,6 @@ function loadLoginAdmin(req, res){
     res.render("../views/login-admin/login-admin.ejs");
 }
 
-function loadSignupAdmin(req, res){
-    res.render("../views/signup-admin/signup-admin.ejs");
-}
-
 function loadProfile(req, res){
     res.render("../views/admin-profile/admin-profile.ejs");
 }
@@ -23,6 +19,35 @@ function loadProfile(req, res){
 function logout(req, res){
     res.redirect('/');
 }
+
+function loadProfileRegister(req, res){
+    res.render("../views/admin-profile/admin-register.ejs");
+}
+
+function loadExamEnable(req, res){
+    res.render("../views/admin-profile/admin-exam-enable.ejs");
+}
+
+function loadExamReactivate(req, res){
+    res.render("../views/admin-profile/admin-exam-reactivate.ejs");
+}
+
+function loadGrade(req, res){
+    res.render("../views/admin-profile/admin-grade.ejs");
+}
+
+function loadAddQuestion(req, res){
+    res.render("../views/admin-profile/admin-add-question.ejs");
+}
+
+function loadAdminEdit(req, res){
+    res.render("../views/admin-profile/admin-edit.ejs");
+}
+
+function loadAdminEditData(req, res){
+    res.render("../views/admin-profile/admin-edit-data.ejs");
+}
+
 
 function registrarAdmin(req, res) {
     var errors = validationResult(req);
@@ -33,7 +58,7 @@ function registrarAdmin(req, res) {
         _id : mongoose.Types.ObjectId(),
         doctype: fromNumberToDocType(req.body.doctype),
         docnumber: req.body.docnumber,
-        adminType: req.body.adminType,
+        estado: req.body.estado,
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         genre: fromNumberToGenre(req.body.genre),
@@ -41,9 +66,14 @@ function registrarAdmin(req, res) {
         currentcity: req.body.currentcity,
         address: req.body.address,
         phonenumber: req.body.phonenumber,
+        mobilephonenumber: req.body.mobilephonenumber,
         email: req.body.email,
         username: req.body.username,
-        password: req.body.password
+        password: req.body.password,
+        habilitar_examenes: req.body.habilitar_examenes,
+        reactivar_examenes: req.body.reactivar_examenes,
+        gestionar_estadisticas: req.body.gestionar_estadisticas,
+        clasificar_aspirantes: req.body.clasificar_aspirantes
     });
     //save in the database
     new_admin.save((err) => {
@@ -122,6 +152,7 @@ function fromNumberToDocType(_number){
 }
 
 function fromNumberToGenre(_number){
+    _number = parseInt(_number);
     switch(_number){
         case 1:
             return "Masculino";
@@ -137,7 +168,13 @@ module.exports = {
     registrarAdmin,
     loguearAdmin,
     loadLoginAdmin,
-    loadSignupAdmin,
+    loadExamEnable,
+    loadExamReactivate,
+    loadGrade,
     loadProfile,
-    logout
+    logout,
+    loadProfileRegister,
+    loadAddQuestion,
+    loadAdminEditData,
+    loadAdminEdit
 }

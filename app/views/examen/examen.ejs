@@ -442,7 +442,7 @@
     <header class="enca">
         <div class="wrapper">
             <div class="logo">
-                <img src="https://i.imgur.com/9xpkUdY.png" height="40px" style="vertical-align:middle;">
+                <img src="https://i.imgur.com/7x1qGuH.png" height="40px" style="vertical-align:middle;">
             </div>
             <nav>
                 <a style="color:white">Examen Adaptativo de Clasificación de Inglés</a>
@@ -454,8 +454,8 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <!------ Include the above in your HEAD tag ---------->
 
-    <div class="container-fluid ">
-        <div class="modal-dialog" >
+    <div class="container-fluid">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="row">
@@ -551,7 +551,6 @@
             $('#loadbar').show();
             $('#quiz').fadeOut();
             setTimeout(function () {
-                $("#answer").html($(this).checking(n_response));
                 document.getElementById("qid").innerHTML = count;
                 questionPost(n_item, n_response);
                 $('#quiz').show();
@@ -562,15 +561,6 @@
                 window.location.replace("/candidate/test/final_result");
             }
         });
-
-        $ans = 3;
-
-        $.fn.checking = function (ck) {
-            if (ck != $ans)
-                return 'INCORRECT';
-            else
-                return 'CORRECT';
-        };
     });
 
 </script>
