@@ -1,4 +1,5 @@
 const Student = require('../models/student');
+const Examen = require('../models/examen');
 const service = require("../services")
 const {validationResult} = require('express-validator/check');
 const mongoose = require('mongoose');
@@ -16,7 +17,7 @@ function updateProfile(req, res){
 }
 
 function getInfoCandidate(req, res) {
-    Student.findOne({ doctype: req.body.doctype, docnumber: req.body.docnumber }, (err, info_candidate) => {
+    Student.find({ docnumber: req.body.docnumber }, (err, info_candidate) => {
         if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}` })
         if (!info_candidate) return res.status(404).send({ message: `El aspirante no tiene informacion` })
         res.status(200).send({ info_candidate })
