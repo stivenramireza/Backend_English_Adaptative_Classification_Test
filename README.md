@@ -13,7 +13,7 @@ Web application for the English Adaptative Classification Test in EAFIT Language
 ### Backend:
 
 - [ ] Construir esquemas para los datos generados por la API para la BD. (Stiven y Juan)
-- [ ] Registro de administradores. (Camilo)
+- [x] Registro de administradores. (Stiven)
 - [ ] Actualización de los datos de estudiantes. (Stiven)
 - [ ] Manejo de sesiones. (Anderson)
 
