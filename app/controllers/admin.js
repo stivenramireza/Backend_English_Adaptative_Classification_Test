@@ -28,6 +28,15 @@ function loadExamEnable(req, res){
     res.render("../views/admin-profile/admin-exam-enable.ejs");
 }
 
+function loadExamReactivate(req, res){
+    res.render("../views/admin-profile/admin-exam-reactivate.ejs");
+}
+
+function loadGrade(req, res){
+    res.render("../views/admin-profile/admin-grade.ejs");
+}
+
+
 function registrarAdmin(req, res) {
     var errors = validationResult(req);
     if(!errors.isEmpty()){
@@ -147,6 +156,8 @@ module.exports = {
     loguearAdmin,
     loadLoginAdmin,
     loadExamEnable,
+    loadExamReactivate,
+    loadGrade,
     loadProfile,
     logout,
     loadProfileRegister
