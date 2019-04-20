@@ -8,6 +8,7 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
     <title>Registro de aspirante</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="/signup-candidate/signup-candidate.js"></script>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/checkout/">
 
@@ -109,7 +110,7 @@
                     <div class=" col mb-3">
                         <label for="username">Fecha de nacimiento</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="birthday" placeholder="AAAAMMDD" required>
+                            <input type="text" class="form-control" id="birthday" placeholder="AAAA/MM/DD" required>
                             <div class="invalid-feedback" style="width: 100%;">
                                 Se requiere que llene el campo "Fecha de nacimiento" con el formato indicado.
                             </div>
@@ -293,7 +294,7 @@
                     <div class="col-md-3 mb-3">
                         <label for="state">Género</label>
                         <select class="custom-select d-block w-100" id="genero" required>
-                            <option value="">Seleccionar...</option>
+                            <option value="0">Seleccionar...</option>
                             <option value="1">Masculino</option>
                             <option value="2">Femenino</option>
                             <option value="3">Otro</option>
@@ -318,7 +319,7 @@
                 </center>
             </form>
             <br><br>
-            <p id="failed" style="color:#bd1a1a ;display: none;text-align: center";>No se ha asignado ningún rol.</p>
+            <p id="failed" style="color:#bd1a1a ;display: none;text-align: center";>No se ha aceptado la autorización.</p>
             <br><br>
         </div>
 
@@ -326,14 +327,6 @@
             <p class="mb-1">&copy; 2019 Universidad EAFIT</p>
         </footer>
     </div>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="/docs/4.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
-        crossorigin="anonymous"></script>
-    <script src="form-validation.js"></script>
 </body>
 
 </html>

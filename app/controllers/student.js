@@ -111,6 +111,7 @@ function fromNumberToDocType(_number){
 }
 
 function fromNumberToGenre(_number){
+    _number = parseInt(_number);
     switch(_number){
         case 1:
             return "Masculino";

@@ -27,7 +27,6 @@ let signup = function () {
     }));
     }else{
         $('#failed').show();
-        console.log("isChecked is not selected");
     }
 }
 

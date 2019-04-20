@@ -45,7 +45,7 @@ router.get('/signin', loginCtlr.loadLogin); // Carga el signin (página principa
 // GET del Aspirante
 router.get('/signin/candidate', studentCtrlr.loadLoginCandidate); // Carga el signin del aspirante
 router.get('/signup/candidate', studentCtrlr.loadSignupCandidate); //Carga el egistro del aspirante
-router.get('/candidate/profile', auth, studentCtrlr.updateProfile); // Carga el perfil del aspirante
+router.get('/candidate/profile', studentCtrlr.updateProfile); // Carga el perfil del aspirante
 router.get('/candidate/test/pre_started', testCtlr.loadPreStarted); // Carga las instrucciones del examen
 router.get('/candidate/test/', testCtlr.loadTest); // Cargas las preguntas y opciones de respuesta
 router.get('/candidate/test/final_result', testCtlr.loadResult); // Muestra la nota final
@@ -54,7 +54,7 @@ router.get('/api/candidate/list', studentCtrlr.getInfoCandidate); // Obtiene la 
 // GET del Administrador
 router.get('/signin/admin', adminCtlr.loadLoginAdmin); // Carga el signin del administrador
 router.get('/admin/profile', adminCtlr.loadProfile); // Carga el perfil del administrador
-router.get('/admin/logout', auth, adminCtlr.logout); // Cerrar sesión del administrador
+router.get('/admin/logout', adminCtlr.logout); // Cerrar sesión del administrador
 router.get('/admin/profile/register', adminCtlr.loadProfileRegister) // Registrar administradores
 router.get('/admin/profile/exam-enable', adminCtlr.loadExamEnable) //Habilitar examenes
 router.get('/admin/profile/exam-reactivate', adminCtlr.loadExamReactivate) //Reactivar examenes
@@ -70,7 +70,7 @@ router.post('/api/register/candidate', [
     check('docnumber').isNumeric().isLength({min: 5}),
     check('firstname').matches('[a-zA-Z\\s]+').isLength({min: 4}),
     check('lastname').matches('[a-zA-Z\\s]+').isLength({min: 4}),
-    check('genre').isNumeric().isIn([0, 1, 2, 3]),
+    check('genre').isNumeric().isIn([1, 2, 3]),
     check('birthdate').matches("[0-9]+\/[0-9]+\/[0-9]+").isLength({min: 6}),
     check('currentcity').isAlphanumeric().isLength({min: 3}),
     check('address').matches('[a-zA-Z0-9\\#\\-\\°\\s]+').isLength({min: 4}),
