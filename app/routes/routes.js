@@ -45,7 +45,7 @@ router.get('/signin', loginCtlr.loadLogin); // Carga el signin (página principa
 // GET del Aspirante
 router.get('/signin/candidate', studentCtrlr.loadLoginCandidate); // Carga el signin del aspirante
 router.get('/signup/candidate', studentCtrlr.loadSignupCandidate); //Carga el egistro del aspirante
-router.get('/candidate/profile', studentCtrlr.updateProfile); // Carga el perfil del aspirante
+router.get('/candidate/profile', auth, studentCtrlr.updateProfile); // Carga el perfil del aspirante
 router.get('/candidate/test/pre_started', testCtlr.loadPreStarted); // Carga las instrucciones del examen
 router.get('/candidate/test/', testCtlr.loadTest); // Cargas las preguntas y opciones de respuesta
 router.get('/candidate/test/final_result', testCtlr.loadResult); // Muestra la nota final

@@ -5,7 +5,6 @@ let login = function () {
     http.setRequestHeader("Content-type", "application/json");
     http.onreadystatechange = function () {
         if (http.readyState == 4 && http.status == 200) {
-            localStorage.setItem("doctype", document.getElementById("doctype").value);
             localStorage.setItem("docnumber", document.getElementById("docnumber").value);
             localStorage.setItem("mikey", http.response.token);
             window.location.replace('/candidate/profile');
