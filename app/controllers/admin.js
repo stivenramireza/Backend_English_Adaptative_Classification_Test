@@ -40,6 +40,14 @@ function loadAddQuestion(req, res){
     res.render("../views/admin-profile/admin-add-question.ejs");
 }
 
+function loadAdminEdit(req, res){
+    res.render("../views/admin-profile/admin-edit.ejs");
+}
+
+function loadAdminEditData(req, res){
+    res.render("../views/admin-profile/admin-edit-data.ejs");
+}
+
 
 function registrarAdmin(req, res) {
     var errors = validationResult(req);
@@ -166,5 +174,7 @@ module.exports = {
     loadProfile,
     logout,
     loadProfileRegister,
-    loadAddQuestion
+    loadAddQuestion,
+    loadAdminEditData,
+    loadAdminEdit
 }
