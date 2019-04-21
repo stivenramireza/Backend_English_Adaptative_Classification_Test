@@ -24,22 +24,22 @@ function saveTestStatus(req, res, data) {
         });
     }
     var _data = JSON.parse(data);
-    console.log(_data.question.ability);
+    //console.log(_data.question.ability);
     var today = new Date();
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     const new_examen = new Examen({
         _id: mongoose.Types.ObjectId(),
-        doctype: 1, //Just a simple doct
-        docnumber: "1662829272", // Just a simple docn
+        doctype: req.body.doctype, //Just a simple doct
+        docnumber: req.body.docnumber, // Just a simple docn
         questions: _data.question.administered_items, // To be updated
         responses: _data.question.response_vector, // To be updated
         grade: 0.0, // To be updated
         classified_level: 0, // To be updated
-        hora_inicio: time,
+        hora_inicio: time, // Static
         hora_fin: time, // To be updated
-        clasificador: "1662829272", //Just a simple docn
-        last_ability: _data.question.ability,
-        parts: _data.question.parts
+        clasificador: req.body.clasificador, //Just a simple docn
+        last_ability: _data.question.ability, // To be updated
+        parts: _data.question.parts // To be updated
     });
     //console.log(data);
     new_examen.save((err) => {
@@ -62,8 +62,8 @@ function saveTestStatus(req, res, data) {
 }
 
 function next_question(req, res) {
-    var doc_number = "1662829272"; //req.body.doc_number;
-    var doc_type = "1"; //req.body.doc_type;
+    var doc_number = req.body.docnumber;
+    var doc_type = req.body.doctype;
     Examen.findOne({docnumber: doc_number, doctype: doc_type}, function (err, examen) {
         if (err) {
             console.find("Cannot find the specified test.");
@@ -79,10 +79,9 @@ function next_question(req, res) {
                 hora_inicio: examen.hora_inicio,
                 hora_fin: examen.hora_fin, // To be updated
                 clasificador: examen.clasificador, //Just a simple docn
-                last_ability: examen.last_ability,
-                parts: examen.parts
+                last_ability: examen.last_ability, // To be updated
+                parts: examen.parts // To be updated
             };
-            //const QUERY_PATH = "http://localhost:5001";
             const QUERY_PATH = "http://ec2-34-207-193-227.compute-1.amazonaws.com";
             request.post({
                 url: QUERY_PATH + '/test/next_question',
