@@ -44,6 +44,7 @@ router.get('/test/statistics', cors(corsOptions), function(req, res, next){
 });
 */
 router.post('/test/next_question', cors(corsOptions), examenCtlr.next_question);
+
 // GET de la Principal Page 
 router.get('/signin', loginCtlr.loadLogin); // Carga el signin (página principal)
 
@@ -115,18 +116,5 @@ router.post('/api/register/admin', [
     check('clasificar_aspirantes').isBoolean()
 
 ], adminCtlr.registrarAdmin); // Postea para el registro del admin
-router.post('/api/activate_exam/admin', [
-    check('doctype').isNumeric().isIn([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]),
-    check('docnumber').isNumeric().isLength({min: 5}),
-    check('questions').isNumeric().isLength({max: 3}),
-    check('responses').isNumeric().isLength({max: 3}),
-    check('grade').isNumeric(),
-    check('classified_level').matches('[a-zA-Z\\s]+').isLength({min: 4}),
-    check('fecha').matches("[0-9]+\/[0-9]+\/[0-9]+").isLength({min: 6}),
-    check('hora_inicio').matches('[0-9\\s]+').isLength({min: 4}),
-    check('hora_fin').matches('[0-9\\s]+').isLength({min: 4}),
-    check('duracion_examen').isNumeric(),
-    check('clasificador').matches('[a-zA-Z\\s]+').isLength({min: 4})
-], examenCtlr.activarExamen); // Activa el examen del estudiante
 
 module.exports = router;

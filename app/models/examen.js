@@ -13,7 +13,7 @@ const ExamenSchema = new Schema({
     hora_fin: {type: String, required: true}, // hora en la que terminó el examen
     clasificador: {type: String, required: true}, // clasificador del aspirante
     last_ability: {type: Number, required: true},
-    parts: [Number]
+    parts: [Number] // Niveles de dificultad de las preguntas
 },
 {
     timestamps: true
