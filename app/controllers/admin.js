@@ -1,12 +1,9 @@
 const Admin = require("../models/admin")
 const bcrypt = require('bcrypt');
 const service = require("../services")
-const fs = require('fs');
-const path = require('path');
 
-const {check, validationResult} = require('express-validator/check');
+const {validationResult} = require('express-validator/check');
 const mongoose = require('mongoose');
-const jwt = require('jsonwebtoken');
 
 function loadLoginAdmin(req, res){
     res.render("../views/login-admin/login-admin.ejs");
@@ -47,7 +44,6 @@ function loadAdminEdit(req, res){
 function loadAdminEditData(req, res){
     res.render("../views/admin-profile/admin-edit-data.ejs");
 }
-
 
 function registrarAdmin(req, res) {
     var errors = validationResult(req);

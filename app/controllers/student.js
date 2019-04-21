@@ -1,5 +1,4 @@
 const Student = require('../models/student');
-const Examen = require('../models/examen');
 const service = require("../services")
 const {validationResult} = require('express-validator/check');
 const mongoose = require('mongoose');

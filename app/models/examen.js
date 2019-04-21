@@ -12,8 +12,8 @@ const ExamenSchema = new Schema({
     hora_inicio: {type: String, required: true}, // hora en la que empezó el examen
     hora_fin: {type: String, required: true}, // hora en la que terminó el examen
     clasificador: {type: String, required: true}, // clasificador del aspirante
-    last_ability: {type: Number, required: true},
-    parts: [Number] // Niveles de dificultad de las preguntas
+    last_ability: {type: Number, required: true}, // curva de aprendizaje del aspirante en el examen
+    parts: [Number] // niveles de dificultad de las preguntas
 },
 {
     timestamps: true

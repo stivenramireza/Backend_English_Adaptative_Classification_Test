@@ -1,4 +1,3 @@
-const service = require("../services");
 const Examen = require('../models/examen');
 const {validationResult} = require('express-validator/check');
 const mongoose = require('mongoose');

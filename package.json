@@ -1,5 +1,5 @@
 {
-  "name": "eaciapp",
+  "name": "EACI App",
   "version": "1.0.0",
   "description": "Web Application",
   "main": "app/index.js",
@@ -7,7 +7,7 @@
     "start": "nodemon app/index.js",
     "test": "./node_modules/.bin/mocha test/test.js --exit --recursive --timeout 5000"
   },
-  "author": "Stiven Ramírez Arango, Camilo Cruz Villegas, Juan Pablo Gonzales, Anderson Daniel Grajales Alzate",
+  "author": "Stiven Ramírez Arango, Camilo Cruz Villegas, Juan Pablo Gonzales & Anderson Daniel Grajales Alzate",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^3.0.5",

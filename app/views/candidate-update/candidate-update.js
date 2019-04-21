@@ -1,16 +1,3 @@
-/** request();
-var doc_number = localStorage.getItem("docnumber");
-req.responseType = 'json';
-req.open("GET", '/api/candidate/list', true);
-req.setRequestHeader("Content-type", "application/json");
-var sendData = "{ \"docnumber\" : \"1152224425\"}"
-req.send(sendData);
-req.onreadystatechange = function () {
-    if (req.readyState == 4 && req.status == 200) {
-        var texto = req.response;
-        console.log(texto);
-    }
-}*/
 var token = localStorage.getItem("mikey");
 console.log("token: ", token);
 var doc_number = localStorage.getItem("docnumber");
