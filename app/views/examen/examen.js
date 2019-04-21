@@ -6,6 +6,7 @@ req.send(null);
 req.onreadystatechange = function () {
     if (req.readyState == 4 && req.status == 200) {
         var texto = req.response;
+        console.log(texto);
         var title = texto.question.title;
         document.getElementById("qidc").innerHTML = title;
         var opcionA = texto.question.responses[0];

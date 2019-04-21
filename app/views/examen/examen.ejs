@@ -548,11 +548,12 @@
             count++;
             var n_response = ($(this).find('input:radio').val())-1;
             var n_item  = localStorage.getItem("n_item");
+            var doc_number = localStorage.getItem("docnumber");
             $('#loadbar').show();
             $('#quiz').fadeOut();
             setTimeout(function () {
                 document.getElementById("qid").innerHTML = count;
-                questionPost(n_item, n_response);
+                questionPost(doc_number, n_item, n_response);
                 $('#quiz').show();
                 $('#loadbar').fadeOut();
                 /* something else */
