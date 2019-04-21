@@ -16,8 +16,8 @@ var corsOptions = {
 const router = express.Router();
 const {check} = require('express-validator/check');
 
-//const QUERY_PATH = "http://ec2-34-207-193-227.compute-1.amazonaws.com";
-const QUERY_PATH = "http://localhost:5001";
+const QUERY_PATH = "http://ec2-34-207-193-227.compute-1.amazonaws.com";
+//const QUERY_PATH = "http://localhost:5001";
 // GET desde Amazon Web Services
 router.get('/test/prestart', cors(corsOptions), function(req, res, next){
     request.get(QUERY_PATH + '/test/prestart', function(error, response, data){

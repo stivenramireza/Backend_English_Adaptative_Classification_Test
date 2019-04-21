@@ -114,8 +114,8 @@ function next_question(req, res) {
                 last_ability: examen.last_ability,
                 parts: examen.parts
             };
-            const QUERY_PATH = "http://localhost:5001";
-            //const QUERY_PATH = "http://ec2-34-207-193-227.compute-1.amazonaws.com";
+            //const QUERY_PATH = "http://localhost:5001";
+            const QUERY_PATH = "http://ec2-34-207-193-227.compute-1.amazonaws.com";
             request.post({
                 url: QUERY_PATH + '/test/next_question',
                 body: {
