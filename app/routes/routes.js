@@ -16,21 +16,25 @@ var corsOptions = {
 const router = express.Router();
 const {check} = require('express-validator/check');
 
+//const QUERY_PATH = "http://ec2-34-207-193-227.compute-1.amazonaws.com";
+const QUERY_PATH = "http://localhost:5001";
 // GET desde Amazon Web Services
 router.get('/test/prestart', cors(corsOptions), function(req, res, next){
-    request.get('http://ec2-34-207-193-227.compute-1.amazonaws.com/test/prestart', function(error, response, data){
-        res.send(data); 
+    request.get(QUERY_PATH + '/test/prestart', function(error, response, data){
+        var _data = data;
+        //console.log(_data);
+        examenCtlr.saveTestStatus(req, res, _data);
     });
 });
-
 router.get('/test/statistics', cors(corsOptions), function(req, res, next){
-    request.get('http://ec2-34-207-193-227.compute-1.amazonaws.com/test/statistics', function(error, response, data){
+    request.get(QUERY_PATH + '/test/next_question', function(error, response, data){
         res.send(data); 
     });
 });
 
 // POST desde Amazon Web Services
-router.post('/test/next_question', cors(corsOptions), function(req, res, next) {
+/*router.post('/test/next_question', cors(corsOptions), function(req, res, next) {
+    //console.log(JSON.parse(examenCtlr.findTestStatus(req, res)));
     request.post({url: 'http://ec2-34-207-193-227.compute-1.amazonaws.com/test/next_question', 
         body: {n_item: req.body.n_item, 
                n_response: req.body.n_response}, 
@@ -38,7 +42,8 @@ router.post('/test/next_question', cors(corsOptions), function(req, res, next) {
         res.send(data);
     });
 });
-
+*/
+router.post('/test/next_question', cors(corsOptions), examenCtlr.next_question);
 // GET de la Principal Page 
 router.get('/signin', loginCtlr.loadLogin); // Carga el signin (página principal)
 
@@ -62,6 +67,8 @@ router.get('/admin/profile/grade', adminCtlr.loadGrade) //Clasificar aspirante
 router.get('/admin/profile/add-question', adminCtlr.loadAddQuestion)
 router.get('/admin/profile/edit-admin', adminCtlr.loadAdminEdit)
 router.get('/admin/profile/edit-admin/data', adminCtlr.loadAdminEditData)
+
+// Questions
 
 // POST del Aspirante
 router.post('/api/signin/candidate', [
