@@ -19,10 +19,10 @@ Web application for the English Adaptative Classification Test in EAFIT Language
 
 ### API de Inteligencia Artificial:
 
-- [ ] Manejo del examen por sesiones. (Anderson)
+- [x] Manejo del examen por sesiones. (Anderson)
 - [x] Manejo de preguntas en momentos de mucha concurrencia. (Anderson)
 
 ### Inteligencia Artificial:
 
-- [ ] Conectar red neuronal de clasificación. (Anderson)
+- [x] Conectar red neuronal de clasificación. (Anderson)
 - [ ] Agregar más datos a la red neuronal. (Camilo)
