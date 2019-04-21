@@ -4,7 +4,7 @@ const examenCtlr = require('../controllers/examen');
 const studentCtrlr = require('./../controllers/student');
 const loginCtlr = require('../controllers/login');
 const testCtlr = require('../controllers/examen');
-const auth = require('../middlewares/auth')
+const auth = require('../middlewares/auth') // Aún no se está usando
 var cors = require('cors')
 var request = require('request')
 
@@ -15,29 +15,25 @@ var corsOptions = {
 
 const router = express.Router();
 const {check} = require('express-validator/check');
+const QUERY_PATH = "http://ec2-34-207-193-227.compute-1.amazonaws.com";
 
-// GET desde Amazon Web Services
+// GET first_question desde Amazon Web Services (AWS)
 router.get('/test/prestart', cors(corsOptions), function(req, res, next){
-    request.get('http://ec2-34-207-193-227.compute-1.amazonaws.com/test/prestart', function(error, response, data){
-        res.send(data); 
+    request.get(QUERY_PATH + '/test/prestart', function(error, response, data){
+        var _data = data;
+        examenCtlr.saveTestStatus(req, res, _data);
     });
 });
 
+// GET statistics desde Amazon Web Services (AWS)
 router.get('/test/statistics', cors(corsOptions), function(req, res, next){
-    request.get('http://ec2-34-207-193-227.compute-1.amazonaws.com/test/statistics', function(error, response, data){
+    request.get(QUERY_PATH + '/test/next_question', function(error, response, data){
         res.send(data); 
     });
 });
 
-// POST desde Amazon Web Services
-router.post('/test/next_question', cors(corsOptions), function(req, res, next) {
-    request.post({url: 'http://ec2-34-207-193-227.compute-1.amazonaws.com/test/next_question', 
-        body: {n_item: req.body.n_item, 
-               n_response: req.body.n_response}, 
-               json: true},  function(error, response, data){
-        res.send(data);
-    });
-});
+// POST next_question desde Amazon Web Services (AWS)
+router.post('/test/next_question', cors(corsOptions), examenCtlr.next_question);
 
 // GET de la Principal Page 
 router.get('/signin', loginCtlr.loadLogin); // Carga el signin (página principal)
@@ -68,6 +64,8 @@ router.get('/admin/profile/grade', adminCtlr.loadGrade) //Clasificar aspirante
 router.get('/admin/profile/add-question', adminCtlr.loadAddQuestion)
 router.get('/admin/profile/edit-admin', adminCtlr.loadAdminEdit)
 router.get('/admin/profile/edit-admin/data', adminCtlr.loadAdminEditData)
+
+// Questions
 
 // POST del Aspirante
 router.post('/api/signin/candidate', [
@@ -112,20 +110,6 @@ router.post('/api/register/admin', [
     check('reactivar_examenes').isBoolean(),
     check('gestionar_estadisticas').isBoolean(),
     check('clasificar_aspirantes').isBoolean()
-
 ], adminCtlr.registrarAdmin); // Postea para el registro del admin
-router.post('/api/activate_exam/admin', [
-    check('doctype').isNumeric().isIn([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]),
-    check('docnumber').isNumeric().isLength({min: 5}),
-    check('questions').isNumeric().isLength({max: 3}),
-    check('responses').isNumeric().isLength({max: 3}),
-    check('grade').isNumeric(),
-    check('classified_level').matches('[a-zA-Z\\s]+').isLength({min: 4}),
-    check('fecha').matches("[0-9]+\/[0-9]+\/[0-9]+").isLength({min: 6}),
-    check('hora_inicio').matches('[0-9\\s]+').isLength({min: 4}),
-    check('hora_fin').matches('[0-9\\s]+').isLength({min: 4}),
-    check('duracion_examen').isNumeric(),
-    check('clasificador').matches('[a-zA-Z\\s]+').isLength({min: 4})
-], examenCtlr.activarExamen); // Activa el examen del estudiante
 
 module.exports = router;

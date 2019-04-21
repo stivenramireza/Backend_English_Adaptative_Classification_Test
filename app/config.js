@@ -18,7 +18,7 @@ var config = {
     SECRET_TOKEN: process.env.JWT_TOKEN || 'mikey'
   },
   production: {
-    //Not yet
+    // Not yet
   }
 };
 
