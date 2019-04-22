@@ -25,19 +25,22 @@ function saveTestStatus(req, res, data) {
     }
     var _data = JSON.parse(data);
     //console.log(_data.question.ability);
+    let doctype = req.query.doctype;
+    let docnumber = req.query.docnumber;
+    let clasificador = req.query.clasificador;
     var today = new Date();
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     const new_examen = new Examen({
         _id: mongoose.Types.ObjectId(),
-        doctype: req.body.doctype, //Just a simple doct
-        docnumber: req.body.docnumber, // Just a simple docn
+        doctype: doctype, //Just a simple doct
+        docnumber: docnumber, // Just a simple docn
         questions: _data.question.administered_items, // To be updated
         responses: _data.question.response_vector, // To be updated
         grade: 0.0, // To be updated
         classified_level: 0, // To be updated
         hora_inicio: time, // Static
         hora_fin: time, // To be updated
-        clasificador: req.body.clasificador, //Just a simple docn
+        clasificador: clasificador, //Just a simple docn
         last_ability: _data.question.ability, // To be updated
         parts: _data.question.parts // To be updated
     });
@@ -70,8 +73,8 @@ function next_question(req, res) {
             return res.status(404).send({});
         } else {
             var obj = {
-                doctype: examen.doctype, //Just a simple doct
-                docnumber: examen.docnumber, // Just a simple docn
+                doctype: examen.doc_type, //Just a simple doct
+                docnumber: examen.doc_number, // Just a simple docn
                 questions: examen.questions, // To be updated
                 responses: examen.responses, // To be updated
                 grade: examen.grade, // To be updated

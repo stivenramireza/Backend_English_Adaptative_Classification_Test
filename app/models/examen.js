@@ -19,4 +19,4 @@ const ExamenSchema = new Schema({
     timestamps: true
 });
 
-module.exports = mongoose.model('Examen', ExamenSchema, 'examenes');
+module.exports = mongoose.model('Examen', ExamenSchema, 'examenes'); // exportar
