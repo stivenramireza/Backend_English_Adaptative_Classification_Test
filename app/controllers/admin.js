@@ -34,7 +34,7 @@ function loadGrade(req, res){
 }
 
 function loadAddQuestion(req, res){
-    res.render("../views/admin-profile/admin-add-question.ejs");
+    res.render("../views/admin-profile/questions/admin-add-question.ejs");
 }
 
 function loadAdminEdit(req, res){
