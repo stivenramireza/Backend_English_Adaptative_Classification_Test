@@ -6,15 +6,18 @@ Web application for the English Adaptative Classification Test in EAFIT Language
 
 ### Frontend:
 
-- [ ] Mostrar resultados individuales. (Camilo)
-- [ ] Terminar dashboard administrativo. (Juan Pablo)
+- [x] Mostrar resultados individuales. (Camilo)
+- [x] Terminar dashboard administrativo. (Juan Pablo)
 - [x] Registro de administradores. (Juan Pablo)
+- [ ] Mostrar reportes individuales del examen (Juan Pablo)
 
 ### Backend:
 
-- [ ] Construir esquemas para los datos generados por la API para la BD. (Stiven y Juan Pablo)
-- [x] Registro de administradores. (Stiven)
-- [ ] Actualización de los datos de estudiantes. (Stiven)
+- [ ] Mostrar resultados individuales. (Camilo)
+- [ ] Reportes individuales del examen (Juan Pablo y Stiven)
+- [ ] Funcionalidades administrativas (Juan Pablo y Stiven)
+- [x] Registro de administradores y aspirantes. (Stiven)
+- [x] Actualización de los datos de estudiantes. (Stiven)
 - [ ] Manejo de sesiones para los usuarios. (Anderson)
 
 ### API de Inteligencia Artificial:
@@ -22,7 +25,7 @@ Web application for the English Adaptative Classification Test in EAFIT Language
 - [x] Manejo del examen por sesiones. (Anderson)
 - [x] Manejo de preguntas en momentos de mucha concurrencia. (Anderson)
 
-### Inteligencia Artificial:
+### Sistema de Inteligencia Artificial:
 
 - [x] Conectar red neuronal de clasificación. (Anderson)
-- [ ] Agregar más datos a la red neuronal. (Camilo)
+- [x] Agregar más datos a la red neuronal. (Camilo)
