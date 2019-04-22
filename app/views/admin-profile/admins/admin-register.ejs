@@ -61,7 +61,7 @@
             </div>
 
             <li class="nav-item">
-                <a class="nav-link" href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/charts.html">
+                <a class="nav-link" href="/admin/profile/exam-enable">
                     <i class="fas fa-fw fa-pencil-alt"></i>
                     <span>Habilitar examen</span></a>
             </li>
@@ -84,14 +84,14 @@
                 Administradores
             </div>
 
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="/admin/profile/register">
                     <i class="fas fa-user-plus"></i>
                     <span>Registrar administrador</span></a>
             </li>
 
-            <li class="nav-item active">
-                <a class="nav-link collapsed" href="#">
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="/admin/profile/edit-admin">
                     <i class="fas fa-users-cog"></i>
                     <span>Gestionar administrador</span></a>
             </li>
@@ -124,8 +124,7 @@
                             href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/cards.html">Por profesor
                             calificador</a>
                         <a class="collapse-item"
-                            href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/cards.html">Por
-                            aspirante</a>
+                            href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/cards.html">Por aspirante</a>
                     </div>
                 </div>
             </li>
@@ -146,7 +145,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gestón de preguntas:</h6>
                         <a class="collapse-item"
-                            href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/login.html">Agregar
+                            href="/admin/profile/add-question">Agregar
                             pregunta nueva</a>
                         <a class="collapse-item"
                             href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/register.html">Editar
@@ -172,8 +171,14 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <div class="container" style="max-width: 700px; margin-top: 30px;">
+                    <div class="container" style="max-width: 700px">
+                        <div class="py-5 text-center">
+                            <p class="lead">Señor Administrador, complete los campos desplegados a continuación para
+                                lograr un correcto
+                                registro.</p>
+                        </div>
                         <div class="container" style="width: 100%">
+                            <div class="row">
                                 <form class="needs-validation" novalidate>
                                     <div class="row">
                                         <div class="col mb-3">
@@ -252,7 +257,7 @@
                                             <label for="username">Fecha de nacimiento</label>
                                             <div class="input-group">
                                                 <input type="text" class="form-control" id="birthday"
-                                                    placeholder="AAAAMMDD" required>
+                                                    placeholder="AAAA/MM/DD" required>
                                                 <div class="invalid-feedback" style="width: 100%;">
                                                     Se requiere que llene el campo "Fecha de nacimiento" con el formato
                                                     indicado.
@@ -274,7 +279,7 @@
                                         <div class="col mb-3">
                                             <label for="address">Teléfono</label>
                                             <input type="text" class="form-control" id="telefono"
-                                                placeholder="(999) 9999999" required>
+                                                placeholder="" required>
                                             <div class="invalid-feedback">
                                                 Se requiere que llene el campo "Teléfono" correctamente.
                                             </div>
@@ -287,7 +292,7 @@
                                     </div>
 
                                     <div class="row">
-                                        <div class="col mb-3">
+                                        <div class="col-md-5 mb-3">
                                             <label for="address">Email</label>
                                             <input type="text" class="form-control" id="correo" placeholder="" required>
                                             <div class="invalid-feedback">
@@ -433,9 +438,8 @@
                                             </div>
                                         </div>
 
-                                    </div>
-                                    <div class="row">
-                                        <div class="col mb-3">
+
+                                        <div class="col-md-3 mb-3">
                                             <label for="state">Género</label>
                                             <select class="custom-select d-block w-100" id="genero" required>
                                                 <option value="0">Seleccionar...</option>
@@ -445,17 +449,6 @@
                                             </select>
                                             <div class="invalid-feedback">
                                                 Por favor seleccione un género.
-                                            </div>
-                                        </div>
-
-                                        <div class="col mb-3">
-                                            <label for="state">Estado</label>
-                                            <select class="custom-select d-block w-100" id="genero" required>
-                                                <option value="0">Activo/a</option>
-                                                <option value="1">Inactivo/a</option>
-                                            </select>
-                                            <div class="invalid-feedback">
-                                                Por favor seleccione un estado.
                                             </div>
                                         </div>
                                     </div>
@@ -511,8 +504,8 @@
                                     <hr class="mb-4" style="width: 100%">
 
                                     <center>
-                                        <button class="btn btn-primary" onclick=signup()
-                                            type="button">Confirmar</button>
+                                        <button class="btn btn-primary" onclick=signup() type="button">Confirmar
+                                            registro</button>
                                     </center>
                                 </form>
                                 <br>
@@ -520,74 +513,76 @@
                                     asignado ningún rol.</p>
                                 <br><br>
                             </div>
+                        </div>
+                        <br>
+
                     </div>
-                    <br>
+                    <!-- End of Main Content -->
+
+                    <!-- Footer -->
+                    <footer class="sticky-footer bg-white">
+                        <div class="container my-auto">
+                            <div class="copyright text-center my-auto">
+                                <span> &copy; 2019 Universidad EAFIT</span>
+                            </div>
+                        </div>
+                    </footer>
+                    <!-- End of Footer -->
 
                 </div>
-            </div>
-                <!-- End of Main Content -->
+                <!-- End of Content Wrapper -->
 
-                <!-- Footer -->
-                <footer class="sticky-footer bg-white">
-                    <div class="container my-auto">
-                        <div class="copyright text-center my-auto">
-                            <span> &copy; 2019 Universidad EAFIT</span>
+            </div>
+            <!-- End of Page Wrapper -->
+
+            <!-- Scroll to Top Button-->
+            <a class="scroll-to-top rounded" href="#page-top">
+                <i class="fas fa-angle-up"></i>
+            </a>
+
+            <!-- Logout Modal-->
+            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">¿Estás seguro(a) de salir?</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar
+                            su sesión actual.</div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                            <a class="btn btn-primary" href="/admin/logout">Cerrar sesión</a>
                         </div>
                     </div>
-                </footer>
-                <!-- End of Footer -->
-
-            </div>
-            <!-- End of Content Wrapper -->
-
-        </div>
-        <!-- End of Page Wrapper -->
-
-        <!-- Scroll to Top Button-->
-        <a class="scroll-to-top rounded" href="#page-top">
-            <i class="fas fa-angle-up"></i>
-        </a>
-
-        <!-- Logout Modal-->
-        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">¿Estás seguro(a) de salir?</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar
-                        su sesión actual.</div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                        <a class="btn btn-primary" href="/admin/logout">Cerrar sesión</a>
-                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Bootstrap core JavaScript-->
-        <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/jquery/jquery.min.js"></script>
-        <script
-            src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <!-- Bootstrap core JavaScript-->
+            <script
+                src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/jquery/jquery.min.js"></script>
+            <script
+                src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-        <!-- Core plugin JavaScript-->
-        <script
-            src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/jquery-easing/jquery.easing.min.js"></script>
+            <!-- Core plugin JavaScript-->
+            <script
+                src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-        <!-- Custom scripts for all pages-->
-        <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"></script>
+            <!-- Custom scripts for all pages-->
+            <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"></script>
 
-        <!-- Page level plugins -->
-        <script
-            src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/chart.js/Chart.min.js"></script>
+            <!-- Page level plugins -->
+            <script
+                src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/chart.js/Chart.min.js"></script>
 
-        <!-- Page level custom scripts -->
-        <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/demo/chart-area-demo.js"></script>
-        <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/demo/chart-pie-demo.js"></script>
+            <!-- Page level custom scripts -->
+            <script
+                src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/demo/chart-area-demo.js"></script>
+            <script
+                src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/demo/chart-pie-demo.js"></script>
 
 </body>
 

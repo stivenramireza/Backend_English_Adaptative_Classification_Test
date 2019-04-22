@@ -1,11 +1,17 @@
 // Obtiene la 1era pregunta
 var req = new XMLHttpRequest();
+var doc_type = localStorage.getItem("doctype");
+var doc_number = localStorage.getItem("docnumber");
+var doc_clasificador = "1039472987";
+var params = 'doctype='+doc_type+'&docnumber='+doc_number+'&clasificador='+doc_clasificador;
 req.responseType = 'json';
-req.open("GET", '/test/prestart', true);
+req.open("GET", '/test/prestart'+'?'+params, true);
+req.setRequestHeader("Content-type", "application/json");
 req.send(null);
 req.onreadystatechange = function () {
     if (req.readyState == 4 && req.status == 200) {
         var texto = req.response;
+        console.log(texto);
         var title = texto.question.title;
         document.getElementById("qidc").innerHTML = title;
         var opcionA = texto.question.responses[0];
@@ -24,8 +30,10 @@ req.onreadystatechange = function () {
 
 // Obtiene las siguientes preguntas
 let questionPost = function (id, answer) {
-    var sendData = "{ \"n_item\" : " + id + ", \"n_response\" : " + answer + "  }"
-    var req = new XMLHttpRequest();
+    var doc_type = localStorage.getItem("doctype");
+    var doc_number = localStorage.getItem("docnumber");
+    var sendData = "{ \"doctype\": "+ doc_type +", \"docnumber\":"+ doc_number +", \"n_item\" : " + id + ", \"n_response\" : " + answer + "  }"
+    var req = new XMLHttpRequest();1
     req.responseType = 'json';
     req.open("POST", '/test/next_question', true);
     req.setRequestHeader("Content-type", "application/json");

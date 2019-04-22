@@ -27,7 +27,7 @@ router.get('/test/prestart', cors(corsOptions), function(req, res, next){
 
 // GET statistics desde Amazon Web Services (AWS)
 router.get('/test/statistics', cors(corsOptions), function(req, res, next){
-    request.get(QUERY_PATH + '/test/next_question', function(error, response, data){
+    request.get(QUERY_PATH + '/test/statistics', function(error, response, data){
         res.send(data); 
     });
 });

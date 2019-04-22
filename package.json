@@ -1,5 +1,5 @@
 {
-  "name": "EACI App",
+  "name": "EACIApp",
   "version": "1.0.0",
   "description": "Web Application",
   "main": "app/index.js",

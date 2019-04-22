@@ -18,31 +18,31 @@ function logout(req, res){
 }
 
 function loadProfileRegister(req, res){
-    res.render("../views/admin-profile/admin-register.ejs");
+    res.render("../views/admin-profile/admins/admin-register.ejs");
 }
 
 function loadExamEnable(req, res){
-    res.render("../views/admin-profile/admin-exam-enable.ejs");
+    res.render("../views/admin-profile/candidates/admin-exam-enable.ejs");
 }
 
 function loadExamReactivate(req, res){
-    res.render("../views/admin-profile/admin-exam-reactivate.ejs");
+    res.render("../views/admin-profile/candidates/admin-exam-reactivate.ejs");
 }
 
 function loadGrade(req, res){
-    res.render("../views/admin-profile/admin-grade.ejs");
+    res.render("../views/admin-profile/candidates/admin-grade.ejs");
 }
 
 function loadAddQuestion(req, res){
-    res.render("../views/admin-profile/admin-add-question.ejs");
+    res.render("../views/admin-profile/questions/admin-add-question.ejs");
 }
 
 function loadAdminEdit(req, res){
-    res.render("../views/admin-profile/admin-edit.ejs");
+    res.render("../views/admin-profile/admins/admin-edit.ejs");
 }
 
 function loadAdminEditData(req, res){
-    res.render("../views/admin-profile/admin-edit-data.ejs");
+    res.render("../views/admin-profile/admins/admin-edit-data.ejs");
 }
 
 function registrarAdmin(req, res) {
