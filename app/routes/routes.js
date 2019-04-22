@@ -52,6 +52,7 @@ router.get('/candidate/test/pre_started', testCtlr.loadPreStarted); // Carga las
 router.get('/candidate/test/', testCtlr.loadTest); // Cargas las preguntas y opciones de respuesta
 router.get('/candidate/test/final_result', testCtlr.loadResult); // Muestra la nota final
 router.get('/api/candidate/list', studentCtrlr.getInfoCandidate); // Obtiene la info del aspirante
+router.put('/api/candidate/update', studentCtrlr.updateInfoCandidate); // Actualiza la info del aspirante
 
 // GET del Administrador
 router.get('/signin/admin', adminCtlr.loadLoginAdmin); // Carga el signin del administrador

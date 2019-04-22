@@ -16,10 +16,21 @@ function updateProfile(req, res){
 }
 
 function getInfoCandidate(req, res) {
-    Student.find({ docnumber: req.body.docnumber }, (err, info_candidate) => {
+    let docnumber = req.query.docnumber;
+    Student.findOne({ docnumber: docnumber }, (err, info_candidate) => {
         if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}` })
-        if (!info_candidate) return res.status(404).send({ message: `El aspirante no tiene informacion` })
+        if (!info_candidate) return res.status(404).send({ message: `El aspirante no está registrado en la BD` })
         res.status(200).send({ info_candidate })
+    })
+}
+
+function updateInfoCandidate(req, res){
+    let idCandidate = req.query.idCandidate;
+    let update = req.body
+    Student.update({_id: idCandidate}, update, (err, candidateUpdated) => {
+        if (err) return res.status(500).send({ message: `Error al actualizar la información del aspirante: ${err}` })
+        console.log(candidateUpdated)
+        res.status(200).send({ new_candidate: candidateUpdated })
     })
 }
 
@@ -127,7 +138,8 @@ module.exports = {
     updateProfile,
     login,
     register,
-    getInfoCandidate
+    getInfoCandidate,
+    updateInfoCandidate
 };
 
 
