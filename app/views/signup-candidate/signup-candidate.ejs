@@ -31,6 +31,7 @@
                 font-size: 3.5rem;
             }
         }
+
     </style>
     <!-- Custom styles for this template -->
     <link href="https://getbootstrap.com/docs/4.3/examples/checkout/form-validation.css" rel="stylesheet">
@@ -55,38 +56,38 @@
                 registro.</p>
         </div>
         <div class="row">
-            <form class="needs-validation" novalidate>
+            <form class="needs-validation container" novalidate>
                 <div class="row">
                     <div class="col mb-3">
                         <label for="country">Tipo de documento</label>
                         <select class="custom-select d-block w-100" id="dt" required>
-                                <option value="0">Seleccione el tipo de identificación...</option>
-                                <option value="1">Cédula de Ciudadanía</option>
-                                <option value="2">Cédula de Ciudadanía Ecuatoriana</option>
-                                <option value="3">Cédula de Extranjería</option>
-                                <option value="4">Cédula de Guatemala</option>
-                                <option value="5">Cédula de Panamá</option>
-                                <option value="6">Código de Estudiante</option>
-                                <option value="7">Documento Nacional de Identidad</option>
-                                <option value="8">Documento Personal Identificación</option>
-                                <option value="9">Nro Único Identificación Personal</option>
-                                <option value="10">Otro</option>
-                                <option value="11">Pasaporte</option>
-                                <option value="12">Registro</option>
-                                <option value="13">Tarjeta de Identidad</option>
+                            <option value="0">Seleccione el tipo de identificación...</option>
+                            <option value="1">Cédula de Ciudadanía</option>
+                            <option value="2">Cédula de Ciudadanía Ecuatoriana</option>
+                            <option value="3">Cédula de Extranjería</option>
+                            <option value="4">Cédula de Guatemala</option>
+                            <option value="5">Cédula de Panamá</option>
+                            <option value="6">Código de Estudiante</option>
+                            <option value="7">Documento Nacional de Identidad</option>
+                            <option value="8">Documento Personal Identificación</option>
+                            <option value="9">Nro Único Identificación Personal</option>
+                            <option value="10">Otro</option>
+                            <option value="11">Pasaporte</option>
+                            <option value="12">Registro</option>
+                            <option value="13">Tarjeta de Identidad</option>
                         </select>
-                        <div class="invalid-feedback">
+                        <div class="invalid-feedback ">
                             Por favor seleccione un tipo de documento.
                         </div>
                     </div>
 
-                    <div class="col mb-3">
-                            <label for="firstName">Documento de identidad</label>
-                            <input type="text" class="form-control" id="docnumber" placeholder="" value="" required>
-                            <div class="invalid-feedback">
-                                Se requiere que llene el campo "Documento de identidad" correctamente.
-                            </div>
+                    <div class="col mb-3 md-form">
+                        <label for="docnumber">Documento de identidad</label>
+                        <input type="text" class="form-control" id="docnumber" placeholder="" value="" required>
+                        <div class="invalid-feedback">
+                            Se requiere que llene el campo "Documento de identidad" correctamente.
                         </div>
+                    </div>
                 </div>
 
                 <div class="row">
@@ -108,7 +109,7 @@
 
                 <div class="row">
                     <div class=" col mb-3">
-                        <label for="username">Fecha de nacimiento</label>
+                        <label for="birthday">Fecha de nacimiento</label>
                         <div class="input-group">
                             <input type="text" class="form-control" id="birthday" placeholder="AAAA/MM/DD" required>
                             <div class="invalid-feedback" style="width: 100%;">
@@ -119,7 +120,7 @@
 
 
                     <div class="col mb-3">
-                        <label for="email">Dirección de residencia</label>
+                        <label for="direccion">Dirección de residencia</label>
                         <input type="email" class="form-control" id="direccion" placeholder="">
                         <div class="invalid-feedback">
                             Se requiere que llene el campo "Dirección" correctamente.
@@ -129,7 +130,7 @@
 
                 <div class="row">
                     <div class="col mb-3">
-                        <label for="address">Teléfono</label>
+                        <label for="telefono">Teléfono</label>
                         <input type="text" class="form-control" id="telefono" placeholder="(999) 9999999" required>
                         <div class="invalid-feedback">
                             Se requiere que llene el campo "Teléfono" correctamente.
@@ -137,7 +138,7 @@
                     </div>
 
                     <div class="col mb-3">
-                        <label for="address2">Celular</label>
+                        <label for="celular">Celular</label>
                         <input type="text" class="form-control" id="celular" placeholder="">
                     </div>
 
@@ -145,7 +146,7 @@
 
                 <div class="row">
                     <div class="col-md-5 mb-3">
-                        <label for="address">Email</label>
+                        <label for="correo">Email</label>
                         <input type="text" class="form-control" id="correo" placeholder="" required>
                         <div class="invalid-feedback">
                             Se requiere que llene el campo "Email" correctamente.
@@ -155,7 +156,7 @@
 
 
                     <div class="col mb-3">
-                        <label for="country">Ciudad</label>
+                        <label for="ciudad">Ciudad</label>
                         <select class="custom-select d-block w-100" id="city" required>
                             <option value="">Escoger...</option>
                             <option value="MEDELLIN">MEDELLÍN</option>
@@ -292,7 +293,7 @@
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label for="state">Género</label>
+                        <label for="genero">Género</label>
                         <select class="custom-select d-block w-100" id="genero" required>
                             <option value="0">Seleccionar...</option>
                             <option value="1">Masculino</option>
@@ -319,7 +320,8 @@
                 </center>
             </form>
             <br><br>
-            <p id="failed" style="color:#bd1a1a ;display: none;text-align: center";>No se ha aceptado la autorización.</p>
+            <p id="failed" style="color:#bd1a1a ;display: none;text-align: center" ;>No se ha aceptado la autorización.
+            </p>
             <br><br>
         </div>
 
