@@ -1,6 +1,7 @@
 // Obtiene la 1era pregunta
 var req = new XMLHttpRequest();
 var doc_type = localStorage.getItem("doctype");
+var tmp_doc_type = localStorage.setItem("doc_type", doc_type);
 var doc_number = localStorage.getItem("docnumber");
 var doc_clasificador = "1039472987";
 var params = 'doctype='+doc_type+'&docnumber='+doc_number+'&clasificador='+doc_clasificador;
@@ -30,9 +31,11 @@ req.onreadystatechange = function () {
 
 // Obtiene las siguientes preguntas
 let questionPost = function (id, answer) {
-    var doc_type = localStorage.getItem("doctype");
+    var tmp_doc_type = localStorage.getItem("doc_type");
+    console.log("doctype:", tmp_doc_type);
     var doc_number = localStorage.getItem("docnumber");
-    var sendData = "{ \"doctype\": "+ doc_type +", \"docnumber\":"+ doc_number +", \"n_item\" : " + id + ", \"n_response\" : " + answer + "  }"
+    console.log("docnumber:", doc_number);
+    var sendData = "{ \"doctype\": "+ tmp_doc_type +", \"docnumber\":"+ doc_number +", \"n_item\" : " + id + ", \"n_response\" : " + answer + "  }"
     var req = new XMLHttpRequest();1
     req.responseType = 'json';
     req.open("POST", '/test/next_question', true);
