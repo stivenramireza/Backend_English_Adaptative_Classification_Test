@@ -123,49 +123,10 @@ function next_question(req, res) {
 }
 
 function calcularNotas(){
-    Examen.findById("5cbf881f803adf4a847e42cf")
-    .then((examen)=>{
-            var arrayRespuestas = examen.responses;
-            var arrayPartes = examen.parts;
-            var c_parte1, c_parte2, c_parte3;
-            var counter1, counter2, counter3;
-            var i;
-            for (i = 0; i < arrayRespuestas.length; i++){
-                if(arrayPartes[i] == 1){
-                    counter1 = counter1 + 1;
-                    if(arrayRespuestas[i]){
-                        c_parte1 = c_parte1 + 5;
-                    }
-                }else if(arrayPartes[i] == 2){
-                    counter2 = counter2 + 1;
-                    if(arrayRespuestas[i]){
-                        c_parte2 = c_parte2 + 5;
-                    }
-                }else if(arrayPartes[i] == 3){
-                    counter3 = counter3 + 1;
-                    if(arrayRespuestas[i]){
-                        c_parte3 = c_parte3 + 5;
-                    }
-                }
-            }
-            if(counter1 == 0){
-                c_parte1 = 5;
-            }else{
-                c_parte1 = c_parte1/counter1;
-            }
-            if(counter3 == 0){
-                c_parte3 = 0;
-            }else{
-                c_parte3 = c_parte1/counter3;
-            }
-            c_parte2 = c_parte2/counter2;
-            enviarNotas(c_parte1, c_parte2, c_parte3);
-    }).catch((err)=>{
-        console.log(err);
-    });
+            
 }
 
-function enviarNotas(nota_part1, nota_part2, nota_part3) {
+function enviarNotas() {
     const QUERY_PATH = "http://ec2-34-207-193-227.compute-1.amazonaws.com";
             request.post({
                 url: QUERY_PATH + '/test/statistics',
@@ -182,11 +143,33 @@ function enviarNotas(nota_part1, nota_part2, nota_part3) {
                 }
             });
 }
+
+function getInfoExamen(req, res){
+    let docnumber = req.query.docnumber;
+    Examen.findOne({ docnumber: docnumber }, (err, info_examen) => {
+        if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}` })
+        if (!info_examen) return res.status(404).send({ message: `El aspirante no tiene registrado exámenes de clasificación` })
+        res.status(200).send({ info_examen })
+    })
+}
+
+function updateInfoExamen(req, res){
+    let idExamen = req.query.idExamen;
+    let update = req.body
+    Examen.update({_id: idExamen}, update, (err, examUpdated) => {
+        if (err) return res.status(500).send({ message: `Error al actualizar la información del aspirante: ${err}` })
+        console.log(examUpdated)
+        res.status(200).send({ new_examen: examUpdated })
+    })
+}
+
 module.exports = {
     loadPreStarted,
     loadTest,
     loadResult,
     saveTestStatus,
     next_question,
-    calcularNotas
+    calcularNotas,
+    getInfoExamen,
+    updateInfoExamen
 };

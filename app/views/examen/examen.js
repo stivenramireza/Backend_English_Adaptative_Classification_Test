@@ -36,7 +36,7 @@ let questionPost = function (id, answer) {
     var doc_number = localStorage.getItem("docnumber");
     console.log("docnumber:", doc_number);
     var sendData = "{ \"doctype\": "+ tmp_doc_type +", \"docnumber\":"+ doc_number +", \"n_item\" : " + id + ", \"n_response\" : " + answer + "  }"
-    var req = new XMLHttpRequest();1
+    var req = new XMLHttpRequest();
     req.responseType = 'json';
     req.open("POST", '/test/next_question', true);
     req.setRequestHeader("Content-type", "application/json");

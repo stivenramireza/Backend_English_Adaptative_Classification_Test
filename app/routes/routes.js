@@ -25,11 +25,13 @@ router.get('/test/prestart', cors(corsOptions), function(req, res, next){
     });
 });
 
-// GET statistics desde Amazon Web Services (AWS)
-router.post('/test/statistics', cors(corsOptions), examenCtlr.enviarNotas);
+// POST statistics desde Amazon Web Services (AWS)
+//router.post('/test/statistics', cors(corsOptions), examenCtlr.enviarNotas);
 
 // POST next_question desde Amazon Web Services (AWS)
 router.post('/test/next_question', cors(corsOptions), examenCtlr.next_question);
+
+router.get('/test/info', cors(corsOptions), examenCtlr.getInfoExamen);
 
 // GET de la Principal Page 
 router.get('/signin', loginCtlr.loadLogin); // Carga el signin (página principal)

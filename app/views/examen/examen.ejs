@@ -542,7 +542,7 @@
                 loading.hide();
             });
         
-            var count = 1;
+            var count = 0;
 
         $("label.btn").on('click', function () {
             count++;
@@ -556,8 +556,8 @@
                 $('#quiz').show();
                 $('#loadbar').fadeOut();
                 /* something else */
-            }, 3000);
-            if (count == 10){
+            }, 2500);
+            if (count == 3){
                 window.location.replace("/candidate/test/final_result");
             }
         });
