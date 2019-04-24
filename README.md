@@ -13,7 +13,7 @@ Web application for the English Adaptative Classification Test in EAFIT Language
 
 ### Backend:
 
-- [ ] Mostrar resultados individuales. (Camilo)
+- [x] Mostrar resultados individuales. (Camilo)
 - [ ] Reportes individuales del examen (Juan Pablo y Stiven)
 - [ ] Funcionalidades administrativas (Juan Pablo y Stiven)
 - [x] Registro de administradores y aspirantes. (Stiven)
