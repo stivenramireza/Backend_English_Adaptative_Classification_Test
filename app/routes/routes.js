@@ -25,13 +25,19 @@ router.get('/test/prestart', cors(corsOptions), function(req, res, next){
     });
 });
 
-// POST statistics desde Amazon Web Services (AWS)
-//router.post('/test/statistics', cors(corsOptions), examenCtlr.enviarNotas);
-
 // POST next_question desde Amazon Web Services (AWS)
 router.post('/test/next_question', cors(corsOptions), examenCtlr.next_question);
 
 router.get('/test/info', cors(corsOptions), examenCtlr.getInfoExamen);
+
+router.post('/test/statistics/level', cors(corsOptions), function(req, res, next){
+    request.post({url: QUERY_PATH + '/test/statistics/level', 
+    body: {c_part1: req.body.c_part1, c_part2: req.body.c_part2, c_part3: req.body.c_part3}, 
+    json: true},  
+    function(error, response, data){
+        res.send(data);
+    });
+});
 
 // GET de la Principal Page 
 router.get('/signin', loginCtlr.loadLogin); // Carga el signin (página principal)

@@ -122,28 +122,6 @@ function next_question(req, res) {
     });
 }
 
-function calcularNotas(){
-            
-}
-
-function enviarNotas() {
-    const QUERY_PATH = "http://ec2-34-207-193-227.compute-1.amazonaws.com";
-            request.post({
-                url: QUERY_PATH + '/test/statistics',
-                body: {
-                    c_part1: nota_part1,
-                    c_part2: nota_part2,
-                    c_part3: nota_part3,
-                },
-                json: true
-            }, function (error, response, data) {
-                if(error){
-                    console.log("Error ML API");
-                    return res.status(500).send({});
-                }
-            });
-}
-
 function getInfoExamen(req, res){
     let docnumber = req.query.docnumber;
     Examen.findOne({ docnumber: docnumber }, (err, info_examen) => {
@@ -169,7 +147,6 @@ module.exports = {
     loadResult,
     saveTestStatus,
     next_question,
-    calcularNotas,
     getInfoExamen,
     updateInfoExamen
 };
