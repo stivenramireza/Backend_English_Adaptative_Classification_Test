@@ -45,6 +45,12 @@ function loadAdminEditData(req, res){
     res.render("../views/admin-profile/admins/admin-edit-data.ejs");
 }
 
+function loadAdminCandidateGrades(req, res){
+    res.render("../views/admin-profile/candidates/admin-candidate-grades.ejs");
+}
+
+
+
 function registrarAdmin(req, res) {
     var errors = validationResult(req);
     if(!errors.isEmpty()){
@@ -172,5 +178,6 @@ module.exports = {
     loadProfileRegister,
     loadAddQuestion,
     loadAdminEditData,
-    loadAdminEdit
+    loadAdminEdit,
+    loadAdminCandidateGrades
 }
