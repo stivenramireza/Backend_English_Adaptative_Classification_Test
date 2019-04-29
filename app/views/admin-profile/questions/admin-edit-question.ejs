@@ -9,8 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Dashboard</title>
-    <script src="/admin-profile/admin-register.js"></script>
+    <title>Admin Profile - Dashboard</title>
     <!-- Custom fonts for this template-->
     <link href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/fontawesome-free/css/all.min.css"
         rel="stylesheet" type="text/css">
@@ -65,7 +64,7 @@
                     <span>Habilitar examen</span></a>
             </li>
 
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="/admin/profile/exam-reactivate">
                     <i class="fas fa-fw fa-redo"></i>
                     <span>Reactivar examen</span></a>
@@ -138,7 +137,7 @@
                 Examen
             </div>
 
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#preguntas"
                     aria-expanded="true" aria-controls="preguntas">
                     <i class="fas fa-question"></i>
@@ -151,8 +150,8 @@
                             href="/admin/profile/add-question">Agregar
                             pregunta nueva</a>
                         <a class="collapse-item"
-                            href="/admin/profile/edit-question">Editar
-                            pregunta</a>
+                            href="/admin/profile/edit-question"><b>Editar
+                            pregunta</b></a>
                     </div>
                 </div>
             </li>
@@ -162,7 +161,6 @@
         </ul>
         <!-- End of Sidebar -->
 
-        <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
@@ -173,50 +171,23 @@
 
                     <div class="container" style="max-width: 700px">
                         <div class="py-5 text-center">
-                            <p class="lead">Señor Administrador, ingrese los datos solicitados a continuación para
-                                reactivar el examen de un aspirante registrado.
-                                registro.
-                            </p>
+                            <p class="lead">Señor Administrador, ingrese parte del enunciado de la pregunta para buscarla y poder editarla</p>
                         </div>
                         <div class="container" style="width: 100%">
                             <form class="needs-validation" novalidate>
                                 <div class="row">
                                     <div class="col mb-3">
-                                        <label for="country">Tipo de documento</label>
-                                        <select class="custom-select d-block w-100" id="dt" required>
-                                            <option value="0">Seleccione el tipo de identificación...</option>
-                                            <option value="1">Cédula de Ciudadanía</option>
-                                            <option value="2">Cédula de Ciudadanía Ecuatoriana</option>
-                                            <option value="3">Cédula de Extranjería</option>
-                                            <option value="4">Cédula de Guatemala</option>
-                                            <option value="5">Cédula de Panamá</option>
-                                            <option value="6">Código de Estudiante</option>
-                                            <option value="7">Documento Nacional de Identidad</option>
-                                            <option value="8">Documento Personal Identificación</option>
-                                            <option value="9">Nro Único Identificación Personal</option>
-                                            <option value="10">Otro</option>
-                                            <option value="11">Pasaporte</option>
-                                            <option value="12">Registro</option>
-                                            <option value="13">Tarjeta de Identidad</option>
-                                        </select>
-                                        <div class="invalid-feedback">
-                                            Por favor seleccione un tipo de documento.
-                                        </div>
-                                    </div>
-
-                                    <div class="col mb-3">
-                                        <label for="firstName">Documento de identidad</label>
-                                        <input type="text" class="form-control" id="docnumber" placeholder="" value=""
+                                        <label for="enunciado">Enunciado de la pregunta</label>
+                                        <input type="text" class="form-control" id="enunciado" placeholder="" value=""
                                             required>
                                         <div class="invalid-feedback">
-                                            Se requiere que llene el campo "Documento de identidad" correctamente.
+                                            Se requiere que llene el campo "Enunciado de la pregunta" correctamente.
                                         </div>
                                     </div>
                                 </div>
 
                                 <center>
-                                    <button class="btn btn-primary" onclick=signup() type="button">Reactivar
-                                        examen</button>
+                                    <button class="btn btn-primary" type="button">Buscar</button>
                                 </center>
                             </form>
                             <br>
@@ -227,69 +198,65 @@
 
                 <!-- End of Main Content -->
 
-                <!-- Footer -->
-                <center>
-                    <footer class="sticky-footer bg-white" style="position: absolute; bottom: 0; width: 83%">
-                        <div class="container my-auto">
-                            <div class="copyright my-auto" style="text-align: center">
-                                <span> &copy; 2019 Universidad EAFIT</span>
-                            </div>
-                        </div>
-                    </footer>
-                </center>
-                <!-- End of Footer -->
-
-            </div>
-            <!-- End of Content Wrapper -->
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span> &copy; 2019 Universidad EAFIT</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
 
         </div>
-        <!-- End of Page Wrapper -->
+        <!-- End of Content Wrapper -->
 
-        <!-- Scroll to Top Button-->
-        <a class="scroll-to-top rounded" href="#page-top">
-            <i class="fas fa-angle-up"></i>
-        </a>
+    </div>
+    <!-- End of Page Wrapper -->
 
-        <!-- Logout Modal-->
-        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">¿Estás seguro(a) de salir?</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar
-                        su sesión actual.</div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                        <a class="btn btn-primary" href="/admin/logout">Cerrar sesión</a>
-                    </div>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">¿Estás seguro(a) de salir?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-primary" href="/admin/logout">Cerrar sesión</a>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Bootstrap core JavaScript-->
-        <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/jquery/jquery.min.js"></script>
-        <script
-            src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/jquery/jquery.min.js"></script>
+    <script
+        src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-        <!-- Core plugin JavaScript-->
-        <script
-            src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script
+        src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-        <!-- Custom scripts for all pages-->
-        <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"></script>
 
-        <!-- Page level plugins -->
-        <script
-            src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/chart.js/Chart.min.js"></script>
+    <!-- Page level plugins -->
+    <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/chart.js/Chart.min.js"></script>
 
-        <!-- Page level custom scripts -->
-        <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/demo/chart-area-demo.js"></script>
-        <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/demo/chart-pie-demo.js"></script>
+    <!-- Page level custom scripts -->
+    <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/demo/chart-area-demo.js"></script>
+    <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/demo/chart-pie-demo.js"></script>
 
 </body>
 

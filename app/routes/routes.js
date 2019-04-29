@@ -61,6 +61,7 @@ router.get('/admin/profile/exam-enable', adminCtlr.loadExamEnable) //Habilitar e
 router.get('/admin/profile/exam-reactivate', adminCtlr.loadExamReactivate) //Reactivar examenes
 router.get('/admin/profile/grade', adminCtlr.loadGrade) //Clasificar aspirante
 router.get('/admin/profile/add-question', adminCtlr.loadAddQuestion)
+router.get('/admin/profile/edit-question', adminCtlr.loadEditQuestion)
 router.get('/admin/profile/edit-admin', adminCtlr.loadAdminEdit)
 router.get('/admin/profile/edit-admin/data', adminCtlr.loadAdminEditData)
 router.get('/admin/profile/candidate-grades', adminCtlr.loadAdminCandidateGrades)

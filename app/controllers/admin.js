@@ -37,6 +37,10 @@ function loadAddQuestion(req, res){
     res.render("../views/admin-profile/questions/admin-add-question.ejs");
 }
 
+function loadEditQuestion(req, res){
+    res.render("../views/admin-profile/questions/admin-edit-question.ejs");
+}
+
 function loadAdminEdit(req, res){
     res.render("../views/admin-profile/admins/admin-edit.ejs");
 }
@@ -177,7 +181,9 @@ module.exports = {
     logout,
     loadProfileRegister,
     loadAddQuestion,
+    loadEditQuestion,
     loadAdminEditData,
     loadAdminEdit,
     loadAdminCandidateGrades
+
 }
