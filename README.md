@@ -43,4 +43,4 @@ Web application for the English Adaptative Classification Test in EAFIT Language
 
 ### Sistema de Inteligencia Artificial:
 
-- [] Agregar más datos a la red neuronal. (**Camilo**)
+- [ ] Agregar más datos a la red neuronal. (**Camilo**)
