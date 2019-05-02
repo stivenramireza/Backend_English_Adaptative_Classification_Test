@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 
 // Conexión a la base de datos
-let dbConn = "mongodb://" + config.DB_USER + ":" + config.DB_PASSWORD + "@" + config.DB_HOST;
+let dbConn = "mongodb+srv://sramir70:pass123@eafitclasscluster-bvmzy.mongodb.net/test?retryWrites=true"
 
 mongoose.connect(dbConn, {useNewUrlParser: true}).then( () => {
   console.log(`Connected to ${dbConn} successfully...`);
