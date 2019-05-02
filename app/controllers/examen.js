@@ -41,7 +41,7 @@ function saveTestStatus(req, res, data) {
         questions: _data.question.administered_items, // To be updated
         responses: _data.question.response_vector, // To be updated
         grade: 0.0, // To be updated
-        classified_level: 0, // To be updated
+        classified_level: "0", // To be updated
         hora_inicio: time, // Static
         hora_fin: time, // To be updated
         clasificador: clasificador, //Just a simple docn
