@@ -12,6 +12,10 @@ function loadTest(req, res) {
     res.render('../views/examen/examen.ejs');
 }
 
+function loadTestError(req, res) {
+    res.render('../views/examen/exam-error.ejs');
+}
+
 function loadResult(req, res) {
     res.render('../views/examen-results/examen-results.ejs');
 }
@@ -144,6 +148,7 @@ function updateInfoExamen(req, res){
 module.exports = {
     loadPreStarted,
     loadTest,
+    loadTestError,
     loadResult,
     saveTestStatus,
     next_question,
