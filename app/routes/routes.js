@@ -25,15 +25,19 @@ router.get('/test/prestart', cors(corsOptions), function(req, res, next){
     });
 });
 
-// GET statistics desde Amazon Web Services (AWS)
-router.get('/test/statistics', cors(corsOptions), function(req, res, next){
-    request.get(QUERY_PATH + '/test/statistics', function(error, response, data){
-        res.send(data); 
-    });
-});
-
 // POST next_question desde Amazon Web Services (AWS)
 router.post('/test/next_question', cors(corsOptions), examenCtlr.next_question);
+
+router.get('/test/info', cors(corsOptions), examenCtlr.getInfoExamen);
+
+router.post('/test/statistics/level', cors(corsOptions), function(req, res, next){
+    request.post({url: QUERY_PATH + '/test/statistics/level', 
+    body: {c_part1: req.body.c_part1, c_part2: req.body.c_part2, c_part3: req.body.c_part3}, 
+    json: true},  
+    function(error, response, data){
+        res.send(data);
+    });
+});
 
 // GET de la Principal Page 
 router.get('/signin', loginCtlr.loadLogin); // Carga el signin (página principal)
@@ -63,8 +67,10 @@ router.get('/admin/profile/exam-enable', adminCtlr.loadExamEnable) //Habilitar e
 router.get('/admin/profile/exam-reactivate', adminCtlr.loadExamReactivate) //Reactivar examenes
 router.get('/admin/profile/grade', adminCtlr.loadGrade) //Clasificar aspirante
 router.get('/admin/profile/add-question', adminCtlr.loadAddQuestion)
+router.get('/admin/profile/edit-question', adminCtlr.loadEditQuestion)
 router.get('/admin/profile/edit-admin', adminCtlr.loadAdminEdit)
 router.get('/admin/profile/edit-admin/data', adminCtlr.loadAdminEditData)
+router.get('/admin/profile/candidate-grades', adminCtlr.loadAdminCandidateGrades)
 
 // Questions
 

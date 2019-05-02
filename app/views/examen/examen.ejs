@@ -542,7 +542,7 @@
                 loading.hide();
             });
         
-            var count = 1;
+            var count = 0;
 
         $("label.btn").on('click', function () {
             count++;
@@ -550,14 +550,14 @@
             var n_item  = localStorage.getItem("n_item");
             $('#loadbar').show();
             $('#quiz').fadeOut();
+            document.getElementById("qid").innerHTML = count;
+            questionPost(n_item, n_response);
             setTimeout(function () {
-                document.getElementById("qid").innerHTML = count;
-                questionPost(n_item, n_response);
                 $('#quiz').show();
                 $('#loadbar').fadeOut();
                 /* something else */
-            }, 1000);
-            if (count == 4){
+            }, 2500);
+            if (count == 10){
                 window.location.replace("/candidate/test/final_result");
             }
         });

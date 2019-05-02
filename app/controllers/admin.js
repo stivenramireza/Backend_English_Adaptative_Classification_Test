@@ -37,6 +37,10 @@ function loadAddQuestion(req, res){
     res.render("../views/admin-profile/questions/admin-add-question.ejs");
 }
 
+function loadEditQuestion(req, res){
+    res.render("../views/admin-profile/questions/admin-edit-question.ejs");
+}
+
 function loadAdminEdit(req, res){
     res.render("../views/admin-profile/admins/admin-edit.ejs");
 }
@@ -44,6 +48,12 @@ function loadAdminEdit(req, res){
 function loadAdminEditData(req, res){
     res.render("../views/admin-profile/admins/admin-edit-data.ejs");
 }
+
+function loadAdminCandidateGrades(req, res){
+    res.render("../views/admin-profile/candidates/admin-candidate-grades.ejs");
+}
+
+
 
 function registrarAdmin(req, res) {
     var errors = validationResult(req);
@@ -171,6 +181,9 @@ module.exports = {
     logout,
     loadProfileRegister,
     loadAddQuestion,
+    loadEditQuestion,
     loadAdminEditData,
-    loadAdminEdit
+    loadAdminEdit,
+    loadAdminCandidateGrades
+
 }

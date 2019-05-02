@@ -122,10 +122,31 @@ function next_question(req, res) {
     });
 }
 
+function getInfoExamen(req, res){
+    let docnumber = req.query.docnumber;
+    Examen.findOne({ docnumber: docnumber }, (err, info_examen) => {
+        if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}` })
+        if (!info_examen) return res.status(404).send({ message: `El aspirante no tiene registrado exámenes de clasificación` })
+        res.status(200).send({ info_examen })
+    })
+}
+
+function updateInfoExamen(req, res){
+    let idExamen = req.query.idExamen;
+    let update = req.body
+    Examen.update({_id: idExamen}, update, (err, examUpdated) => {
+        if (err) return res.status(500).send({ message: `Error al actualizar la información del aspirante: ${err}` })
+        console.log(examUpdated)
+        res.status(200).send({ new_examen: examUpdated })
+    })
+}
+
 module.exports = {
     loadPreStarted,
     loadTest,
     loadResult,
     saveTestStatus,
-    next_question
+    next_question,
+    getInfoExamen,
+    updateInfoExamen
 };
