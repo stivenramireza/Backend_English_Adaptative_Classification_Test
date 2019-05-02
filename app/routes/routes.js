@@ -39,6 +39,8 @@ router.post('/test/statistics/level', cors(corsOptions), function(req, res, next
     });
 });
 
+router.put('/api/test/update', examenCtlr.updateInfoExamen);
+
 // GET de la Principal Page 
 router.get('/signin', loginCtlr.loadLogin); // Carga el signin (página principal)
 
@@ -59,6 +61,7 @@ router.get('/admin/profile', adminCtlr.loadProfile); // Carga el perfil del admi
 router.get('/admin/logout', adminCtlr.logout); // Cerrar sesión del administrador
 router.get('/admin/profile/register', adminCtlr.loadProfileRegister) // Registrar administradores
 router.get('/admin/profile/exam-enable', adminCtlr.loadExamEnable) //Habilitar examenes
+router.get('/admin/profile/exam-reactivate', adminCtlr.loadExamReactivate) //Reactivar examenes
 router.get('/admin/profile/grade', adminCtlr.loadGrade) //Clasificar aspirante
 router.get('/admin/profile/add-question', adminCtlr.loadAddQuestion)
 router.get('/admin/profile/edit-question', adminCtlr.loadEditQuestion)

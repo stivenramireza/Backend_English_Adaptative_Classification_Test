@@ -139,7 +139,7 @@ function updateInfoExamen(req, res){
     let idExamen = req.query.idExamen;
     let update = req.body
     Examen.update({_id: idExamen}, update, (err, examUpdated) => {
-        if (err) return res.status(500).send({ message: `Error al actualizar la información del aspirante: ${err}` })
+        if (err) return res.status(500).send({ message: `Error al actualizar examen: ${err}` })
         console.log(examUpdated)
         res.status(200).send({ new_examen: examUpdated })
     })
