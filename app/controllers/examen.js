@@ -12,6 +12,10 @@ function loadTest(req, res) {
     res.render('../views/examen/examen.ejs');
 }
 
+function loadTestError(req, res) {
+    res.render('../views/examen/exam-error.ejs');
+}
+
 function loadResult(req, res) {
     res.render('../views/examen-results/examen-results.ejs');
 }
@@ -37,7 +41,7 @@ function saveTestStatus(req, res, data) {
         questions: _data.question.administered_items, // To be updated
         responses: _data.question.response_vector, // To be updated
         grade: 0.0, // To be updated
-        classified_level: 0, // To be updated
+        classified_level: "0", // To be updated
         hora_inicio: time, // Static
         hora_fin: time, // To be updated
         clasificador: clasificador, //Just a simple docn
@@ -135,7 +139,7 @@ function updateInfoExamen(req, res){
     let idExamen = req.query.idExamen;
     let update = req.body
     Examen.update({_id: idExamen}, update, (err, examUpdated) => {
-        if (err) return res.status(500).send({ message: `Error al actualizar la información del aspirante: ${err}` })
+        if (err) return res.status(500).send({ message: `Error al actualizar examen: ${err}` })
         console.log(examUpdated)
         res.status(200).send({ new_examen: examUpdated })
     })
@@ -144,6 +148,7 @@ function updateInfoExamen(req, res){
 module.exports = {
     loadPreStarted,
     loadTest,
+    loadTestError,
     loadResult,
     saveTestStatus,
     next_question,

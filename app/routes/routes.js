@@ -39,6 +39,8 @@ router.post('/test/statistics/level', cors(corsOptions), function(req, res, next
     });
 });
 
+router.put('/api/test/update', examenCtlr.updateInfoExamen);
+
 // GET de la Principal Page 
 router.get('/signin', loginCtlr.loadLogin); // Carga el signin (página principal)
 
@@ -54,6 +56,7 @@ router.get('/signup/candidate', studentCtrlr.loadSignupCandidate); //Carga el eg
 router.get('/candidate/profile', studentCtrlr.updateProfile); // Carga el perfil del aspirante
 router.get('/candidate/test/pre_started', testCtlr.loadPreStarted); // Carga las instrucciones del examen
 router.get('/candidate/test/', testCtlr.loadTest); // Cargas las preguntas y opciones de respuesta
+router.get('/candidate/test/error', testCtlr.loadTestError);
 router.get('/candidate/test/final_result', testCtlr.loadResult); // Muestra la nota final
 router.get('/api/candidate/list', studentCtrlr.getInfoCandidate); // Obtiene la info del aspirante
 router.put('/api/candidate/update', studentCtrlr.updateInfoCandidate); // Actualiza la info del aspirante
