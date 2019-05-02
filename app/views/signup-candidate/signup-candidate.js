@@ -7,7 +7,7 @@ let signup = function () {
     http.onreadystatechange = function () {
         if (http.readyState == 4 && http.status == 200) {
             localStorage.setItem("mikey", http.response.token);
-            window.location.replace('/candidate/test/pre_started');
+            window.location.replace('/signin/candidate');
         }
     }
     var isChecked = document.getElementById("same-address").checked;
@@ -24,6 +24,7 @@ let signup = function () {
         phonenumber: document.getElementById("telefono").value,
         mobilephonenumber: document.getElementById("celular").value,
         email: document.getElementById("correo").value,
+        examen_activo: false
     }));
     }else{
         $('#failed').show();

@@ -73,7 +73,8 @@ function register(req, res) {
         address: req.body.address,
         phonenumber: req.body.phonenumber,
         mobilephonenumber: req.body.mobilephonenumber,
-        email: req.body.email
+        email: req.body.email,
+        examen_activo: req.body.examen_activo
     });
     //save in the database
     new_candidate.save((err) => {

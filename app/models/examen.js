@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const ExamenSchema = new Schema({
     _id: mongoose.Schema.Types.ObjectId,
+    id_examen: {type: String, required: true, unique:true}, // id_examen del aspirante
     doctype: {type: String, required: true}, // doctype del aspirante
     docnumber: {type: String, required: true, unique: true}, // docnumber del aspirante
     questions: [Number], // preguntas que le salieron

@@ -12,7 +12,8 @@ const StudentSchema = new Schema({
     address: {type: String, required: true},
     phonenumber: {type: String},
     mobilephonenumber: {type: String},
-    email: {type: String, required: true, unique: true}
+    email: {type: String, required: true, unique: true},
+    examen_activo: {type: Boolean, required: true}
 },
 {
     timestamps: true
