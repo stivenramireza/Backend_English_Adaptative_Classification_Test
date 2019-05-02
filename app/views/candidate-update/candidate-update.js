@@ -56,7 +56,8 @@ let update = function () {
                                 address: document.getElementById("address").value,
                                 phonenumber: document.getElementById("telefono").value,
                                 mobilephonenumber: document.getElementById("celular").value,
-                                email: document.getElementById("correo").value
+                                email: document.getElementById("correo").value,
+                                examen_activo: false
     }));
     }else{
         $('#failed').show();
