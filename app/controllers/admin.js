@@ -25,10 +25,6 @@ function loadExamEnable(req, res){
     res.render("../views/admin-profile/candidates/admin-exam-enable.ejs");
 }
 
-function loadExamReactivate(req, res){
-    res.render("../views/admin-profile/candidates/admin-exam-reactivate.ejs");
-}
-
 function loadGrade(req, res){
     res.render("../views/admin-profile/candidates/admin-grade.ejs");
 }
@@ -175,7 +171,6 @@ module.exports = {
     loguearAdmin,
     loadLoginAdmin,
     loadExamEnable,
-    loadExamReactivate,
     loadGrade,
     loadProfile,
     logout,

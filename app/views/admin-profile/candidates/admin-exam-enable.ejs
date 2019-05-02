@@ -11,6 +11,7 @@
 
     <title>Dashboard</title>
     <script src="/admin-profile/admin-register.js"></script>
+    <script src="/admin-profile/candidates/admin-exam-enable.js"></script>
     <!-- Custom fonts for this template-->
     <link href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/fontawesome-free/css/all.min.css"
         rel="stylesheet" type="text/css">
@@ -63,12 +64,6 @@
                 <a class="nav-link" href="/admin/profile/exam-enable">
                     <i class="fas fa-fw fa-pencil-alt"></i>
                     <span>Habilitar examen</span></a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="/admin/profile/exam-reactivate">
-                    <i class="fas fa-fw fa-redo"></i>
-                    <span>Reactivar examen</span></a>
             </li>
 
             <li class="nav-item">
@@ -182,7 +177,7 @@
                                 <div class="row">
                                     <div class="col mb-3">
                                         <label for="country">Tipo de documento</label>
-                                        <select class="custom-select d-block w-100" id="dt" required>
+                                        <select class="custom-select d-block w-100" id="doc_type" required>
                                             <option value="0">Seleccione el tipo de identificación...</option>
                                             <option value="1">Cédula de Ciudadanía</option>
                                             <option value="2">Cédula de Ciudadanía Ecuatoriana</option>
@@ -214,7 +209,7 @@
                                 </div>
 
                                 <center>
-                                    <button class="btn btn-primary" onclick=signup() type="button">Habilitar
+                                    <button class="btn btn-primary" onclick=habilitarExamen() type="button">Habilitar
                                         examen</button>
                                 </center>
                             </form>
