@@ -40,7 +40,10 @@ function saveTestStatus(req, res, data) {
         docnumber: docnumber, // Just a simple docn
         questions: _data.question.administered_items, // To be updated
         responses: _data.question.response_vector, // To be updated
-        grade: 0.0, // To be updated
+        grade: 0.0,
+        part1: 0.0,
+        part2: 0.0,
+        part3 : 0.0, // To be updated
         classified_level: "0", // To be updated
         hora_inicio: time, // Static
         hora_fin: time, // To be updated
@@ -81,7 +84,10 @@ function next_question(req, res) {
                 docnumber: examen.doc_number, // Just a simple docn
                 questions: examen.questions, // To be updated
                 responses: examen.responses, // To be updated
-                grade: examen.grade, // To be updated
+                grade: examen.grade,
+                part1: examen.part1, // To be updated
+                part2: examen.part2,
+                part3: examen.part3,
                 classified_level: examen.classified_level, // To be updated
                 hora_inicio: examen.hora_inicio,
                 hora_fin: examen.hora_fin, // To be updated

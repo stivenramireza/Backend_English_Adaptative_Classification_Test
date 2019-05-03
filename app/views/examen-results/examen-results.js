@@ -10,12 +10,15 @@ function updateExamen(nota_final, level) {
     console.log("id: " + id);
     console.log("Nota final: " + nota_final)
     console.log("Level: " + level)
-    localStorage.setItem("nt", nota_final);
     localStorage.setItem("lv", level);
+    
 
     http.send(JSON.stringify({
-        grade: localStorage.getItem("nt"),
-        classified_level: localStorage.getItem("lv")
+        grade: nota_final,
+        classified_level: level,
+        part1: c_parte1,
+        part2: c_parte2,
+        part3: c_parte3
     }))
 }
 
