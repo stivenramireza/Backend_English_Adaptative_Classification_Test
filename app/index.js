@@ -35,7 +35,7 @@ server.listen(PORT, HOST, function(){
 });
 
 server.get('/', (req, res) => {
-  res.redirect('/signin');
+  res.redirect('/signin');  
 });
 
 module.exports = server;
