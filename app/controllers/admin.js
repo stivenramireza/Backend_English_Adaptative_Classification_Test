@@ -25,6 +25,10 @@ function loadExamEnable(req, res){
     res.render("../views/admin-profile/candidates/admin-exam-enable.ejs");
 }
 
+function loadExamReactivate(req, res){
+    res.render("../views/admin-profile/candidates/admin-exam-reactivate.ejs");
+}
+
 function loadGrade(req, res){
     res.render("../views/admin-profile/candidates/admin-grade.ejs");
 }
@@ -48,8 +52,6 @@ function loadAdminEditData(req, res){
 function loadAdminCandidateGrades(req, res){
     res.render("../views/admin-profile/candidates/admin-candidate-grades.ejs");
 }
-
-
 
 function registrarAdmin(req, res) {
     var errors = validationResult(req);
@@ -171,6 +173,7 @@ module.exports = {
     loguearAdmin,
     loadLoginAdmin,
     loadExamEnable,
+    loadExamReactivate,
     loadGrade,
     loadProfile,
     logout,
