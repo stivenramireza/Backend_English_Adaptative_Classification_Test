@@ -31,7 +31,7 @@ const PORT = 8000;
 const HOST = '0.0.0.0'; // Listen from everywhere
 
 server.listen(PORT, HOST, function(){
-  console.log(`Listening to ${PORT} on ${HOST}.\n`);
+  console.log(`Running in http://localhost:${PORT} on ${HOST}.\n`);
 });
 
 server.get('/', (req, res) => {
