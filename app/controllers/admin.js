@@ -170,7 +170,7 @@ function fromNumberToGenre(_number){
 
 function getInfoAdmin(req, res) {
     let username = req.query.username;
-    Admin.findOne({ username: username }, (err, info_admin) => {
+    Admin.find({ username: username }, (err, info_admin) => {
         if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}` })
         if (!info_admin) return res.status(404).send({ message: `El admin no está registrado en la BD` })
         res.status(200).send({ info_admin })
@@ -178,6 +178,10 @@ function getInfoAdmin(req, res) {
 }
 
 function updateInfoAdmin(req, res){
+    var errors = validationResult(req);
+    if(!errors.isEmpty()){
+        return res.status(422).json({ errors: errors.array() });
+    }
     let idAdmin = req.query.idAdmin;
     let update = req.body
     Admin.update({_id: idAdmin}, update, (err, adminUpdated) => {
