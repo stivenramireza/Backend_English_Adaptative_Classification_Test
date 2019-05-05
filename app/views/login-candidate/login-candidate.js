@@ -8,7 +8,6 @@ let login = function () {
             localStorage.setItem("docnumber", document.getElementById("docnumber").value);
             localStorage.setItem("doctype", document.getElementById("doctype").value);
             localStorage.setItem("mikey", http.response.token);
-            console.log("localstorage melos")
             check();
         }
     }

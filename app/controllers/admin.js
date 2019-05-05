@@ -168,6 +168,25 @@ function fromNumberToGenre(_number){
     return "";
 }
 
+function getInfoAdmin(req, res) {
+    let username = req.query.username;
+    Admin.findOne({ username: username }, (err, info_admin) => {
+        if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}` })
+        if (!info_admin) return res.status(404).send({ message: `El admin no está registrado en la BD` })
+        res.status(200).send({ info_admin })
+    })
+}
+
+function updateInfoAdmin(req, res){
+    let idAdmin = req.query.idAdmin;
+    let update = req.body
+    Admin.update({_id: idAdmin}, update, (err, adminUpdated) => {
+        if (err) return res.status(500).send({ message: `Error al actualizar la información del admin: ${err}` })
+        console.log(candidateUpdated)
+        res.status(200).send({ new_admin: adminUpdated })
+    })
+}
+
 module.exports = {
     registrarAdmin,
     loguearAdmin,
@@ -182,6 +201,7 @@ module.exports = {
     loadEditQuestion,
     loadAdminEditData,
     loadAdminEdit,
-    loadAdminCandidateGrades
-
+    loadAdminCandidateGrades,
+    getInfoAdmin,
+    updateInfoAdmin
 }

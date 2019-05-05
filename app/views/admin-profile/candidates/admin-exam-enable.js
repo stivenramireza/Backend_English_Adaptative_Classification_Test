@@ -25,3 +25,15 @@ let update = function (id) {
         examen_activo: true
     }));
 }
+
+$(document).ready(function () {
+    $('#failed').hide();
+    $('#btnHabilitar').click(function () {
+        var doctype = $("#doc_type").val();
+        var docnumber = $("#docnumber").val();
+
+        if (doctype == '' || docnumber == '') {
+            $('#failed').show();
+        }
+    });
+});

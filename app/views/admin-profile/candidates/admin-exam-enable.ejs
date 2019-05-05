@@ -93,7 +93,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/admin/profile/edit-admin">
                     <i class="fas fa-users-cog"></i>
-                    <span>Gestionar administrador</span></a>
+                    <span>Gestionar roles</span></a>
             </li>
 
             <hr class="sidebar-divider">
@@ -169,8 +169,7 @@
                     <div class="container" style="max-width: 700px">
                         <div class="py-5 text-center">
                             <p class="lead">Señor Administrador, ingrese los datos solicitados a continuación para
-                                habilitar el examen de un aspirante registrado.
-                                registro.</p>
+                                habilitar el examen de un aspirante registrado.</p>
                         </div>
                         <div class="container" style="width: 100%">
                             <form class="needs-validation" novalidate>
@@ -209,10 +208,14 @@
                                 </div>
 
                                 <center>
-                                    <button class="btn btn-primary" onclick=habilitarExamen() type="button">Habilitar
+                                    <button id="btnHabilitar" class="btn btn-primary" onclick=habilitarExamen() type="button">Habilitar
                                         examen</button>
                                 </center>
+                                
                             </form>
+                            <br>
+                                <p id="failed" style="color:#bd1a1a ;display: none;text-align: center";>No se han completado todos los campos.</p>
+                                <br><br>
                             <br>
                         </div>
                     </div>
