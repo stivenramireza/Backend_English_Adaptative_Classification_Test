@@ -6,8 +6,8 @@ Web application for the English Adaptative Classification Test in EAFIT Language
 
 ### Frontend:
 
-- [ ] Corregir velocidad al mostrar (cargar) las preguntas del examen adaptativo. (**Camilo**)
-- [ ] Corregir vista del estudiante para ver sus resultados del examen. Mostrar el porcentaje de aciertos y desaciertos en su examen, la escala de calificación utilizada (1 a 5) y que sea más agradable a la vista. (**Camilo**)
+- [x] Corregir velocidad al mostrar (cargar) las preguntas del examen adaptativo. (**Camilo**)
+- [x] Corregir vista del estudiante para ver sus resultados del examen. Mostrar el porcentaje de aciertos y desaciertos en su examen, la escala de calificación utilizada (1 a 5) y que sea más agradable a la vista. (**Camilo**)
 - [ ] Autorización de aspirantes y administradores. (**Anderson**)
 - [ ] Activación del examen. (**Juan Pablo**)
 - [x] Reportes individuales del examen. (**Juan Pablo**)
@@ -20,12 +20,12 @@ Web application for the English Adaptative Classification Test in EAFIT Language
 
 ### Backend:
 
-- [ ] Corregir velocidad al mostrar (cargar) las preguntas del examen adaptativo. (**Camilo**)
-- [ ] Corregir vista del estudiante para ver sus resultados del examen. Mostrar el porcentaje de aciertos y desaciertos en su examen, la escala de calificación utilizada (1 a 5) y que sea más agradable a la vista. (**Camilo**)
+- [x] Corregir velocidad al mostrar (cargar) las preguntas del examen adaptativo. (**Camilo**)
+- [x] Corregir vista del estudiante para ver sus resultados del examen. Mostrar el porcentaje de aciertos y desaciertos en su examen, la escala de calificación utilizada (1 a 5) y que sea más agradable a la vista. (**Camilo**)
 - [ ] Autorización de aspirantes y administradores. (**Anderson**)
 - [ ] Activación del examen. (**Juan Pablo**)
 - [ ] Re-construcción del schema para exámenes y aspirantes. (**Juan Pablo**)
-- [ ] Actualización del schema Examen con nota_final y nivel_clasificacion (**Camilo**)
+- [x] Actualización del schema Examen con nota_final y nivel_clasificacion (**Camilo**)
 - [ ] Reportes individuales del examen. (**Stiven**)
 - [ ] Funcionalidades administrativas (activar, desactivar, editar roles, etc...). (**Stiven y Juan Pablo**)
 - [ ] Manejo de sesiones para los usuarios. (**Anderson**)
