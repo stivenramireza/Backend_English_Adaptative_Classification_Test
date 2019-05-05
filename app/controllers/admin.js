@@ -182,8 +182,17 @@ function updateInfoAdmin(req, res){
     let update = req.body
     Admin.update({_id: idAdmin}, update, (err, adminUpdated) => {
         if (err) return res.status(500).send({ message: `Error al actualizar la información del admin: ${err}` })
-        console.log(candidateUpdated)
+        console.log(adminUpdated)
         res.status(200).send({ new_admin: adminUpdated })
+    })
+}
+
+function editarAdmin(req, res){
+    let docnumber = req.query.docnumber;
+    Admin.findOne({docnumber: docnumber }, (err, info_admin) => {
+        if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}` })
+        if (!info_admin) return res.status(404).send({ message: `El admin no está registrado en la BD` })
+        res.status(200).send({ info_admin })
     })
 }
 
@@ -203,5 +212,6 @@ module.exports = {
     loadAdminEdit,
     loadAdminCandidateGrades,
     getInfoAdmin,
-    updateInfoAdmin
+    updateInfoAdmin,
+    editarAdmin
 }

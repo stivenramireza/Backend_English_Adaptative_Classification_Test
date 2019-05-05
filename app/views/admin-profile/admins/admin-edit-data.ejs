@@ -10,12 +10,11 @@
     <meta name="author" content="">
 
     <title>Dashboard</title>
-    <script src="/admin-profile/admin-register.js"></script>
     <!-- Custom fonts for this template-->
     <link href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/fontawesome-free/css/all.min.css"
         rel="stylesheet" type="text/css">
 
-
+    
     <!-- Custom styles for this template-->
     <link href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/css/sb-admin-2.min.css" rel="stylesheet">
 
@@ -172,23 +171,23 @@
                                         <div class="col mb-3">
                                             <label for="country">Tipo de documento</label>
                                             <select class="custom-select d-block w-100" id="dt" required>
-                                                <option value="0">Seleccione el tipo de identificación...</option>
-                                                <option value="1">Cédula de Ciudadanía</option>
-                                                <option value="2">Cédula de Ciudadanía Ecuatoriana</option>
-                                                <option value="3">Cédula de Extranjería</option>
-                                                <option value="4">Cédula de Guatemala</option>
-                                                <option value="5">Cédula de Panamá</option>
-                                                <option value="6">Código de Estudiante</option>
-                                                <option value="7">Documento Nacional de Identidad</option>
-                                                <option value="8">Documento Personal Identificación</option>
-                                                <option value="9">Nro Único Identificación Personal</option>
-                                                <option value="10">Otro</option>
-                                                <option value="11">Pasaporte</option>
-                                                <option value="12">Registro</option>
-                                                <option value="13">Tarjeta de Identidad</option>
+                                                <option value="">Seleccione el tipo de identificación...</option>
+                                                <option value="Cédula de Ciudadanía">Cédula de Ciudadanía</option>
+                                                <option value="Cédula de Ciudadanía Ecuatoriana">Cédula de Ciudadanía Ecuatoriana</option>
+                                                <option value="Cédula de Extranjería">Cédula de Extranjería</option>
+                                                <option value="Cédula de Guatemala">Cédula de Guatemala</option>
+                                                <option value="Cédula de Panamá">Cédula de Panamá</option>
+                                                <option value="Código de Estudiante">Código de Estudiante</option>
+                                                <option value="Documento Nacional de Identidad">Documento Nacional de Identidad</option>
+                                                <option value="Documento Personal Identificación">Documento Personal Identificación</option>
+                                                <option value="Nro Unico Identificación Personal">Nro Único Identificación Personal</option>
+                                                <option value="Otro">Otro</option>
+                                                <option value="Pasaporte">Pasaporte</option>
+                                                <option value="Registro">Registro</option>
+                                                <option value="Tarjeta de Identidad">Tarjeta de Identidad</option>
                                             </select>
                                             <div class="invalid-feedback">
-                                                Por favor seleccione un tipo de documento.
+                                                Por favor seleccione un tipo de docuCédula de Ciudadaníaento.
                                             </div>
                                         </div>
 
@@ -197,7 +196,7 @@
                                             <input type="text" class="form-control" id="docnumber" placeholder=""
                                                 value="" required>
                                             <div class="invalid-feedback">
-                                                Se requiere que llene el campo "Documento de identidad" correctamente.
+                                                Se requiere que llene el campo "DocuCédula de Ciudadaníaento de identidad" correctamente.
                                             </div>
                                         </div>
                                     </div>
@@ -244,7 +243,7 @@
                                         <div class=" col mb-3">
                                             <label for="username">Fecha de nacimiento</label>
                                             <div class="input-group">
-                                                <input type="text" class="form-control" id="birthday"
+                                                <input type="text" class="form-control" id="birthdate"
                                                     placeholder="AAAAMMDD" required>
                                                 <div class="invalid-feedback" style="width: 100%;">
                                                     Se requiere que llene el campo "Fecha de nacimiento" con el formato
@@ -431,10 +430,10 @@
                                         <div class="col mb-3">
                                             <label for="state">Género</label>
                                             <select class="custom-select d-block w-100" id="genero" required>
-                                                <option value="0">Seleccionar...</option>
-                                                <option value="1">Masculino</option>
-                                                <option value="2">Femenino</option>
-                                                <option value="3">Otro</option>
+                                                <option value="">Seleccionar...</option>
+                                                <option value="Masculino">Masculino</option>
+                                                <option value="Femenino">Femenino</option>
+                                                <option value="Otro">Otro</option>
                                             </select>
                                             <div class="invalid-feedback">
                                                 Por favor seleccione un género.
@@ -443,9 +442,9 @@
 
                                         <div class="col mb-3">
                                             <label for="state">Estado</label>
-                                            <select class="custom-select d-block w-100" id="genero" required>
-                                                <option value="0">Activo/a</option>
-                                                <option value="1">Inactivo/a</option>
+                                            <select class="custom-select d-block w-100" id="estado_cuenta" required>
+                                                <option value="Activo/a">Activo/a</option>
+                                                <option value="Inactivo/a">Inactivo/a</option>
                                             </select>
                                             <div class="invalid-feedback">
                                                 Por favor seleccione un estado.
@@ -504,7 +503,7 @@
                                     <hr class="mb-4" style="width: 100%">
 
                                     <center>
-                                        <button class="btn btn-primary" onclick=signup()
+                                        <button class="btn btn-primary" onclick=update()
                                             type="button">Confirmar</button>
                                     </center>
                                 </form>
@@ -575,13 +574,7 @@
         <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"></script>
 
         <!-- Page level plugins -->
-        <script
-            src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/chart.js/Chart.min.js"></script>
-
-        <!-- Page level custom scripts -->
-        <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/demo/chart-area-demo.js"></script>
-        <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/demo/chart-pie-demo.js"></script>
-
+        <script src="/admin-profile/admins/admin-edit-data.js"></script>
 </body>
 
 </html>

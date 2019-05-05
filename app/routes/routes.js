@@ -57,6 +57,7 @@ router.get('/signin/admin', adminCtlr.loadLoginAdmin); // Carga el signin del ad
 router.get('/admin/profile', adminCtlr.loadProfile); // Carga el perfil del administrador
 router.get('/admin/logout', adminCtlr.logout); // Cerrar sesión del administrador
 router.get('/api/admin/list', adminCtlr.getInfoAdmin); // Obtiene la info del admin
+router.get('/api/admin/edit', adminCtlr.editarAdmin); // Obtiene la info del admin para editar
 router.put('/api/admin/update', adminCtlr.updateInfoAdmin); // Actualiza la info del admin
 router.get('/admin/profile/register', adminCtlr.loadProfileRegister) // Registrar administradores
 router.get('/admin/profile/exam-enable', adminCtlr.loadExamEnable) //Habilitar examenes
