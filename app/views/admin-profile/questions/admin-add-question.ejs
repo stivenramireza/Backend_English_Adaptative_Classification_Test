@@ -175,8 +175,8 @@
                                 <div class="row">
                                     <div class="col mb-3">
                                         <label for="firstName">Pregunta</label>
-                                        <input type="text" class="form-control" id="question" placeholder="" value=""
-                                            required>
+                                        <textarea name="textarea" style="width:600px;height:50px;" id="question" placeholder="" value=""
+                                        required></textarea>
                                         <div class="invalid-feedback">
                                             Se requiere que llene el campo "Pregunta" correctamente.
                                         </div>
@@ -184,7 +184,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-10 mb-3">
+                                    <div class="col-md-10 mb-4">
                                         <label for="firstName">Respuesta 1</label>
                                         <input type="text" class="form-control" id="answer1" placeholder="" value=""
                                             required>
@@ -192,9 +192,10 @@
                                             Se requiere que llene el campo "Respuesta 1" correctamente.
                                         </div>
                                     </div>
-                                    <div class="col-md-2 mb-3">
+                                    <div class="col-md-2 mb-4">
+                                        <br>
                                         <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" name="answer"
+                                            <input type="checkbox" class="custom-control-input" onclick="uncheck()" name="answer"
                                                 id="answer1c">
                                             <label class="custom-control-label" for="answer1c">Correcta</label>
                                         </div>
@@ -211,8 +212,9 @@
                                         </div>
                                     </div>
                                     <div class="col-md-2 mb-3">
+                                        <br>
                                         <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" name="answer"
+                                            <input type="checkbox" class="custom-control-input" onclick="uncheck()" name="answer"
                                                 id="answer2c">
                                             <label class="custom-control-label" for="answer2c">Correcta</label>
                                         </div>
@@ -229,8 +231,9 @@
                                         </div>
                                     </div>
                                     <div class="col-md-2 mb-3">
+                                        <br>
                                         <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" name="answer"
+                                            <input type="checkbox" class="custom-control-input" onclick="uncheck()" name="answer"
                                                 id="answer3c">
                                             <label class="custom-control-label" for="answer3c">Correcta</label>
                                         </div>
@@ -327,6 +330,38 @@
     <!-- Page level custom scripts -->
     <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/demo/chart-area-demo.js"></script>
     <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/demo/chart-pie-demo.js"></script>
+
+    <script>
+        function uncheck(){
+            var checkbox1 = document.getElementById("answer1c");
+            var checkbox2 = document.getElementById("answer2c");
+            var checkbox3 = document.getElementById("answer3c");
+            checkbox1.onclick = function(){
+                if(checkbox1.checked != false){
+                    checkbox2.checked =null;
+                    checkbox3.checked =null;
+                }
+            }
+            checkbox2.onclick = function(){
+                if(checkbox2.checked != false){
+                    checkbox1.checked=null;
+                    checkbox3.checked=null;
+                }
+            }
+            checkbox3.onclick = function(){
+                if(checkbox3.checked != false){
+                    checkbox1.checked=null;
+                    checkbox2.checked=null;
+                }
+            }
+
+            var a = document.getElementById("question").value;
+            var b = document.getElementById("answer1").value;
+
+            console.log(a);
+            console.log(b);
+        }
+    </script>
 </body>
 
 </html>
