@@ -40,7 +40,3 @@ Web application for the English Adaptative Classification Test in EAFIT Language
 
 - [ ] Manejo de preguntas BD (**Anderson**)
 - [ ] Carga del banco de preguntas a la API de manera automática. (**Anderson**)
-
-### Sistema de Inteligencia Artificial:
-
-- [ ] Agregar más datos a la red neuronal. (**Camilo**)
