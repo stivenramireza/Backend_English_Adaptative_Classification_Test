@@ -1,4 +1,4 @@
-let getGrades = function(){
+let getGrades = function () {
     var doc_number = document.getElementById("docnumber").value;
     var nota_final = 0, level = 0, gap = 0;
     var req = new XMLHttpRequest();
@@ -8,20 +8,35 @@ let getGrades = function(){
     req.setRequestHeader("Content-type", "application/json");
     req.send(null);
     req.onreadystatechange = function () {
-        console.log("readyState = " + req.readyState)
-        console.log("status = " + req.status)
         if (req.readyState == 4 && req.status == 200) {
-            var texto = req.response;
             var textoId = req.response.info_examen;
-            var id = textoId._id;
-            console.log(id);
-            document.getElementById('pa1').value=textoId.part1;
-            var nota2 = textoId.part2;
-            var nota3 = textoId.part3;
+            document.getElementById('fec').innerHTML = new Date(textoId.fecha);
+            document.getElementById('pa1').innerHTML = textoId.part1;
+            document.getElementById('pa2').innerHTML = textoId.part2;
+            document.getElementById('pa3').innerHTML = textoId.part3;
+            document.getElementById('tot').innerHTML = textoId.grade;
+            document.getElementById('niv').innerHTML = textoId.classified_level;
             var array_respuestas = textoId.responses;
             var array_partes = textoId.parts;
-            var nota_final = textoId.grade;
-            var nivel = textoId.classified_level;
+            var a = new Date(textoId.hora_inicio);
+            var b = new Date(textoId.hora_fin);
+            var c = ((a - b) / 1000);
+            console.log(c);
+            
+            var http = new XMLHttpRequest();
+            var params = 'docnumber=' + doc_number;
+            http.responseType = 'json';
+            http.open('GET', '/api/candidate/list' + '?' + params, true);
+            http.setRequestHeader("Content-type", "application/json");
+            http.send(null);
+            http.onreadystatechange = function () {
+                if (http.readyState == 4 && http.status == 200) {
+                    var texto2 = http.response.info_candidate;
+                    var nombres = texto2.firstname;
+                    var apellidos = texto2.lastname;
+                    document.getElementById('est').innerHTML = nombres + " " + apellidos;
+                }
+            }
         }
     }
 }
