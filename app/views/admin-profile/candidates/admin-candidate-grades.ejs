@@ -10,6 +10,7 @@
     <meta name="author" content="">
 
     <title>Admin Profile - Dashboard</title>
+    <script src="/admin-profile/candidate/admin-candidate-grades.js"></script>
     <!-- Custom fonts for this template-->
     <link href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/fontawesome-free/css/all.min.css"
         rel="stylesheet" type="text/css">
@@ -24,24 +25,13 @@
 
     <!-- Page Wrapper -->
     <div id="wrapper">
-                <!-- Sidebar -->
-                <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-                    <!-- Nav Item - User Information -->
-                    <li class="nav-item dropdown arrow">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            <br>
-                            <span class="mr-2 d-none d-lg-inline text-white-600 small" id="nombreAdmin"></span>
-                        </a>
-                        <!-- Dropdown - User Information -->
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Cerrar sesión
-                            </a>
-                        </div>
-                    </li>
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown arrow">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
                     <br>
         
                     <hr class="sidebar-divider my-0">
@@ -99,61 +89,36 @@
                     <div class="sidebar-heading">
                         Estadísticas
                     </div>
-        
-                    <li class="nav-item">
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#reportes"
-                            aria-expanded="true" aria-controls="reportes">
-                            <i class="fas fa-file-alt"></i>
-                            <span>Reportes</span>
-                        </a>
-                        <div id="reportes" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                            <div class="bg-white py-2 collapse-inner rounded">
-                                <h6 class="collapse-header">Examenes Anteriores:</h6>
-                                <a class="collapse-item"
-                                    href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/buttons.html">Último
-                                    mes</a>
-                                <a class="collapse-item"
-                                    href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/cards.html">Últimos 6
-                                    meses</a>
-                                <a class="collapse-item"
-                                    href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/cards.html">Último
-                                    año</a>
-                                <a class="collapse-item"
-                                    href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/cards.html">Por profesor
-                                    calificador</a>
-                            </div>
-                        </div>
-                    </li>
-        
-                    <hr class="sidebar-divider">
-        
-                    <div class="sidebar-heading">
-                        Examen
+                </div>
+            </li>
+
+            <hr class="sidebar-divider">
+
+            <div class="sidebar-heading">
+                Examen
+            </div>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#preguntas"
+                    aria-expanded="true" aria-controls="preguntas">
+                    <i class="fas fa-question"></i>
+                    <span>Preguntas</span>
+                </a>
+                <div id="preguntas" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Gestón de preguntas:</h6>
+                        <a class="collapse-item" href="/admin/profile/add-question">Agregar
+                            pregunta nueva</a>
+                        <a class="collapse-item" href="/admin/profile/edit-question">Editar
+                            pregunta</a>
                     </div>
-        
-                    <li class="nav-item">
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#preguntas"
-                            aria-expanded="true" aria-controls="preguntas">
-                            <i class="fas fa-question"></i>
-                            <span>Preguntas</span>
-                        </a>
-                        <div id="preguntas" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                            <div class="bg-white py-2 collapse-inner rounded">
-                                <h6 class="collapse-header">Gestón de preguntas:</h6>
-                                <a class="collapse-item"
-                                    href="/admin/profile/add-question">Agregar
-                                    pregunta nueva</a>
-                                <a class="collapse-item"
-                                    href="/admin/profile/edit-question">Editar
-                                    pregunta</a>
-                            </div>
-                        </div>
-                    </li>
-        
-                    <hr class="sidebar-divider d-none d-md-block">
-        
-                </ul>
-                <!-- End of Sidebar -->
+                </div>
+            </li>
+
+            <hr class="sidebar-divider d-none d-md-block">
+
+        </ul>
+        <!-- End of Sidebar -->
 
         <div id="content-wrapper" class="d-flex flex-column">
 
@@ -165,7 +130,8 @@
 
                     <div class="container" style="max-width: 700px">
                         <div class="py-5 text-center">
-                            <p class="lead">Señor Administrador, ingrese la identificacion del estudiante para ver sus calificaciones</p>
+                            <p class="lead">Señor Administrador, ingrese la identificacion del estudiante para ver sus
+                                calificaciones</p>
                         </div>
                         <div class="container" style="width: 100%">
                             <form class="needs-validation" novalidate>
@@ -204,76 +170,124 @@
                                 </div>
 
                                 <center>
-                                    <button class="btn btn-primary" type="button">Ver calificaciones</button>
+                                    <button class="btn btn-primary" type="button" onclick="getGrades()">Ver calificaciones</button>
                                 </center>
                             </form>
                             <br>
                         </div>
                     </div>
                     <br>
+                    <table style="width: 100%; text-align: center">
+                        <tbody>
+                            <tr>
+                                <td><b>Estudiante</b></td>
+                                <td><span id="est"></span></td>
+                            </tr>
+                            <tr>
+                                <td><b>Fecha de realización del examen</b></td>
+                                <td><span id="fec"></span></td>
+                            </tr>
+                            <tr>
+                                <td><b>Notas</b></td>
+                                <td>
+                                    <center>
+                                    <table style="width: 60%;">
+                                        <tbody>
+                                            <tr>
+                                                <td>Parte 1</td>
+                                                <td>Parte 2</td>
+                                                <td>Parte 3</td>
+                                                <td>Total</td>
+                                            </tr>
+                                            <tr>
+                                                <td><span id="pa1">1</span></td>
+                                                <td><span id="pa2">1</span></td>
+                                                <td><span id="pa3">1</span></td>
+                                                <td><span id="tot">1</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </center>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><b>Nivel de clasificacion</b></td>
+                                <td><span id="niv"></span></td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
+
+                
 
                 <!-- End of Main Content -->
 
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span> &copy; 2019 Universidad EAFIT</span>
+                <!-- Footer -->
+                <footer class="sticky-footer bg-white">
+                    <div class="container my-auto">
+                        <div class="copyright text-center my-auto">
+                            <span> &copy; 2019 Universidad EAFIT</span>
+                        </div>
                     </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
+                </footer>
+                <!-- End of Footer -->
+
+            </div>
+            <!-- End of Content Wrapper -->
 
         </div>
-        <!-- End of Content Wrapper -->
+        <!-- End of Page Wrapper -->
 
-    </div>
-    <!-- End of Page Wrapper -->
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">¿Estás seguro(a) de salir?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-primary" href="/admin/logout">Cerrar sesión</a>
+        <!-- Logout Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">¿Estás seguro(a) de salir?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su
+                        sesión actual.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                        <a class="btn btn-primary" href="/admin/logout">Cerrar sesión</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/jquery/jquery.min.js"></script>
-    <script
-        src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Bootstrap core JavaScript-->
+        
+        <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/jquery/jquery.min.js"></script>
+        <script
+            src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script
-        src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script
+            src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/chart.js/Chart.min.js"></script>
+        <!-- Page level plugins -->
+        <script
+            src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/chart.js/Chart.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/demo/chart-area-demo.js"></script>
-    <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/demo/chart-pie-demo.js"></script>
+        <!-- Page level custom scripts -->
+        <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/demo/chart-area-demo.js"></script>
+        <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/demo/chart-pie-demo.js"></script>
 
 </body>
 
