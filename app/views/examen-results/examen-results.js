@@ -1,6 +1,6 @@
 function updateExamen(nota_final, level) {
     var http = new XMLHttpRequest();
-    var id = localStorage.getItem('_id');
+    var id = localStorage.getItem('_idExamen');
     var params2 = 'idExamen=' + id;
     console.log("Params: " + params2);
     http.responseType = 'json';
@@ -125,7 +125,7 @@ req.onreadystatechange = function () {
         var texto = req.response;
         var textoId = req.response.info_examen;
         var id = textoId._id;
-        localStorage.setItem("_id", id);
+        localStorage.setItem("_idExamen", id);
         console.log(id);
         var array_respuestas = texto.info_examen.responses;
         var array_partes = texto.info_examen.parts;
