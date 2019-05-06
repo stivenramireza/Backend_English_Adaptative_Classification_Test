@@ -19,10 +19,6 @@ let getGrades = function () {
             document.getElementById('niv').innerHTML = textoId.classified_level;
             var array_respuestas = textoId.responses;
             var array_partes = textoId.parts;
-            var a = new Date(textoId.hora_inicio);
-            var b = new Date(textoId.hora_fin);
-            var c = ((a - b) / 1000);
-            console.log(c);
 
             var http = new XMLHttpRequest();
             var params = 'docnumber=' + doc_number;
