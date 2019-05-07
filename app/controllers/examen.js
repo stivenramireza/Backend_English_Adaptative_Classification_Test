@@ -132,6 +132,32 @@ function next_question(req, res) {
     });
 }
 
+function statistics(req, res){
+    let clasificador = req.query.clasificador;
+    let fecha_inicio = req.query.fecha_inicio;
+    let fecha_fin = req.query.fecha_fin;
+    let classified_level = req.query.classified_level;
+    let queryString = "";
+
+    if (!isEmpty(clasificador)){
+        queryString = queryString + "clasificador: clasificador, ";
+    }
+    if (!isEmpty(fecha_inicio)&&!isEmpty(fecha_fin)){
+        queryString = queryString + "fecha: { $gt: new Date(fecha_inicio), $lt: new Date(fecha_fin) }, ";
+    }
+    if(!isEmpty(classified_level)){
+        queryString = queryString + "classified_level: classified_level, ";
+    }
+    
+    queryString = queryString.substr(0, (queryString.length-2));
+
+    Examen.find({ queryString }, (err, info_examen) => {
+        if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}` })
+        if (!info_examen) return res.status(404).send({ message: `No hay registros` })
+        res.status(200).send({ info_examen })
+    })
+}
+
 function getInfoExamen(req, res){
     let docnumber = req.query.docnumber;
     Examen.findOne({ docnumber: docnumber }, (err, info_examen) => {
@@ -159,5 +185,6 @@ module.exports = {
     saveTestStatus,
     next_question,
     getInfoExamen,
-    updateInfoExamen
+    updateInfoExamen,
+    statistics
 };

@@ -32,6 +32,8 @@ router.post('/test/next_question', cors(corsOptions), examenCtlr.next_question);
 
 router.get('/test/info', cors(corsOptions), examenCtlr.getInfoExamen);
 
+router.get('/test/statistics', cors(corsOptions), examenCtlr.statistics);
+
 router.post('/test/statistics/level', cors(corsOptions), function(req, res, next){
     request.post({url: QUERY_PATH + '/test/statistics/level', 
     body: {c_part1: req.body.c_part1, c_part2: req.body.c_part2, c_part3: req.body.c_part3}, 
