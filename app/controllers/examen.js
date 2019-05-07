@@ -137,15 +137,15 @@ function statistics(req, res){
     let fecha_inicio = req.query.fecha_inicio;
     let fecha_fin = req.query.fecha_fin;
     let classified_level = req.query.classified_level;
-    let queryString = "";
+    var queryString = "";
 
-    if (!isEmpty(clasificador)){
+    if (clasificador!=null){
         queryString = queryString + "clasificador: clasificador, ";
     }
-    if (!isEmpty(fecha_inicio)&&!isEmpty(fecha_fin)){
+    if (fecha_inicio!=null && fecha_fin!=null){
         queryString = queryString + "fecha: { $gt: new Date(fecha_inicio), $lt: new Date(fecha_fin) }, ";
     }
-    if(!isEmpty(classified_level)){
+    if (classified_level!=null){
         queryString = queryString + "classified_level: classified_level, ";
     }
     

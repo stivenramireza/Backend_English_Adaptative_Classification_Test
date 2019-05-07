@@ -11,7 +11,7 @@
 
     <title>Dashboard</title>
     <script src="/admin-profile/admin-register.js"></script>
-    <script src="/admin-profile/candidates/admin-exam-enable.js"></script>
+    <script src="/admin-profile/statistics/admin-statistics.js"></script>
     <!-- Custom fonts for this template-->
     <link href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/fontawesome-free/css/all.min.css"
         rel="stylesheet" type="text/css">
@@ -155,9 +155,9 @@
                             <form class="needs-validation" novalidate>
                                 <div class="row">
                                     <div class="col mb-3">
-                                        <label for="fecha_inicial">Fecha inicial</label>
+                                        <label for="fecha_inicio">Fecha inicial</label>
                                         <div class="input-group">
-                                            <input type="date" class="form-control" id="fecha_inicial" required>
+                                            <input type="date" class="form-control" id="fecha_inicio" required>
                                             <div class="invalid-feedback" style="width: 100%;">
                                                 Se requiere que llene el campo "Fecha inicial" con el formato
                                                 indicado.
@@ -167,9 +167,9 @@
 
 
                                     <div class="col mb-3">
-                                        <label for="fecha_final">Fecha final</label>
+                                        <label for="fecha_fin">Fecha final</label>
                                         <div class="input-group">
-                                            <input type="date" class="form-control" id="fecha_final" required>
+                                            <input type="date" class="form-control" id="fecha_fin" required>
                                             <div class="invalid-feedback" style="width: 100%;">
                                                 Se requiere que llene el campo "Fecha final" con el formato
                                                 indicado.
@@ -178,8 +178,8 @@
                                     </div>
 
                                     <div class="col mb-3">
-                                        <label for="level">Nivel</label>
-                                        <select class="custom-select d-block w-100" id="level" required>
+                                        <label for="nivel">Nivel</label>
+                                        <select class="custom-select d-block w-100" id="nivel" required>
                                             <option value="0">Preparatorio</option>
                                             <option value="1">Nivel 1</option>
                                             <option value="2">Nivel 2</option>
@@ -231,8 +231,8 @@
                                     </div>
 
                                     <div class="col mb-3">
-                                        <label for="firstName">Documento del calificador</label>
-                                        <input type="text" class="form-control" id="docnumber" placeholder="" value=""
+                                        <label for="clasificador">Documento del calificador</label>
+                                        <input type="text" class="form-control" id="clasificador" placeholder="" value=""
                                             required>
                                         <div class="invalid-feedback">
                                             Se requiere que llene el campo "Documento de identidad" correctamente.
@@ -243,7 +243,7 @@
                                 <br>
 
                                 <center>
-                                    <button id="btnHabilitar" class="btn btn-primary" onclick=habilitarExamen()
+                                    <button id="btnHabilitar" class="btn btn-primary" onclick=queryStatistics()
                                         type="button">Consultar</button>
                                 </center>
 
