@@ -72,6 +72,7 @@ router.get('/admin/profile/edit-question', adminCtlr.loadEditQuestion)
 router.get('/admin/profile/edit-admin', adminCtlr.loadAdminEdit)
 router.get('/admin/profile/edit-admin/data', adminCtlr.loadAdminEditData)
 router.get('/admin/profile/candidate-grades', adminCtlr.loadAdminCandidateGrades)
+router.get('/admin/statistics', adminCtlr.loadStatistics)
 
 // Questions
 

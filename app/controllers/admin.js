@@ -53,6 +53,10 @@ function loadAdminCandidateGrades(req, res){
     res.render("../views/admin-profile/candidates/admin-candidate-grades.ejs");
 }
 
+function loadStatistics(req, res){
+    res.render("../views/admin-profile/statistics/admin-statistics.ejs");
+}
+
 function registrarAdmin(req, res) {
     var errors = validationResult(req);
     if(!errors.isEmpty()){
@@ -217,5 +221,6 @@ module.exports = {
     loadAdminCandidateGrades,
     getInfoAdmin,
     updateInfoAdmin,
-    editarAdmin
+    editarAdmin,
+    loadStatistics
 }
