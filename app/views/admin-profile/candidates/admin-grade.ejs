@@ -11,6 +11,7 @@
 
     <title>Dashboard</title>
     <script src="/admin-profile/admin-register.js"></script>
+    <script src="/admin-profile/candidates/admin-grade.js"></script>
     <!-- Custom fonts for this template-->
     <link href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/fontawesome-free/css/all.min.css"
         rel="stylesheet" type="text/css">
@@ -198,7 +199,7 @@
                                     </div>
 
                                     <div class="col-md-4 mb-3">
-                                        <label for="firstName">Documento de identidad</label>
+                                        <label for="docnumber">Documento de identidad</label>
                                         <input type="text" class="form-control" id="docnumber" placeholder="" value=""
                                             required>
                                         <div class="invalid-feedback">
@@ -238,7 +239,7 @@
                                 <br>
                                 
                                 <center>
-                                    <button class="btn btn-primary" onclick=signup() type="button">Clasificar estudiante
+                                    <button class="btn btn-primary" onclick=gradeCandidate() type="button">Clasificar estudiante
                                         </button>
                                 </center>
                             </form>

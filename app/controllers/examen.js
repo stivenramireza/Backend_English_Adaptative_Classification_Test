@@ -181,6 +181,16 @@ function updateInfoExamen(req, res){
     })
 }
 
+function updateByDocNumber(req, res){
+    let docnumber = req.query.docnumber;
+    let update = req.body
+    Examen.updateOne({docnumber: docnumber}, update, (err, examUpdated) => {
+        if (err) return res.status(500).send({ message: `Error al actualizar examen: ${err}` })
+        console.log(examUpdated)
+        res.status(200).send({ new_examen: examUpdated })
+    })
+}
+
 module.exports = {
     loadPreStarted,
     loadTest,
@@ -190,5 +200,6 @@ module.exports = {
     next_question,
     getInfoExamen,
     updateInfoExamen,
+    updateByDocNumber,
     statistics
 };

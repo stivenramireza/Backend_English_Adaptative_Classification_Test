@@ -27,6 +27,8 @@ router.get('/test/prestart', cors(corsOptions), function(req, res, next){
 
 router.put('/api/test/update', examenCtlr.updateInfoExamen);
 
+router.put('/api/test/updatebydoc', examenCtlr.updateByDocNumber);
+
 // POST next_question desde Amazon Web Services (AWS)
 router.post('/test/next_question', cors(corsOptions), examenCtlr.next_question);
 
