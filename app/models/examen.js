@@ -11,6 +11,7 @@ const ExamenSchema = new Schema({
     part2: {type: Number, required: true},
     part3: {type: Number, required: true}, // calificación total
     classified_level: {type: String, required: true}, // nivel de clasificación
+    final_level: {type: String, required: true},
     fecha: {type: Date, default: Date.now }, // fecha en la que realizó el examen
     hora_inicio: {type: String, required: true}, // hora en la que empezó el examen
     hora_fin: {type: String, required: true}, // hora en la que terminó el examen

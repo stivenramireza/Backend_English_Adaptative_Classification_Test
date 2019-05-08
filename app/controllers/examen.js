@@ -45,6 +45,7 @@ function saveTestStatus(req, res, data) {
         part2: 0.0,
         part3 : 0.0, // To be updated
         classified_level: "0", // To be updated
+        final_level: "0",
         hora_inicio: time, // Static
         hora_fin: time, // To be updated
         clasificador: clasificador, //Just a simple docn
@@ -89,6 +90,7 @@ function next_question(req, res) {
                 part2: examen.part2,
                 part3: examen.part3,
                 classified_level: examen.classified_level, // To be updated
+                final_level: examen.final_level,
                 hora_inicio: examen.hora_inicio,
                 hora_fin: examen.hora_fin, // To be updated
                 clasificador: examen.clasificador, //Just a simple docn
@@ -137,6 +139,8 @@ function statistics(req, res){
     let fecha_inicio = req.query.fecha_inicio;
     let fecha_fin = req.query.fecha_fin;
     let classified_level = req.query.classified_level;
+    let final_level = req.query.final_level;
+
     var queryString = "";
 
     if (clasificador!=null){

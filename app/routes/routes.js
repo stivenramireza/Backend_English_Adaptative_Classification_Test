@@ -31,6 +31,7 @@ router.put('/api/test/update', examenCtlr.updateInfoExamen);
 router.post('/test/next_question', cors(corsOptions), examenCtlr.next_question);
 
 router.get('/test/info', cors(corsOptions), examenCtlr.getInfoExamen);
+router.get('/candidate/test/error', testCtlr.loadTestError);
 
 router.get('/test/statistics', cors(corsOptions), examenCtlr.statistics);
 
