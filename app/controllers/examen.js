@@ -148,7 +148,7 @@ function statistics(req, res){
         
     }
     if (fecha_inicio!="" && fecha_fin!=""){
-        queryString = queryString + "\"fecha\": { $gt: new Date("+fecha_inicio+"), $lt: new Date("+fecha_fin+") }, ";
+        queryString = queryString + "\"fecha\": { $gt: new Date('"+fecha_inicio+"'), $lt: new Date('"+fecha_fin+"') }, ";
     }
     if (classified_level!=""){
         queryString = queryString + "\"classified_level\": " + classified_level + ", ";
@@ -158,7 +158,7 @@ function statistics(req, res){
     queryString = queryString + " }";
     console.log(queryString);
 
-    Examen.find(JSON.parse(queryString), (err, info_examen) => {
+    Examen.find(queryString, (err, info_examen) => {
         if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}` })
         if (!info_examen) return res.status(404).send({ message: `No hay registros` })
         res.status(200).send({ info_examen })

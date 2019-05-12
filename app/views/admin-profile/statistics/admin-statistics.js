@@ -1,4 +1,5 @@
 let queryStatistics = function () {
+    document.getElementById("header").style.display="inline";
     var clasificador = document.getElementById("clasificador").value;
     console.log(clasificador);
     var fecha_inicio = document.getElementById("fecha_inicio").value;
@@ -16,6 +17,8 @@ let queryStatistics = function () {
         if (req.readyState == 4 && req.status == 200) {
             var textoId = req.response;
             console.log(textoId)
+            console.log(textoId.info_examen.length)
+            document.getElementById("registros").innerHTML = textoId.info_examen.length;
         }
     }
 }
