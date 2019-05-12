@@ -10,7 +10,13 @@ let getGap = function () {
     req.onreadystatechange = function () {
         if (req.readyState == 4 && req.status == 200) {
             var texto = req.response.info_examen;
-            var clasificacion_escrita = (texto.classified_level).substring(0,2);
+            console.log(texto.classified_level);
+            if(texto.classified_level === "Preparatorio") {
+                var clasificacion_escrita = 0;
+                console.log(clasificacion_escrita);
+            } else {
+                clasificacion_escrita = (texto.classified_level).substring(0,2);
+            }
             var nivel_escrito = parseInt(clasificacion_escrita, 10);
             console.log("clasificacion escrita: ", nivel_escrito);
             var clasificacion_oral = texto.final_level;
@@ -18,8 +24,9 @@ let getGap = function () {
             console.log("clasificacion oral: ", nivel_oral);
             document.getElementById("texto_span").innerHTML = "Desfase Clasificación Escrita vs Oral";
             if(tipo_grafica == '0'){
-                $('#container').hide();
+                x.style.display = "none";
             }else if(tipo_grafica == '1'){
+                x.style.display = "block";
                 Highcharts.chart('container', {
                     chart: {
                         type: 'column'
@@ -70,6 +77,7 @@ let getGap = function () {
                     }]
                 });
             }else if(tipo_grafica == '2'){
+                x.style.display = "block";
                 document.getElementById("texto_span").innerHTML = "Desfase Clasificación Escrita vs Oral";
                 Highcharts.chart('container', {
                     chart: {
