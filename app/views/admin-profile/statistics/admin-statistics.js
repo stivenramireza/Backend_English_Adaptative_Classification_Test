@@ -1,10 +1,12 @@
 let queryStatistics = function () {
     var clasificador = document.getElementById("clasificador").value;
+    console.log(clasificador);
     var fecha_inicio = document.getElementById("fecha_inicio").value;
     var fecha_fin = document.getElementById("fecha_fin").value;
     var classified_level = document.getElementById("nivel").value;
+    var final_level = document.getElementById("nivel_final").value;
     var req = new XMLHttpRequest();
-    var params = 'clasificador=' + clasificador+'&fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin+'&classified_level='+classified_level;
+    var params = 'clasificador=' + clasificador+'&fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin+'&classified_level='+classified_level+'&final_level='+final_level;
     console.log(params);
     req.responseType = 'json';
     req.open("GET", '/test/statistics' + '?' + params, true);
