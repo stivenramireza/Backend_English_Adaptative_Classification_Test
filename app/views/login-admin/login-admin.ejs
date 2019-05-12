@@ -9,6 +9,11 @@
     <title>Login Administrador</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="/login-admin/login-admin.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/alertify.min.js"></script>
+    <!-- CSS -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/alertify.min.css"/>
+<!-- Default theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/default.min.css"/>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/sign-in/">
 
     <!-- Bootstrap core CSS -->
@@ -41,9 +46,6 @@
   <input type="password" id="inputPassword" class="form-control" placeholder="Clave" required>
   <br>
   <button id="btnLogin"class="btn btn-lg btn-primary btn-block" onclick=login() type="button">Ingresar</button>
-  <br>
-  <p id="failed" style="color:#bd1a1a ;display: none;text-align: center";>No se han completado todos los campos.</p>
-  <br><br>
   <p class="mt-5 mb-3 text-muted">© 2019 Universidad EAFIT</p>
 </form>
 </body>

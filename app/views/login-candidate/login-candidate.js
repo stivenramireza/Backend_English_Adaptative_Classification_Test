@@ -43,13 +43,13 @@ let check = function () {
 
 
 $(document).ready(function () {
-    $('#failed').hide();
     $('#btnLogin').click(function () {
         var doctype = $("#doctype").val();
         var docnumber = $("#docnumber").val();
 
         if (doctype == '' || docnumber == '') {
-            $('#failed').show();
+            alertify.set('notifier','position', 'bottom-center');
+            alertify.notify('No se han completado todos los campos', 'error', 3);
         }
     });
 });

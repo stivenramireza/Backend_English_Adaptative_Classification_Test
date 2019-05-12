@@ -57,6 +57,10 @@ function loadStatistics(req, res){
     res.render("../views/admin-profile/statistics/admin-statistics.ejs");
 }
 
+function loadDesfase(req, res){
+    res.render("../views/admin-profile/statistics/admin-desfase.ejs");
+}
+
 function registrarAdmin(req, res) {
     var errors = validationResult(req);
     if(!errors.isEmpty()){
@@ -222,5 +226,6 @@ module.exports = {
     getInfoAdmin,
     updateInfoAdmin,
     editarAdmin,
-    loadStatistics
+    loadStatistics,
+    loadDesfase
 }

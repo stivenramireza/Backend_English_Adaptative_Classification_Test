@@ -24,6 +24,7 @@ let update = function (id) {
     http.send(JSON.stringify({
         examen_activo: true
     }));
+    alertify.success('Se ha habilitado el examen correctamente');
 }
 
 $(document).ready(function () {
@@ -33,7 +34,9 @@ $(document).ready(function () {
         var docnumber = $("#docnumber").val();
 
         if (doctype == '' || docnumber == '') {
-            $('#failed').show();
+            var notification = alertify.notify('No se han completado todos los campos', 'error', 5, function(){  
+                console.log('No se han completado todos los campos'); 
+            });
         }
     });
 });

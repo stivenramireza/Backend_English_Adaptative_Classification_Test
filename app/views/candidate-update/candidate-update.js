@@ -59,6 +59,7 @@ let update = function () {
                                 email: document.getElementById("correo").value
     }));
     }else{
-        $('#failed').show();
+        alertify.set('notifier','position', 'bottom-center');
+        alertify.notify('No se ha aceptado la autorización', 'error', 3);
     }
 }
