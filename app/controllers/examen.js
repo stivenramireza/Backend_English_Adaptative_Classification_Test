@@ -141,9 +141,6 @@ function statistics(req, res){
     let clasificador = req.query.clasificador;
     let fecha_inicio = req.query.fecha_inicio;
     let fecha_fin = req.query.fecha_fin;
-    var ini = moment(fecha_inicio);
-    var fi = moment(fecha_fin);
-
     let classified_level = req.query.classified_level;
     let final_level = req.query.final_level;
 
@@ -158,6 +155,9 @@ function statistics(req, res){
     }
     if (classified_level!=""){
         queryString = queryString + "\"classified_level\": " + classified_level + ", ";
+    }
+    if (final_level != ""){
+        queryString = queryString + "\"final_level\": " + final_level + ", ";
     }
     
     queryString = queryString.substr(0, (queryString.length-2));
