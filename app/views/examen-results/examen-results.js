@@ -113,7 +113,7 @@ function post() {
                 if (c_parte3 >= 4 && c_parte3 <= 4.5) {
                     level = "17";
                 } else {
-                    level = "Avanzados";
+                    level = "18";
                 }
             }
 
