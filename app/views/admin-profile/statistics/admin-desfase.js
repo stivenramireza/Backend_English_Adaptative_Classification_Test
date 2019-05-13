@@ -55,7 +55,7 @@ let getGap = function () {
                         enabled: false
                     },
                     tooltip: {
-                        pointFormat: 'Nivel: <b>{point.y:.1f}</b>'
+                        pointFormat: 'Nivel: <b>{point.y:.0f}</b>'
                     },
                     series: [{
                         name: 'Nivel',
@@ -68,7 +68,7 @@ let getGap = function () {
                             rotation: -90,
                             color: '#FFFFFF',
                             align: 'right',
-                            format: '{point.y:.1f}', // one decimal
+                            format: '{point.y:.0f}', // one decimal
                             y: 17, // 10 pixels down from the top
                             style: {
                                 fontSize: '13px',
