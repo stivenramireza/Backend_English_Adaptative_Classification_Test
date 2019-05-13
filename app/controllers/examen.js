@@ -154,7 +154,7 @@ function statistics(req, res){
         
     }
     if (fecha_inicio!="" && fecha_fin!=""){
-        queryString = queryString + "\"fecha\": { \"$gt\": new Date("+ini+") , \"$lt\": new Date("+fi+") }, ";
+        queryString = queryString + "\"fecha\": { \"$gt\": \""+fecha_inicio+"\", \"$lt\": \""+fecha_fin+"\" }, ";
     }
     if (classified_level!=""){
         queryString = queryString + "\"classified_level\": " + classified_level + ", ";
