@@ -21,7 +21,7 @@ let login = function () {
     var passwordAdmin = document.getElementById("inputPassword").value;
     http.send(JSON.stringify({ username: usernameAdmin, 
         password:  passwordAdmin}));
-    if(!exito){
+    if(!exito && usernameAdmin != "" && passwordAdmin != ""){
         alertify.set('notifier','position', 'bottom-center');
         alertify.notify('El usuario o clave es incorrecto', 'error', 3);
     }
