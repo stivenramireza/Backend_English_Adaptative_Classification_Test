@@ -1,6 +1,8 @@
 const Examen = require('../models/examen');
 const {validationResult} = require('express-validator/check');
 const mongoose = require('mongoose');
+const moment = require('moment');
+
 var request = require('request')
 
 
@@ -135,9 +137,16 @@ function next_question(req, res) {
 }
 
 function statistics(req, res){
+    
     let clasificador = req.query.clasificador;
-    let fecha_inicio = req.query.fecha_inicio;
-    let fecha_fin = req.query.fecha_fin;
+    let fecha_inicio = new Date(req.query.fecha_inicio);
+    var ini = moment(fecha_inicio);
+    let fecha_fin = new Date(req.query.fecha_fin);
+    var fi = moment(fecha_fin);
+
+    fecha_inicio = moment().toISOString(fecha_inicio);
+    fecha_fin = moment().toISOString(fecha_fin);
+
     let classified_level = req.query.classified_level;
     let final_level = req.query.final_level;
 
@@ -148,7 +157,7 @@ function statistics(req, res){
         
     }
     if (fecha_inicio!="" && fecha_fin!=""){
-        queryString = queryString + "\"fecha\": { $gt: new Date('"+fecha_inicio+"'), $lt: new Date('"+fecha_fin+"') }, ";
+        queryString = queryString + "\"fecha\": { \"$gt\": { \"$date\": \""+ini+"\" }, \"$lt\": { \"$date\": \""+fi+"\"} }, ";
     }
     if (classified_level!=""){
         queryString = queryString + "\"classified_level\": " + classified_level + ", ";
@@ -158,7 +167,7 @@ function statistics(req, res){
     queryString = queryString + " }";
     console.log(queryString);
 
-    Examen.find(queryString, (err, info_examen) => {
+    Examen.find(JSON.parse(queryString), (err, info_examen) => {
         if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}` })
         if (!info_examen) return res.status(404).send({ message: `No hay registros` })
         res.status(200).send({ info_examen })
