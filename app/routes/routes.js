@@ -78,6 +78,7 @@ router.get('/admin/profile/edit-admin/data', adminCtlr.loadAdminEditData)
 router.get('/admin/profile/candidate-grades', adminCtlr.loadAdminCandidateGrades)
 router.get('/admin/profile/statistics', adminCtlr.loadStatistics)
 router.get('/admin/profile/gap', adminCtlr.loadDesfase);
+router.get('/admin/profile/individual-results', adminCtlr.loadCandidateResults);
 
 // Questions
 

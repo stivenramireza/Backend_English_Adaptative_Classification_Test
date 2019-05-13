@@ -10,6 +10,14 @@
     <meta name="author" content="">
 
     <title>Admin Profile - Dashboard</title>
+    <script src="/admin-profile/candidates/admin-candidate-grades.js"></script>
+
+    <!--Scripts de Gráficas de Barras-->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+
     <!-- Custom fonts for this template-->
     <link href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/fontawesome-free/css/all.min.css"
         rel="stylesheet" type="text/css">
@@ -107,12 +115,12 @@
                 </a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link collapsed" href="/admin/profile/individual-results">
                     <i class="fas fa-fw fa-award"></i>
                     <span>Calificaciones Individuales</span></a>
             </li>
-            
+
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/admin/profile/gap">
                     <i class="fas fa-chart-pie"></i>
@@ -125,7 +133,7 @@
                 Examen
             </div>
 
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#preguntas"
                     aria-expanded="true" aria-controls="preguntas">
                     <i class="fas fa-question"></i>
@@ -134,12 +142,10 @@
                 <div id="preguntas" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gestón de preguntas:</h6>
-                        <a class="collapse-item"
-                            href="/admin/profile/add-question">Agregar
+                        <a class="collapse-item" href="/admin/profile/add-question">Agregar
                             pregunta nueva</a>
-                        <a class="collapse-item"
-                            href="/admin/profile/edit-question"><b>Editar
-                            pregunta</b></a>
+                        <a class="collapse-item" href="/admin/profile/edit-question">Editar
+                            pregunta</a>
                     </div>
                 </div>
             </li>
@@ -159,32 +165,154 @@
 
                     <div class="container" style="max-width: 700px">
                         <div class="py-5 text-center">
-                            <p class="lead">Señor Administrador, ingrese parte del enunciado de la pregunta para buscarla y poder editarla</p>
+                            <p class="lead">Señor Administrador, ingrese la identificacion del estudiante para ver sus
+                                calificaciones</p>
                         </div>
                         <div class="container" style="width: 100%">
                             <form class="needs-validation" novalidate>
                                 <div class="row">
                                     <div class="col mb-3">
-                                        <label for="enunciado">Enunciado de la pregunta</label>
-                                        <input type="text" class="form-control" id="enunciado" placeholder="" value=""
+                                        <label for="country">Tipo de documento</label>
+                                        <select class="custom-select d-block w-100" id="dt" required>
+                                            <option value="0">Seleccione el tipo de identificación...</option>
+                                            <option value="1">Cédula de Ciudadanía</option>
+                                            <option value="2">Cédula de Ciudadanía Ecuatoriana</option>
+                                            <option value="3">Cédula de Extranjería</option>
+                                            <option value="4">Cédula de Guatemala</option>
+                                            <option value="5">Cédula de Panamá</option>
+                                            <option value="6">Código de Estudiante</option>
+                                            <option value="7">Documento Nacional de Identidad</option>
+                                            <option value="8">Documento Personal Identificación</option>
+                                            <option value="9">Nro Único Identificación Personal</option>
+                                            <option value="10">Otro</option>
+                                            <option value="11">Pasaporte</option>
+                                            <option value="12">Registro</option>
+                                            <option value="13">Tarjeta de Identidad</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Por favor seleccione un tipo de documento.
+                                        </div>
+                                    </div>
+
+                                    <div class="col mb-3">
+                                        <label for="firstName">Documento de identidad</label>
+                                        <input type="text" class="form-control" id="docnumber" placeholder="" value=""
                                             required>
                                         <div class="invalid-feedback">
-                                            Se requiere que llene el campo "Enunciado de la pregunta" correctamente.
+                                            Se requiere que llene el campo "Documento de identidad" correctamente.
                                         </div>
                                     </div>
                                 </div>
 
                                 <center>
-                                    <button class="btn btn-primary" type="button">Buscar</button>
+                                    <button class="btn btn-primary" type="button" onclick="getGrades()">Ver
+                                        calificaciones</button>
                                 </center>
                             </form>
                             <br>
                         </div>
                     </div>
                     <br>
+                    <center>
+                        <table style="width: 80%; text-align: center; border: 5px solid #ddd; display: none " border="1"
+                            id="table">
+                            <tbody>
+                                <tr>
+                                    <td style="width: 40%"><b>Estudiante</b></td>
+                                    <td style="width: 60%"><span id="est"></span></td>
+                                </tr>
+                                <tr>
+                                    <td><b>Fecha de realización del examen</b></td>
+                                    <td><span id="fec"></span></td>
+                                </tr>
+                                <tr>
+                                    <td><b>Notas</b></td>
+                                    <td>
+                                        <center>
+                                            <table style="width: 60%;">
+                                                <tbody>
+                                                    <tr>
+                                                        <td><b>Parte 1</b></td>
+                                                        <td><b>Parte 2</b></td>
+                                                        <td><b>Parte 3</b></td>
+                                                        <td><b>Nota final</b></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span id="pa1">1</span></td>
+                                                        <td><span id="pa2">1</span></td>
+                                                        <td><span id="pa3">1</span></td>
+                                                        <td><span id="tot">1</span></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </center>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Nivel de clasificación</b></td>
+                                    <td><span id="niv"></span></td>
+                                </tr>
+                                <tr>
+                                    <td><b>Nivel definitivo</b></td>
+                                    <td><span id="fin"></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </center>
+
+                    <br><br>
+
+                    <div>
+                        <div id="myDIV">
+
+                            <center>
+                                <div class="py-5 text-center" style="width: 80%; text-align: center; border: 5px">
+                                    <p class="lead">Seleccione el tipo de gráfica para ver el porcentaje de aciertos
+                                        del estudiante en el examen clasificatorio
+                                    </p>
+                                </div>
+                            </center>
+
+                            <center>
+                                <div class="col mb-3" style="width: 40%; text-align: center; border: 5px">
+                                    <label for="country">Tipo de gráfica</label>
+                                    <select style="width: 50%" class="custom-select d-block w-100" id="tipo_grafica"
+                                        required>
+                                        <option value="0">Seleccione el tipo de gráfica...</option>
+                                        <option value="1">Gráfica de barras</option>
+                                        <option value="2">Gráfica Circular</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Por favor seleccione un tipo de gráfica.
+                                    </div>
+                                </div>
+                            </center>
+
+                            <center>
+                                <button id="btnGap" class="btn btn-primary" onclick=getPercentage()
+                                    type="button">Ver gráfica</button>
+                            </center>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- End of Main Content -->
+                <br><br>
+
+                <center>
+                    <div class="card shadow mb-4" id="myDIV2" style="width: 80%; text-align: center; border: 5px">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary"><span id="texto_span"></span></h6>
+                        </div>
+                        <div class="card-body">
+                            <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                        </div>
+                    </div>
+                </center>
+            </div>
+
+            <br><br>
+
+            <!-- End of Main Content -->
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
@@ -194,7 +322,6 @@
                     </div>
                 </div>
             </footer>
-            <!-- End of Footer -->
 
         </div>
         <!-- End of Content Wrapper -->
@@ -218,7 +345,8 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
+                <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su
+                    sesión actual.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
                     <a class="btn btn-primary" href="/admin/logout">Cerrar sesión</a>
@@ -228,6 +356,7 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
+
     <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/jquery/jquery.min.js"></script>
     <script
         src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -245,6 +374,16 @@
     <!-- Page level custom scripts -->
     <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/demo/chart-area-demo.js"></script>
     <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/demo/chart-pie-demo.js"></script>
+
+    <script>
+        var x = document.getElementById("myDIV");
+        x.style.display = "none";
+    </script>
+
+    <script>
+        var y = document.getElementById("myDIV2");
+        y.style.display = "none";
+    </script>
 
 </body>
 
