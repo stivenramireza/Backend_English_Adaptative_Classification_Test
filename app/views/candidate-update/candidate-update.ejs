@@ -10,6 +10,11 @@
     <title>Actualización de datos del aspirante</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="/candidate-update/candidate-update.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/alertify.min.js"></script>
+    <!-- CSS -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/alertify.min.css"/>
+<!-- Default theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/default.min.css"/>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/checkout/">
     
 
@@ -76,7 +81,7 @@
                 <div class=" col mb-3">
                     <label for="username">Fecha de nacimiento</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="birthdate" placeholder="AAAAMMDD" required>
+                        <input type="date" class="form-control" id="birthdate" required>
                         <div class="invalid-feedback" style="width: 100%;">
                             Se requiere que llene el campo "Fecha de nacimiento" con el formato indicado.
                         </div>

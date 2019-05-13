@@ -11,6 +11,7 @@
 
     <title>Dashboard</title>
     <script src="/admin-profile/admin-register.js"></script>
+    <script src="/admin-profile/candidates/admin-grade.js"></script>
     <!-- Custom fonts for this template-->
     <link href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/fontawesome-free/css/all.min.css"
         rel="stylesheet" type="text/css">
@@ -92,7 +93,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/admin/profile/edit-admin">
                     <i class="fas fa-users-cog"></i>
-                    <span>Gestionar administrador</span></a>
+                    <span>Gestionar roles</span></a>
             </li>
 
             <hr class="sidebar-divider">
@@ -102,28 +103,16 @@
             </div>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#reportes"
-                    aria-expanded="true" aria-controls="reportes">
+                <a class="nav-link collapsed" href="/admin/profile/statistics">
                     <i class="fas fa-file-alt"></i>
                     <span>Reportes</span>
                 </a>
-                <div id="reportes" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Examenes Anteriores:</h6>
-                        <a class="collapse-item"
-                            href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/buttons.html">Último
-                            mes</a>
-                        <a class="collapse-item"
-                            href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/cards.html">Últimos 6
-                            meses</a>
-                        <a class="collapse-item"
-                            href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/cards.html">Último
-                            año</a>
-                        <a class="collapse-item"
-                            href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/cards.html">Por profesor
-                            calificador</a>
-                    </div>
-                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="/admin/profile/gap">
+                    <i class="fas fa-chart-pie"></i>
+                    <span>Desfase Escrito vs Oral</span></a>
             </li>
 
             <hr class="sidebar-divider">
@@ -198,7 +187,7 @@
                                     </div>
 
                                     <div class="col-md-4 mb-3">
-                                        <label for="firstName">Documento de identidad</label>
+                                        <label for="docnumber">Documento de identidad</label>
                                         <input type="text" class="form-control" id="docnumber" placeholder="" value=""
                                             required>
                                         <div class="invalid-feedback">
@@ -238,7 +227,7 @@
                                 <br>
                                 
                                 <center>
-                                    <button class="btn btn-primary" onclick=signup() type="button">Clasificar estudiante
+                                    <button class="btn btn-primary" onclick=gradeCandidate() type="button">Clasificar estudiante
                                         </button>
                                 </center>
                             </form>

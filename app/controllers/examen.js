@@ -40,8 +40,12 @@ function saveTestStatus(req, res, data) {
         docnumber: docnumber, // Just a simple docn
         questions: _data.question.administered_items, // To be updated
         responses: _data.question.response_vector, // To be updated
-        grade: 0.0, // To be updated
+        grade: 0.0,
+        part1: 0.0,
+        part2: 0.0,
+        part3 : 0.0, // To be updated
         classified_level: "0", // To be updated
+        final_level: "0",
         hora_inicio: time, // Static
         hora_fin: time, // To be updated
         clasificador: clasificador, //Just a simple docn
@@ -81,8 +85,12 @@ function next_question(req, res) {
                 docnumber: examen.doc_number, // Just a simple docn
                 questions: examen.questions, // To be updated
                 responses: examen.responses, // To be updated
-                grade: examen.grade, // To be updated
+                grade: examen.grade,
+                part1: examen.part1, // To be updated
+                part2: examen.part2,
+                part3: examen.part3,
                 classified_level: examen.classified_level, // To be updated
+                final_level: examen.final_level,
                 hora_inicio: examen.hora_inicio,
                 hora_fin: examen.hora_fin, // To be updated
                 clasificador: examen.clasificador, //Just a simple docn
@@ -126,11 +134,44 @@ function next_question(req, res) {
     });
 }
 
+function statistics(req, res){
+    let clasificador = req.query.clasificador;
+    let fecha_inicio = req.query.fecha_inicio;
+    let fecha_fin = req.query.fecha_fin;
+    let classified_level = req.query.classified_level;
+    let final_level = req.query.final_level;
+
+    var queryString = "{ ";
+
+    if (clasificador!=""){
+        queryString = queryString + "\"clasificador\": "+ clasificador+ " ,"
+        
+    }
+    if (fecha_inicio!="" && fecha_fin!=""){
+        queryString = queryString + "\"fecha\": { $gt: new Date('"+fecha_inicio+"'), $lt: new Date('"+fecha_fin+"') }, ";
+    }
+    if (classified_level!=""){
+        queryString = queryString + "\"classified_level\": " + classified_level + ", ";
+    }
+    
+    queryString = queryString.substr(0, (queryString.length-2));
+    queryString = queryString + " }";
+    console.log(queryString);
+
+    Examen.find(queryString, (err, info_examen) => {
+        if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}` })
+        if (!info_examen) return res.status(404).send({ message: `No hay registros` })
+        res.status(200).send({ info_examen })
+    })
+}
+
 function getInfoExamen(req, res){
     let docnumber = req.query.docnumber;
     Examen.findOne({ docnumber: docnumber }, (err, info_examen) => {
         if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}` })
-        if (!info_examen) return res.status(404).send({ message: `El aspirante no tiene registrado exámenes de clasificación` })
+        if (!info_examen) return res.status(404).send({ message: `El aspirante no tiene registrado exámenes de clasificación`, 
+                                                        status: 'failed'
+                                                    })
         res.status(200).send({ info_examen })
     })
 }
@@ -145,6 +186,16 @@ function updateInfoExamen(req, res){
     })
 }
 
+function updateByDocNumber(req, res){
+    let docnumber = req.query.docnumber;
+    let update = req.body
+    Examen.updateOne({docnumber: docnumber}, update, (err, examUpdated) => {
+        if (err) return res.status(500).send({ message: `Error al actualizar examen: ${err}` })
+        console.log(examUpdated)
+        res.status(200).send({ new_examen: examUpdated })
+    })
+}
+
 module.exports = {
     loadPreStarted,
     loadTest,
@@ -153,5 +204,7 @@ module.exports = {
     saveTestStatus,
     next_question,
     getInfoExamen,
-    updateInfoExamen
+    updateInfoExamen,
+    updateByDocNumber,
+    statistics
 };

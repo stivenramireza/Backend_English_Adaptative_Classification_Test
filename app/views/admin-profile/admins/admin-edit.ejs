@@ -10,12 +10,12 @@
     <meta name="author" content="">
 
     <title>Dashboard</title>
-    <script src="/admin-profile/admin-register.js"></script>
+    
     <!-- Custom fonts for this template-->
     <link href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/fontawesome-free/css/all.min.css"
         rel="stylesheet" type="text/css">
 
-
+    
     <!-- Custom styles for this template-->
     <link href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/css/sb-admin-2.min.css" rel="stylesheet">
 
@@ -92,7 +92,7 @@
             <li class="nav-item active">
                 <a class="nav-link collapsed" href="/admin/profile/edit-admin">
                     <i class="fas fa-users-cog"></i>
-                    <span>Gestionar administrador</span></a>
+                    <span>Gestionar roles</span></a>
             </li>
 
             <hr class="sidebar-divider">
@@ -102,28 +102,16 @@
             </div>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#reportes"
-                    aria-expanded="true" aria-controls="reportes">
+                <a class="nav-link collapsed" href="/admin/profile/statistics">
                     <i class="fas fa-file-alt"></i>
                     <span>Reportes</span>
                 </a>
-                <div id="reportes" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Examenes Anteriores:</h6>
-                        <a class="collapse-item"
-                            href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/buttons.html">Último
-                            mes</a>
-                        <a class="collapse-item"
-                            href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/cards.html">Últimos 6
-                            meses</a>
-                        <a class="collapse-item"
-                            href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/cards.html">Último
-                            año</a>
-                        <a class="collapse-item"
-                            href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/cards.html">Por profesor
-                            calificador</a>
-                    </div>
-                </div>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="/admin/profile/gap">
+                    <i class="fas fa-chart-pie"></i>
+                    <span>Desfase Escrito vs Oral</span></a>
             </li>
 
             <hr class="sidebar-divider">
@@ -206,7 +194,7 @@
                                 </div>
 
                                 <center>
-                                    <button class="btn btn-primary" onclick=openn() type="button">Gestionar</button>
+                                    <button class="btn btn-primary" onclick=gestionar() type="button">Gestionar</button>
                                 </center>
                             </form>
                             <br>
@@ -272,20 +260,7 @@
 
         <!-- Custom scripts for all pages-->
         <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"></script>
-
-        <!-- Page level plugins -->
-        <script
-            src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/chart.js/Chart.min.js"></script>
-
-        <!-- Page level custom scripts -->
-        <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/demo/chart-area-demo.js"></script>
-        <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/demo/chart-pie-demo.js"></script>
-
-        <script type="text/javascript">
-        let openn = function(){
-            window.open("http://localhost:8000/admin/profile/edit-admin/data");
-        }
-        </script>
+        <script src="/admin-profile/admins/admin-edit.js"></script>
 
 </body>
 

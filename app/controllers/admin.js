@@ -25,6 +25,10 @@ function loadExamEnable(req, res){
     res.render("../views/admin-profile/candidates/admin-exam-enable.ejs");
 }
 
+function loadExamReactivate(req, res){
+    res.render("../views/admin-profile/candidates/admin-exam-reactivate.ejs");
+}
+
 function loadGrade(req, res){
     res.render("../views/admin-profile/candidates/admin-grade.ejs");
 }
@@ -49,7 +53,13 @@ function loadAdminCandidateGrades(req, res){
     res.render("../views/admin-profile/candidates/admin-candidate-grades.ejs");
 }
 
+function loadStatistics(req, res){
+    res.render("../views/admin-profile/statistics/admin-statistics.ejs");
+}
 
+function loadDesfase(req, res){
+    res.render("../views/admin-profile/statistics/admin-desfase.ejs");
+}
 
 function registrarAdmin(req, res) {
     var errors = validationResult(req);
@@ -166,11 +176,44 @@ function fromNumberToGenre(_number){
     return "";
 }
 
+function getInfoAdmin(req, res) {
+    let username = req.query.username;
+    Admin.find({ username: username }, (err, info_admin) => {
+        if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}` })
+        if (!info_admin) return res.status(404).send({ message: `El admin no está registrado en la BD` })
+        res.status(200).send({ info_admin })
+    })
+}
+
+function updateInfoAdmin(req, res){
+    var errors = validationResult(req);
+    if(!errors.isEmpty()){
+        return res.status(422).json({ errors: errors.array() });
+    }
+    let idAdmin = req.query.idAdmin;
+    let update = req.body
+    Admin.update({_id: idAdmin}, update, (err, adminUpdated) => {
+        if (err) return res.status(500).send({ message: `Error al actualizar la información del admin: ${err}` })
+        console.log(adminUpdated)
+        res.status(200).send({ new_admin: adminUpdated })
+    })
+}
+
+function editarAdmin(req, res){
+    let docnumber = req.query.docnumber;
+    Admin.findOne({docnumber: docnumber }, (err, info_admin) => {
+        if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}` })
+        if (!info_admin) return res.status(404).send({ message: `El admin no está registrado en la BD` })
+        res.status(200).send({ info_admin })
+    })
+}
+
 module.exports = {
     registrarAdmin,
     loguearAdmin,
     loadLoginAdmin,
     loadExamEnable,
+    loadExamReactivate,
     loadGrade,
     loadProfile,
     logout,
@@ -179,6 +222,10 @@ module.exports = {
     loadEditQuestion,
     loadAdminEditData,
     loadAdminEdit,
-    loadAdminCandidateGrades
-
+    loadAdminCandidateGrades,
+    getInfoAdmin,
+    updateInfoAdmin,
+    editarAdmin,
+    loadStatistics,
+    loadDesfase
 }

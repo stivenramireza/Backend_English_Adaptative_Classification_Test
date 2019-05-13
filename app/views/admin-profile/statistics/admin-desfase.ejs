@@ -10,8 +10,19 @@
     <meta name="author" content="">
 
     <title>Dashboard</title>
-    <script src="/admin-profile/admin-register.js"></script>
-    <script src="/admin-profile/candidates/admin-exam-enable.js"></script>
+    <script src="/admin-profile/statistics/admin-desfase.js"></script>
+    <!--Scripts de Gráficas de Barras-->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/alertify.min.js"></script>
+    <!-- CSS -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/alertify.min.css"/>
+<!-- Default theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/default.min.css"/>
     <!-- Custom fonts for this template-->
     <link href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/fontawesome-free/css/all.min.css"
         rel="stylesheet" type="text/css">
@@ -60,7 +71,7 @@
                 Aspirantes
             </div>
 
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="/admin/profile/exam-enable">
                     <i class="fas fa-fw fa-pencil-alt"></i>
                     <span>Habilitar examen</span></a>
@@ -109,8 +120,8 @@
                 </a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="/admin/profile/gap">
+            <li class="nav-item active">
+                <a class="nav-link" href="/admin/profile/gap">
                     <i class="fas fa-chart-pie"></i>
                     <span>Desfase Escrito vs Oral</span></a>
             </li>
@@ -157,7 +168,8 @@
                     <div class="container" style="max-width: 700px">
                         <div class="py-5 text-center">
                             <p class="lead">Señor Administrador, ingrese los datos solicitados a continuación para
-                                habilitar el examen de un aspirante registrado.</p>
+                                consultar el desfase de clasificación de un estudiante en la presentación
+                                de su examen escrito vs oral.</p>
                         </div>
                         <div class="container" style="width: 100%">
                             <form class="needs-validation" novalidate>
@@ -165,7 +177,7 @@
                                     <div class="col mb-3">
                                         <label for="country">Tipo de documento</label>
                                         <select class="custom-select d-block w-100" id="doc_type" required>
-                                            <option value="0">Seleccione el tipo de identificación...</option>
+                                            <option value="">Seleccione el tipo de identificación...</option>
                                             <option value="1">Cédula de Ciudadanía</option>
                                             <option value="2">Cédula de Ciudadanía Ecuatoriana</option>
                                             <option value="3">Cédula de Extranjería</option>
@@ -193,15 +205,38 @@
                                             Se requiere que llene el campo "Documento de identidad" correctamente.
                                         </div>
                                     </div>
+
+                                    <div class="col mb-3">
+                                        <label for="country">Tipo de gráfica</label>
+                                        <select class="custom-select d-block w-100" id="tipo_grafica" required>
+                                            <option value="0">Seleccione el tipo de gráfica...</option>
+                                            <option value="1">Gráfica de barras</option>
+                                            <option value="2">Gráfica Circular</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Por favor seleccione un tipo de gráfica.
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <center>
-                                    <button id="btnHabilitar" class="btn btn-primary" onclick=habilitarExamen() type="button">Habilitar
-                                        examen</button>
+                                    <button id="btnGap" class="btn btn-primary" onclick=getGap() type="button">Consultar
+                                        desfase</button>
                                 </center>
                                 
                             </form>
-                        </div>
+                            <br><br>
+                            <div class="card shadow mb-4" id="myDIV">
+                                    <div class="card-header py-3">
+                                      <h6 class="m-0 font-weight-bold text-primary"><span id="texto_span"></span></h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                                        </div>
+                                    </div>
+                            </div>
+                            
+                            <br><br>
                     </div>
                     <br>
                 </div>
@@ -264,13 +299,10 @@
         <!-- Custom scripts for all pages-->
         <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"></script>
 
-        <!-- Page level plugins -->
-        <script
-            src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/chart.js/Chart.min.js"></script>
-
-        <!-- Page level custom scripts -->
-        <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/demo/chart-area-demo.js"></script>
-        <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/demo/chart-pie-demo.js"></script>
+        <script>
+            var x = document.getElementById("myDIV");
+            x.style.display = "none";
+        </script>
 
 </body>
 

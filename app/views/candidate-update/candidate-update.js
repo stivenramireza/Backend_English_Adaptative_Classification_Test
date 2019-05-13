@@ -60,6 +60,7 @@ let update = function () {
                                 examen_activo: false
     }));
     }else{
-        $('#failed').show();
+        alertify.set('notifier','position', 'bottom-center');
+        alertify.notify('No se ha aceptado la autorización', 'error', 3);
     }
 }

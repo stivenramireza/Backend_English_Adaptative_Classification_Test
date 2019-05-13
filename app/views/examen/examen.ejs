@@ -542,7 +542,7 @@
                 loading.hide();
             });
         
-            var count = 0;
+            var count = 1;
 
         $("label.btn").on('click', function () {
             count++;
@@ -557,7 +557,7 @@
                 $('#loadbar').fadeOut();
                 /* something else */
             }, 2500);
-            if (count == 5){
+            if (count == 16){
                 window.location.replace("/candidate/test/final_result");
             }
         });

@@ -92,7 +92,7 @@
         <li class="nav-item">
             <a class="nav-link collapsed" href="/admin/profile/edit-admin">
                 <i class="fas fa-users-cog"></i>
-                <span>Gestionar administrador</span></a>
+                <span>Gestionar roles</span></a>
         </li>
 
         <hr class="sidebar-divider">
@@ -102,28 +102,16 @@
         </div>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#reportes"
-                aria-expanded="true" aria-controls="reportes">
+            <a class="nav-link collapsed" href="/admin/profile/statistics">
                 <i class="fas fa-file-alt"></i>
                 <span>Reportes</span>
             </a>
-            <div id="reportes" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Examenes Anteriores:</h6>
-                    <a class="collapse-item"
-                        href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/buttons.html">Último
-                        mes</a>
-                    <a class="collapse-item"
-                        href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/cards.html">Últimos 6
-                        meses</a>
-                    <a class="collapse-item"
-                        href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/cards.html">Último
-                        año</a>
-                    <a class="collapse-item"
-                        href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/cards.html">Por profesor
-                        calificador</a>
-                </div>
-            </div>
+        </li>
+        
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="/admin/profile/gap">
+                <i class="fas fa-chart-pie"></i>
+                <span>Desfase Escrito vs Oral</span></a>
         </li>
 
         <hr class="sidebar-divider">
@@ -250,8 +238,7 @@
                                         <div class=" col mb-3">
                                             <label for="username">Fecha de nacimiento</label>
                                             <div class="input-group">
-                                                <input type="text" class="form-control" id="birthday"
-                                                    placeholder="AAAA/MM/DD" required>
+                                                <input type="date" class="form-control" id="birthday" required>
                                                 <div class="invalid-feedback" style="width: 100%;">
                                                     Se requiere que llene el campo "Fecha de nacimiento" con el formato
                                                     indicado.

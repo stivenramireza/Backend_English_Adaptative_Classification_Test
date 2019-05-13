@@ -3,25 +3,38 @@ let login = function () {
     http.responseType = 'json';
     http.open("POST", "/api/signin/admin", true); 
     http.setRequestHeader("Content-type", "application/json");
+    var exito = false;
     http.onreadystatechange = function () {
         if (http.readyState == 4 && http.status == 200) {
+            var texto = http.response;
+            localStorage.setItem("username", document.getElementById("inputUsername").value);
             localStorage.setItem("mikey", http.response.token);
-            window.location.replace('/admin/profile');
+            if(texto.status == 'failed'){
+                exito = false;
+            }else{
+                exito = true;
+                window.location.replace('/admin/profile');
+            }
         }
     }
-    http.send(JSON.stringify({ username: document.getElementById("inputUsername").value, 
-    password: document.getElementById("inputPassword").value }));
+    var usernameAdmin = document.getElementById("inputUsername").value;
+    var passwordAdmin = document.getElementById("inputPassword").value;
+    http.send(JSON.stringify({ username: usernameAdmin, 
+        password:  passwordAdmin}));
+    if(!exito){
+        alertify.set('notifier','position', 'bottom-center');
+        alertify.notify('El usuario o clave es incorrecto', 'error', 3);
+    }
 }
 
 $(document).ready(function () {
-    $('#failed').hide();
     $('#btnLogin').click(function () {
-        var emailUser = $("#inputUsername").val();
-        var passwordUser = $("#inputPassword").val();
+        var username = $("#inputUsername").val();
+        var password = $("#inputPassword").val();
 
-        if (emailUser == '' || passwordUser == '') {
-            $('#failed').show();
-        } 
+        if (username == '' || password == '') {
+            alertify.set('notifier','position', 'bottom-center');
+            alertify.notify('No se han completado todos los campos', 'error', 3);
+        }
     });
 });
-

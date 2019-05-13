@@ -11,7 +11,7 @@
 
     <title>Dashboard</title>
     <script src="/admin-profile/admin-register.js"></script>
-    <script src="/admin-profile/candidates/admin-exam-enable.js"></script>
+    <script src="/admin-profile/statistics/admin-statistics.js"></script>
     <!-- Custom fonts for this template-->
     <link href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/fontawesome-free/css/all.min.css"
         rel="stylesheet" type="text/css">
@@ -60,7 +60,7 @@
                 Aspirantes
             </div>
 
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="/admin/profile/exam-enable">
                     <i class="fas fa-fw fa-pencil-alt"></i>
                     <span>Habilitar examen</span></a>
@@ -102,13 +102,13 @@
                 Estadísticas
             </div>
 
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link collapsed" href="/admin/profile/statistics">
                     <i class="fas fa-file-alt"></i>
                     <span>Reportes</span>
                 </a>
             </li>
-
+            
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/admin/profile/gap">
                     <i class="fas fa-chart-pie"></i>
@@ -130,11 +130,9 @@
                 <div id="preguntas" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gestón de preguntas:</h6>
-                        <a class="collapse-item"
-                            href="/admin/profile/add-question">Agregar
+                        <a class="collapse-item" href="/admin/profile/add-question">Agregar
                             pregunta nueva</a>
-                        <a class="collapse-item"
-                            href="/admin/profile/edit-question">Editar
+                        <a class="collapse-item" href="/admin/profile/edit-question">Editar
                             pregunta</a>
                     </div>
                 </div>
@@ -156,15 +154,101 @@
 
                     <div class="container" style="max-width: 700px">
                         <div class="py-5 text-center">
-                            <p class="lead">Señor Administrador, ingrese los datos solicitados a continuación para
-                                habilitar el examen de un aspirante registrado.</p>
+                            <p class="lead">Señor Administrador, ingrese los datos que desee consultar para las
+                                estadisticas</p>
                         </div>
                         <div class="container" style="width: 100%">
                             <form class="needs-validation" novalidate>
                                 <div class="row">
                                     <div class="col mb-3">
+                                        <label for="fecha_inicio">Fecha inicial</label>
+                                        <div class="input-group">
+                                            <input type="date" class="form-control" id="fecha_inicio" required>
+                                            <div class="invalid-feedback" style="width: 100%;">
+                                                Se requiere que llene el campo "Fecha inicial" con el formato
+                                                indicado.
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col mb-3">
+                                        <label for="fecha_fin">Fecha final</label>
+                                        <div class="input-group">
+                                            <input type="date" class="form-control" id="fecha_fin" required>
+                                            <div class="invalid-feedback" style="width: 100%;">
+                                                Se requiere que llene el campo "Fecha final" con el formato
+                                                indicado.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col mb-3">
+                                        <label for="nivel">Nivel de clasificación escrito</label>
+                                        <select class="custom-select d-block w-100" id="nivel" required>
+                                            <option value="">---</option>
+                                            <option value="0">Preparatorio</option>
+                                            <option value="1">Nivel 1</option>
+                                            <option value="2">Nivel 2</option>
+                                            <option value="3">Nivel 3</option>
+                                            <option value="4">Nivel 4</option>
+                                            <option value="5">Nivel 5</option>
+                                            <option value="6">Nivel 6</option>
+                                            <option value="7">Nivel 7</option>
+                                            <option value="8">Nivel 8</option>
+                                            <option value="9">Nivel 9</option>
+                                            <option value="10">Nivel 10</option>
+                                            <option value="11">Nivel 11</option>
+                                            <option value="12">Nivel 12</option>
+                                            <option value="13">Nivel 13</option>
+                                            <option value="14">Nivel 14</option>
+                                            <option value="15">Nivel 15</option>
+                                            <option value="16">Nivel 16</option>
+                                            <option value="17">Nivel 17</option>
+                                            <option value="18">Cursos avanzados</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Por favor seleccione un nivel.
+                                        </div>
+                                    </div>
+
+                                    <div class="col mb-3">
+                                        <label for="nivel">Nivel de clasificación final</label>
+                                        <select class="custom-select d-block w-100" id="nivel_final" required>
+                                            <option value="">---</option>
+                                            <option value="0">Preparatorio</option>
+                                            <option value="1">Nivel 1</option>
+                                            <option value="2">Nivel 2</option>
+                                            <option value="3">Nivel 3</option>
+                                            <option value="4">Nivel 4</option>
+                                            <option value="5">Nivel 5</option>
+                                            <option value="6">Nivel 6</option>
+                                            <option value="7">Nivel 7</option>
+                                            <option value="8">Nivel 8</option>
+                                            <option value="9">Nivel 9</option>
+                                            <option value="10">Nivel 10</option>
+                                            <option value="11">Nivel 11</option>
+                                            <option value="12">Nivel 12</option>
+                                            <option value="13">Nivel 13</option>
+                                            <option value="14">Nivel 14</option>
+                                            <option value="15">Nivel 15</option>
+                                            <option value="16">Nivel 16</option>
+                                            <option value="17">Nivel 17</option>
+                                            <option value="18">Cursos avanzados</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Por favor seleccione un nivel.
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col mb-3">
                                         <label for="country">Tipo de documento</label>
-                                        <select class="custom-select d-block w-100" id="doc_type" required>
+                                        <select class="custom-select d-block w-100" id="dt" required>
                                             <option value="0">Seleccione el tipo de identificación...</option>
                                             <option value="1">Cédula de Ciudadanía</option>
                                             <option value="2">Cédula de Ciudadanía Ecuatoriana</option>
@@ -186,22 +270,41 @@
                                     </div>
 
                                     <div class="col mb-3">
-                                        <label for="firstName">Documento de identidad</label>
-                                        <input type="text" class="form-control" id="docnumber" placeholder="" value=""
+                                        <label for="clasificador">Documento del calificador</label>
+                                        <input type="text" class="form-control" id="clasificador" placeholder="" value=""
                                             required>
                                         <div class="invalid-feedback">
                                             Se requiere que llene el campo "Documento de identidad" correctamente.
                                         </div>
-                                    </div>
+                                    </div>                                    
                                 </div>
 
+                                <br>
+
                                 <center>
-                                    <button id="btnHabilitar" class="btn btn-primary" onclick=habilitarExamen() type="button">Habilitar
-                                        examen</button>
+                                    <button id="btnHabilitar" class="btn btn-primary" onclick=queryStatistics()
+                                        type="button">Consultar</button>
                                 </center>
-                                
+
+                            
+
                             </form>
+                            <br>
+                            <p id="failed" style="color:#bd1a1a ;display: none;text-align: center" ;>No se han
+                                completado todos los campos.</p>
+                            <br><br>
+                            <br>
                         </div>
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3" id="header" style="display: none">
+                              <h6 class="m-0 font-weight-bold text-primary">Registros encontrados: <span id="registros"></span></h6>
+                            </div>
+                            <div class="card-body" style="display: none">
+                                <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                                </div>
+                            </div>
+                    </div>
+                        
                     </div>
                     <br>
                 </div>
