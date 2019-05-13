@@ -34,6 +34,17 @@ function updateInfoCandidate(req, res){
     })
 }
 
+function updateCandidateByDoc(req, res){
+    let docnumber = req.query.docnumber;
+    let update = req.body
+    Student.update({docnumber: docnumber}, update, (err, candidateUpdated) => {
+        if (err) return res.status(500).send({ message: `Error al actualizar la información del aspirante: ${err}` })
+        console.log(candidateUpdated)
+        res.status(200).send({ new_candidate: candidateUpdated })
+    })
+}
+
+
 function login(req, res){
     var errors = validationResult(req);
     if(!errors.isEmpty()){
@@ -142,7 +153,8 @@ module.exports = {
     login,
     register,
     getInfoCandidate,
-    updateInfoCandidate
+    updateInfoCandidate,
+    updateCandidateByDoc
 };
 
 

@@ -1,3 +1,19 @@
+function updateCandidate() {
+    var http2 = new XMLHttpRequest();
+    var dn = localStorage.getItem('docnumber');
+    var params3 = 'docnumber=' + dn;
+    console.log(params)
+    http2.responseType = 'json';
+    http2.open("PUT", "/api/candidate/update-doc" + '?' + params3, true);
+    http2.setRequestHeader("Content-type", "application/json");
+    http2.send(JSON.stringify({
+        examen_activo: false
+    }));
+    console.log(melisimo);
+
+}
+
+
 function updateExamen(nota_final, level) {
     var http = new XMLHttpRequest();
     var id = localStorage.getItem('_idExamen');
@@ -11,7 +27,7 @@ function updateExamen(nota_final, level) {
     console.log("Nota final: " + nota_final)
     console.log("Level: " + level)
     localStorage.setItem("lv", level);
-    
+
 
     http.send(JSON.stringify({
         grade: nota_final,
@@ -83,7 +99,7 @@ function post() {
                 }
             } else if (gap == 7) {
                 if (c_parte3 >= 0 && c_parte3 <= 1.495) {
-                    level = "13";   
+                    level = "13";
                 } else {
                     level = "14";
                 }
@@ -184,6 +200,10 @@ req.onreadystatechange = function () {
                 setTimeout(function () {
                     updateExamen(nota_final, level);
                     console.log("update melo")
+                    setTimeout(function () {
+                        updateCandidate();
+                        console.log("candidate updated")
+                    }, 1000)
                 }, 1000)
             }, 1000);
         }, 1000);
