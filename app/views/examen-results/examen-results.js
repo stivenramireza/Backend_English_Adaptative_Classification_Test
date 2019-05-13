@@ -38,26 +38,67 @@ function post() {
             console.log("Nota 3: " + c_parte3);
             console.log("Rango: " + gap);
 
+            //gap = 1;
+            //c_parte1 = "3.25";
+            //c_parte3 = 0;
+            //c_parte2 = 0;
+
             if (gap == 0) {
                 level = "Preparatorio";
             } else if (gap == 1) {
-                level = "1 o 2";
+                if (c_parte1 >= 1.5 && c_parte1 <= 2.245) {
+                    level = "1";
+                } else {
+                    level = "2";
+                }
             } else if (gap == 2) {
-                level = "3 o 4";
+                if (c_parte1 >= 3 && c_parte1 <= 3.495) {
+                    level = "3";
+                } else {
+                    level = "4";
+                }
             } else if (gap == 3) {
-                level = "5 o 6";
+                if (c_parte1 >= 4 && c_parte1 <= 4.5) {
+                    level = "5";
+                } else {
+                    level = "6";
+                }
             } else if (gap == 4) {
-                level = "7 u 8";
+                if (c_parte2 >= 0 && c_parte2 <= 1.495) {
+                    level = "7";
+                } else {
+                    level = "8";
+                }
             } else if (gap == 5) {
-                level = "9 o 10";
+                if (c_parte2 >= 3 && c_parte2 <= 3.495) {
+                    level = "9";
+                } else {
+                    level = "10";
+                }
             } else if (gap == 6) {
-                level = "11 o 12";
+                if (c_parte2 >= 4 && c_parte2 <= 4.5) {
+                    level = "11";
+                } else {
+                    level = "12";
+                }
             } else if (gap == 7) {
-                level = "13 o 14";
+                if (c_parte3 >= 0 && c_parte3 <= 1.495) {
+                    level = "13";   
+                } else {
+                    level = "14";
+                }
             } else if (gap == 8) {
-                level = "15 o 16";
+                if (c_parte3 >= 3 && c_parte3 <= 3.495) {
+                    level = "15";
+                } else {
+                    level = "16";
+                }
             } else {
-                level = "17 o avanzados"
+                if (c_parte3 >= 4 && c_parte3 <= 4.5) {
+                    level = "17";
+                } else {
+                    level = "Avanzados";
+                }
             }
 
             console.log("Nivel: " + level);
