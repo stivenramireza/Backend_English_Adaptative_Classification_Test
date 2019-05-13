@@ -54,16 +54,16 @@ function login(req, res){
         if (err) return res.status(500).send({ 
             message: err 
         })
-        if (new_candidate == null) {
-            return res.status(404).send({ 
-                message: 'Aspirante incorrecto',
-                status: "failed" 
-            })
-        }
+//  if (new_candidate == null) {
+//     return res.status(404).send({ 
+//       message: 'Aspirante incorrecto',
+//     status: "failed" 
+// })
+//}
         return res.status(200).send({
             message: 'Login exitoso del aspirante',
             docnumber: req.body.docnumber,
-            token: service.createToken(new_candidate),
+//token: service.createToken(new_candidate),
             status: "success"
         })
     })
