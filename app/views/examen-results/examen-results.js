@@ -140,11 +140,15 @@ function calcularNotas(array_respuestas, array_partes) {
         c_parte2 = 5;
     } else {
         c_parte2 = c_parte2 / counter2;
+    } if (c_parte1 < 4) {
+        c_parte2 = 0;
     }
     if (counter3 == 0) {
         c_parte3 = 0;
     } else {
         c_parte3 = c_parte3 / counter3;
+    } if (c_parte2 < 4) {
+        c_parte3 = 0;
     }
     nota_final = ((c_parte1 + c_parte2 + c_parte3) / 3).toFixed(1);
 

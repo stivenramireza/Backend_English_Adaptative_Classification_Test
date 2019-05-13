@@ -18,6 +18,7 @@ let getGrades = function () {
             document.getElementById('pa3').innerHTML = String(textoId.part3).substr(0, 3);
             document.getElementById('tot').innerHTML = String(textoId.grade).substr(0, 3);
             document.getElementById('niv').innerHTML = textoId.classified_level;
+            document.getElementById('fin').innerHTML = textoId.final_level;
             var array_respuestas = textoId.responses;
             var array_partes = textoId.parts;
             nota1 = textoId.part1 * 20;
