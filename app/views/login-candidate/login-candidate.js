@@ -8,13 +8,24 @@ let login = function () {
             localStorage.setItem("docnumber", document.getElementById("docnumber").value);
             localStorage.setItem("doctype", document.getElementById("doctype").value);
             localStorage.setItem("mikey", http.response.token);
-            check();
+            if(http.response.status == 'failed'){
+                exito = false;
+            }else{
+                exito = true;
+                check();
+            }
         }
     }
+    var doc_type = document.getElementById("doctype").value;
+    var doc_number = document.getElementById("docnumber").value;
     http.send(JSON.stringify({
-        doctype: document.getElementById("doctype").value,
-        docnumber: document.getElementById("docnumber").value
+        doctype: doc_type,
+        docnumber: doc_number
     }));
+    if(!exito && doc_type != "" && doc_number != ""){
+        alertify.set('notifier','position', 'bottom-center');
+        alertify.notify('El usuario o clave es incorrecto', 'error', 3);
+    }
 }
 
 let check = function () {
