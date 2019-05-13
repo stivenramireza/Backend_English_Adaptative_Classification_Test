@@ -17,8 +17,25 @@ let getGrades = function () {
             document.getElementById('pa2').innerHTML = String(textoId.part2).substr(0, 3);
             document.getElementById('pa3').innerHTML = String(textoId.part3).substr(0, 3);
             document.getElementById('tot').innerHTML = String(textoId.grade).substr(0, 3);
-            document.getElementById('niv').innerHTML = textoId.classified_level;
-            document.getElementById('fin').innerHTML = textoId.final_level;
+            
+            if (textoId.classified_level == 18){
+                document.getElementById('niv').innerHTML = "Cursos avanzados";
+            } else {
+                document.getElementById('niv').innerHTML = textoId.classified_level;
+            }
+            
+            if (textoId.final_level == 18){
+                document.getElementById('fin').innerHTML = "Advanced Grammar";
+            } else if (textoId.final_level == 19){
+                document.getElementById('fin').innerHTML = "Vocabulary in Context";
+            } else if (textoId.final_level == 20){
+                document.getElementById('fin').innerHTML = "Listening and Speaking";
+            } else if (textoId.final_level == 21){
+                document.getElementById('fin').innerHTML = "Reading and Writing";
+            } else {
+                document.getElementById('fin').innerHTML = textoId.final_level;
+            }
+            
             var array_respuestas = textoId.responses;
             var array_partes = textoId.parts;
             nota1 = textoId.part1 * 20;
