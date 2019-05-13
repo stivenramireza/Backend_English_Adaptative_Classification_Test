@@ -139,13 +139,10 @@ function next_question(req, res) {
 function statistics(req, res){
     
     let clasificador = req.query.clasificador;
-    let fecha_inicio = new Date(req.query.fecha_inicio);
+    let fecha_inicio = req.query.fecha_inicio;
+    let fecha_fin = req.query.fecha_fin;
     var ini = moment(fecha_inicio);
-    let fecha_fin = new Date(req.query.fecha_fin);
     var fi = moment(fecha_fin);
-
-    fecha_inicio = moment().toISOString(fecha_inicio);
-    fecha_fin = moment().toISOString(fecha_fin);
 
     let classified_level = req.query.classified_level;
     let final_level = req.query.final_level;
@@ -157,7 +154,7 @@ function statistics(req, res){
         
     }
     if (fecha_inicio!="" && fecha_fin!=""){
-        queryString = queryString + "\"fecha\": { \"$gt\": { \"$date\": \""+ini+"\" }, \"$lt\": { \"$date\": \""+fi+"\"} }, ";
+        queryString = queryString + "\"fecha\": { \"$gt\": new Date("+ini+") , \"$lt\": new Date("+fi+") }, ";
     }
     if (classified_level!=""){
         queryString = queryString + "\"classified_level\": " + classified_level + ", ";
