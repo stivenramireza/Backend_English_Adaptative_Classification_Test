@@ -13,7 +13,8 @@ let getGap = function () {
             console.log(texto.classified_level);
             if(texto.classified_level === "Preparatorio") {
                 var clasificacion_escrita = 0;
-                console.log(clasificacion_escrita);
+            } else if (texto.classified_level === "Avanzados") {
+                var clasificacion_escrita = 18;
             } else {
                 clasificacion_escrita = (texto.classified_level).substring(0,2);
             }
