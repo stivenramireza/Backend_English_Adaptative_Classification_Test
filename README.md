@@ -1,6 +1,6 @@
 # Examen Adaptativo de Clasificación de Inglés (EACI)
 
-Aplicación web para el examen adaptativo de clasificación de inglés del centro de idiomas de la Universidad EAFIT usando modelos de Inteligencia Artificial (Machine Learning y Deep Learning).
+Aplicación web para el examen adaptativo de clasificación de inglés del centro de idiomas de la Universidad EAFIT usando modelos de Inteligencia Artificial (Machine Learning y Deep Learning). 
 
 ## Integrantes
 
