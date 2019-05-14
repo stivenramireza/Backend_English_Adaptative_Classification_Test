@@ -1,12 +1,15 @@
+var barGraphSeries;
+var barGraphDrilldown;
+
 let queryStatistics = function () {
-    document.getElementById("header").style.display="inline";
+    document.getElementById("header").style.display = "inline";
     var clasificador = document.getElementById("clasificador").value;
     var fecha_inicio = document.getElementById("fecha_inicio").value;
     var fecha_fin = document.getElementById("fecha_fin").value;
     var classified_level = document.getElementById("nivel").value;
     var final_level = document.getElementById("nivel_final").value;
     var req = new XMLHttpRequest();
-    var params = 'clasificador=' + clasificador+'&fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin+'&classified_level='+classified_level+'&final_level='+final_level;
+    var params = 'clasificador=' + clasificador + '&fecha_inicio=' + fecha_inicio + '&fecha_fin=' + fecha_fin + '&classified_level=' + classified_level + '&final_level=' + final_level;
     req.responseType = 'json';
     req.open("GET", '/test/statistics' + '?' + params, true);
     req.setRequestHeader("Content-type", "application/json");
@@ -37,6 +40,7 @@ let queryStatistics = function () {
             }, Object.create(null));
 
             var groupByMonth = query.reduce(function (acc, obj) {
+                console.log(query)
                 var year, month, week
                 var b = obj.fecha.split(/\D/);
                 // Get custom week number, zero padded
@@ -63,68 +67,104 @@ let queryStatistics = function () {
             console.log(groupByFL)
             console.log("agrupacion clasificador")
             console.log(groupByClasificador)
+
+            graphMonth(groupByMonth);
+
         }
     }
 }
 
+let graphMonth = function (yearsArray) {
+    var array = [];
+    var array2 = [];
+    var tempMesTotal = 0
+    var jsonTemporal, jsonTemporal2
+    for (const year in yearsArray) {
+        for (const month in yearsArray[year]) {
+
+            jsonTemporal = "{ "
+            jsonTemporal2 = "{ \"name\" : \"" + month + "/" + year + "\", \"id\" : \"" + month + "/" + year + "\", \"data\" : [ "
+
+            for (const week in yearsArray[year][month]) {
+                tempMesTotal = tempMesTotal + yearsArray[year][month][week].length;
+                console.log("año: " + year + " mes: " + month + " semana: " + week + " #: " + yearsArray[year][month][week].length);
+                jsonTemporal2 = jsonTemporal2 + "[ \"Semana " + week + "\"," + yearsArray[year][month][week].length + "],"
+            } 
+            jsonTemporal = jsonTemporal + " \"name\" : \"" + month + "/" + year + "\", \"y\" : " + tempMesTotal + ", \"drilldown\" : \"" + month + "/" + year + "\" }"
+            tempMesTotal = 0
+            jsonTemporal2 = jsonTemporal2.substr(0, (jsonTemporal2.length - 1));
+            jsonTemporal2 = jsonTemporal2 + "] }"
+            array.push(JSON.parse(jsonTemporal))
+            array2.push(JSON.parse(jsonTemporal2))
+
+            barGraphSeries = array;
+            barGraphDrilldown = array2;
+        }
+    }
+}
+
+
+
 let getGraph = function () {
+    console.log(barGraphSeries)
+    console.log(barGraphDrilldown)
     y.style.display = "block";
     var tipo_grafica = document.getElementById("tipo_grafica").value;
-    document.getElementById("texto_span").innerHTML = "Porcentaje de aciertos";
     if (tipo_grafica == '0') {
         y.style.display = "none";
     } else if (tipo_grafica == '1') {
         x.style.display = "block";
-        Highcharts.chart('container', {
+
+        Highcharts.chart('g1', {
             chart: {
                 type: 'column'
             },
             title: {
-                text: ''
+                text: 'Registro de examenes por meses, años y semanas'
+            },
+            subtitle: {
+                text: 'Haz click en las barras para ver más información'
             },
             xAxis: {
                 type: 'category',
-                labels: {
-                    rotation: -45,
-                    style: {
-                        fontSize: '13px',
-                        fontFamily: 'Verdana, sans-serif'
-                    }
-                }
+
             },
             yAxis: {
-                min: 0,
                 title: {
-                    text: 'Niveles de Clasificación'
+                    text: 'Numero de registros'
                 }
+
             },
             legend: {
                 enabled: false
             },
-            tooltip: {
-                pointFormat: 'Porcentaje: <b>{point.y:.0f}%</b>'
-            },
-            series: [{
-                name: 'Porcentaje',
-                data: [
-                    ['Parte 1', 5],
-                    ['Parte 2', 6],
-                    ['Parte 3', 7],
-                ],
-                dataLabels: {
-                    enabled: true,
-                    rotation: -90,
-                    color: '#FFFFFF',
-                    align: 'right',
-                    format: '{point.y:.0f}', // one decimal
-                    y: 17, // 10 pixels down from the top
-                    style: {
-                        fontSize: '13px',
-                        fontFamily: 'Verdana, sans-serif'
+            plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y:.0f}'
                     }
                 }
-            }]
+            },
+
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.0f}</b> registros del total<br/>'
+            },
+
+            series: [
+                {
+                    name: " Meses y años",
+                    colorByPoint: true,
+                    data: barGraphSeries
+                }
+            ],
+            drilldown: {
+                series: barGraphDrilldown
+            }
         });
+
     } else if (tipo_grafica == '2') {
         x.style.display = "block";
         document.getElementById("texto_span").innerHTML = "Porcentaje de aciertos";

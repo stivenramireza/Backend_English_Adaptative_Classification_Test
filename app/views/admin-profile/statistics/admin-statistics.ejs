@@ -113,7 +113,7 @@
                     <i class="fas fa-fw fa-award"></i>
                     <span>Calificaciones Individuales</span></a>
             </li>
-            
+
             <li class="nav-item">
                 <a class="nav-link " href="/admin/profile/gap">
                     <i class="fas fa-chart-pie"></i>
@@ -279,12 +279,12 @@
 
                                     <div class="col mb-3">
                                         <label for="clasificador">Documento del calificador</label>
-                                        <input type="text" class="form-control" id="clasificador" placeholder="" value=""
-                                            required>
+                                        <input type="text" class="form-control" id="clasificador" placeholder=""
+                                            value="" required>
                                         <div class="invalid-feedback">
                                             Se requiere que llene el campo "Documento de identidad" correctamente.
                                         </div>
-                                    </div>                                    
+                                    </div>
                                 </div>
 
                                 <br>
@@ -294,7 +294,7 @@
                                         type="button">Consultar</button>
                                 </center>
 
-                            
+
 
                             </form>
                             <br>
@@ -304,124 +304,132 @@
                             <br>
                         </div>
                         <div id="myDIV">
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3" id="header" style="display: none">
-                              <h6 class="m-0 font-weight-bold text-primary">Registros encontrados: <span id="registros"></span></h6>
-                            </div>
-                            <div class="card-body" style="display: none">
-                                <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3" id="header" style="display: none">
+                                    <h6 class="m-0 font-weight-bold text-primary">Registros encontrados: <span
+                                            id="registros"></span></h6>
+                                </div>
+                                <div class="card-body" style="display: none">
+                                    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
                                 </div>
                             </div>
                         </div>
+
                         <div id="myDIV2">
+                            <center>
+                                <div class="py-5 text-center" style="width: 80%; text-align: center; border: 5px">
+                                    <p class="lead">Seleccione el tipo de gráfica para ver el resultado de los filtros
+                                        de búsqueda.
+                                    </p>
+                                </div>
+                            </center>
 
-                                <center>
-                                    <div class="py-5 text-center" style="width: 80%; text-align: center; border: 5px">
-                                        <p class="lead">Seleccione el tipo de gráfica para ver el resultado de los filtros 
-                                            de búsqueda.
-                                        </p>
+                            <center>
+                                <div class="col mb-3" style="width: 40%; text-align: center; border: 5px">
+                                    <label for="country">Tipo de gráfica</label>
+                                    <select style="width: 50%" class="custom-select d-block w-100" id="tipo_grafica"
+                                        required>
+                                        <option value="0">Seleccione el tipo de gráfica...</option>
+                                        <option value="1">Gráfica de Barras</option>
+                                        <option value="2">Gráfica Circular</option>
+                                        <option value="3">Gráfica de Líneas</option>
+                                        <option value="4">Gráfica de Agrupamiento</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Por favor seleccione un tipo de gráfica.
                                     </div>
-                                </center>
-    
-                                <center>
-                                    <div class="col mb-3" style="width: 40%; text-align: center; border: 5px">
-                                        <label for="country">Tipo de gráfica</label>
-                                        <select style="width: 50%" class="custom-select d-block w-100" id="tipo_grafica"
-                                            required>
-                                            <option value="0">Seleccione el tipo de gráfica...</option>
-                                            <option value="1">Gráfica de Barras</option>
-                                            <option value="2">Gráfica Circular</option>
-                                            <option value="3">Gráfica de Líneas</option>
-                                            <option value="4">Gráfica de Agrupamiento</option>
-                                        </select>
-                                        <div class="invalid-feedback">
-                                            Por favor seleccione un tipo de gráfica.
-                                        </div>
-                                    </div>
-                                </center>
-    
-                                <center>
-                                    <button id="btnGap" class="btn btn-primary" onclick=getGraph()
-                                        type="button">Ver gráfica</button>
-                                </center>
-                            </div>
-                    </div>
-                        
-                    </div>
-                    <br>
-                </div>
+                                </div>
+                            </center>
 
-                <br><br><br><br>
+                            <center>
+                                <button id="btnGap" class="btn btn-primary" onclick=getGraph() type="button">Ver
+                                    gráfica</button>
+                            </center>
 
-                <!-- End of Main Content -->
-
-                <!-- Footer -->
-                <center>
-                    <footer class="sticky-footer bg-white" style="position: absolute; bottom: 0; width: 83%">
-                        <div class="container my-auto">
-                            <div class="copyright my-auto" style="text-align: center">
-                                <span> &copy; 2019 Universidad EAFIT</span>
-                            </div>
+                            <br>
+                            <div id="g1" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
                         </div>
-                    </footer>
-                </center>
-                <!-- End of Footer -->
+                    </div>
 
+                </div>
+                <br>
             </div>
-            <!-- End of Content Wrapper -->
+
+            <br><br><br><br>
+
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <center>
+                <footer class="sticky-footer bg-white" style="position: absolute; bottom: 0; width: 83%">
+                    <div class="container my-auto">
+                        <div class="copyright my-auto" style="text-align: center">
+                            <span> &copy; 2019 Universidad EAFIT</span>
+                        </div>
+                    </div>
+                </footer>
+            </center>
+            <!-- End of Footer -->
 
         </div>
-        <!-- End of Page Wrapper -->
+        <!-- End of Content Wrapper -->
 
-        <!-- Scroll to Top Button-->
-        <a class="scroll-to-top rounded" href="#page-top">
-            <i class="fas fa-angle-up"></i>
-        </a>
+    </div>
+    <!-- End of Page Wrapper -->
 
-        <!-- Logout Modal-->
-        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">¿Estás seguro(a) de salir?</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar
-                        su sesión actual.</div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                        <a class="btn btn-primary" href="/admin/logout">Cerrar sesión</a>
-                    </div>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">¿Estás seguro(a) de salir?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar
+                    su sesión actual.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-primary" href="/admin/logout">Cerrar sesión</a>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Bootstrap core JavaScript-->
-        <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/jquery/jquery.min.js"></script>
-        <script
-            src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/jquery/jquery.min.js"></script>
+    <script
+        src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-        <!-- Core plugin JavaScript-->
-        <script
-            src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script
+        src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-        <!-- Custom scripts for all pages-->
-        <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"></script>
 
-        <!-- Page level plugins -->
+    <!-- Page level plugins -->
 
-        <script>
-            var x = document.getElementById("myDIV");
-            x.style.display = "none";
-        </script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/drilldown.js"></script>
 
-        <script>
-            var y = document.getElementById("myDIV2");
-            y.style.display = "none";
-        </script>
+    <script>
+        var x = document.getElementById("myDIV");
+        x.style.display = "none";
+    </script>
+
+    <script>
+        var y = document.getElementById("myDIV2");
+        y.style.display = "none";
+    </script>
 
 </body>
 
