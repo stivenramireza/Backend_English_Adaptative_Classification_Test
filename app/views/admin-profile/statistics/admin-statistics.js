@@ -19,6 +19,8 @@ let queryStatistics = function () {
             console.log(textoId)
             console.log(textoId.info_examen.length)
             document.getElementById("registros").innerHTML = textoId.info_examen.length;
+            x.style.display = "block";
+            y.style.display = "block";
         }
     }
 }

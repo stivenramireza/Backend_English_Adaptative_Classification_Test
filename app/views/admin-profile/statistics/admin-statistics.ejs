@@ -303,6 +303,7 @@
                             <br><br>
                             <br>
                         </div>
+                        <div id="myDIV">
                         <div class="card shadow mb-4">
                             <div class="card-header py-3" id="header" style="display: none">
                               <h6 class="m-0 font-weight-bold text-primary">Registros encontrados: <span id="registros"></span></h6>
@@ -311,11 +312,44 @@
                                 <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
                                 </div>
                             </div>
+                        </div>
+                        <div id="myDIV2">
+
+                                <center>
+                                    <div class="py-5 text-center" style="width: 80%; text-align: center; border: 5px">
+                                        <p class="lead">Seleccione el tipo de gráfica para ver el porcentaje de aciertos
+                                            del estudiante en el examen clasificatorio
+                                        </p>
+                                    </div>
+                                </center>
+    
+                                <center>
+                                    <div class="col mb-3" style="width: 40%; text-align: center; border: 5px">
+                                        <label for="country">Tipo de gráfica</label>
+                                        <select style="width: 50%" class="custom-select d-block w-100" id="tipo_grafica"
+                                            required>
+                                            <option value="0">Seleccione el tipo de gráfica...</option>
+                                            <option value="1">Gráfica de barras</option>
+                                            <option value="2">Gráfica Circular</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Por favor seleccione un tipo de gráfica.
+                                        </div>
+                                    </div>
+                                </center>
+    
+                                <center>
+                                    <button id="btnGap" class="btn btn-primary" onclick=getPercentage()
+                                        type="button">Ver gráfica</button>
+                                </center>
+                            </div>
                     </div>
                         
                     </div>
                     <br>
                 </div>
+
+                <br><br><br><br>
 
                 <!-- End of Main Content -->
 
@@ -376,6 +410,16 @@
         <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"></script>
 
         <!-- Page level plugins -->
+
+        <script>
+            var x = document.getElementById("myDIV");
+            x.style.display = "none";
+        </script>
+
+        <script>
+            var y = document.getElementById("myDIV2");
+            y.style.display = "none";
+        </script>
 
 </body>
 
