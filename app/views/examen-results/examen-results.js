@@ -1,3 +1,19 @@
+function updateCandidate() {
+    var http2 = new XMLHttpRequest();
+    var dn = localStorage.getItem('docnumber');
+    var params3 = 'docnumber=' + dn;
+    console.log(params)
+    http2.responseType = 'json';
+    http2.open("PUT", "/api/candidate/update-doc" + '?' + params3, true);
+    http2.setRequestHeader("Content-type", "application/json");
+    http2.send(JSON.stringify({
+        examen_activo: false
+    }));
+    console.log(melisimo);
+
+}
+
+
 function updateExamen(nota_final, level) {
     var http = new XMLHttpRequest();
     var id = localStorage.getItem('_idExamen');
@@ -11,7 +27,7 @@ function updateExamen(nota_final, level) {
     console.log("Nota final: " + nota_final)
     console.log("Level: " + level)
     localStorage.setItem("lv", level);
-    
+
 
     http.send(JSON.stringify({
         grade: nota_final,
@@ -83,7 +99,7 @@ function post() {
                 }
             } else if (gap == 7) {
                 if (c_parte3 >= 0 && c_parte3 <= 1.495) {
-                    level = "13";   
+                    level = "13";
                 } else {
                     level = "14";
                 }
@@ -97,7 +113,7 @@ function post() {
                 if (c_parte3 >= 4 && c_parte3 <= 4.5) {
                     level = "17";
                 } else {
-                    level = "Avanzados";
+                    level = "18";
                 }
             }
 
@@ -140,11 +156,15 @@ function calcularNotas(array_respuestas, array_partes) {
         c_parte2 = 5;
     } else {
         c_parte2 = c_parte2 / counter2;
+    } if (c_parte1 < 4) {
+        c_parte2 = 0;
     }
     if (counter3 == 0) {
         c_parte3 = 0;
     } else {
         c_parte3 = c_parte3 / counter3;
+    } if (c_parte2 < 4) {
+        c_parte3 = 0;
     }
     nota_final = ((c_parte1 + c_parte2 + c_parte3) / 3).toFixed(1);
 
@@ -180,6 +200,10 @@ req.onreadystatechange = function () {
                 setTimeout(function () {
                     updateExamen(nota_final, level);
                     console.log("update melo")
+                    setTimeout(function () {
+                        updateCandidate();
+                        console.log("candidate updated")
+                    }, 1000)
                 }, 1000)
             }, 1000);
         }, 1000);

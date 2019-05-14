@@ -1,6 +1,8 @@
 const Examen = require('../models/examen');
 const {validationResult} = require('express-validator/check');
 const mongoose = require('mongoose');
+const moment = require('moment');
+
 var request = require('request')
 
 
@@ -135,6 +137,7 @@ function next_question(req, res) {
 }
 
 function statistics(req, res){
+    
     let clasificador = req.query.clasificador;
     let fecha_inicio = req.query.fecha_inicio;
     let fecha_fin = req.query.fecha_fin;
@@ -148,17 +151,20 @@ function statistics(req, res){
         
     }
     if (fecha_inicio!="" && fecha_fin!=""){
-        queryString = queryString + "\"fecha\": { $gt: new Date('"+fecha_inicio+"'), $lt: new Date('"+fecha_fin+"') }, ";
+        queryString = queryString + "\"fecha\": { \"$gt\": \""+fecha_inicio+"\", \"$lt\": \""+fecha_fin+"\" }, ";
     }
     if (classified_level!=""){
         queryString = queryString + "\"classified_level\": " + classified_level + ", ";
+    }
+    if (final_level != ""){
+        queryString = queryString + "\"final_level\": " + final_level + ", ";
     }
     
     queryString = queryString.substr(0, (queryString.length-2));
     queryString = queryString + " }";
     console.log(queryString);
 
-    Examen.find(queryString, (err, info_examen) => {
+    Examen.find(JSON.parse(queryString), (err, info_examen) => {
         if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}` })
         if (!info_examen) return res.status(404).send({ message: `No hay registros` })
         res.status(200).send({ info_examen })

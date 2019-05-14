@@ -11,6 +11,13 @@
 
     <title>Admin Profile - Dashboard</title>
     <script src="/admin-profile/candidates/admin-candidate-grades.js"></script>
+
+    <!--Scripts de Gráficas de Barras-->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+
     <!-- Custom fonts for this template-->
     <link href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/fontawesome-free/css/all.min.css"
         rel="stylesheet" type="text/css">
@@ -26,7 +33,7 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav sidebar sidebar-dark accordion" style="background-color: #001a72" id="accordionSidebar">
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown arrow">
@@ -106,6 +113,12 @@
                     <i class="fas fa-file-alt"></i>
                     <span>Reportes</span>
                 </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="/admin/profile/individual-results">
+                    <i class="fas fa-fw fa-award"></i>
+                    <span>Calificaciones Individuales</span></a>
             </li>
 
             <li class="nav-item">
@@ -201,7 +214,8 @@
                     </div>
                     <br>
                     <center>
-                        <table style="width: 80%; text-align: center; border: 5px solid #ddd; display: none " border="1" id="table"  >
+                        <table style="width: 80%; text-align: center; border: 5px solid #ddd; display: none " border="1"
+                            id="table">
                             <tbody>
                                 <tr>
                                     <td style="width: 40%"><b>Estudiante</b></td>
@@ -235,84 +249,141 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><b>Nivel de clasificacion</b></td>
+                                    <td><b>Nivel de clasificación</b></td>
                                     <td><span id="niv"></span></td>
                                 </tr>
                                 <tr>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
+                                    <td><b>Nivel definitivo</b></td>
+                                    <td><span id="fin"></span></td>
                                 </tr>
                             </tbody>
                         </table>
                     </center>
-                </div>
 
+                    <br><br>
 
+                    <div>
+                        <div id="myDIV">
 
-                <!-- End of Main Content -->
+                            <center>
+                                <div class="py-5 text-center" style="width: 80%; text-align: center; border: 5px">
+                                    <p class="lead">Seleccione el tipo de gráfica para ver el porcentaje de aciertos
+                                        del estudiante en el examen clasificatorio
+                                    </p>
+                                </div>
+                            </center>
 
-                <!-- Footer -->
-                <footer class="sticky-footer bg-white" style="position: absolute; bottom: 0; width: 83%">
-                    <div class="container my-auto">
-                        <div class="copyright text-center my-auto">
-                            <span> &copy; 2019 Universidad EAFIT</span>
+                            <center>
+                                <div class="col mb-3" style="width: 40%; text-align: center; border: 5px">
+                                    <label for="country">Tipo de gráfica</label>
+                                    <select style="width: 50%" class="custom-select d-block w-100" id="tipo_grafica"
+                                        required>
+                                        <option value="0">Seleccione el tipo de gráfica...</option>
+                                        <option value="1">Gráfica de Barras</option>
+                                        <option value="2">Gráfica Circular</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Por favor seleccione un tipo de gráfica.
+                                    </div>
+                                </div>
+                            </center>
+
+                            <center>
+                                <button id="btnGap" class="btn btn-primary" onclick=getPercentage()
+                                    type="button">Ver gráfica</button>
+                            </center>
                         </div>
                     </div>
-                </footer>
-                <!-- End of Footer -->
+                </div>
 
+                <br><br>
+
+                <center>
+                    <div class="card shadow mb-4" id="myDIV2" style="width: 80%; text-align: center; border: 5px">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary"><span id="texto_span"></span></h6>
+                        </div>
+                        <div class="card-body">
+                            <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                        </div>
+                    </div>
+                </center>
             </div>
-            <!-- End of Content Wrapper -->
+
+            <br><br>
+
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span> &copy; 2019 Universidad EAFIT</span>
+                    </div>
+                </div>
+            </footer>
 
         </div>
-        <!-- End of Page Wrapper -->
+        <!-- End of Content Wrapper -->
 
-        <!-- Scroll to Top Button-->
-        <a class="scroll-to-top rounded" href="#page-top">
-            <i class="fas fa-angle-up"></i>
-        </a>
+    </div>
+    <!-- End of Page Wrapper -->
 
-        <!-- Logout Modal-->
-        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">¿Estás seguro(a) de salir?</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su
-                        sesión actual.</div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                        <a class="btn btn-primary" href="/admin/logout">Cerrar sesión</a>
-                    </div>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">¿Estás seguro(a) de salir?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su
+                    sesión actual.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-primary" href="/admin/logout">Cerrar sesión</a>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Bootstrap core JavaScript-->
+    <!-- Bootstrap core JavaScript-->
 
-        <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/jquery/jquery.min.js"></script>
-        <script
-            src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/jquery/jquery.min.js"></script>
+    <script
+        src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-        <!-- Core plugin JavaScript-->
-        <script
-            src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script
+        src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-        <!-- Custom scripts for all pages-->
-        <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"></script>
 
-        <!-- Page level plugins -->
-        <script
-            src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/chart.js/Chart.min.js"></script>
+    <!-- Page level plugins -->
+    <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/chart.js/Chart.min.js"></script>
 
-        <!-- Page level custom scripts -->
-        <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/demo/chart-area-demo.js"></script>
-        <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/demo/chart-pie-demo.js"></script>
+    <!-- Page level custom scripts -->
+    <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/demo/chart-area-demo.js"></script>
+    <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/demo/chart-pie-demo.js"></script>
+
+    <script>
+        var x = document.getElementById("myDIV");
+        x.style.display = "none";
+    </script>
+
+    <script>
+        var y = document.getElementById("myDIV2");
+        y.style.display = "none";
+    </script>
 
 </body>
 

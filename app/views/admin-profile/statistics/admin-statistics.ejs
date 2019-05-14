@@ -10,7 +10,6 @@
     <meta name="author" content="">
 
     <title>Dashboard</title>
-    <script src="/admin-profile/admin-register.js"></script>
     <script src="/admin-profile/statistics/admin-statistics.js"></script>
     <!-- Custom fonts for this template-->
     <link href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/fontawesome-free/css/all.min.css"
@@ -27,7 +26,7 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav sidebar sidebar-dark accordion" style="background-color: #001a72" id="accordionSidebar">
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown arrow">
@@ -91,7 +90,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="/admin/profile/edit-admin">
+                <a class="nav-link " href="/admin/profile/edit-admin">
                     <i class="fas fa-users-cog"></i>
                     <span>Gestionar roles</span></a>
             </li>
@@ -103,14 +102,20 @@
             </div>
 
             <li class="nav-item active">
-                <a class="nav-link collapsed" href="/admin/profile/statistics">
+                <a class="nav-link " href="/admin/profile/statistics">
                     <i class="fas fa-file-alt"></i>
                     <span>Reportes</span>
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link " href="/admin/profile/individual-results">
+                    <i class="fas fa-fw fa-award"></i>
+                    <span>Calificaciones Individuales</span></a>
+            </li>
             
             <li class="nav-item">
-                <a class="nav-link collapsed" href="/admin/profile/gap">
+                <a class="nav-link " href="/admin/profile/gap">
                     <i class="fas fa-chart-pie"></i>
                     <span>Desfase Escrito vs Oral</span></a>
             </li>
@@ -186,60 +191,63 @@
 
                                 <div class="row">
                                     <div class="col mb-3">
-                                        <label for="nivel">Nivel de clasificación escrito</label>
+                                        <label for="nivel">Curso de clasificación escrito</label>
                                         <select class="custom-select d-block w-100" id="nivel" required>
                                             <option value="">---</option>
                                             <option value="0">Preparatorio</option>
-                                            <option value="1">Nivel 1</option>
-                                            <option value="2">Nivel 2</option>
-                                            <option value="3">Nivel 3</option>
-                                            <option value="4">Nivel 4</option>
-                                            <option value="5">Nivel 5</option>
-                                            <option value="6">Nivel 6</option>
-                                            <option value="7">Nivel 7</option>
-                                            <option value="8">Nivel 8</option>
-                                            <option value="9">Nivel 9</option>
-                                            <option value="10">Nivel 10</option>
-                                            <option value="11">Nivel 11</option>
-                                            <option value="12">Nivel 12</option>
-                                            <option value="13">Nivel 13</option>
-                                            <option value="14">Nivel 14</option>
-                                            <option value="15">Nivel 15</option>
-                                            <option value="16">Nivel 16</option>
-                                            <option value="17">Nivel 17</option>
-                                            <option value="18">Cursos avanzados</option>
+                                            <option value="1">Curso 1</option>
+                                            <option value="2">Curso 2</option>
+                                            <option value="3">Curso 3</option>
+                                            <option value="4">Curso 4</option>
+                                            <option value="5">Curso 5</option>
+                                            <option value="6">Curso 6</option>
+                                            <option value="7">Curso 7</option>
+                                            <option value="8">Curso 8</option>
+                                            <option value="9">Curso 9</option>
+                                            <option value="10">Curso 10</option>
+                                            <option value="11">Curso 11</option>
+                                            <option value="12">Curso 12</option>
+                                            <option value="13">Curso 13</option>
+                                            <option value="14">Curso 14</option>
+                                            <option value="15">Curso 15</option>
+                                            <option value="16">Curso 16</option>
+                                            <option value="17">Curso 17</option>
+                                            <option value="18">Cursos Avanzados</option>
                                         </select>
                                         <div class="invalid-feedback">
-                                            Por favor seleccione un nivel.
+                                            Por favor seleccione un curso.
                                         </div>
                                     </div>
 
                                     <div class="col mb-3">
-                                        <label for="nivel">Nivel de clasificación final</label>
+                                        <label for="nivel">Curso de clasificación final</label>
                                         <select class="custom-select d-block w-100" id="nivel_final" required>
                                             <option value="">---</option>
                                             <option value="0">Preparatorio</option>
-                                            <option value="1">Nivel 1</option>
-                                            <option value="2">Nivel 2</option>
-                                            <option value="3">Nivel 3</option>
-                                            <option value="4">Nivel 4</option>
-                                            <option value="5">Nivel 5</option>
-                                            <option value="6">Nivel 6</option>
-                                            <option value="7">Nivel 7</option>
-                                            <option value="8">Nivel 8</option>
-                                            <option value="9">Nivel 9</option>
-                                            <option value="10">Nivel 10</option>
-                                            <option value="11">Nivel 11</option>
-                                            <option value="12">Nivel 12</option>
-                                            <option value="13">Nivel 13</option>
-                                            <option value="14">Nivel 14</option>
-                                            <option value="15">Nivel 15</option>
-                                            <option value="16">Nivel 16</option>
-                                            <option value="17">Nivel 17</option>
-                                            <option value="18">Cursos avanzados</option>
+                                            <option value="1">Curso 1</option>
+                                            <option value="2">Curso 2</option>
+                                            <option value="3">Curso 3</option>
+                                            <option value="4">Curso 4</option>
+                                            <option value="5">Curso 5</option>
+                                            <option value="6">Curso 6</option>
+                                            <option value="7">Curso 7</option>
+                                            <option value="8">Curso 8</option>
+                                            <option value="9">Curso 9</option>
+                                            <option value="10">Curso 10</option>
+                                            <option value="11">Curso 11</option>
+                                            <option value="12">Curso 12</option>
+                                            <option value="13">Curso 13</option>
+                                            <option value="14">Curso 14</option>
+                                            <option value="15">Curso 15</option>
+                                            <option value="16">Curso 16</option>
+                                            <option value="17">Curso 17</option>
+                                            <option value="18">Advanced Grammar</option>
+                                            <option value="19">Vocabulary in Context</option>
+                                            <option value="20">Listening and Speaking</option>
+                                            <option value="21">Reading and Writing</option>
                                         </select>
                                         <div class="invalid-feedback">
-                                            Por favor seleccione un nivel.
+                                            Por favor seleccione un curso.
                                         </div>
                                     </div>
 
@@ -295,6 +303,7 @@
                             <br><br>
                             <br>
                         </div>
+                        <div id="myDIV">
                         <div class="card shadow mb-4">
                             <div class="card-header py-3" id="header" style="display: none">
                               <h6 class="m-0 font-weight-bold text-primary">Registros encontrados: <span id="registros"></span></h6>
@@ -303,11 +312,46 @@
                                 <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
                                 </div>
                             </div>
+                        </div>
+                        <div id="myDIV2">
+
+                                <center>
+                                    <div class="py-5 text-center" style="width: 80%; text-align: center; border: 5px">
+                                        <p class="lead">Seleccione el tipo de gráfica para ver el resultado de los filtros 
+                                            de búsqueda.
+                                        </p>
+                                    </div>
+                                </center>
+    
+                                <center>
+                                    <div class="col mb-3" style="width: 40%; text-align: center; border: 5px">
+                                        <label for="country">Tipo de gráfica</label>
+                                        <select style="width: 50%" class="custom-select d-block w-100" id="tipo_grafica"
+                                            required>
+                                            <option value="0">Seleccione el tipo de gráfica...</option>
+                                            <option value="1">Gráfica de Barras</option>
+                                            <option value="2">Gráfica Circular</option>
+                                            <option value="3">Gráfica de Líneas</option>
+                                            <option value="4">Gráfica de Agrupamiento</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Por favor seleccione un tipo de gráfica.
+                                        </div>
+                                    </div>
+                                </center>
+    
+                                <center>
+                                    <button id="btnGap" class="btn btn-primary" onclick=getGraph()
+                                        type="button">Ver gráfica</button>
+                                </center>
+                            </div>
                     </div>
                         
                     </div>
                     <br>
                 </div>
+
+                <br><br><br><br>
 
                 <!-- End of Main Content -->
 
@@ -368,12 +412,16 @@
         <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"></script>
 
         <!-- Page level plugins -->
-        <script
-            src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/chart.js/Chart.min.js"></script>
 
-        <!-- Page level custom scripts -->
-        <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/demo/chart-area-demo.js"></script>
-        <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/demo/chart-pie-demo.js"></script>
+        <script>
+            var x = document.getElementById("myDIV");
+            x.style.display = "none";
+        </script>
+
+        <script>
+            var y = document.getElementById("myDIV2");
+            y.style.display = "none";
+        </script>
 
 </body>
 
