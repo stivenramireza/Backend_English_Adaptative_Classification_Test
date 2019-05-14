@@ -317,8 +317,8 @@
 
                                 <center>
                                     <div class="py-5 text-center" style="width: 80%; text-align: center; border: 5px">
-                                        <p class="lead">Seleccione el tipo de gráfica para ver el porcentaje de aciertos
-                                            del estudiante en el examen clasificatorio
+                                        <p class="lead">Seleccione el tipo de gráfica para ver el resultado de los filtros 
+                                            de búsqueda.
                                         </p>
                                     </div>
                                 </center>
@@ -329,8 +329,10 @@
                                         <select style="width: 50%" class="custom-select d-block w-100" id="tipo_grafica"
                                             required>
                                             <option value="0">Seleccione el tipo de gráfica...</option>
-                                            <option value="1">Gráfica de barras</option>
+                                            <option value="1">Gráfica de Barras</option>
                                             <option value="2">Gráfica Circular</option>
+                                            <option value="3">Gráfica de Líneas</option>
+                                            <option value="4">Gráfica de Agrupamiento</option>
                                         </select>
                                         <div class="invalid-feedback">
                                             Por favor seleccione un tipo de gráfica.
@@ -339,7 +341,7 @@
                                 </center>
     
                                 <center>
-                                    <button id="btnGap" class="btn btn-primary" onclick=getPercentage()
+                                    <button id="btnGap" class="btn btn-primary" onclick=getGraph()
                                         type="button">Ver gráfica</button>
                                 </center>
                             </div>
