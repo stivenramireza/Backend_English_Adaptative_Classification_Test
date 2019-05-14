@@ -1,6 +1,5 @@
 var nota1 = 0, nota2 = 0, nota3 = 0;
 let getGrades = function () {
-    document.getElementById("table").style.display = "inline-table";
     var doc_number = document.getElementById("docnumber").value;
     var nota_final = 0, level = 0, gap = 0;
     var req = new XMLHttpRequest();
@@ -55,10 +54,11 @@ let getGrades = function () {
                     var apellidos = texto2.lastname;
                     document.getElementById('est').innerHTML = nombres + " " + apellidos;
                 }
+                document.getElementById("table").style.display = "inline-table";
+                x.style.display = "block";
             }
         }
     }
-    x.style.display = "block";
 }
 
 let getPercentage = function () {
