@@ -1,4 +1,4 @@
-var barGraphSeries, barGraphDrilldown, barGraphClasif;
+var barGraphSeries, barGraphDrilldown, barGraphClasif, barAgrupClasif;
 
 let queryStatistics = function () {
     document.getElementById("header").style.display = "inline";
@@ -69,6 +69,7 @@ let queryStatistics = function () {
 
             graphMonth(groupByMonth);
             graphClasif(groupByClasificador);
+            graphClasifAgrup(groupByClasificador)
 
         }
     }
@@ -114,9 +115,27 @@ let graphClasif = function (clasifArray) {
     console.log(barGraphClasif)
 }
 
+let graphClasifAgrup = function (clasifArray) {
+    var array = [];
+    var jsonTemporal
+    for (const clasif in clasifArray) {
+        jsonTemporal = "{ \"name\" : \"" + clasif + "\", \"data\" : [" 
+        for (i = 0; i < clasifArray[clasif].length; i++) {
+            jsonTemporal = jsonTemporal + "{ \"value\" : 100 },"
+        }
+        jsonTemporal = jsonTemporal.substr(0, (jsonTemporal.length - 1));
+        jsonTemporal = jsonTemporal + "] }"
+
+        array.push(JSON.parse(jsonTemporal))
+    }
+    barAgrupClasif = array;
+    console.log(barAgrupClasif)
+}
+
 let getGraph = function () {
     console.log(barGraphSeries)
     console.log(barGraphDrilldown)
+    console.log(barAgrupClasif)
 
     y.style.display = "block";
     var tipo_grafica = document.getElementById("tipo_grafica").value;
@@ -224,6 +243,51 @@ let getGraph = function () {
                         data: barGraphClasif
                     }
                 ]
+            });
+        } else if (tipo_grafica_clasif = "2"){
+            Highcharts.chart('g1', {
+                chart: {
+                    type: 'packedbubble',
+                    height: '60%'
+                },
+                title: {
+                    text: 'Grafica de agrupamiento de clasificadores'
+                },
+                tooltip: {
+                    useHTML: true,
+                    pointFormat: '<b>Examen realizado</b>'
+                },
+                plotOptions: {
+                    packedbubble: {
+                        minSize: '20%',
+                        maxSize: '100%',
+                        zMin: 0,
+                        zMax: 1000,
+                        layoutAlgorithm: {
+                            gravitationalConstant: 0.05,
+                            splitSeries: true,
+                            seriesInteraction: false,
+                            dragBetweenSeries: true,
+                            parentNodeLimit: true
+                        },
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.name}',
+                            filter: {
+                                property: 'y',
+                                operator: '>',
+                                value: 250
+                            },
+                            style: {
+                                color: 'black',
+                                textOutline: 'none',
+                                fontWeight: 'normal'
+                            }
+                        }
+                    }
+                },
+                series: 
+                    barAgrupClasif
             });
         } else if (tipo_grafica_clasif = "0"){
             y.style.display = "none";
