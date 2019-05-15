@@ -300,7 +300,6 @@
                             <br>
                             <p id="failed" style="color:#bd1a1a ;display: none;text-align: center" ;>No se han
                                 completado todos los campos.</p>
-                            <br><br>
                             <br>
                         </div>
                         <div id="myDIV">
@@ -324,27 +323,81 @@
                                 </div>
                             </center>
 
-                            <center>
-                                <div class="col mb-3" style="width: 40%; text-align: center; border: 5px">
-                                    <label for="country">Tipo de gráfica</label>
+                            <div class="row">
+                                <div class="col mb-3">
+                                    Periodos de tiempo
+                                </div>
+
+                                <div class="col-md-6 mb-3">
                                     <select style="width: 50%" class="custom-select d-block w-100" id="tipo_grafica"
                                         required>
                                         <option value="0">Seleccione el tipo de gráfica...</option>
                                         <option value="1">Gráfica de Barras</option>
-                                        <option value="2">Gráfica Circular</option>
-                                        <option value="3">Gráfica de Líneas</option>
-                                        <option value="4">Gráfica de Agrupamiento</option>
                                     </select>
                                     <div class="invalid-feedback">
                                         Por favor seleccione un tipo de gráfica.
                                     </div>
                                 </div>
-                            </center>
+                            </div>
+
+                            <div class="row">
+                                <div class="col mb-3">
+                                    Clasificador
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <select style="width: 50%" class="custom-select d-block w-100"
+                                        id="tipo_grafica_clasif" required>
+                                        <option value="0">Seleccione el tipo de gráfica...</option>
+                                        <option value="1">Gráfica de Barras</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Por favor seleccione un tipo de gráfica.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col mb-3">
+                                    Examen escrito
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <select style="width: 50%" class="custom-select d-block w-100" id="tipo_grafica_esc"
+                                        required>
+                                        <option value="0">Seleccione el tipo de gráfica...</option>
+                                        <option value="1">Gráfica de Barras</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Por favor seleccione un tipo de gráfica.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col mb-3">
+                                    Examen oral
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <select style="width: 50%" class="custom-select d-block w-100"
+                                        id="tipo_grafica_oral" required>
+                                        <option value="6">Seleccione el tipo de gráfica...</option>
+                                        <option value="7">Gráfica de Barras</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Por favor seleccione un tipo de gráfica.
+                                    </div>
+                                </div>
+                            </div>
 
                             <center>
-                                <button id="btnGap" class="btn btn-primary" onclick=getGraph() type="button">Ver
-                                    gráfica</button>
+                                <div class="col mb-3">
+                                    <button id="btnGap" class="btn btn-primary" onclick=getGraph() type="button">Ver
+                                        gráfica</button>
+                                </div>
                             </center>
+
 
                             <br>
                             <div id="g1" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
@@ -418,6 +471,8 @@
     <!-- Page level plugins -->
 
     <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/data.js"></script>
     <script src="https://code.highcharts.com/modules/drilldown.js"></script>
 
