@@ -1,17 +1,30 @@
 let habilitarExamen = function () {
-    var xhr1 = new XMLHttpRequest();
-    var doc_number = document.getElementById("docnumber").value;
-    var params = 'docnumber=' + doc_number;
-    xhr1.responseType = 'json';
-    xhr1.open('GET', '/api/candidate/list' + '?' + params, true);
-    xhr1.setRequestHeader("Content-type", "application/json");
-    xhr1.send(null);
-    xhr1.onreadystatechange = function () {
-        if (xhr1.readyState == 4 && xhr1.status == 200) {
-            var texto = xhr1.response.info_candidate;
-            var id = texto._id;
+    var doctype = $("#doc_type").val();
+    var docnumber = $("#docnumber").val();
+
+    if (doctype == '0' || docnumber == '') {
+        alertify.set('notifier', 'position', 'bottom-center');
+        alertify.notify('No se han completado todos los campos', 'error', 3);
+    } else {
+        var exito = false;
+        var id = 0;
+        var xhr1 = new XMLHttpRequest();
+        var doc_number = document.getElementById("docnumber").value;
+        var params = 'docnumber=' + doc_number;
+        xhr1.responseType = 'json';
+        xhr1.open('GET', '/api/candidate/list' + '?' + params, true);
+        xhr1.setRequestHeader("Content-type", "application/json");
+        xhr1.send(null);
+        xhr1.onreadystatechange = function () {
+            if (xhr1.readyState == 4 && xhr1.status == 200) {
+                var texto = xhr1.response.info_candidate;
+                id = texto._id;
+            }
+            if (id != 0) {
+                console.log(id);
+                update(id);
+            }
         }
-        update(id);
     }
 }
 
@@ -25,18 +38,6 @@ let update = function (id) {
         examen_activo: true
     }));
     alertify.success('Se ha habilitado el examen correctamente');
+    document.getElementById("doc_type").value = "0";
+    document.getElementById("docnumber").value = "";
 }
-
-$(document).ready(function () {
-    $('#failed').hide();
-    $('#btnHabilitar').click(function () {
-        var doctype = $("#doc_type").val();
-        var docnumber = $("#docnumber").val();
-
-        if (doctype == '' || docnumber == '') {
-            var notification = alertify.notify('No se han completado todos los campos', 'error', 5, function(){  
-                console.log('No se han completado todos los campos'); 
-            });
-        }
-    });
-});
