@@ -3,6 +3,7 @@ let login = function () {
     http.responseType = 'json';
     http.open("POST", "/api/signin/candidate", true);
     http.setRequestHeader("Content-type", "application/json");
+    var exito = false;
     http.onreadystatechange = function () {
         if (http.readyState == 4 && http.status == 200) {
             localStorage.setItem("docnumber", document.getElementById("docnumber").value);
@@ -22,10 +23,12 @@ let login = function () {
         doctype: doc_type,
         docnumber: doc_number
     }));
-    if(!exito && doc_type != "" && doc_number != ""){
-        alertify.set('notifier','position', 'bottom-center');
-        alertify.notify('El usuario o clave es incorrecto', 'error', 3);
-    }
+    setTimeout(function () {
+        if(!exito && doc_type != "0" && doc_number != ""){
+            alertify.set('notifier','position', 'bottom-center');
+            alertify.notify('El tipo de documento o el número de documento es incorrecto', 'error', 5);
+        }
+    }, 500)
 }
 
 let check = function () {
@@ -40,15 +43,16 @@ let check = function () {
         http2.onreadystatechange = function () {
             if (http2.readyState == 4 && http2.status == 200) {
                 var texto = http2.response.info_candidate;
-                console.log()
                 var examen_activo = texto.examen_activo;
                 if (!examen_activo) {
                     window.location.replace('/candidate/test/error');
                 } else {
                     window.location.replace('/candidate/profile');
                 }
-            }
+            } 
         }
+        alertify.set('notifier','position', 'bottom-center');
+        alertify.notify('El tipo de documento o el número de documento es incorrecto', 'error', 5);
     }, 1000)
 }
 
@@ -58,7 +62,7 @@ $(document).ready(function () {
         var doctype = $("#doctype").val();
         var docnumber = $("#docnumber").val();
 
-        if (doctype == '' || docnumber == '') {
+        if (doctype == '0' || docnumber == '') {
             alertify.set('notifier','position', 'bottom-center');
             alertify.notify('No se han completado todos los campos', 'error', 3);
         }

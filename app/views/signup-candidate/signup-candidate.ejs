@@ -8,6 +8,11 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
     <title>Registro de aspirante</title>
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/alertify.min.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/alertify.min.css"/>
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/default.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="/signup-candidate/signup-candidate.js"></script>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/checkout/">
@@ -316,12 +321,9 @@
                 </div>
                 <hr class="mb-4">
                 <center>
-                    <button class="btn btn-primary" onclick=signup() type="button">Confirmar registro</button>
+                    <button id="btnSignUp" class="btn btn-primary" onclick=signup() type="button">Confirmar registro</button>
                 </center>
             </form>
-            <br><br>
-            <p id="failed" style="color:#bd1a1a ;display: none;text-align: center" ;>No se ha aceptado la autorización.
-            </p>
             <br><br>
         </div>
 
