@@ -4,6 +4,7 @@ const examenCtlr = require('../controllers/examen');
 const studentCtrlr = require('./../controllers/student');
 const loginCtlr = require('../controllers/login');
 const testCtlr = require('../controllers/examen');
+const questionCtlr = require('../controllers/pregunta');
 const auth = require('../middlewares/auth') // Aún no se está usando
 var cors = require('cors')
 var request = require('request')
@@ -87,6 +88,11 @@ router.get('/admin/profile/gap', adminCtlr.loadDesfase);
 router.get('/admin/profile/individual-results', adminCtlr.loadCandidateResults);
 
 // Questions
+router.post('/api/register/question', questionCtlr.registrarPregunta); // Postea para el registro de la pregunta
+//router.get('/api/question/list', questionCtlr.getInfoPregunta) // Obtiene la info de la pregunta
+router.get('/api/question/list', (req, res) => {
+    res.send(null);
+}); // Obtiene la info de la pregunta
 
 // POST del Aspirante
 router.post('/api/signin/candidate', [
