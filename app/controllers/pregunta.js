@@ -30,26 +30,47 @@ function registrarPregunta(req, res) {
 }
 
 function obtenerPregunta(req, res){
+    var errors = validationResult(req);
+    if(!errors.isEmpty()){
+        return res.status(422).json({ errors: errors.array() });
+    }
     let n_item = req.query.n_item;
     Pregunta.findOne({ n_item: n_item }, (err, info_pregunta) => {
-        if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}` })
+        if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}`, status: 'failed' })
         if (!info_pregunta) return res.status(404).send({ message: `La pregunta no está registrada en la BD` })
-        res.status(200).send({ info_pregunta })
+        res.status(200).send({ info_pregunta, status: 'success' })
     })
 }
 
 function actualizarPregunta(req, res){
+    var errors = validationResult(req);
+    if(!errors.isEmpty()){
+        return res.status(422).json({ errors: errors.array() });
+    }
     let item_pregunta = req.query.item_pregunta;
     let update = req.body
     Pregunta.update({n_item: item_pregunta}, update, (err, questionUpdated) => {
-        if (err) return res.status(500).send({ message: `Error al actualizar la pregunta en la BD: ${err}` })
+        if (err) return res.status(500).send({ message: `Error al actualizar la pregunta en la BD: ${err}`, status: 'failes' })
         console.log(questionUpdated)
-        res.status(200).send({ new_candidate: questionUpdated })
+        res.status(200).send({ new_candidate: questionUpdated, status: 'success' })
+    })
+}
+
+function eliminarPregunta(req, res){
+    var errors = validationResult(req);
+    if(!errors.isEmpty()){
+        return res.status(422).json({ errors: errors.array() });
+    }
+    Pregunta.remove({n_item: req.params.n_item}, function(error, questionDeleted){
+        if(error) return res.status(500).send({ message: `Error al eliminar la pregunta de la BD: ${err}`, status: 'failed' })
+        console.log(questionDeleted);
+        res.status(200).send({message: 'Eliminación exitosa de la pregunta', status: 'success'})
     })
 }
 
 module.exports = {
     registrarPregunta,
     obtenerPregunta,
-    actualizarPregunta
+    actualizarPregunta,
+    eliminarPregunta
 };

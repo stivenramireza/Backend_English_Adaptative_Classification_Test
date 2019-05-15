@@ -81,10 +81,11 @@ router.get('/admin/profile/statistics', adminCtlr.loadStatistics)
 router.get('/admin/profile/gap', adminCtlr.loadDesfase);
 router.get('/admin/profile/individual-results', adminCtlr.loadCandidateResults);
 
-// Questions
+// CRUD de Preguntas
 router.post('/api/register/question', questionCtlr.registrarPregunta); // registra la pregunta
 router.get('/api/question/list', questionCtlr.obtenerPregunta); // obtiene la pregunta por n_item
 router.put('/api/question/update', questionCtlr.actualizarPregunta); // actualiza la pregunta por n_item
+router.post('/api/question/remove', questionCtlr.eliminarPregunta); // elimina la pregunta por n_item
 
 // POST del Aspirante
 router.post('/api/signin/candidate', [
