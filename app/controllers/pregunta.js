@@ -31,7 +31,6 @@ function registrarPregunta(req, res) {
 }
 
 function getInfoPregunta(req, res){
-    console.log("get")
     let n_item = req.query.n_item;
     Examen.findOne({ n_item: n_item }, (err, info_pregunta) => {
         if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}` })
