@@ -9,7 +9,6 @@ function updateCandidate() {
     http2.send(JSON.stringify({
         examen_activo: false
     }));
-    console.log(melisimo);
 
 }
 
