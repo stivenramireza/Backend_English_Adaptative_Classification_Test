@@ -1,4 +1,5 @@
-var barGraphSeries, barGraphDrilldown, barGraphClasif, barAgrupClasif;
+var barGraphSeries, barGraphDrilldown, barGraphClasif, barAgrupClasif, barLine, barLineCat, barLineFinal,
+barLineCatFinal, barWrittenBar, barFinalBar, barAgrupWritten, barAgrupFinal ;
 
 let queryStatistics = function () {
     document.getElementById("header").style.display = "inline";
@@ -70,6 +71,12 @@ let queryStatistics = function () {
             graphMonth(groupByMonth);
             graphClasif(groupByClasificador);
             graphClasifAgrup(groupByClasificador)
+            graphLine(groupByCL)
+            graphLineFinal(groupByFL)
+            graphWrittenBar(groupByCL)
+            graphFinalBar(groupByFL)
+            graphAgrupWritten(groupByCL)
+            graphAgrupFinal(groupByFL)
 
         }
     }
@@ -130,6 +137,90 @@ let graphClasifAgrup = function (clasifArray) {
     }
     barAgrupClasif = array;
     console.log(barAgrupClasif)
+}
+
+let graphLine = function (writtenArray){
+    var array = [], categories = []
+    var jsonTemporal = " { \"name\": \"Curva de numero de registros por niveles\", \"data\": ["
+    for (const niv in writtenArray){
+        categories.push(niv);
+        jsonTemporal = jsonTemporal + writtenArray[niv].length + ", "
+    }
+    jsonTemporal = jsonTemporal.substr(0, (jsonTemporal.length-2));
+    jsonTemporal = jsonTemporal + "] }"
+    array.push(JSON.parse(jsonTemporal));
+    barLine = array;
+    barLineCat = categories;
+}
+
+let graphWrittenBar = function (writtenArray) {
+    var array = [];
+    var jsonTemporal
+    for (const level in writtenArray) {
+        jsonTemporal = "{ \"name\" : \"" + level + "\", \"y\" : " + writtenArray[level].length + " }"
+        array.push(JSON.parse(jsonTemporal))
+    }
+    barWrittenBar = array;
+    console.log(barGraphClasif)
+}
+
+let graphAgrupWritten = function (writtenArray) {
+    var array = [];
+    var jsonTemporal
+    for (const level in writtenArray) {
+        jsonTemporal = "{ \"name\" : \"Nivel " + level + "\", \"data\" : ["
+        for (i = 0; i < writtenArray[level].length; i++) {
+            jsonTemporal = jsonTemporal + "{ \"value\" : 100 },"
+        }
+        jsonTemporal = jsonTemporal.substr(0, (jsonTemporal.length - 1));
+        jsonTemporal = jsonTemporal + "] }"
+
+        array.push(JSON.parse(jsonTemporal))
+    }
+    barAgrupWritten = array;
+    console.log(barAgrupWritten)
+}
+
+let graphLineFinal = function (writtenArray){
+    var array = [], categories = []
+    var jsonTemporal = " { \"name\": \"Curva de numero de registros por niveles\", \"data\": ["
+    for (const niv in writtenArray){
+        categories.push(niv);
+        jsonTemporal = jsonTemporal + writtenArray[niv].length + ", "
+    }
+    jsonTemporal = jsonTemporal.substr(0, (jsonTemporal.length-2));
+    jsonTemporal = jsonTemporal + "] }"
+    array.push(JSON.parse(jsonTemporal));
+    barLineFinal = array;
+    barLineCatFinal = categories;
+}
+
+let graphFinalBar = function (writtenArray) {
+    var array = [];
+    var jsonTemporal
+    for (const level in writtenArray) {
+        jsonTemporal = "{ \"name\" : \"" + level + "\", \"y\" : " + writtenArray[level].length + " }"
+        array.push(JSON.parse(jsonTemporal))
+    }
+    barFinalBar = array;
+    console.log(barGraphClasif)
+}
+
+let graphAgrupFinal = function (writtenArray) {
+    var array = [];
+    var jsonTemporal
+    for (const level in writtenArray) {
+        jsonTemporal = "{ \"name\" : \"Nivel " + level + "\", \"data\" : ["
+        for (i = 0; i < writtenArray[level].length; i++) {
+            jsonTemporal = jsonTemporal + "{ \"value\" : 100 },"
+        }
+        jsonTemporal = jsonTemporal.substr(0, (jsonTemporal.length - 1));
+        jsonTemporal = jsonTemporal + "] }"
+
+        array.push(JSON.parse(jsonTemporal))
+    }
+    barAgrupFinal = array;
+    console.log(barAgrupFinal)
 }
 
 let getGraph = function () {
@@ -315,6 +406,243 @@ let getGraph = function () {
                 colorByPoint: true,
                 data: barGraphClasif
             }]
+        });
+    } else if (tipo_grafica == 5){
+        Highcharts.chart('g1', {
+            chart: {
+                type: 'line'
+            },
+            title: {
+                text: 'Curva de examenes de clasificación escritos'
+            },
+            subtitle: {
+                text: 'Registros encontrados'
+            },
+            xAxis: {
+                categories: barLineCat
+            },
+            yAxis: {
+                title: {
+                    text: 'Numero de registros'
+                }
+            },
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: true
+                    },
+                    enableMouseTracking: false
+                }
+            },
+            series: barLine
+        });
+    } else if (tipo_grafica == 6){ 
+        x.style.display = "block";
+        Highcharts.chart('g1', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Registro de examenes de clasificacion escritos'
+            },
+            xAxis: {
+                type: 'category',
+                title: {
+                    text: 'Nivel clasificado'
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Numero de registros'
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y:.0f}'
+                    }
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.0f}</b> registros del total<br/>'
+            },
+            series: [
+                {
+                    name: "Nivel",
+                    colorByPoint: true,
+                    data: barWrittenBar
+                }
+            ]
+        });
+
+    } else if (tipo_grafica == 7) {
+        Highcharts.chart('g1', {
+            chart: {
+                type: 'packedbubble',
+                height: '60%'
+            },
+            title: {
+                text: 'Grafica de agrupamiento de examenes escritos'
+            },
+            tooltip: {
+                useHTML: true,
+                pointFormat: '<b>Examen realizado</b>'
+            },
+            plotOptions: {
+                packedbubble: {
+                    minSize: '20%',
+                    maxSize: '100%',
+                    zMin: 0,
+                    zMax: 1000,
+                    layoutAlgorithm: {
+                        gravitationalConstant: 0.05,
+                        splitSeries: true,
+                        seriesInteraction: false,
+                        dragBetweenSeries: true,
+                        parentNodeLimit: true
+                    },
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.name}',
+                        filter: {
+                            property: 'y',
+                            operator: '>',
+                            value: 250
+                        },
+                        style: {
+                            color: 'black',
+                            textOutline: 'none',
+                            fontWeight: 'normal'
+                        }
+                    }
+                }
+            },
+            series:
+                barAgrupWritten
+        });
+    } else if (tipo_grafica == 8){
+        Highcharts.chart('g1', {
+            chart: {
+                type: 'line'
+            },
+            title: {
+                text: 'Curva de clasificaciones finales'
+            },
+            subtitle: {
+                text: 'Registros encontrados'
+            },
+            xAxis: {
+                categories: barLineCatFinal
+            },
+            yAxis: {
+                title: {
+                    text: 'Numero de registros'
+                }
+            },
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: true
+                    },
+                    enableMouseTracking: false
+                }
+            },
+            series: barLineFinal
+        });
+    }else if (tipo_grafica == 9){ 
+        x.style.display = "block";
+        Highcharts.chart('g1', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Registro de clasificaciones finales'
+            },
+            xAxis: {
+                type: 'category',
+                title: {
+                    text: 'Nivel establecido'
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Numero de registros'
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y:.0f}'
+                    }
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.0f}</b> registros del total<br/>'
+            },
+            series: [
+                {
+                    name: "Nivel",
+                    colorByPoint: true,
+                    data: barFinalBar
+                }
+            ]
+        });
+    } else if (tipo_grafica == 10) {
+        Highcharts.chart('g1', {
+            chart: {
+                type: 'packedbubble',
+                height: '60%'
+            },
+            title: {
+                text: 'Grafica de agrupamiento de niveles clasificados'
+            },
+            tooltip: {
+                useHTML: true,
+                pointFormat: '<b>Estudiante clasificado</b>'
+            },
+            plotOptions: {
+                packedbubble: {
+                    minSize: '20%',
+                    maxSize: '100%',
+                    zMin: 0,
+                    zMax: 1000,
+                    layoutAlgorithm: {
+                        gravitationalConstant: 0.05,
+                        splitSeries: true,
+                        seriesInteraction: false,
+                        dragBetweenSeries: true,
+                        parentNodeLimit: true
+                    },
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.name}',
+                        filter: {
+                            property: 'y',
+                            operator: '>',
+                            value: 250
+                        },
+                        style: {
+                            color: 'black',
+                            textOutline: 'none',
+                            fontWeight: 'normal'
+                        }
+                    }
+                }
+            },
+            series:
+                barAgrupFinal
         });
     }
 }
