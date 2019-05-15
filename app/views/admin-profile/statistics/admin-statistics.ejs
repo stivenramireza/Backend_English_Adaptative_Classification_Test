@@ -323,82 +323,32 @@
                                 </div>
                             </center>
 
-                            <div class="row">
-                                <div class="col mb-3">
-                                    Periodos de tiempo
-                                </div>
-
-                                <div class="col-md-6 mb-3">
-                                    <select style="width: 50%" class="custom-select d-block w-100" id="tipo_grafica"
-                                        required>
-                                        <option value="0">Seleccione el tipo de gráfica...</option>
-                                        <option value="1">Gráfica de Barras</option>
-                                    </select>
-                                    <div class="invalid-feedback">
-                                        Por favor seleccione un tipo de gráfica.
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col mb-3">
-                                    Clasificador
-                                </div>
-
-                                <div class="col-md-6 mb-3">
-                                    <select style="width: 50%" class="custom-select d-block w-100"
-                                        id="tipo_grafica_clasif" required>
-                                        <option value="0">Seleccione el tipo de gráfica...</option>
-                                        <option value="1">Gráfica de Barras</option>
-                                        <option value="2">Gráfica de Agrupamiento</option>
-                                    </select>
-                                    <div class="invalid-feedback">
-                                        Por favor seleccione un tipo de gráfica.
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col mb-3">
-                                    Examen escrito
-                                </div>
-
-                                <div class="col-md-6 mb-3">
-                                    <select style="width: 50%" class="custom-select d-block w-100" id="tipo_grafica_esc"
-                                        required>
-                                        <option value="0">Seleccione el tipo de gráfica...</option>
-                                        <option value="1">Gráfica de Barras</option>
-                                    </select>
-                                    <div class="invalid-feedback">
-                                        Por favor seleccione un tipo de gráfica.
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col mb-3">
-                                    Examen oral
-                                </div>
-
-                                <div class="col-md-6 mb-3">
-                                    <select style="width: 50%" class="custom-select d-block w-100"
-                                        id="tipo_grafica_oral" required>
-                                        <option value="6">Seleccione el tipo de gráfica...</option>
-                                        <option value="7">Gráfica de Barras</option>
-                                    </select>
-                                    <div class="invalid-feedback">
-                                        Por favor seleccione un tipo de gráfica.
-                                    </div>
-                                </div>
-                            </div>
-
                             <center>
-                                <div class="col mb-3">
-                                    <button id="btnGap" class="btn btn-primary" onclick=getGraph() type="button">Ver
-                                        gráfica</button>
-                                </div>
-                            </center>
+                            <div class="row" style="width: 100%">
 
+                                
+                                    <div class="col-md-8 mb-3">
+                                        <select style="width: 50%" class="custom-select d-block w-100" id="tipo_grafica"
+                                            required>
+                                            <option value="0">Seleccione el tipo de gráfica...</option>
+                                            <option value="1">Periodos de tiempo - Gráfica de Barras</option>
+                                            <option value="2">Clasificador - Gráfica de Barras</option>
+                                            <option value="3">Clasificador - Gráfica de Agrupamiento</option>
+                                            <option value="4">Clasificador - Gráfica circular</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Por favor seleccione un tipo de gráfica.
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 mb-3">
+                                        <button id="btnGap" class="btn btn-primary" onclick=getGraph() type="button">Ver
+                                            gráfica</button>
+                                    </div>
+                                
+                            </div>
+                        </center>
+                           
 
                             <br>
                             <div id="g1" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
@@ -476,6 +426,7 @@
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/data.js"></script>
     <script src="https://code.highcharts.com/modules/drilldown.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
 
     <script>
         var x = document.getElementById("myDIV");

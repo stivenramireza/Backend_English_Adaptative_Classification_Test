@@ -119,7 +119,7 @@ let graphClasifAgrup = function (clasifArray) {
     var array = [];
     var jsonTemporal
     for (const clasif in clasifArray) {
-        jsonTemporal = "{ \"name\" : \"" + clasif + "\", \"data\" : [" 
+        jsonTemporal = "{ \"name\" : \"" + clasif + "\", \"data\" : ["
         for (i = 0; i < clasifArray[clasif].length; i++) {
             jsonTemporal = jsonTemporal + "{ \"value\" : 100 },"
         }
@@ -136,14 +136,14 @@ let getGraph = function () {
     console.log(barGraphSeries)
     console.log(barGraphDrilldown)
     console.log(barAgrupClasif)
-
     y.style.display = "block";
     var tipo_grafica = document.getElementById("tipo_grafica").value;
-    var tipo_grafica_clasif = document.getElementById("tipo_grafica_clasif").value;
     console.log(tipo_grafica)
-    if (tipo_grafica == '1') {
-        x.style.display = "block";
 
+    if (tipo_grafica == 0) {
+        y.style.display = "none";
+    } else if (tipo_grafica == 1) {
+        x.style.display = "block";
         Highcharts.chart('g1', {
             chart: {
                 type: 'column'
@@ -194,103 +194,127 @@ let getGraph = function () {
             }
         });
 
-    } else if (tipo_grafica == '0') {
-        if (tipo_grafica_clasif == '1') {
-            x.style.display = "block";
-
-            Highcharts.chart('g1', {
-                chart: {
-                    type: 'column'
-                },
+    } else if (tipo_grafica == 2) {
+        x.style.display = "block";
+        Highcharts.chart('g1', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Registro de clasificadores'
+            },
+            xAxis: {
+                type: 'category',
                 title: {
-                    text: 'Registro de clasificadores'
-                },
-                xAxis: {
-                    type: 'category',
-                    title: {
-                        text: 'Identificacion del clasificador'
-                    }
-
-                },
-                yAxis: {
-                    title: {
-                        text: 'Numero de registros'
-                    }
-
-                },
-                legend: {
-                    enabled: false
-                },
-                plotOptions: {
-                    series: {
-                        borderWidth: 0,
-                        dataLabels: {
-                            enabled: true,
-                            format: '{point.y:.0f}'
-                        }
-                    }
-                },
-
-                tooltip: {
-                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.0f}</b> registros del total<br/>'
-                },
-
-                series: [
-                    {
-                        name: "Id del clasificador",
-                        colorByPoint: true,
-                        data: barGraphClasif
-                    }
-                ]
-            });
-        } else if (tipo_grafica_clasif = "2"){
-            Highcharts.chart('g1', {
-                chart: {
-                    type: 'packedbubble',
-                    height: '60%'
-                },
+                    text: 'Identificacion del clasificador'
+                }
+            },
+            yAxis: {
                 title: {
-                    text: 'Grafica de agrupamiento de clasificadores'
-                },
-                tooltip: {
-                    useHTML: true,
-                    pointFormat: '<b>Examen realizado</b>'
-                },
-                plotOptions: {
-                    packedbubble: {
-                        minSize: '20%',
-                        maxSize: '100%',
-                        zMin: 0,
-                        zMax: 1000,
-                        layoutAlgorithm: {
-                            gravitationalConstant: 0.05,
-                            splitSeries: true,
-                            seriesInteraction: false,
-                            dragBetweenSeries: true,
-                            parentNodeLimit: true
+                    text: 'Numero de registros'
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y:.0f}'
+                    }
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.0f}</b> registros del total<br/>'
+            },
+            series: [
+                {
+                    name: "Id del clasificador",
+                    colorByPoint: true,
+                    data: barGraphClasif
+                }
+            ]
+        });
+    } else if (tipo_grafica == 3) {
+        Highcharts.chart('g1', {
+            chart: {
+                type: 'packedbubble',
+                height: '60%'
+            },
+            title: {
+                text: 'Grafica de agrupamiento de clasificadores'
+            },
+            tooltip: {
+                useHTML: true,
+                pointFormat: '<b>Examen realizado</b>'
+            },
+            plotOptions: {
+                packedbubble: {
+                    minSize: '20%',
+                    maxSize: '100%',
+                    zMin: 0,
+                    zMax: 1000,
+                    layoutAlgorithm: {
+                        gravitationalConstant: 0.05,
+                        splitSeries: true,
+                        seriesInteraction: false,
+                        dragBetweenSeries: true,
+                        parentNodeLimit: true
+                    },
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.name}',
+                        filter: {
+                            property: 'y',
+                            operator: '>',
+                            value: 250
                         },
-                        dataLabels: {
-                            enabled: true,
-                            format: '{point.name}',
-                            filter: {
-                                property: 'y',
-                                operator: '>',
-                                value: 250
-                            },
-                            style: {
-                                color: 'black',
-                                textOutline: 'none',
-                                fontWeight: 'normal'
-                            }
+                        style: {
+                            color: 'black',
+                            textOutline: 'none',
+                            fontWeight: 'normal'
                         }
                     }
-                },
-                series: 
-                    barAgrupClasif
-            });
-        } else if (tipo_grafica_clasif = "0"){
-            y.style.display = "none";
-        }
+                }
+            },
+            series:
+                barAgrupClasif
+        });
+    } else if (tipo_grafica == 4) {
+        Highcharts.chart('g1', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: 'Estadistica de clasificadores'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.0f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.0f}%',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: 'Clasificadores',
+                colorByPoint: true,
+                data: barGraphClasif
+            }]
+        });
     }
 }
