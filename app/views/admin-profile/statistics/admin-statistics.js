@@ -1,5 +1,4 @@
-var barGraphSeries;
-var barGraphDrilldown;
+var barGraphSeries, barGraphDrilldown, barGraphClasif, barAgrupClasif;
 
 let queryStatistics = function () {
     document.getElementById("header").style.display = "inline";
@@ -69,6 +68,8 @@ let queryStatistics = function () {
             console.log(groupByClasificador)
 
             graphMonth(groupByMonth);
+            graphClasif(groupByClasificador);
+            graphClasifAgrup(groupByClasificador)
 
         }
     }
@@ -89,7 +90,7 @@ let graphMonth = function (yearsArray) {
                 tempMesTotal = tempMesTotal + yearsArray[year][month][week].length;
                 console.log("año: " + year + " mes: " + month + " semana: " + week + " #: " + yearsArray[year][month][week].length);
                 jsonTemporal2 = jsonTemporal2 + "[ \"Semana " + week + "\"," + yearsArray[year][month][week].length + "],"
-            } 
+            }
             jsonTemporal = jsonTemporal + " \"name\" : \"" + month + "/" + year + "\", \"y\" : " + tempMesTotal + ", \"drilldown\" : \"" + month + "/" + year + "\" }"
             tempMesTotal = 0
             jsonTemporal2 = jsonTemporal2.substr(0, (jsonTemporal2.length - 1));
@@ -103,16 +104,44 @@ let graphMonth = function (yearsArray) {
     }
 }
 
+let graphClasif = function (clasifArray) {
+    var array = [];
+    var jsonTemporal
+    for (const clasif in clasifArray) {
+        jsonTemporal = "{ \"name\" : \"" + clasif + "\", \"y\" : " + clasifArray[clasif].length + " }"
+        array.push(JSON.parse(jsonTemporal))
+    }
+    barGraphClasif = array;
+    console.log(barGraphClasif)
+}
 
+let graphClasifAgrup = function (clasifArray) {
+    var array = [];
+    var jsonTemporal
+    for (const clasif in clasifArray) {
+        jsonTemporal = "{ \"name\" : \"" + clasif + "\", \"data\" : [" 
+        for (i = 0; i < clasifArray[clasif].length; i++) {
+            jsonTemporal = jsonTemporal + "{ \"value\" : 100 },"
+        }
+        jsonTemporal = jsonTemporal.substr(0, (jsonTemporal.length - 1));
+        jsonTemporal = jsonTemporal + "] }"
+
+        array.push(JSON.parse(jsonTemporal))
+    }
+    barAgrupClasif = array;
+    console.log(barAgrupClasif)
+}
 
 let getGraph = function () {
     console.log(barGraphSeries)
     console.log(barGraphDrilldown)
+    console.log(barAgrupClasif)
+
     y.style.display = "block";
     var tipo_grafica = document.getElementById("tipo_grafica").value;
-    if (tipo_grafica == '0') {
-        y.style.display = "none";
-    } else if (tipo_grafica == '1') {
+    var tipo_grafica_clasif = document.getElementById("tipo_grafica_clasif").value;
+    console.log(tipo_grafica)
+    if (tipo_grafica == '1') {
         x.style.display = "block";
 
         Highcharts.chart('g1', {
@@ -165,37 +194,103 @@ let getGraph = function () {
             }
         });
 
-    } else if (tipo_grafica == '2') {
-        x.style.display = "block";
-        document.getElementById("texto_span").innerHTML = "Porcentaje de aciertos";
-        Highcharts.chart('container', {
-            chart: {
-                type: 'pie',
-                options3d: {
-                    enabled: true,
-                    alpha: 45
-                }
-            },
-            title: {
-                text: ''
-            },
-            plotOptions: {
-                pie: {
-                    innerSize: 100,
-                    depth: 45
-                }
-            },
-            tooltip: {
-                pointFormat: 'Porcentaje: <b>{point.y:.0f}%</b>'
-            },
-            series: [{
-                name: 'Porcentaje',
-                data: [
-                    ['Parte 1', 5],
-                    ['Parte 2', 4],
-                    ['Parte 3', 3],
+    } else if (tipo_grafica == '0') {
+        if (tipo_grafica_clasif == '1') {
+            x.style.display = "block";
+
+            Highcharts.chart('g1', {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Registro de clasificadores'
+                },
+                xAxis: {
+                    type: 'category',
+                    title: {
+                        text: 'Identificacion del clasificador'
+                    }
+
+                },
+                yAxis: {
+                    title: {
+                        text: 'Numero de registros'
+                    }
+
+                },
+                legend: {
+                    enabled: false
+                },
+                plotOptions: {
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.y:.0f}'
+                        }
+                    }
+                },
+
+                tooltip: {
+                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.0f}</b> registros del total<br/>'
+                },
+
+                series: [
+                    {
+                        name: "Id del clasificador",
+                        colorByPoint: true,
+                        data: barGraphClasif
+                    }
                 ]
-            }]
-        });
+            });
+        } else if (tipo_grafica_clasif = "2"){
+            Highcharts.chart('g1', {
+                chart: {
+                    type: 'packedbubble',
+                    height: '60%'
+                },
+                title: {
+                    text: 'Grafica de agrupamiento de clasificadores'
+                },
+                tooltip: {
+                    useHTML: true,
+                    pointFormat: '<b>Examen realizado</b>'
+                },
+                plotOptions: {
+                    packedbubble: {
+                        minSize: '20%',
+                        maxSize: '100%',
+                        zMin: 0,
+                        zMax: 1000,
+                        layoutAlgorithm: {
+                            gravitationalConstant: 0.05,
+                            splitSeries: true,
+                            seriesInteraction: false,
+                            dragBetweenSeries: true,
+                            parentNodeLimit: true
+                        },
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.name}',
+                            filter: {
+                                property: 'y',
+                                operator: '>',
+                                value: 250
+                            },
+                            style: {
+                                color: 'black',
+                                textOutline: 'none',
+                                fontWeight: 'normal'
+                            }
+                        }
+                    }
+                },
+                series: 
+                    barAgrupClasif
+            });
+        } else if (tipo_grafica_clasif = "0"){
+            y.style.display = "none";
+        }
     }
 }
