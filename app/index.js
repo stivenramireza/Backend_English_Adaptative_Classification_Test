@@ -6,8 +6,8 @@ const mongoose = require('mongoose');
 const path = require('path');
 
 // Conexión a la base de datos
-let dbConn = 'mongodb://user1:123456a@ds025232.mlab.com:25232/eacidb';
-//let dbConn = "mongodb://" + config.DB_USER + ":" + config.DB_PASSWORD + "@" + config.DB_HOST;
+//let dbConn = 'mongodb://user1:123456a@ds025232.mlab.com:25232/eacidb';
+let dbConn = "mongodb://" + config.DB_USER + ":" + config.DB_PASSWORD + "@" + config.DB_HOST;
 mongoose.connect(dbConn, {useNewUrlParser: true}).then( () => {
   console.log(`Connected to ${dbConn} successfully...`);
 }).catch( err => {
