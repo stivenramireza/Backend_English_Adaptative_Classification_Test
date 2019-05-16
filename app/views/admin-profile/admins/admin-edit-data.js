@@ -1,3 +1,5 @@
+var nombre_completo = localStorage.getItem('nombre_admin');
+document.getElementById("nombreAdmin").innerHTML = nombre_completo;
 var http = new XMLHttpRequest();
 var docnumber = localStorage.getItem("docnumber");
 var params = 'docnumber='+docnumber;

@@ -1,5 +1,7 @@
 var barGraphSeries, barGraphDrilldown, barGraphClasif, barAgrupClasif, barLine, barLineCat, barLineFinal,
 barLineCatFinal, barWrittenBar, barFinalBar, barAgrupWritten, barAgrupFinal ;
+var nombre_completo = localStorage.getItem('nombre_admin');
+document.getElementById("nombreAdmin").innerHTML = nombre_completo;
 
 let queryStatistics = function () {
     document.getElementById("header").style.display = "inline";

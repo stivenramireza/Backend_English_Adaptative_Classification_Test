@@ -1,3 +1,6 @@
+var nombre_completo = localStorage.getItem('nombre_admin');
+document.getElementById("nombreAdmin").innerHTML = nombre_completo;
+
 let habilitarExamen = function () {
     var doctype = $("#doc_type").val();
     var docnumber = $("#docnumber").val();
@@ -6,7 +9,6 @@ let habilitarExamen = function () {
         alertify.set('notifier', 'position', 'bottom-center');
         alertify.notify('No se han completado todos los campos', 'error', 3);
     } else {
-        var exito = false;
         var id = 0;
         var xhr1 = new XMLHttpRequest();
         var doc_number = document.getElementById("docnumber").value;

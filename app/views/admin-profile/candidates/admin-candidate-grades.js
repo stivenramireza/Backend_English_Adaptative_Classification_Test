@@ -1,3 +1,5 @@
+var nombre_completo = localStorage.getItem('nombre_admin');
+document.getElementById("nombreAdmin").innerHTML = nombre_completo;
 var nota1 = 0, nota2 = 0, nota3 = 0;
 let getGrades = function () {
 
@@ -10,7 +12,6 @@ let getGrades = function () {
     } else {
 
         var doc_number = document.getElementById("docnumber").value;
-        var nota_final = 0, level = 0, gap = 0;
         var req = new XMLHttpRequest();
         var params = 'docnumber=' + doc_number;
         req.responseType = 'json';
@@ -70,7 +71,6 @@ let getGrades = function () {
         }
     }
 }
-
 let getPercentage = function () {
     y.style.display = "block";
     var tipo_grafica = document.getElementById("tipo_grafica").value;
