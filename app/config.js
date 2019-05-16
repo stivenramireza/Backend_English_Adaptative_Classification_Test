@@ -5,7 +5,7 @@ var path = require('path'),
 var config = {
   development: {
     PORT: process.env.PORT || 3000,
-    // 'mongodb://user1:123456a@ds025232.mlab.com:25232/eacidb'
+    //DB_HOST: process.env.MONGODB_URI || 'mongodb://user1:123456a@ds025232.mlab.com:25232/eacidb',
     DB_HOST: process.env.MONGODB_URI || 'mongodb://localhost/eacidb:27017',
     DB_USER: process.env.DB_USER || '',
     DB_PASSWORD: process.env.DB_PASSWORD || '',

@@ -1,26 +1,8 @@
 const Examen = require('../models/examen');
 const {validationResult} = require('express-validator/check');
 const mongoose = require('mongoose');
-const moment = require('moment');
 
 var request = require('request')
-
-
-function loadPreStarted(req, res) {
-    res.render('../views/test-prestarted/test-prestarted.ejs');
-}
-
-function loadTest(req, res) {
-    res.render('../views/examen/examen.ejs');
-}
-
-function loadTestError(req, res) {
-    res.render('../views/examen/exam-error.ejs');
-}
-
-function loadResult(req, res) {
-    res.render('../views/examen-results/examen-results.ejs');
-}
 
 function saveTestStatus(req, res, data) {
     var errors = validationResult(req);
@@ -30,7 +12,6 @@ function saveTestStatus(req, res, data) {
         });
     }
     var _data = JSON.parse(data);
-    //console.log(_data.question.ability);
     let doctype = req.query.doctype;
     let docnumber = req.query.docnumber;
     let clasificador = req.query.clasificador;
@@ -54,12 +35,11 @@ function saveTestStatus(req, res, data) {
         last_ability: _data.question.ability, // To be updated
         parts: _data.question.parts // To be updated
     });
-    //console.log(data);
     new_examen.save((err) => {
         if (err) {
-            console.log(err);
             return res.status(500).send({
-                message: `Error al activar el examen del aspirante: ${err}`
+                message: `Error al activar el examen del aspirante: ${err}`,
+                status: 'failed'
             });
         }
         return res.status(200).send({
@@ -69,7 +49,8 @@ function saveTestStatus(req, res, data) {
                 responses: _data.question.responses,
                 n_item: _data.question.n_item,
                 ability: _data.question.ability
-            }
+            },
+            status: 'success'
         });
     });
 }
@@ -79,8 +60,10 @@ function next_question(req, res) {
     var doc_type = req.body.doctype;
     Examen.findOne({docnumber: doc_number, doctype: doc_type}, function (err, examen) {
         if (err) {
-            console.find("Cannot find the specified test.");
-            return res.status(404).send({});
+            return res.status(404).send({
+                message: 'Cannot find the specified test.',
+                status: 'failed'
+            });
         } else {
             var obj = {
                 doctype: examen.doc_type, //Just a simple doct
@@ -113,22 +96,24 @@ function next_question(req, res) {
                 json: true
             }, function (error, response, data) {
                 if(error){
-                    console.log("Error ML API");
-                    return res.status(500).send({});
+                    return res.status(500).send({
+                        message: 'Error ML API',
+                        status: 'failed'
+                    });
                 }
                 var _data = data;
-                console.log(data);
                 examen.ability = _data.question.ability;
                 examen.questions = _data.question.administered_items;
                 examen.responses = _data.question.response_vector;
                 examen.parts = _data.question.parts;
                 examen.save(function(err, doc){
                    if(!err){
-                       console.log("Examen updated.");
-                       return res.status(200).send(_data);
+                       return res.status(200).send(_data, {message: 'Examen updated.', status: 'success'});
                    }else{
-                       console.log("Examen hasn't been saved");
-                       return res.status(500).send({});
+                       return res.status(500).send({
+                           message: 'Examen hasnt been saved',
+                           status: 'failed'
+                       });
                    }
                 });
             });
@@ -162,23 +147,22 @@ function statistics(req, res){
     
     queryString = queryString.substr(0, (queryString.length-2));
     queryString = queryString + " }";
-    console.log(queryString);
 
     Examen.find(JSON.parse(queryString), (err, info_examen) => {
-        if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}` })
-        if (!info_examen) return res.status(404).send({ message: `No hay registros` })
-        res.status(200).send({ info_examen })
+        if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}`, status: 'failed' })
+        if (!info_examen) return res.status(404).send({ message: `No hay registros`, status: 'success' })
+        res.status(200).send({ info_examen, status: 'success' })
     })
 }
 
 function getInfoExamen(req, res){
     let docnumber = req.query.docnumber;
     Examen.findOne({ docnumber: docnumber }, (err, info_examen) => {
-        if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}` })
+        if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}`, status: 'failed' })
         if (!info_examen) return res.status(404).send({ message: `El aspirante no tiene registrado exámenes de clasificación`, 
                                                         status: 'failed'
                                                     })
-        res.status(200).send({ info_examen })
+        res.status(200).send({ info_examen, status: 'success' })
     })
 }
 
@@ -186,9 +170,8 @@ function updateInfoExamen(req, res){
     let idExamen = req.query.idExamen;
     let update = req.body
     Examen.update({_id: idExamen}, update, (err, examUpdated) => {
-        if (err) return res.status(500).send({ message: `Error al actualizar examen: ${err}` })
-        console.log(examUpdated)
-        res.status(200).send({ new_examen: examUpdated })
+        if (err) return res.status(500).send({ message: `Error al actualizar examen: ${err}`, status: 'failed' })
+        res.status(200).send({ new_examen: examUpdated, status: 'success' })
     })
 }
 
@@ -196,17 +179,12 @@ function updateByDocNumber(req, res){
     let docnumber = req.query.docnumber;
     let update = req.body
     Examen.updateOne({docnumber: docnumber}, update, (err, examUpdated) => {
-        if (err) return res.status(500).send({ message: `Error al actualizar examen: ${err}` })
-        console.log(examUpdated)
-        res.status(200).send({ new_examen: examUpdated })
+        if (err) return res.status(500).send({ message: `Error al actualizar examen: ${err}`, status: 'failed' })
+        res.status(200).send({ new_examen: examUpdated, status: 'success' })
     })
 }
 
 module.exports = {
-    loadPreStarted,
-    loadTest,
-    loadTestError,
-    loadResult,
     saveTestStatus,
     next_question,
     getInfoExamen,

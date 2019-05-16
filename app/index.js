@@ -8,10 +8,10 @@ const path = require('path');
 // Conexión a la base de datos
 //let dbConn = 'mongodb://user1:123456a@ds025232.mlab.com:25232/eacidb';
 let dbConn = "mongodb://" + config.DB_USER + ":" + config.DB_PASSWORD + "@" + config.DB_HOST;
-mongoose.connect(dbConn, {useNewUrlParser: true}).then( () => {
-  console.log(`Connected to ${dbConn} successfully...`);
+mongoose.connect(dbConn, {useNewUrlParser: true}).then( (req, res) => {
+  console.log("Conectado a la base de datos exitosamente");
 }).catch( err => {
-  console.log(`Error connecting to ${dbConn}, cause: ${err}`);
+  console.log("Error al conectarse a la base de datos: ", {$err});
 });
 
  // Middleware
@@ -28,10 +28,10 @@ server.set('view engine', 'ejs');
 server.use(routes);
 
 const PORT = 8000;
-const HOST = '0.0.0.0'; // Listen from everywhere
+const HOST = '0.0.0.0'; 
 
-server.listen(PORT, HOST, function(){
-  console.log(`Running in http://localhost:${PORT} on ${HOST}.\n`);
+server.listen(PORT, HOST, function(req, res){
+  console.log('\nApp web corriendo en http://ec2-34-207-193-227.compute-1.amazonaws.com \n');
 });
 
 server.get('/', (req, res) => {

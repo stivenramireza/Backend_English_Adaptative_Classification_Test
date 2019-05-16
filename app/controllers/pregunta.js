@@ -16,7 +16,6 @@ function registrarPregunta(req, res) {
         opcion_correcta: req.body.opcion_correcta,
         texto: req.body.texto
     });
-    //save in the database
     nueva_pregunta.save((err) => {
         if (err) return res.status(500).send({ 
             message: `Error al registrar la pregunta: ${err}`,
@@ -37,7 +36,7 @@ function obtenerPregunta(req, res){
     let n_item = req.query.n_item;
     Pregunta.findOne({ n_item: n_item }, (err, info_pregunta) => {
         if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}`, status: 'failed' })
-        if (!info_pregunta) return res.status(404).send({ message: `La pregunta no está registrada en la BD` })
+        if (!info_pregunta) return res.status(404).send({ message: `La pregunta no está registrada en la BD`, status: 'failed' })
         res.status(200).send({ info_pregunta, status: 'success' })
     })
 }
@@ -50,8 +49,7 @@ function actualizarPregunta(req, res){
     let item_pregunta = req.query.item_pregunta;
     let update = req.body
     Pregunta.update({n_item: item_pregunta}, update, (err, questionUpdated) => {
-        if (err) return res.status(500).send({ message: `Error al actualizar la pregunta en la BD: ${err}`, status: 'failes' })
-        console.log(questionUpdated)
+        if (err) return res.status(500).send({ message: `Error al actualizar la pregunta en la BD: ${err}`, status: 'failed' })
         res.status(200).send({ new_candidate: questionUpdated, status: 'success' })
     })
 }
@@ -63,7 +61,6 @@ function eliminarPregunta(req, res){
     }
     Pregunta.remove({n_item: req.params.n_item}, function(error, questionDeleted){
         if(error) return res.status(500).send({ message: `Error al eliminar la pregunta de la BD: ${err}`, status: 'failed' })
-        console.log(questionDeleted);
         res.status(200).send({message: 'Eliminación exitosa de la pregunta', status: 'success'})
     })
 }
