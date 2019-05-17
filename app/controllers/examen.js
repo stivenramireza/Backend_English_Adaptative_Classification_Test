@@ -108,7 +108,7 @@ function next_question(req, res) {
                 examen.parts = _data.question.parts;
                 examen.save(function(err, doc){
                    if(!err){
-                       return res.status(200).send(_data, {message: 'Examen updated.', status: 'success'});
+                       return res.status(200).send(_data);
                    }else{
                        return res.status(500).send({
                            message: 'Examen hasnt been saved',

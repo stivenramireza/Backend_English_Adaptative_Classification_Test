@@ -34,11 +34,11 @@ router.get('/test/prestart', cors(corsOptions), function(req, res, next){
         examenCtlr.saveTestStatus(req, res, _data);
     });
 });
-router.post('/test/statistics/level', cors(corsOptions), function(req, res){
+router.post('/test/statistics/level', cors(corsOptions), function(req, res, next){
     request.post({url: QUERY_PATH + '/test/statistics/level', 
     body: {c_part1: req.body.c_part1, c_part2: req.body.c_part2, c_part3: req.body.c_part3}, 
     json: true},  
-    function(data){
+    function(error, response, data){
         res.send(data);
     });
 });
