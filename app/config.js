@@ -6,6 +6,7 @@ var config = {
   development: {
     PORT: process.env.PORT || 3000,
     DB_HOST: process.env.MONGODB_URI || 'mongodb://user1:123456a@ds025232.mlab.com:25232/eacidb',
+    //DB_HOST: process.env.MONGODB_URI || 'mongodb://localhost/eacidb:27017',
     DB_USER: process.env.DB_USER || '',
     DB_PASSWORD: process.env.DB_PASSWORD || '',
     SECRET_TOKEN: process.env.JWT_TOKEN || 'mikey' 
@@ -13,6 +14,7 @@ var config = {
   test: {
     PORT: process.env.PORT || 3000,
     DB_HOST: process.env.MONGODB_URI || 'mongodb://user1:123456a@ds025232.mlab.com:25232/eacidb',
+    //DB_HOST: process.env.MONGODB_URI || 'localhost/eacidb',
     DB_USER: process.env.DB_USER || '',
     DB_PASSWORD: process.env.DB_PASSWORD || '',
     SECRET_TOKEN: process.env.JWT_TOKEN || 'mikey'

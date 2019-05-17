@@ -5,66 +5,6 @@ const service = require("../services")
 const {validationResult} = require('express-validator/check');
 const mongoose = require('mongoose');
 
-function loadLoginAdmin(req, res){
-    res.render("../views/login-admin/login-admin.ejs");
-}
-
-function loadProfile(req, res){
-    res.render("../views/admin-profile/admin-profile.ejs");
-}
-
-function logout(req, res){
-    res.redirect('/');
-}
-
-function loadProfileRegister(req, res){
-    res.render("../views/admin-profile/admins/admin-register.ejs");
-}
-
-function loadExamEnable(req, res){
-    res.render("../views/admin-profile/candidates/admin-exam-enable.ejs");
-}
-
-function loadExamReactivate(req, res){
-    res.render("../views/admin-profile/candidates/admin-exam-reactivate.ejs");
-}
-
-function loadGrade(req, res){
-    res.render("../views/admin-profile/candidates/admin-grade.ejs");
-}
-
-function loadAddQuestion(req, res){
-    res.render("../views/admin-profile/questions/admin-add-question.ejs");
-}
-
-function loadEditQuestion(req, res){
-    res.render("../views/admin-profile/questions/admin-edit-question.ejs");
-}
-
-function loadAdminEdit(req, res){
-    res.render("../views/admin-profile/admins/admin-edit.ejs");
-}
-
-function loadAdminEditData(req, res){
-    res.render("../views/admin-profile/admins/admin-edit-data.ejs");
-}
-
-function loadAdminCandidateGrades(req, res){
-    res.render("../views/admin-profile/candidates/admin-candidate-grades.ejs");
-}
-
-function loadStatistics(req, res){
-    res.render("../views/admin-profile/statistics/admin-statistics.ejs");
-}
-
-function loadDesfase(req, res){
-    res.render("../views/admin-profile/statistics/admin-desfase.ejs");
-}
-
-function loadCandidateResults(req, res){
-    res.render("../views/admin-profile/statistics/admin-candidate-results.ejs");
-}
-
 function registrarAdmin(req, res) {
     var errors = validationResult(req);
     if(!errors.isEmpty()){
@@ -91,14 +31,15 @@ function registrarAdmin(req, res) {
         gestionar_estadisticas: req.body.gestionar_estadisticas,
         clasificar_aspirantes: req.body.clasificar_aspirantes
     });
-    //save in the database
     new_admin.save((err) => {
         if (err) return res.status(500).send({ 
-            message: `Error al crear el administrador: ${err}` 
+            message: `Error al crear el administrador: ${err}`,
+            status: 'failed'
         })
         return res.status(200).send({
             message: 'Registro exitoso del administrador',
-            token: service.createToken(new_admin)
+            token: service.createToken(new_admin),
+            status: 'success'
         })
     })
 }
@@ -110,11 +51,13 @@ function loguearAdmin(req, res) {
     }
     Admin.findOne({ username: req.body.username }).select('username +password').exec(function (err, new_admin) {
         if (err) return res.status(500).send({ 
-            message: err 
+            message: err,
+            status: 'failed' 
         })
         if (new_admin == null) {
             return res.status(404).send({ 
-                message: 'Admin incorrecto' 
+                message: 'Admin incorrecto',
+                status: 'failed'
             })
         }
         if (bcrypt.compareSync(req.body.password, new_admin.password)) {
@@ -122,13 +65,13 @@ function loguearAdmin(req, res) {
             res.status(200).send({
                 message: 'Login correcto del administrador',
                 token: service.createToken(new_admin),
-                status: "success"
+                status: 'success'
             })
         }else {
             res.status(500).send({
                 message: 'Login incorrecto del administrador',
                 token: service.createToken(new_admin),
-                status: "failed"
+                status: 'failed'
             })
         }
     })
@@ -183,9 +126,9 @@ function fromNumberToGenre(_number){
 function getInfoAdmin(req, res) {
     let username = req.query.username;
     Admin.find({ username: username }, (err, info_admin) => {
-        if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}` })
-        if (!info_admin) return res.status(404).send({ message: `El admin no está registrado en la BD` })
-        res.status(200).send({ info_admin })
+        if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}`, status: 'failed' })
+        if (!info_admin) return res.status(404).send({ message: `El admin no está registrado en la BD`, status: 'failed' })
+        res.status(200).send({ info_admin, status: 'success' })
     })
 }
 
@@ -197,40 +140,24 @@ function updateInfoAdmin(req, res){
     let idAdmin = req.query.idAdmin;
     let update = req.body
     Admin.update({_id: idAdmin}, update, (err, adminUpdated) => {
-        if (err) return res.status(500).send({ message: `Error al actualizar la información del admin: ${err}` })
-        console.log(adminUpdated)
-        res.status(200).send({ new_admin: adminUpdated })
+        if (err) return res.status(500).send({ message: `Error al actualizar la información del admin: ${err}`, status: 'failed' })
+        res.status(200).send({ new_admin: adminUpdated, status: 'success' })
     })
 }
 
 function editarAdmin(req, res){
     let docnumber = req.query.docnumber;
     Admin.findOne({docnumber: docnumber }, (err, info_admin) => {
-        if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}` })
-        if (!info_admin) return res.status(404).send({ message: `El admin no está registrado en la BD` })
-        res.status(200).send({ info_admin })
+        if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}`, status: 'failed' })
+        if (!info_admin) return res.status(404).send({ message: `El admin no está registrado en la BD`, status: 'failed' })
+        res.status(200).send({ info_admin, status: 'success' })
     })
 }
 
 module.exports = {
     registrarAdmin,
     loguearAdmin,
-    loadLoginAdmin,
-    loadExamEnable,
-    loadExamReactivate,
-    loadGrade,
-    loadProfile,
-    logout,
-    loadProfileRegister,
-    loadAddQuestion,
-    loadEditQuestion,
-    loadAdminEditData,
-    loadAdminEdit,
-    loadAdminCandidateGrades,
     getInfoAdmin,
     updateInfoAdmin,
-    editarAdmin,
-    loadStatistics,
-    loadDesfase,
-    loadCandidateResults
+    editarAdmin
 }

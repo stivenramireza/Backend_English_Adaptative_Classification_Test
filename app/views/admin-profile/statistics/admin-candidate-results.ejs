@@ -9,14 +9,15 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin Profile - Dashboard</title>
-    <script src="/admin-profile/candidates/admin-candidate-grades.js"></script>
+    <title>Calificaciones Individuales</title>
+    
 
     <!--Scripts de Gráficas de Barras-->
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/highcharts-3d.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/alertify.min.css"/>
 
     <!-- Custom fonts for this template-->
     <link href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/fontawesome-free/css/all.min.css"
@@ -260,55 +261,49 @@
                         </table>
                     </center>
 
-                    <br><br>
+                    <br>
 
                     <div>
+                        <!-- Footer -->
                         <div id="myDIV">
 
                             <center>
                                 <div class="py-5 text-center" style="width: 80%; text-align: center; border: 5px">
-                                    <p class="lead">Seleccione el tipo de gráfica para ver el porcentaje de aciertos
-                                        del estudiante en el examen clasificatorio
+                                    <p class="lead">A continuación se muestran las preguntas y respuestas dadas 
+                                        por el aspirante:
                                     </p>
                                 </div>
                             </center>
 
                             <center>
-                                <div class="col mb-3" style="width: 40%; text-align: center; border: 5px">
-                                    <label for="country">Tipo de gráfica</label>
-                                    <select style="width: 50%" class="custom-select d-block w-100" id="tipo_grafica"
-                                        required>
-                                        <option value="0">Seleccione el tipo de gráfica...</option>
-                                        <option value="1">Gráfica de barras</option>
-                                        <option value="2">Gráfica Circular</option>
-                                    </select>
-                                    <div class="invalid-feedback">
-                                        Por favor seleccione un tipo de gráfica.
-                                    </div>
-                                </div>
-                            </center>
+                               <!-- Begin Page Content -->
+        <div class="container-fluid">
 
-                            <center>
-                                <button id="btnGap" class="btn btn-primary" onclick=getPercentage()
-                                    type="button">Ver gráfica</button>
+                <!-- DataTales Example -->
+                <div class="card shadow mb-4">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Examen de Clasificación</h6>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                      
+                      </table>
+                    </div>
+                  </div>
+                </div>
+      
+              </div>
+              <!-- /.container-fluid -->
                             </center>
                         </div>
                     </div>
                 </div>
 
                 <br><br>
-
-                <center>
-                    <div class="card shadow mb-4" id="myDIV2" style="width: 80%; text-align: center; border: 5px">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary"><span id="texto_span"></span></h6>
-                        </div>
-                        <div class="card-body">
-                            <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-                        </div>
-                    </div>
-                </center>
+                
             </div>
+            
 
             <br><br>
 
@@ -368,23 +363,13 @@
     <!-- Custom scripts for all pages-->
     <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/demo/chart-area-demo.js"></script>
-    <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/demo/chart-pie-demo.js"></script>
-
     <script>
+        var nombre_completo = localStorage.getItem('nombre_admin');
+        document.getElementById("nombreAdmin").innerHTML = nombre_completo;
         var x = document.getElementById("myDIV");
         x.style.display = "none";
     </script>
-
-    <script>
-        var y = document.getElementById("myDIV2");
-        y.style.display = "none";
-    </script>
-
+    <script src="/admin-profile/statistics/admin-candidate-results.js"></script>
 </body>
 
 </html>

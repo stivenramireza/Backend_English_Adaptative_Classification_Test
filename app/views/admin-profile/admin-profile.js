@@ -1,6 +1,5 @@
 var http = new XMLHttpRequest();
 var username = localStorage.getItem("username");
-console.log("username: ", username);
 var params = 'username='+username;
 http.responseType = 'json';
 http.open('GET', '/api/admin/list'+'?'+ params, true);
@@ -13,5 +12,6 @@ http.onreadystatechange = function () {
         var apellido = texto[0].lastname;
         var nombre_completo = nombre + " " + apellido;
         document.getElementById("nombreAdmin").innerHTML = nombre_completo;
+        localStorage.setItem("nombre_admin", nombre_completo);
     }
 }

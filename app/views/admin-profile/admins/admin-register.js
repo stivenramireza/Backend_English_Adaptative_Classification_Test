@@ -1,3 +1,5 @@
+var nombre_completo = localStorage.getItem('nombre_admin');
+document.getElementById("nombreAdmin").innerHTML = nombre_completo;
 let signup = function () {
     $('#failed').hide();
     var http = new XMLHttpRequest();

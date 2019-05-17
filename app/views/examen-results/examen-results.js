@@ -165,8 +165,13 @@ function calcularNotas(array_respuestas, array_partes) {
     } if (c_parte2 < 4) {
         c_parte3 = 0;
     }
-    nota_final = ((c_parte1 + c_parte2 + c_parte3) / 3).toFixed(1);
-
+    if(c_parte2 == 0 && c_parte3 == 0){
+        nota_final = c_parte1.toFixed(1);
+    }else if(c_parte3 == 0){
+        nota_final = ((c_parte1 + c_parte2) / 2).toFixed(1);
+    }else{
+        nota_final = ((c_parte1 + c_parte2 + c_parte3) / 3).toFixed(1);
+    }
     return nota_final;
 }
 

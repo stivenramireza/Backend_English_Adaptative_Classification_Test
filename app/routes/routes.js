@@ -1,10 +1,11 @@
 const express = require('express');
+
 const adminCtlr = require('../controllers/admin');
-const examenCtlr = require('../controllers/examen');
 const studentCtrlr = require('./../controllers/student');
-const loginCtlr = require('../controllers/login');
-const testCtlr = require('../controllers/examen');
+const examenCtlr = require('../controllers/examen');
 const questionCtlr = require('../controllers/pregunta');
+const viewsCtlr = require('../controllers/views');
+
 const auth = require('../middlewares/auth') // Aún no se está usando
 var cors = require('cors')
 var request = require('request')
@@ -18,26 +19,21 @@ const router = express.Router();
 const {check} = require('express-validator/check');
 const QUERY_PATH = "http://ec2-34-207-193-227.compute-1.amazonaws.com";
 
-// GET first_question desde Amazon Web Services (AWS)
+// Views de la Página Principal
+router.get('/signin', viewsCtlr.loadMainPage);
+
+// CRUD del Examen
+router.put('/api/test/update', examenCtlr.updateInfoExamen);
+router.put('/api/test/updatebydoc', examenCtlr.updateByDocNumber);
+router.post('/test/next_question', cors(corsOptions), examenCtlr.next_question);
+router.get('/test/info', cors(corsOptions), examenCtlr.getInfoExamen);
+router.get('/test/statistics', cors(corsOptions), examenCtlr.statistics);
 router.get('/test/prestart', cors(corsOptions), function(req, res, next){
     request.get(QUERY_PATH + '/test/prestart', function(error, response, data){
         var _data = data;
         examenCtlr.saveTestStatus(req, res, _data);
     });
 });
-
-router.put('/api/test/update', examenCtlr.updateInfoExamen);
-
-router.put('/api/test/updatebydoc', examenCtlr.updateByDocNumber);
-
-// POST next_question desde Amazon Web Services (AWS)
-router.post('/test/next_question', cors(corsOptions), examenCtlr.next_question);
-
-router.get('/test/info', cors(corsOptions), examenCtlr.getInfoExamen);
-router.get('/candidate/test/error', testCtlr.loadTestError);
-
-router.get('/test/statistics', cors(corsOptions), examenCtlr.statistics);
-
 router.post('/test/statistics/level', cors(corsOptions), function(req, res, next){
     request.post({url: QUERY_PATH + '/test/statistics/level', 
     body: {c_part1: req.body.c_part1, c_part2: req.body.c_part2, c_part3: req.body.c_part3}, 
@@ -47,57 +43,17 @@ router.post('/test/statistics/level', cors(corsOptions), function(req, res, next
     });
 });
 
-// GET de la Principal Page 
-router.get('/signin', loginCtlr.loadLogin); // Carga el signin (página principal)
+// Views del Examen
+router.get('/candidate/test/error', viewsCtlr.loadTestError);
 
-router.get('/ci/test', function(req, res, next){
-    res.json({
-        "msg": "CI Passed"
-    });
-});
-
-// GET del Aspirante
-router.get('/signin/candidate', studentCtrlr.loadLoginCandidate); // Carga el signin del aspirante
-router.get('/signup/candidate', studentCtrlr.loadSignupCandidate); //Carga el egistro del aspirante
-router.get('/candidate/profile', studentCtrlr.updateProfile); // Carga el perfil del aspirante
-router.get('/candidate/test/pre_started', testCtlr.loadPreStarted); // Carga las instrucciones del examen
-router.get('/candidate/test/', testCtlr.loadTest); // Cargas las preguntas y opciones de respuesta
-router.get('/candidate/test/final_result', testCtlr.loadResult); // Muestra la nota final
-router.get('/api/candidate/list', studentCtrlr.getInfoCandidate); // Obtiene la info del aspirante
-router.put('/api/candidate/update', studentCtrlr.updateInfoCandidate); // Actualiza la info del aspirante
+// CRUD del Aspirante
+router.get('/api/candidate/list', studentCtrlr.getInfoCandidate);
+router.put('/api/candidate/update', studentCtrlr.updateInfoCandidate);
 router.put('/api/candidate/update-doc', studentCtrlr.updateCandidateByDoc);
-
-// GET del Administrador
-router.get('/signin/admin', adminCtlr.loadLoginAdmin); // Carga el signin del administrador
-router.get('/admin/profile', adminCtlr.loadProfile); // Carga el perfil del administrador
-router.get('/admin/logout', adminCtlr.logout); // Cerrar sesión del administrador
-router.get('/api/admin/list', adminCtlr.getInfoAdmin); // Obtiene la info del admin
-router.get('/api/admin/edit', adminCtlr.editarAdmin); // Obtiene la info del admin para editar
-router.put('/api/admin/update', adminCtlr.updateInfoAdmin); // Actualiza la info del admin
-router.get('/admin/profile/register', adminCtlr.loadProfileRegister) // Registrar administradores
-router.get('/admin/profile/exam-enable', adminCtlr.loadExamEnable) //Habilitar examenes
-router.get('/admin/profile/exam-reactivate', adminCtlr.loadExamReactivate) //Reactivar examenes
-router.get('/admin/profile/grade', adminCtlr.loadGrade) //Clasificar aspirante
-router.get('/admin/profile/add-question', adminCtlr.loadAddQuestion)
-router.get('/admin/profile/edit-question', adminCtlr.loadEditQuestion)
-router.get('/admin/profile/edit-admin', adminCtlr.loadAdminEdit)
-router.get('/admin/profile/edit-admin/data', adminCtlr.loadAdminEditData)
-router.get('/admin/profile/candidate-grades', adminCtlr.loadAdminCandidateGrades)
-router.get('/admin/profile/statistics', adminCtlr.loadStatistics)
-router.get('/admin/profile/gap', adminCtlr.loadDesfase);
-router.get('/admin/profile/individual-results', adminCtlr.loadCandidateResults);
-
-// CRUD de Preguntas
-router.post('/api/register/question', questionCtlr.registrarPregunta); // registra la pregunta
-router.get('/api/question/list', questionCtlr.obtenerPregunta); // obtiene la pregunta por n_item
-router.put('/api/question/update', questionCtlr.actualizarPregunta); // actualiza la pregunta por n_item
-router.post('/api/question/remove', questionCtlr.eliminarPregunta); // elimina la pregunta por n_item
-
-// POST del Aspirante
 router.post('/api/signin/candidate', [
     check('doctype').isNumeric().isIn([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]),
     check('docnumber').isNumeric().isLength({min: 5})
-], studentCtrlr.login); // Postea para el signin del aspirante
+], studentCtrlr.login); 
 router.post('/api/register/candidate', [
     check('doctype').isNumeric().isIn([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]),
     check('docnumber').isNumeric().isLength({min: 5}),
@@ -110,13 +66,24 @@ router.post('/api/register/candidate', [
     check('mobilephonenumber').isMobilePhone().isLength({max: 12}),
     check('email').isEmail().isLength({min: 7}),
     check('examen_activo').isBoolean()
-], studentCtrlr.register); // Postea para el registro del aspirante
+], studentCtrlr.register);
 
-// POST del Admin
+// Views del Aspirante
+router.get('/signin/candidate', viewsCtlr.loadLoginCandidate); 
+router.get('/signup/candidate', viewsCtlr.loadSignupCandidate); 
+router.get('/candidate/profile', viewsCtlr.loadUpdateProfile); 
+router.get('/candidate/test/pre_started', viewsCtlr.loadPreStarted);
+router.get('/candidate/test/', viewsCtlr.loadTest); 
+router.get('/candidate/test/final_result', viewsCtlr.loadResult); 
+
+// CRUD del Admin
+router.get('/api/admin/list', adminCtlr.getInfoAdmin); 
+router.get('/api/admin/edit', adminCtlr.editarAdmin); 
+router.put('/api/admin/update', adminCtlr.updateInfoAdmin); 
 router.post('/api/signin/admin', [
     check('username').matches('[a-zA-Z\\s]+').isLength({min: 4}),
     check('password').matches('[a-zA-Z0-9\\#\\-\\°\\s]+').isLength({min: 8})
-], adminCtlr.loguearAdmin); // Postea para el signin del admin
+], adminCtlr.loguearAdmin); 
 router.post('/api/register/admin', [
     check('doctype').isNumeric().isIn([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]),
     check('docnumber').isNumeric().isLength({min: 5}),
@@ -135,6 +102,29 @@ router.post('/api/register/admin', [
     check('reactivar_examenes').isBoolean(),
     check('gestionar_estadisticas').isBoolean(),
     check('clasificar_aspirantes').isBoolean()
-], adminCtlr.registrarAdmin); // Postea para el registro del admin
+], adminCtlr.registrarAdmin);
+
+// Views del Admin
+router.get('/signin/admin', viewsCtlr.loadLoginAdmin);
+router.get('/admin/profile', viewsCtlr.loadProfile); 
+router.get('/admin/logout', viewsCtlr.logout); 
+router.get('/admin/profile/register', viewsCtlr.loadProfileRegister) 
+router.get('/admin/profile/exam-enable', viewsCtlr.loadExamEnable) 
+router.get('/admin/profile/exam-reactivate', viewsCtlr.loadExamReactivate) 
+router.get('/admin/profile/grade', viewsCtlr.loadGrade) 
+router.get('/admin/profile/add-question', viewsCtlr.loadAddQuestion)
+router.get('/admin/profile/edit-question', viewsCtlr.loadEditQuestion)
+router.get('/admin/profile/edit-admin', viewsCtlr.loadAdminEdit)
+router.get('/admin/profile/edit-admin/data', viewsCtlr.loadAdminEditData)
+router.get('/admin/profile/candidate-grades', viewsCtlr.loadAdminCandidateGrades)
+router.get('/admin/profile/statistics', viewsCtlr.loadStatistics)
+router.get('/admin/profile/gap', viewsCtlr.loadDesfase);
+router.get('/admin/profile/individual-results', viewsCtlr.loadCandidateResults);
+
+// CRUD de Preguntas
+router.get('/api/question/list', questionCtlr.obtenerPregunta);
+router.post('/api/register/question', questionCtlr.registrarPregunta); 
+router.put('/api/question/update', questionCtlr.actualizarPregunta);
+router.post('/api/question/remove', questionCtlr.eliminarPregunta);
 
 module.exports = router;
