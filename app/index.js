@@ -15,11 +15,9 @@ mongoose.connect(dbConn, {useNewUrlParser: true}).then( (req, res) => {
 
  // Middleware
 const bodyParser = require('body-parser');
-
 server.use(express.static(path.join(__dirname, 'views')));
 server.use(bodyParser.urlencoded( { extended: false } ) );
 server.use(bodyParser.json());
-
 server.set('views', path.join(__dirname, 'views'));
 server.set('view engine', 'ejs');
 
