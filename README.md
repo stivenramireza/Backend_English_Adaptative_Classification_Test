@@ -20,8 +20,8 @@ Aplicación web para el examen adaptativo de clasificación de inglés del centr
 - [x] Reportes individuales del examen. (**Juan Pablo**)
 - [ ] Manejo de preguntas BD (**Camilo**)
 - [ ] Reportes del Examen por día, por mes, por semestre y por año (filtros por fechas) y estos a su vez por curso, profesor o ambos. Estos reporten son el # de clasificaciones que se realizaron. Estos resultados debe permitir al admin generar reportes en un checkbox: por tabla, por gráfico de barras, por gráfica circular ó por pictograma, etc. El admin decide. (Vista Administrativa). (**Juan Pablo**)
-- [ ] Reportes generales en % del resultado del examen. (Vista Administrativa) (**Stiven**)
-- [ ] Reportes del resultado del examen escrito y del examen oral (realizado por el profesor). Esto con el fin de evaluar el desfase de **clasificación** que se pueda llegar a generar y saber si el profesor está tirando muy duro, conoce a medias el inglés o definitivamente requiere de una capacitación . (Vista Administrativa). (**Stiven**)
+- [x] Reportes generales en % del resultado del examen. (Vista Administrativa) (**Stiven**)
+- [x] Reportes del resultado del examen escrito y del examen oral (realizado por el profesor). Esto con el fin de evaluar el desfase de **clasificación** que se pueda llegar a generar y saber si el profesor está tirando muy duro, conoce a medias el inglés o definitivamente requiere de una capacitación . (Vista Administrativa). (**Stiven**)
 - [ ] Edición de Preguntas: Permitir texto, imaǵenes, videos y/o audios (Vista Administrativa). (**Juan Pablo**)
 
 ### Backend:
@@ -36,12 +36,12 @@ Aplicación web para el examen adaptativo de clasificación de inglés del centr
 - [x] Funcionalidades administrativas (activar, desactivar, editar roles, etc...). (**Stiven y Juan Pablo**)
 - [ ] Manejo de sesiones para los usuarios. (**Anderson**)
 - [ ] Manejo de preguntas BD (**Anderson**)
-- [ ] Reportes del Examen por día, por mes, por semestre y por año (filtros por fechas) y estos a su vez por curso, profesor o ambos. Estos reporten son el # de clasificaciones que se realizaron. Estos resultados debe permitir al admin generar reportes en un checkbox: por tabla, por gráfico de barras, por gráfica circular ó por pictograma, etc. El admin decide. (Vista Administrativa). (**Juan Pablo**) 
-- [ ] Reportes generales en % del resultado del examen. (Vista Administrativa) (**Stiven**)
-- [ ] Reportes del resultado del examen escrito y del examen oral (realizado por el profesor). Esto con el fin de evaluar el desfase de **clasificación** que se pueda llegar a generar y saber si el profesor está tirando muy duro, conoce a medias el inglés o definitivamente requiere de una capacitación . (Vista Administrativa). (**Stiven**)
+- [x] Reportes del Examen por día, por mes, por semestre y por año (filtros por fechas) y estos a su vez por curso, profesor o ambos. Estos reporten son el # de clasificaciones que se realizaron. Estos resultados debe permitir al admin generar reportes en un checkbox: por tabla, por gráfico de barras, por gráfica circular ó por pictograma, etc. El admin decide. (Vista Administrativa). (**Juan Pablo**) 
+- [x] Reportes generales en % del resultado del examen. (Vista Administrativa) (**Stiven**)
+- [x] Reportes del resultado del examen escrito y del examen oral (realizado por el profesor). Esto con el fin de evaluar el desfase de **clasificación** que se pueda llegar a generar y saber si el profesor está tirando muy duro, conoce a medias el inglés o definitivamente requiere de una capacitación . (Vista Administrativa). (**Stiven**)
 - [ ] Edición de Preguntas: Permitir texto, imaǵenes, videos y/o audios (Vista Administrativa). (**Juan Pablo**)
 
 ### API de Inteligencia Artificial:
 
-- [ ] Manejo de preguntas BD (**Anderson**)
-- [ ] Carga del banco de preguntas a la API de manera automática. (**Anderson**)
+- [x] Manejo de preguntas BD (**Anderson**)
+- [x] Carga del banco de preguntas a la API de manera automática. (**Anderson**)
