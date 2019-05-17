@@ -1,0 +1,33 @@
+.enca{
+    background: #001a72;
+    overflow: hidden;
+    width: 100%;
+    margin-bottom: 5px;
+    top:0;
+    left:0;
+    position: fixed;
+}
+.wrapper{
+    width: 90%;
+    max-width: 1180px;
+    margin:auto;
+    overflow: hidden;
+}
+.logo{
+    float:right;
+    line-height:60px;
+}
+nav{
+    line-height: 60px;
+    float:left;
+}
+nav a{
+    color: #fff;
+    text-emphasis-color: #fff;
+    text-decoration: none;
+    display: inline-block;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+
+}

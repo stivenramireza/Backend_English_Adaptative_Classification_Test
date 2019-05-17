@@ -1,176 +1,130 @@
-/**
- * /app/routes/routes.js
- * Export an express route.
- */
+const express = require('express');
 
- const express = require('express');
- const jwt = require('jsonwebtoken');
- const User = require('./../models/user');
- const mongoose = require('mongoose');
+const adminCtlr = require('../controllers/admin');
+const studentCtrlr = require('./../controllers/student');
+const examenCtlr = require('../controllers/examen');
+const questionCtlr = require('../controllers/pregunta');
+const viewsCtlr = require('../controllers/views');
 
- //to encrypt
-const bcrypt = require('bcrypt');
-const userCtlr = require('../controllers/user');
+const auth = require('../middlewares/auth') // Aún no se está usando
+var cors = require('cors')
+var request = require('request')
 
- // It will contain all the end points
- const router = express.Router();
+var corsOptions = {
+    origin: 'http://ec2-34-207-193-227.compute-1.amazonaws.com',
+    optionsSuccessStatus: 200
+}
 
- router.get('/test/pre-started', userCtlr.loadTest);
- router.get('/login/admin', userCtlr.loadLoginAdmin);
- router.get('/login/candidate', userCtlr.loadLoginCandidate);
+const router = express.Router();
+const {check} = require('express-validator/check');
+const QUERY_PATH = "http://ec2-34-207-193-227.compute-1.amazonaws.com";
 
- router.post('/user/register', (req, res, next) => {
-     let hasErrors = false;
-     let errors = [];
+// Views de la Página Principal
+router.get('/signin', viewsCtlr.loadMainPage);
 
-     if(!req.body.firstname){
-         errors.push({'firstname': "First Name not received"});
-         hasErrors = true;
-     }
-     if(!req.body.lastname){
-        errors.push({'lastname': "Last Name not received"});
-        hasErrors = true;
-     }
-     if(!req.body.username){
-        errors.push({'username': "Username Name not received"});
-        hasErrors = true;
-     }
-     if(!req.body.doctype){
-        errors.push({'doctype': "Doctype not received"});
-        hasErrors = true;
-     }
-     if(!req.body.docnumber){
-        errors.push({'docnumber': "Docnumber not received"});
-        hasErrors = true;
-     }
-     if(!req.body.birthdate){
-        errors.push({'birthdate': "Birth Date not received"});
-        hasErrors = true;
-     }
-     if(!req.body.maritalstatus){
-        errors.push({'maritalstatus': "Marital Status not received"});
-        hasErrors = true;
-     }
-     if(!req.body.email){
-        errors.push({'email': "Email not received"});
-        hasErrors = true;
-     }
-     if(!req.body.password){
-        errors.push({'password': "Password not received"});
-        hasErrors = true;
-     }
-     if(hasErrors){
-         res.status(422).json({
-             message: "Invalid input",
-             errors: errors
-         });
-     }else{
-        bcrypt.hash(req.body.password, 10, (err, hashed_password) => {
-            if(err){
-                errors.push({
-                    hash: err.message
-                });
-                return res.status(500).json(errors);
-            }else{
-                const new_user = new User({
-                    //assign request fields to the user attributes
-                    _id : mongoose.Types.ObjectId(),
-                    firstname: req.body.firstname,
-                    lastname: req.body.lastname,
-                    username: req.body.username,
-                    doctype: req.body.doctype,
-                    docnumber: req.body.docnumber,
-                    birthdate: req.body.birthdate,
-                    maritalstatus: req.body.maritalstatus,
-                    email: req.body.email,
-                    password: hashed_password
-                  });
-                  //save in the database
-                  new_user.save().then(saved_user => {
-                  //return 201, message and user details
-                    res.status(201).json({
-                      message: 'User created!',
-                      user: saved_user,
-                      errors: errors
-                    });
-                  }).catch(err => {
-                  //failed to save in database
-                    errors.push(new Error({
-                      db: err.message
-                    }))
-                    res.status(500).json(errors);
-                  });
-            }
-        });  
-     }
- });
- 
- router.post('/user/login', (req, res, next) => {
-    let hasErrors = false ;
-    let errors = [];
-  
-    //validate presence of email and password
-    if(!req.body.email){
-        errors.push({'email': 'Email not received'})
-        hasErrors = true;
-    }
-    if(!req.body.password){
-        errors.push({'password': 'Password not received'})
-        hasErrors = true;
-    }
+// CRUD del Examen
+router.put('/api/test/update', examenCtlr.updateInfoExamen);
+router.put('/api/test/updatebydoc', examenCtlr.updateByDocNumber);
+router.post('/test/next_question', cors(corsOptions), examenCtlr.next_question);
+router.get('/test/info', cors(corsOptions), examenCtlr.getInfoExamen);
+router.get('/test/statistics', cors(corsOptions), examenCtlr.statistics);
+router.get('/test/prestart', cors(corsOptions), function(req, res, next){
+    request.get(QUERY_PATH + '/test/prestart', function(error, response, data){
+        var _data = data;
+        examenCtlr.saveTestStatus(req, res, _data);
+    });
+});
+router.post('/test/statistics/level', cors(corsOptions), function(req, res, next){
+    request.post({url: QUERY_PATH + '/test/statistics/level', 
+    body: {c_part1: req.body.c_part1, c_part2: req.body.c_part2, c_part3: req.body.c_part3}, 
+    json: true},  
+    function(error, response, data){
+        res.send(data);
+    });
+});
 
-    if(hasErrors){
-        //return error code an info
-        res.status(422).json({
-            message: "Invalid input",
-            errors: errors
-        });
+// Views del Examen
+router.get('/candidate/test/error', viewsCtlr.loadTestError);
 
-    }else{
-        //check if credentials are valid
-        User.findOne({email: req.body.email}).then((found_user, err) => {
-            if(!found_user){
-                res.status(401).json({
-                    message: "Auth error, email not found"
-                });
-            }else{
-                bcrypt.compare(req.body.password, found_user.password, (err, isValid) => {
-                    if(err){
-                        //if compare method fails, return error
-                        res.status(500).json({
-                          message: err.message
-                        }); 
-                    }
-                    if(!isValid){
-                        //return error, incorrect password
-                        res.status(401).json({
-                          message: "Authentication error."
-                        }) 
-                    }else{
-                        //generate JWT token. jwt.sing() receives payload, key and opts.
-                        const token = jwt.sign(
-                            {
-                                email: req.body.email,
-                            },  
-                            (process.env.JWT_KEY || 'mykey'), 
-                            {
-                                expiresIn: "1h"
-                            }
-                        );
-                        //validation OK
-                        res.status(200).json({
-                            message: 'User Authenticated.',
-                            token: token,
-                            errors: errors
-                        });
-                    }
-                });
-            }
+// CRUD del Aspirante
+router.get('/api/candidate/list', studentCtrlr.getInfoCandidate);
+router.put('/api/candidate/update', studentCtrlr.updateInfoCandidate);
+router.put('/api/candidate/update-doc', studentCtrlr.updateCandidateByDoc);
+router.post('/api/signin/candidate', [
+    check('doctype').isNumeric().isIn([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]),
+    check('docnumber').isNumeric().isLength({min: 5})
+], studentCtrlr.login); 
+router.post('/api/register/candidate', [
+    check('doctype').isNumeric().isIn([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]),
+    check('docnumber').isNumeric().isLength({min: 5}),
+    check('firstname').matches('[a-zA-Z\\s]+').isLength({min: 4}),
+    check('lastname').matches('[a-zA-Z\\s]+').isLength({min: 4}),
+    check('genre').isNumeric().isIn([1, 2, 3]),
+    check('currentcity').isAlphanumeric().isLength({min: 3}),
+    check('address').matches('[a-zA-Z0-9\\#\\-\\°\\s]+').isLength({min: 4}),
+    check('phonenumber').isNumeric().isLength({min: 5}),
+    check('mobilephonenumber').isMobilePhone().isLength({max: 12}),
+    check('email').isEmail().isLength({min: 7}),
+    check('examen_activo').isBoolean()
+], studentCtrlr.register);
 
-        });
-    }  
-  });
+// Views del Aspirante
+router.get('/signin/candidate', viewsCtlr.loadLoginCandidate); 
+router.get('/signup/candidate', viewsCtlr.loadSignupCandidate); 
+router.get('/candidate/profile', viewsCtlr.loadUpdateProfile); 
+router.get('/candidate/test/pre_started', viewsCtlr.loadPreStarted);
+router.get('/candidate/test/', viewsCtlr.loadTest); 
+router.get('/candidate/test/final_result', viewsCtlr.loadResult); 
 
- module.exports = router;
+// CRUD del Admin
+router.get('/api/admin/list', adminCtlr.getInfoAdmin); 
+router.get('/api/admin/edit', adminCtlr.editarAdmin); 
+router.put('/api/admin/update', adminCtlr.updateInfoAdmin); 
+router.post('/api/signin/admin', [
+    check('username').matches('[a-zA-Z\\s]+').isLength({min: 4}),
+    check('password').matches('[a-zA-Z0-9\\#\\-\\°\\s]+').isLength({min: 8})
+], adminCtlr.loguearAdmin); 
+router.post('/api/register/admin', [
+    check('doctype').isNumeric().isIn([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]),
+    check('docnumber').isNumeric().isLength({min: 5}),
+    check('firstname').matches('[a-zA-Z\\s]+').isLength({min: 4}),
+    check('lastname').matches('[a-zA-Z\\s]+').isLength({min: 4}),
+    check('estado').isBoolean(),
+    check('genre').isNumeric().isIn([1, 2, 3]),
+    check('currentcity').isAlphanumeric().isLength({min: 3}),
+    check('address').matches('[a-zA-Z0-9\\#\\-\\°\\s]+').isLength({min: 4}),
+    check('phonenumber').isNumeric().isLength({min: 7}),
+    check('mobilephonenumber').isMobilePhone().isLength({max: 12}),
+    check('email').isEmail().isLength({min: 7}),
+    check('username').matches('[a-zA-Z\\s]+').isLength({min: 4}),
+    check('password').matches('[a-zA-Z0-9\\#\\-\\°\\s]+').isLength({min: 8}),
+    check('habilitar_examenes').isBoolean(),
+    check('reactivar_examenes').isBoolean(),
+    check('gestionar_estadisticas').isBoolean(),
+    check('clasificar_aspirantes').isBoolean()
+], adminCtlr.registrarAdmin);
 
+// Views del Admin
+router.get('/signin/admin', viewsCtlr.loadLoginAdmin);
+router.get('/admin/profile', viewsCtlr.loadProfile); 
+router.get('/admin/logout', viewsCtlr.logout); 
+router.get('/admin/profile/register', viewsCtlr.loadProfileRegister) 
+router.get('/admin/profile/exam-enable', viewsCtlr.loadExamEnable) 
+router.get('/admin/profile/exam-reactivate', viewsCtlr.loadExamReactivate) 
+router.get('/admin/profile/grade', viewsCtlr.loadGrade) 
+router.get('/admin/profile/add-question', viewsCtlr.loadAddQuestion)
+router.get('/admin/profile/edit-question', viewsCtlr.loadEditQuestion)
+router.get('/admin/profile/edit-admin', viewsCtlr.loadAdminEdit)
+router.get('/admin/profile/edit-admin/data', viewsCtlr.loadAdminEditData)
+router.get('/admin/profile/candidate-grades', viewsCtlr.loadAdminCandidateGrades)
+router.get('/admin/profile/statistics', viewsCtlr.loadStatistics)
+router.get('/admin/profile/gap', viewsCtlr.loadDesfase);
+router.get('/admin/profile/individual-results', viewsCtlr.loadCandidateResults);
 
+// CRUD de Preguntas
+router.get('/api/question/list', questionCtlr.obtenerPregunta);
+router.post('/api/register/question', questionCtlr.registrarPregunta); 
+router.put('/api/question/update', questionCtlr.actualizarPregunta);
+router.post('/api/question/remove', questionCtlr.eliminarPregunta);
+
+module.exports = router;

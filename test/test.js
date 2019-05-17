@@ -8,7 +8,7 @@ const expect = chai.expect;
 const http = require('chai-http');
 
 // Require user
-const User = require('./../app/models/user');
+const Student = require('./../app/models/student');
 
 
 // App
@@ -23,7 +23,7 @@ chai.use(http);
 
 describe('EACI Team App Tests', () => {
     after((done) => {
-        User.find().deleteMany().then((res) => {
+        Student.find().deleteMany().then((res) => {
             done();
         }).catch(err => {
             console.log(err.message);
@@ -32,11 +32,10 @@ describe('EACI Team App Tests', () => {
     it('Should exists', () => {
         expect(server).to.be.a('function');
     });
-    it('GET / should return 200 and message', (done) => {
+    it('GET / should return 200', (done) => {
         chai.request(server).get('/')
             .then((res) => {
                 expect(res).to.have.status(200);
-                expect(res.text).to.contain('EACI');
                 done();
             }).catch(err => {
                 console.log(err);
@@ -44,30 +43,30 @@ describe('EACI Team App Tests', () => {
     });
 });
 
-describe('User Registration', () => {
+describe('Student Registration', () => {
     it('Should return 201 and confirmation for valid input', (done) => {
         const new_user = {
-            "firstname": "Anderson Daniel",
-            "lastname": "Grajales Alzate",
-            "username": "agrajal7",
             "doctype": 1,
-            "docnumber": 1001100110,
-            "birthdate": new Date(),
-            "maritalstatus": 1,
-            "email": "agrajal7@eafit.edu.co",
-            "password": "123Pass"
+	        "docnumber": 1036965733,
+	        "firstname": "Anderson Daniel",
+	        "lastname": "Grajales Alzate",
+	        "genre": 1,
+	        "birthdate": "25/01/1999",
+	        "currentcity": "Medellin",
+	        "address": "Corregimiento Santa Elena - Vereda Mazo",
+	        "phonenumber": "3128149251",
+	        "email": "agrajal7@eafit.edu.co"
         }
-        chai.request(server).post('/user/register')
+        chai.request(server).post('/student/register')
             .send(new_user)
             .then((res) => {
                 expect(res).to.have.status(201);
-                expect(res.body.message).to.be.equal("User created!");
+                expect(res.body.message).to.be.equal("Student created!");
                 expect(res.body.errors.length).to.be.equal(0);
                 // Validate creation
-                expect(res.body.user._id).to.exist;
-                expect(res.body.user.createdAt).to.exist;
+                expect(res.body.student._id).to.exist;
+                expect(res.body.student.createdAt).to.exist;
                 //validation to confirm password is encrypted
-                expect(res.body.user.password).to.not.be.eql(new_user.password);
                 done();
             }).catch(err => {
                 console.log(err.message);
@@ -76,22 +75,39 @@ describe('User Registration', () => {
 });
 
 // User Login
-describe('User Login', () => {
+describe('Student Login', () => {
     it('should return 200 and token for valid credentials', (done) => {
         const credentials = {
-            "email": "agrajal7@eafit.edu.co",
-            "password": "123Pass"
+            "doctype": 1,
+            "docnumber": 1036965733
         }
-        chai.request(server).post('/user/login')
+        chai.request(server).post('/student/login')
             .send(credentials)
             .then((res) => {
                 expect(res).to.have.status(200);
                 expect(res.body.token).to.exist;
-                expect(res.body.message).to.be.equal("User Authenticated.");
+                expect(res.body.message).to.be.equal("Student authenticated.");
                 expect(res.body.errors.length).to.be.equal(0);
                 done();
             }).catch(err => {
                 console.log(err.message);
             });
+    });
+});
+
+
+describe('User Profile', () => {
+    it('should return 200 and user name', (done) => {
+        const data = {
+            "email": "agrajal7@eafit.edu.co"
+        }
+        chai.request(server).post('/user')
+        .send(data)
+        .then((res) => {
+            expect(res).to.have.status(200);
+            done();
+        }).catch(err => {
+            console.log("Error: " +err);
+        });
     });
 });
