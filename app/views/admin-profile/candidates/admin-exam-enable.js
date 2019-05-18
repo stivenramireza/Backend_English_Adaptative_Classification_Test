@@ -39,6 +39,7 @@ let update = function (id) {
     http.send(JSON.stringify({
         examen_activo: true
     }));
+    alertify.set('notifier', 'position', 'bottom-center');
     alertify.success('Se ha habilitado el examen correctamente');
     document.getElementById("doc_type").value = "0";
     document.getElementById("docnumber").value = "";
