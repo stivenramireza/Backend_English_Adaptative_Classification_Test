@@ -6,7 +6,7 @@ const examenCtlr = require('../controllers/examen');
 const questionCtlr = require('../controllers/pregunta');
 const viewsCtlr = require('../controllers/views');
 
-const auth = require('../middlewares/auth') // Aún no se está usando
+const auth = require('../middlewares/auth')
 var cors = require('cors')
 var request = require('request')
 
