@@ -2,6 +2,9 @@ const Student = require('../models/student');
 const service = require("../services")
 const {validationResult} = require('express-validator/check');
 const mongoose = require('mongoose');
+var passport = require('passport');
+var expressSession = require('express-session');
+var LocalStrategy = require('passport-local').Strategy;
 
 function getInfoCandidate(req, res) {
     let docnumber = req.query.docnumber;
@@ -29,7 +32,7 @@ function updateCandidateByDoc(req, res){
         res.status(200).send({ new_candidate: candidateUpdated, status: 'success' })
     })
 }
-
+/** 
 function login(req, res){
     var errors = validationResult(req);
     if(!errors.isEmpty()){
@@ -46,6 +49,40 @@ function login(req, res){
             status: 'success'
         })
     })
+}*/
+function login(req, res){
+    passport.serializeUser(function(user, done) {
+        done(null, user._id);
+    });
+    
+    passport.deserializeUser(function(id, done) {
+        Student.findById(id, function(err, user) {
+        done(err, user);
+        });
+    });
+
+    passport.use('/api/signin/candidate', new LocalStrategy({
+        passReqToCallback : true
+    },
+    function(req, docnumber, done) { 
+        // check in mongo if a user with username exists or not
+        User.findOne({ 'docnumber' :  docnumber }, 
+        function(err, user) {
+            // In case of any error, return using the done method
+            if (err)
+            return done(err);
+            // Username does not exist, log error & redirect back
+            if (!user){
+            console.log('User Not Found with docnumber '+docnumber);
+            return done(null, false, 
+                    req.flash('message', 'User Not found.'));                 
+            }
+            // User and password both match, return user from 
+            // done method which will be treated like success
+            return done(null, user);
+        }
+        );
+    }));
 }
 
 function register(req, res) {
