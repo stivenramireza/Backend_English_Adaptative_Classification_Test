@@ -11,6 +11,7 @@ let getGap = function () {
         alertify.notify('No se han completado todos los campos', 'error', 3);
     } else {
 
+        var exito = false;
         var doc_number = document.getElementById("docnumber").value;
         var tipo_grafica = document.getElementById("tipo_grafica").value;
         var req = new XMLHttpRequest();
@@ -21,6 +22,7 @@ let getGap = function () {
         req.send(null);
         req.onreadystatechange = function () {
             if (req.readyState == 4 && req.status == 200) {
+                exito = true;
                 var texto = req.response.info_examen;
                 console.log(texto.classified_level);
                 clasificacion_escrita = texto.classified_level;
@@ -114,5 +116,13 @@ let getGap = function () {
                 }
             }
         }
+
+        setTimeout(function () {
+            if (!exito) {
+                alertify.set('notifier', 'position', 'bottom-center');
+                alertify.notify('El número de documento de identidad es incorrecto', 'error', 3);
+                x.style.display = "none";
+            }
+        } , 1000)
     }
 }
