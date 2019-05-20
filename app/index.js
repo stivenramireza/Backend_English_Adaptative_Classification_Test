@@ -3,10 +3,11 @@ const server = express();
 const routes = require('./routes/routes');
 const mongoose = require('mongoose');
 const path = require('path');
+const db = require('./db');
 
 // Conexión a la base de datos
 let dbConn = 'mongodb://user1:123456a@ds025232.mlab.com:25232/eacidb';
-//let dbConn = "mongodb://" + config.DB_USER + ":" + config.DB_PASSWORD + "@" + config.DB_HOST;
+//let dbConn = "mongodb://" + db.DB_USER + ":" + db.DB_PASSWORD + "@" + db.DB_HOST;
 mongoose.connect(dbConn, {useNewUrlParser: true}).then( (req, res) => {
   console.log("Conectado a la base de datos exitosamente");
 }).catch( err => {
@@ -28,7 +29,7 @@ const PORT = 8000;
 const HOST = '0.0.0.0'; 
 
 server.listen(PORT, HOST, function(req, res){
-  console.log('\nApp web corriendo en http://ec2-34-207-193-227.compute-1.amazonaws.com \n');
+  console.log('\nApp web corriendo en http://localhost:'+PORT+'\n');
 });
 
 server.get('/', (req, res) => {

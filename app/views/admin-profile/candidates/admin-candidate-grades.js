@@ -10,7 +10,7 @@ let getGrades = function () {
         alertify.set('notifier', 'position', 'bottom-center');
         alertify.notify('No se han completado todos los campos', 'error', 3);
     } else {
-
+        var exito = false;
         var doc_number = document.getElementById("docnumber").value;
         var req = new XMLHttpRequest();
         var params = 'docnumber=' + doc_number;
@@ -20,6 +20,7 @@ let getGrades = function () {
         req.send(null);
         req.onreadystatechange = function () {
             if (req.readyState == 4 && req.status == 200) {
+                exito = true;
                 var textoId = req.response.info_examen;
                 document.getElementById('fec').innerHTML = new Date(textoId.fecha);
                 document.getElementById('pa1').innerHTML = String(textoId.part1).substr(0, 3);
@@ -69,6 +70,14 @@ let getGrades = function () {
                 }
             }
         }
+        setTimeout(function () {
+            if (!exito) {
+                alertify.set('notifier','position', 'bottom-center')
+                alertify.notify('El número de documento de identidad es incorrecto', 'error', 3);
+                document.getElementById("table").style.display = "none";
+                x.style.display = "none";
+            }
+        }, 1000)
     }
 }
 

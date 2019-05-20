@@ -69,9 +69,9 @@ let getGrades = function () {
                 var tamano_preguntas = preguntas.length;
                 $("#dataTable").append('<thead><tr><th>Dificultad</th>'+
                 '<th>Pregunta</th>' + 
-                '<th>Opción 1</th>' +
-                '<th>Opción 2</th>' +
-                '<th>Opción 3</th>' +
+                '<th>Opción A</th>' +
+                '<th>Opción B</th>' +
+                '<th>Opción C</th>' +
                 '<th>Respuesta Dada</th></tr></thead>' +
                 '<tbody>');
                 Object.keys(preguntas, respuestas).forEach(function(key) {
@@ -94,17 +94,11 @@ function getQuestion(id_pregunta, respuesta_dada, tamano_preguntas){
         if (req.readyState == 4 && req.status == 200) {
             var lista_preguntas = '', lista_respuestas = '', lista_partes = '', lista_respuesta_dada = '';
             var texto = req.response.info_pregunta;
-            var posicion_colorear = '';
-            var bool = false;
             for(var i=0; i<tamano_preguntas; i++){
                 lista_preguntas = texto.pregunta;
                 lista_respuestas = texto.opcion_correcta;
                 lista_partes = texto.parte;
                 lista_respuesta_dada = respuesta_dada;
-                lista_texto = texto.texto;
-                if(lista_texto[i] == 'S'){
-                    posicion_colorear = i;
-                }
             }
             // Mapeo de partes
             if(lista_partes == 1){
@@ -115,21 +109,26 @@ function getQuestion(id_pregunta, respuesta_dada, tamano_preguntas){
                 lista_partes = 'Avanzado'
             }
             // Mapeo de respuestas dadas
-            var color = '';
             if(lista_respuesta_dada == true){
-                lista_respuesta_dada = 'Correcta';
-                color = '#51F34F';
+                lista_respuesta_dada = '<span class="iconify" data-icon="dashicons:saved" height="30" data-inline="false"></span>';
             }else{
-                lista_respuesta_dada = 'Incorrecta'
-                color = '#F34F4F';
+                lista_respuesta_dada = '<span class="iconify" data-icon="dashicons:no-alt" height="30" data-inline="false"></span>'
             }
+            // Mapeo de posibles respuestas
+            var opcion_A = lista_respuestas[0];
+            opcion_A = opcion_A.substring(3, opcion_A.length);
+            var opcion_B = lista_respuestas[1];
+            opcion_B = opcion_B.substring(3, opcion_B.length);
+            var opcion_C = lista_respuestas[2];
+            opcion_C = opcion_C.substring(3, opcion_C.length);
+            
             
             $("#dataTable").append('<tr><td>'+lista_partes+'</td>'+
                 '<td>'+lista_preguntas+'</td>' + 
-                '<td><font color="">'+lista_respuestas[0]+'</font></td>' + 
-                '<td><font color="">'+lista_respuestas[1]+'</font></td>' +
-                '<td><font color="">'+lista_respuestas[2]+'</font></td>' +
-                '<td><font color="'+color+'">'+lista_respuesta_dada+'</font></td></tr>');
+                '<td>'+opcion_A+'</td>' + 
+                '<td>'+opcion_B+'</td>' +
+                '<td>'+opcion_C+'</td>' +
+                '<td>'+lista_respuesta_dada+'</td></tr>');
         }
     }    
 }

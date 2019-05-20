@@ -11,25 +11,45 @@ let gradeCandidate = function () {
         alertify.notify('No se han completado todos los campos', 'error', 3);
     } else {
 
+        var exito = false;
         var http = new XMLHttpRequest();
         var id = document.getElementById("docnumber").value;
         var lev = document.getElementById("level").value;
         var params = 'docnumber=' + id;
-        console.log("Params: " + params);
         http.responseType = 'json';
-        http.open("PUT", "/api/test/updatebydoc" + '?' + params, true);
+        http.open('GET', '/api/candidate/list' + '?' + params, true);
         http.setRequestHeader("Content-type", "application/json");
+        http.send(null);
+        http.onreadystatechange = function () {
+            if (http.readyState == 4 && http.status == 200) {
+                exito = true;
+            }
+        }
 
-        console.log("id: " + id);
-        console.log("Level: " + lev)
+        setTimeout(function () {
+            if (exito) {
 
-        http.send(JSON.stringify({
-            final_level: lev
-        }))
+                console.log("Params: " + params);
+                var http2 = new XMLHttpRequest();
+                http2.responseType = 'json';
+                http2.open("PUT", "/api/test/updatebydoc" + '?' + params, true);
+                http2.setRequestHeader("Content-type", "application/json");
 
-        alertify.set('notifier', 'position', 'bottom-center');
-        alertify.notify('La clasificación del estudiante se ha realizado exitosamente', 'success', 5);
-        document.getElementById("dt").value = "0";
-        document.getElementById("docnumber").value = "";
+                console.log("id: " + id);
+                console.log("Level: " + lev)
+
+                http2.send(JSON.stringify({
+                    final_level: lev
+                }))
+
+                alertify.set('notifier', 'position', 'bottom-center');
+                alertify.notify('La clasificación del estudiante se ha realizado exitosamente', 'success', 5);
+                document.getElementById("dt").value = "0";
+                document.getElementById("docnumber").value = "";
+            } else {
+                alertify.set('notifier', 'position', 'bottom-center');
+                alertify.notify('El número de documento de identidad es incorrecto', 'error', 3);
+            }
+        }, 1000)
     }
 }

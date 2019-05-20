@@ -27,7 +27,7 @@ let login = function () {
             alertify.set('notifier','position', 'bottom-center');
             alertify.notify('El usuario o clave es incorrecto', 'error', 3);
         }
-    }, 500)
+    }, 1000)
 }
 
 $(document).ready(function () {

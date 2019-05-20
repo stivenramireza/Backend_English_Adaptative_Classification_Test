@@ -13,5 +13,6 @@ http.onreadystatechange = function () {
         var nombre_completo = nombre + " " + apellido;
         document.getElementById("nombreAdmin").innerHTML = nombre_completo;
         localStorage.setItem("nombre_admin", nombre_completo);
+
     }
 }
