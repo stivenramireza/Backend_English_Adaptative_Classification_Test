@@ -46,7 +46,7 @@ let signup = function () {
         setTimeout(function () {
             if (http.response.status == 'failed') {
                 alertify.set('notifier', 'position', 'bottom-center');
-                alertify.notify('Ya existe un registro con el mismo número de documento de identidad dado', 'error', 5);
+                alertify.notify('Ya existe un registro con el mismo número de documento de identidad o el Email dado', 'error', 5);
             } else {
                 alertify.set('notifier', 'position', 'bottom-center');
                 alertify.notify('El registro se ha completado exitosamente', 'success', 5);
