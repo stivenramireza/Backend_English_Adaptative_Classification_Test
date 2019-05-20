@@ -33,6 +33,7 @@ let login = function () {
 
 let check = function () {
     setTimeout(function () {
+        var exito = false;
         var http2 = new XMLHttpRequest();
         var doc_number = localStorage.getItem("docnumber");
         var params = 'docnumber=' + doc_number;
@@ -44,15 +45,22 @@ let check = function () {
             if (http2.readyState == 4 && http2.status == 200) {
                 var texto = http2.response.info_candidate;
                 var examen_activo = texto.examen_activo;
-                if (!examen_activo) {
-                    window.location.replace('/candidate/test/error');
+                if(http2.response.status == 'failed'){
+                    exito = false;
                 } else {
-                    window.location.replace('/candidate/profile');
+                    exito = true;
+                    if (!examen_activo) {
+                        window.location.replace('/candidate/test/error');
+                    } else {
+                        window.location.replace('/candidate/profile');
+                    }
                 }
             } 
         }
-        alertify.set('notifier','position', 'bottom-center');
-        alertify.notify('El tipo de documento o el número de documento es incorrecto', 'error', 5);
+        if (!exito) {
+            alertify.set('notifier','position', 'bottom-center');
+            alertify.notify('El tipo de documento o el número de documento es incorrecto', 'error', 5);
+        }
     }, 1000)
 }
 

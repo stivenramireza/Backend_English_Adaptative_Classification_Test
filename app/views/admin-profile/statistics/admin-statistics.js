@@ -20,6 +20,11 @@ let queryStatistics = function () {
         if (req.readyState == 4 && req.status == 200) {
             var query = req.response.info_examen;
             document.getElementById("registros").innerHTML = query.length;
+            if (query.length == 0) {
+                console.log("No hay registros");
+                x.style.display = "block";
+                y.style.display = "none";
+            } else {
             x.style.display = "block";
             y.style.display = "block";
 
@@ -81,6 +86,7 @@ let queryStatistics = function () {
             graphAgrupFinal(groupByFL)
 
         }
+    }
     }
 }
 

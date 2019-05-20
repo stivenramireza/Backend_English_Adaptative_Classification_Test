@@ -9,19 +9,25 @@ Aplicación web para el examen adaptativo de clasificación de inglés del centr
   - Juan Pablo González Álvarez - jugonz31@eafit.edu.co
   - Camilo Ernesto Cruz Villegas - ccruzvi@eafit.edu.co
 
-## 1. DevOps
+## Listado de Tareas para la Entrega Final (28 de mayo)
 
-### 1.1 Definición de tecnología de desarrollo (Dev)
+### Frontend:
 
-- **Lenguajes de Programación:** Javascript, HTML y CSS
-- **Framework Web Front-end:** Bootstrap 4
-- **Framework Web Middle-end:** Ajax, jQuery y XMLHttpRequest (XHR)
-- **Framework Web Back-end:** NodeJS - Express
-- **Base de Datos:** MongoDB
-- **Web App Server:** NodeJS
+- [ ] Reportes individuales del examen para administradores con tablas de las preguntas y respuestas dadas por los aspirantes (**Stiven**)
+- [ ] CRUD de preguntas BD (**Stiven**)
+- [ ] Edición de Preguntas: Permitir texto, imaǵenes, videos y/o audios (Vista Administrativa). (**Juan Pablo**)
+- [ ] Autorización de aspirantes y administradores. (**Anderson**)
+- [ ] Corregir bugs e implementar **todas las alertas (notificaciones)** tanto para los administradores como para los administradores. (**Camilo y Juan Pablo**)
 
-### 1.2 Definición de tecnología de despliegue (Ops)
+### Backend:
 
-- **Integración y Despliegue Continuo (CI/CD):** Jenkins
-- **Contenerización de Aplicaciones:** Docker
-- **Ambiente de Despliegue en Cloud:** Amazon Web Services (AWS)
+- [ ] Reportes individuales del examen para administradores con tablas de las preguntas y respuestas dadas por los aspirantes (**Stiven**)
+- [ ] CRUD de preguntas BD (**Anderson y Stiven**)
+- [ ] Manejo de sesiones para los usuarios. (**Anderson**)
+- [ ] Edición de Preguntas: Permitir texto, imaǵenes, videos y/o audios (Vista Administrativa). (**Juan Pablo**)
+- [ ] Autorización de aspirantes y administradores. (**Anderson**)
+- [ ] Corregir bugs e implementar **todas las alertas (notificaciones)** tanto para los administradores como para los administradores. (**Camilo y Juan Pablo**)
+
+### API de Inteligencia Artificial:
+
+- [ ] Diseñar e implementar un modelo similar al CAT para un Examen Adaptativo como lo quieren las PO (**Anderson y Stiven**)
