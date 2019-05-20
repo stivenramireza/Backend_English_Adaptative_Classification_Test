@@ -15,19 +15,17 @@ Aplicación web para el examen adaptativo de clasificación de inglés del centr
 
 - [ ] Reportes individuales del examen para administradores con tablas de las preguntas y respuestas dadas por los aspirantes (**Stiven**)
 - [ ] CRUD de preguntas BD (**Stiven**)
-- [ ] Edición de Preguntas: Permitir texto, imaǵenes, videos y/o audios (Vista Administrativa). (**Juan Pablo**)
 - [ ] Autorización de aspirantes y administradores. (**Anderson**)
-- [ ] Corregir bugs e implementar **todas las alertas (notificaciones)** tanto para los administradores como para los administradores. (**Camilo y Juan Pablo**)
+- [X] Corregir bugs e implementar **todas las alertas (notificaciones)** tanto para los administradores como para los administradores. (**Camilo y Juan Pablo**)
 
 ### Backend:
 
 - [ ] Reportes individuales del examen para administradores con tablas de las preguntas y respuestas dadas por los aspirantes (**Stiven**)
 - [ ] CRUD de preguntas BD (**Anderson y Stiven**)
 - [ ] Manejo de sesiones para los usuarios. (**Anderson**)
-- [ ] Edición de Preguntas: Permitir texto, imaǵenes, videos y/o audios (Vista Administrativa). (**Juan Pablo**)
 - [ ] Autorización de aspirantes y administradores. (**Anderson**)
-- [ ] Corregir bugs e implementar **todas las alertas (notificaciones)** tanto para los administradores como para los administradores. (**Camilo y Juan Pablo**)
+- [X] Corregir bugs e implementar **todas las alertas (notificaciones)** tanto para los administradores como para los administradores. (**Camilo y Juan Pablo**)
 
 ### API de Inteligencia Artificial:
 
-- [ ] Diseñar e implementar un modelo similar al CAT para un Examen Adaptativo como lo quieren las PO (**Anderson y Stiven**)
+- [x] Diseñar e implementar un modelo similar al CAT para un Examen Adaptativo como lo quieren las PO (**Anderson y Stiven**)
