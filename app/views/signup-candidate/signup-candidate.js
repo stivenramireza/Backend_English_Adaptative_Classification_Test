@@ -19,7 +19,7 @@ let signup = function () {
         alertify.set('notifier', 'position', 'bottom-center');
         alertify.notify('No se han completado todos los campos', 'error', 3);
     } else if (isChecked != true) {
-        alertify.set('notifier','position', 'bottom-center');
+        alertify.set('notifier', 'position', 'bottom-center');
         alertify.notify('No se ha aceptado la autorización', 'error', 3);
     } else {
         var http = new XMLHttpRequest();
@@ -43,22 +43,33 @@ let signup = function () {
         console.log(http.readyState);
         console.log(http.status);
 
-        alertify.set('notifier', 'position', 'bottom-center');
-        alertify.notify('El registro se ha completado exitosamente', 'success', 5);
-
         setTimeout(function () {
-            document.getElementById("dt").value = "0";
-            document.getElementById("docnumber").value = "";
-            document.getElementById("firstName").value = "";
-            document.getElementById("lastName").value = "";
-            document.getElementById("birthday").value = "";
-            document.getElementById("direccion").value = "";
-            document.getElementById("telefono").value = "";
-            document.getElementById("celular").value = "";
-            document.getElementById("correo").value = "";
-            document.getElementById("city").value = "";
-            document.getElementById("genero").value = "0";
-            document.getElementById("same-address").checked = null;
-        } , 500)
+            if (http.response.status == 'failed') {
+                alertify.set('notifier', 'position', 'bottom-center');
+                alertify.notify('Ya existe un registro con el mismo número de documento de identidad dado', 'error', 5);
+            } else {
+                alertify.set('notifier', 'position', 'bottom-center');
+                alertify.notify('El registro se ha completado exitosamente', 'success', 5);
+                
+                setTimeout(function () {
+                    window.location.replace('/signin');
+                }, 2500)
+
+                setTimeout(function () {
+                    document.getElementById("dt").value = "0";
+                    document.getElementById("docnumber").value = "";
+                    document.getElementById("firstName").value = "";
+                    document.getElementById("lastName").value = "";
+                    document.getElementById("birthday").value = "";
+                    document.getElementById("direccion").value = "";
+                    document.getElementById("telefono").value = "";
+                    document.getElementById("celular").value = "";
+                    document.getElementById("correo").value = "";
+                    document.getElementById("city").value = "";
+                    document.getElementById("genero").value = "0";
+                    document.getElementById("same-address").checked = null;
+                }, 500)
+            }
+        }, 1000)
     }
 }
