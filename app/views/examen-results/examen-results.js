@@ -165,11 +165,11 @@ function calcularNotas(array_respuestas, array_partes) {
     } if (c_parte2 < 4) {
         c_parte3 = 0;
     }
-    if(c_parte2 == 0 && c_parte3 == 0){
+    if (c_parte2 == 0 && c_parte3 == 0) {
         nota_final = c_parte1.toFixed(1);
-    }else if(c_parte3 == 0){
+    } else if (c_parte3 == 0) {
         nota_final = ((c_parte1 + c_parte2) / 2).toFixed(1);
-    }else{
+    } else {
         nota_final = ((c_parte1 + c_parte2 + c_parte3) / 3).toFixed(1);
     }
     return nota_final;
@@ -200,6 +200,35 @@ req.onreadystatechange = function () {
             document.getElementById("final_result").innerHTML = nota_final;
             setTimeout(function () {
                 post();
+                document.getElementById("texto_span").innerHTML = "Porcentaje de aciertos";
+            Highcharts.chart('container', {
+                chart: {
+                    type: 'pie',
+                    options3d: {
+                        enabled: true,
+                        alpha: 45
+                    }
+                },
+                title: {
+                    text: ''
+                },
+                plotOptions: {
+                    pie: {
+                        innerSize: 100,
+                        depth: 45
+                    }
+                },
+                tooltip: {
+                    pointFormat: 'Porcentaje: <b>{point.y:.0f}%</b>'
+                },
+                series: [{
+                    name: 'Porcentaje',
+                    data: [
+                        ['Aciertos', ((textoId.part1 * 20) + (textoId.part2 * 20) + (textoId.part3 * 20) / 3)],
+                        ['Desaciertos', 100 - ((textoId.part1 * 20) + (textoId.part2 * 20) + (textoId.part3 * 20) / 3)],
+                    ]
+                }]
+            });
                 console.log("post melo")
                 setTimeout(function () {
                     updateExamen(nota_final, level);
