@@ -128,20 +128,20 @@ function calcularNotas(array_respuestas, array_partes) {
     var arrayPartes = array_partes;
     var counter1 = 0, counter2 = 0, counter3 = 0;
     var i;
-    for (i = 0; i < arrayRespuestas.length + 1; i++) {
-        if (arrayPartes[i + 1] == 1) {
+    for (i = 0; i < arrayRespuestas.length ; i++) {
+        if (arrayPartes[i] == 1) {
             counter1++;
-            if (arrayRespuestas[i + 1] == true) {
+            if (arrayRespuestas[i] == true) {
                 c_parte1 = c_parte1 + 5;
             }
-        } else if (arrayPartes[i + 1] == 2) {
+        } else if (arrayPartes[i] == 2) {
             counter2++;
-            if (arrayRespuestas[i + 1] == true) {
+            if (arrayRespuestas[i] == true) {
                 c_parte2 = c_parte2 + 5;
             }
-        } else if (arrayPartes[i + 1] == 3) {
+        } else if (arrayPartes[i] == 3) {
             counter3++;
-            if (arrayRespuestas[i + 1] == true) {
+            if (arrayRespuestas[i] == true) {
                 c_parte3 = c_parte3 + 5;
             }
         }
