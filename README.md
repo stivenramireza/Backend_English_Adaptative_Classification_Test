@@ -14,20 +14,18 @@ Aplicación web para el examen adaptativo de clasificación de inglés del centr
 ### Frontend:
 
 - [ ] Reportes individuales del examen para administradores con tablas de las preguntas y respuestas dadas por los aspirantes (**Stiven**)
-- [ ] CRUD de preguntas BD (**Stiven**)
-- [ ] Edición de Preguntas: Permitir texto, imaǵenes, videos y/o audios (Vista Administrativa). (**Juan Pablo**)
+- [ ] CRUD de preguntas BD (**Juan Pablo**)
 - [ ] Autorización de aspirantes y administradores. (**Anderson**)
-- [ ] Corregir bugs e implementar **todas las alertas (notificaciones)** tanto para los administradores como para los administradores. (**Camilo y Juan Pablo**)
+- [ ] Corregir bugs e implementar **todas las alertas (notificaciones)** tanto para los administradores como para los administradores. (**Camilo**)
 
 ### Backend:
 
 - [ ] Reportes individuales del examen para administradores con tablas de las preguntas y respuestas dadas por los aspirantes (**Stiven**)
-- [ ] CRUD de preguntas BD (**Anderson y Stiven**)
+- [ ] CRUD de preguntas BD (**Juan Pablo**)
 - [ ] Manejo de sesiones para los usuarios. (**Anderson**)
-- [ ] Edición de Preguntas: Permitir texto, imaǵenes, videos y/o audios (Vista Administrativa). (**Juan Pablo**)
 - [ ] Autorización de aspirantes y administradores. (**Anderson**)
-- [ ] Corregir bugs e implementar **todas las alertas (notificaciones)** tanto para los administradores como para los administradores. (**Camilo y Juan Pablo**)
+- [ ] Corregir bugs e implementar **todas las alertas (notificaciones)** tanto para los administradores como para los administradores. (**Camilo**)
 
 ### API de Inteligencia Artificial:
 
-- [ ] Diseñar e implementar un modelo similar al CAT para un Examen Adaptativo como lo quieren las PO (**Anderson y Stiven**)
+- [x] Diseñar e implementar un modelo similar al CAT para un Examen Adaptativo como lo quieren las PO (**Anderson**)
