@@ -35,6 +35,8 @@ function login(req, res){
     if(!errors.isEmpty()){
         return res.status(422).json({ errors: errors.array() });
     }
+    //console.log("################## REQ ###################");
+    console.log(req.body);
     Student.findOne({ doctype: fromNumberToDocType(req.body.doctype), docnumber: req.body.docnumber }).select('doctype +docnumber').exec(function (err) {
         if (err) return res.status(500).send({ 
             message: err,
