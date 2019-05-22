@@ -67,15 +67,17 @@ let getGrades = function () {
                 var preguntas = textoId.questions;
                 var respuestas = textoId.responses;
                 var tamano_preguntas = preguntas.length;
-                $("#dataTable").append('<thead><tr><th>Dificultad</th>'+
+                $("#dataTable").append('<thead><tr><th>#</th>'+
+                '<th>Dificultad</th>' + 
                 '<th>Pregunta</th>' + 
                 '<th>Opción A</th>' +
                 '<th>Opción B</th>' +
                 '<th>Opción C</th>' +
                 '<th>Respuesta Dada</th></tr></thead>' +
                 '<tbody>');
+                var cont = 1;
                 Object.keys(preguntas, respuestas).forEach(function(key) {
-                    getQuestion(preguntas[key], respuestas[key], tamano_preguntas);
+                    getQuestion(preguntas[key], respuestas[key], tamano_preguntas, cont++);
                 })
                 $("#dataTable").append('</tbody>');
             }
@@ -83,13 +85,14 @@ let getGrades = function () {
     }
 }
 
-function getQuestion(id_pregunta, respuesta_dada, tamano_preguntas){
+function getQuestion(id_pregunta, respuesta_dada, tamano_preguntas, cont){
     var req = new XMLHttpRequest();
     var params = 'n_item=' + id_pregunta;
     req.responseType = 'json';
     req.open("GET", '/api/question/list' + '?' + params, true);
     req.setRequestHeader("Content-type", "application/json");
     req.send(null);
+    
     req.onreadystatechange = function () {
         if (req.readyState == 4 && req.status == 200) {
             var lista_preguntas = '', lista_respuestas = '', lista_partes = '', lista_respuesta_dada = '';
@@ -121,9 +124,9 @@ function getQuestion(id_pregunta, respuesta_dada, tamano_preguntas){
             opcion_B = opcion_B.substring(3, opcion_B.length);
             var opcion_C = lista_respuestas[2];
             opcion_C = opcion_C.substring(3, opcion_C.length);
-            
-            
-            $("#dataTable").append('<tr><td>'+lista_partes+'</td>'+
+
+            $("#dataTable").append('<tr><td>'+cont+'</td>'+
+                '<td>'+lista_partes+'</td>' + 
                 '<td>'+lista_preguntas+'</td>' + 
                 '<td>'+opcion_A+'</td>' + 
                 '<td>'+opcion_B+'</td>' +
