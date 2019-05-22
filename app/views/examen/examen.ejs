@@ -550,7 +550,9 @@
             var n_item  = localStorage.getItem("n_item");
             $('#loadbar').show();
             $('#quiz').fadeOut();
-            document.getElementById("qid").innerHTML = count;
+            setTimeout(function () {
+                document.getElementById("qid").innerHTML = count;
+            }, 2000)
             questionPost(n_item, n_response);
             setTimeout(function () {
                 $('#quiz').show();
