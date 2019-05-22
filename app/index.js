@@ -11,7 +11,7 @@ let dbConn = 'mongodb://user1:123456a@ds025232.mlab.com:25232/eacidb';
 mongoose.connect(dbConn, {useNewUrlParser: true}).then( (req, res) => {
   console.log("Conectado a la base de datos exitosamente");
 }).catch( err => {
-  console.log("Error al conectarse a la base de datos: ", {$err});
+  console.log("Error al conectarse a la base de datos: ", err);
 });
 
  // Middleware
