@@ -28,3 +28,5 @@ Aplicación web para el examen adaptativo de clasificación de inglés del centr
 ### API de Inteligencia Artificial:
 
 - [x] Diseñar e implementar un modelo similar al CAT para un Examen Adaptativo como lo quieren las PO (**Anderson**)
+- [x] Test API (**Anderson**)
+
