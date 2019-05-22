@@ -1,7 +1,7 @@
 FROM node:10-alpine
 
 # set maintainer
-LABEL maintainer "agrajal7@eafit.edu.co"
+LABEL maintainer="agrajal7@eafit.edu.co"
 
 RUN apk update && apk add yarn python g++ make && rm -rf /var/cache/apk/*
 
