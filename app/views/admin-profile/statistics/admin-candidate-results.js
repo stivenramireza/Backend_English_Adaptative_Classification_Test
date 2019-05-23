@@ -80,6 +80,7 @@ let getGrades = function () {
                     getQuestion(preguntas[key], respuestas[key], tamano_preguntas, cont++);
                 })
                 $("#dataTable").append('</tbody>');
+                $("#dataTable").Datable();
             }
         }
     }
@@ -105,11 +106,11 @@ function getQuestion(id_pregunta, respuesta_dada, tamano_preguntas, cont){
             }
             // Mapeo de partes
             if(lista_partes == 1){
-                lista_partes = 'Básico';
+                lista_partes = 'Parte 1';
             }else if(lista_partes == 2){
-                lista_partes = 'Intermedio';
+                lista_partes = 'Parte 2';
             }else{
-                lista_partes = 'Avanzado'
+                lista_partes = 'Parte 3'
             }
             // Mapeo de respuestas dadas
             if(lista_respuesta_dada == true){
@@ -132,7 +133,10 @@ function getQuestion(id_pregunta, respuesta_dada, tamano_preguntas, cont){
                 '<td>'+opcion_B+'</td>' +
                 '<td>'+opcion_C+'</td>' +
                 '<td>'+lista_respuesta_dada+'</td></tr>');
+            
         }
-    }    
+          
+    } 
+    
 }
 
