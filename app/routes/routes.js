@@ -126,5 +126,6 @@ router.get('/api/question/list', questionCtlr.obtenerPregunta);
 router.post('/api/register/question', questionCtlr.registrarPregunta); 
 router.put('/api/question/update', questionCtlr.actualizarPregunta);
 router.post('/api/question/remove', questionCtlr.eliminarPregunta);
+router.get('/api/question/findall', questionCtlr.encontrarTodo);
 
 module.exports = router;

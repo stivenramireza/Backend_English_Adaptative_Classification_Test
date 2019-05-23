@@ -65,9 +65,18 @@ function eliminarPregunta(req, res){
     })
 }
 
+function encontrarTodo(req, res){
+    Pregunta.find({}, (err, preguntas) => {
+        if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}`, status: 'failed' })
+        if (!preguntas) return res.status(404).send({ message: `No hay registros`, status: 'success' })
+        res.status(200).send({ preguntas, status: 'success' })
+    })
+}
+
 module.exports = {
     registrarPregunta,
     obtenerPregunta,
     actualizarPregunta,
-    eliminarPregunta
+    eliminarPregunta,
+    encontrarTodo
 };
