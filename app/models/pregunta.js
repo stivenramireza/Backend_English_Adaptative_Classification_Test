@@ -3,7 +3,6 @@ const Schema = mongoose.Schema;
 const PreguntaSchema = new Schema({
     _id: mongoose.Schema.Types.ObjectId,
     pregunta: {type: String, required: true},
-    n_item: {type: Number, required: true, unique: true},
     parte: {type: Number, required: true},
     dificultad: {type: Number, required: true},
     opcion_correcta: {type: [String], required: true},
