@@ -67,9 +67,10 @@ let getGrades = function () {
                 var preguntas = textoId.questions;
                 var respuestas = textoId.responses;
                 var tamano_preguntas = preguntas.length;
+                var cont = 1;
                 $("#dataTable").append('<tbody>');
                 Object.keys(preguntas, respuestas).forEach(function(key) {
-                    getQuestion(preguntas[key], respuestas[key], tamano_preguntas);
+                    getQuestion(preguntas[key], respuestas[key], tamano_preguntas, cont++);
                 })
                 $("#dataTable").append('</tbody>');              
             }
@@ -77,7 +78,7 @@ let getGrades = function () {
     }
 }
 
-function getQuestion(id_pregunta, respuesta_dada, tamano_preguntas){
+function getQuestion(id_pregunta, respuesta_dada, tamano_preguntas, cont){
     var req = new XMLHttpRequest();
     var params = 'n_item=' + id_pregunta;
     req.responseType = 'json';
@@ -93,14 +94,7 @@ function getQuestion(id_pregunta, respuesta_dada, tamano_preguntas){
                 lista_respuestas = texto.opcion_correcta;
                 lista_partes = texto.parte;
                 lista_respuesta_dada = respuesta_dada;
-            }
-            // Mapeo de partes
-            if(lista_partes == 1){
-                lista_partes = 'Parte 1';
-            }else if(lista_partes == 2){
-                lista_partes = 'Parte 2';
-            }else{
-                lista_partes = 'Parte 3'
+                lista_correcta = texto.texto;
             }
             // Mapeo de respuestas dadas
             if(lista_respuesta_dada == true){
@@ -108,25 +102,15 @@ function getQuestion(id_pregunta, respuesta_dada, tamano_preguntas){
             }else{
                 lista_respuesta_dada = '<span class="iconify" data-icon="dashicons:no-alt" height="30" data-inline="false"></span>'
             }
-            // Mapeo de posibles respuestas
-            var opcion_A = lista_respuestas[0];
-            opcion_A = opcion_A.substring(opcion_A.length);
-            var opcion_B = lista_respuestas[1];
-            opcion_B = opcion_B.substring(opcion_B.length);
-            var opcion_C = lista_respuestas[2];
-            opcion_C = opcion_C.substring(opcion_C.length);
 
-        
-            $("#dataTable").append('<tr><td>'+' '+'</td>'+
+            $("#dataTable").append('<tr><td>'+(cont)+'</td>'+
                 '<td>'+lista_partes+'</td>' + 
                 '<td>'+lista_preguntas+'</td>' + 
-                '<td>'+opcion_A+'</td>' + 
-                '<td>'+opcion_B+'</td>' +
-                '<td>'+opcion_C+'</td>' +
+                '<td>'+lista_respuestas[0]+'</td>' + 
+                '<td>'+lista_respuestas[1]+'</td>' +
+                '<td>'+lista_respuestas[2]+'</td>' +
                 '<td>'+lista_respuesta_dada+'</td></tr>');
-        }
-          
-    } 
-    
+        }    
+    }  
 }
 
