@@ -10,14 +10,18 @@ $(document).ready(function() {
     http.onreadystatechange = function () {
         if (http.readyState == 4 && http.status == 200) {
             var texto = http.response.preguntas;
-            var lista_pregunta
-            var array = [];
-            for(var i = 0; i < texto.length; i++){
-                array[i] = texto[i];
-            }
-            
+            console.log(texto);
             $('#tabla_preguntas').DataTable({
-                
+                "data": texto,
+                "columns":[
+                    {"data": "n_item"},
+                    {"data": "parte"},
+                    {"data": "pregunta"},
+                    {"data": "opcion_correcta.0"},
+                    {"data": "opcion_correcta.1"},
+                    {"data": "opcion_correcta.2"},
+                    {"defaultContent": "<center><button class='btn btn-primary'><i class='fa fa-edit'></i></button></center> <br> <button class='btn btn-danger'><i class='fa fa-trash'></i></button></center>"}
+                ]
             });
             
         }
@@ -25,3 +29,7 @@ $(document).ready(function() {
     }
     
 });
+
+let actualizar = function(){
+
+}
