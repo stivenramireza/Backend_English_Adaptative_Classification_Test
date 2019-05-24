@@ -67,33 +67,23 @@ let getGrades = function () {
                 var preguntas = textoId.questions;
                 var respuestas = textoId.responses;
                 var tamano_preguntas = preguntas.length;
-                $("#dataTable").append('<thead><tr><th>#</th>'+
-                '<th>Dificultad</th>' + 
-                '<th>Pregunta</th>' + 
-                '<th>Opción A</th>' +
-                '<th>Opción B</th>' +
-                '<th>Opción C</th>' +
-                '<th>Respuesta Dada</th></tr></thead>' +
-                '<tbody>');
-                var cont = 1;
+                $("#dataTable").append('<tbody>');
                 Object.keys(preguntas, respuestas).forEach(function(key) {
-                    getQuestion(preguntas[key], respuestas[key], tamano_preguntas, cont++);
+                    getQuestion(preguntas[key], respuestas[key], tamano_preguntas);
                 })
-                $("#dataTable").append('</tbody>');
-                $("#dataTable").Datable();
+                $("#dataTable").append('</tbody>');              
             }
         }
     }
 }
 
-function getQuestion(id_pregunta, respuesta_dada, tamano_preguntas, cont){
+function getQuestion(id_pregunta, respuesta_dada, tamano_preguntas){
     var req = new XMLHttpRequest();
     var params = 'n_item=' + id_pregunta;
     req.responseType = 'json';
     req.open("GET", '/api/question/list' + '?' + params, true);
     req.setRequestHeader("Content-type", "application/json");
     req.send(null);
-    
     req.onreadystatechange = function () {
         if (req.readyState == 4 && req.status == 200) {
             var lista_preguntas = '', lista_respuestas = '', lista_partes = '', lista_respuesta_dada = '';
@@ -120,20 +110,20 @@ function getQuestion(id_pregunta, respuesta_dada, tamano_preguntas, cont){
             }
             // Mapeo de posibles respuestas
             var opcion_A = lista_respuestas[0];
-            opcion_A = opcion_A.substring(3, opcion_A.length);
+            opcion_A = opcion_A.substring(opcion_A.length);
             var opcion_B = lista_respuestas[1];
-            opcion_B = opcion_B.substring(3, opcion_B.length);
+            opcion_B = opcion_B.substring(opcion_B.length);
             var opcion_C = lista_respuestas[2];
-            opcion_C = opcion_C.substring(3, opcion_C.length);
+            opcion_C = opcion_C.substring(opcion_C.length);
 
-            $("#dataTable").append('<tr><td>'+cont+'</td>'+
+        
+            $("#dataTable").append('<tr><td>'+' '+'</td>'+
                 '<td>'+lista_partes+'</td>' + 
                 '<td>'+lista_preguntas+'</td>' + 
                 '<td>'+opcion_A+'</td>' + 
                 '<td>'+opcion_B+'</td>' +
                 '<td>'+opcion_C+'</td>' +
                 '<td>'+lista_respuesta_dada+'</td></tr>');
-            
         }
           
     } 
