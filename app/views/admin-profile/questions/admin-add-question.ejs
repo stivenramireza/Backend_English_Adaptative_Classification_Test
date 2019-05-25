@@ -156,96 +156,96 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <div class="container" style="max-width: 700px">
-                        <div class="py-5 text-center">
-                            <p class="lead">Complete el siguiente formulario para agregar una nueva pregunta a la base
-                                de datos</p>
+                        <div class="container" style="max-width: 700px">
+                            <div class="py-5 text-center">
+                                <p class="lead">Complete el siguiente formulario para agregar una nueva pregunta a la base
+                                    de datos</p>
+                            </div>
+                            <div class="container" style="width: 100%">
+                                <form class="needs-validation" novalidate>
+                                    <div class="row">
+                                        <div class="col mb-3">
+                                            <label for="question">Pregunta</label>
+                                            <textarea name="textarea" style="width:640px;height:50px;" id="question" placeholder="" value=""
+                                            required></textarea>
+                                            <div class="invalid-feedback">
+                                                Se requiere que llene el campo "Pregunta" correctamente.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr class="mb-4">
+                                    <div class="row">
+                                        <div class="col mb-4">
+                                            <label for="answer1">Respuesta 1</label>
+                                            <input type="text" class="form-control" id="answer1" placeholder="" value=""
+                                                required>
+                                            <div class="invalid-feedback">
+                                                Se requiere que llene el campo "Respuesta 1" correctamente.
+                                            </div>
+                                        </div>
+                                    </div>
+    
+                                    <div class="row">
+                                        <div class="col mb-3">
+                                            <label for="answer2">Respuesta 2</label>
+                                            <input type="text" class="form-control" id="answer2" placeholder="" value=""
+                                                required>
+                                            <div class="invalid-feedback">
+                                                Se requiere que llene el campo "Respuesta 2" correctamente.
+                                            </div>
+                                        </div>
+                                    </div>
+    
+                                    <div class="row">
+                                        <div class="col mb-3">
+                                            <label for="answer3">Respuesta 3</label>
+                                            <input type="text" class="form-control" id="answer3" placeholder="" value=""
+                                                required>
+                                            <div class="invalid-feedback">
+                                                Se requiere que llene el campo "Respuesta 3" correctamente.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr class="mb-4">
+                                    <div class="row">
+                                        <div class="col mb-3">
+                                            <label for="difficult">Dificultad de la pregunta</label>
+                                            <select class="custom-select d-block w-100" id="difficult" required>
+                                                <option value="1">Facil</option>
+                                                <option value="2">Intermedia</option>
+                                                <option value="3">Avanzada</option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Por favor seleccione una dificultad.
+                                            </div>
+                                        </div>
+    
+                                        <div class="col mb-3">
+                                            <label for="correctAnswer">Respuesta correcta</label>
+                                            <select class="custom-select d-block w-100" id="correctAnswer" required>
+                                                <option value="0">Respuesta 1</option>
+                                                <option value="1">Respuesta 2</option>
+                                                <option value="2">Respuesta 3</option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Por favor seleccione una respuesta correcta.
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                            <br>
+    
+    
+                            <hr class="mb-4" style="width: 100%">
+    
+                            <center>
+                                <button class="btn btn-primary" onclick=addQuestion() type="button">Agregar pregunta</button>
+                            </center>
+                            </form>
+                            <br>
                         </div>
-                        <div class="container" style="width: 100%">
-                            <form class="needs-validation" novalidate>
-                                <div class="row">
-                                    <div class="col mb-3">
-                                        <label for="question">Pregunta</label>
-                                        <textarea name="textarea" style="width:600px;height:50px;" id="question" placeholder="" value=""
-                                        required></textarea>
-                                        <div class="invalid-feedback">
-                                            Se requiere que llene el campo "Pregunta" correctamente.
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr class="mb-4">
-                                <div class="row">
-                                    <div class="col mb-4">
-                                        <label for="answer1">Respuesta 1</label>
-                                        <input type="text" class="form-control" id="answer1" placeholder="" value=""
-                                            required>
-                                        <div class="invalid-feedback">
-                                            Se requiere que llene el campo "Respuesta 1" correctamente.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col mb-3">
-                                        <label for="answer2">Respuesta 2</label>
-                                        <input type="text" class="form-control" id="answer2" placeholder="" value=""
-                                            required>
-                                        <div class="invalid-feedback">
-                                            Se requiere que llene el campo "Respuesta 2" correctamente.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col mb-3">
-                                        <label for="answer3">Respuesta 3</label>
-                                        <input type="text" class="form-control" id="answer3" placeholder="" value=""
-                                            required>
-                                        <div class="invalid-feedback">
-                                            Se requiere que llene el campo "Respuesta 3" correctamente.
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr class="mb-4">
-                                <div class="row">
-                                    <div class="col mb-3">
-                                        <label for="difficult">Dificultad de la pregunta</label>
-                                        <select class="custom-select d-block w-100" id="difficult" required>
-                                            <option value="1">Facil</option>
-                                            <option value="2">Intermedia</option>
-                                            <option value="3">Avanzada</option>
-                                        </select>
-                                        <div class="invalid-feedback">
-                                            Por favor seleccione una dificultad.
-                                        </div>
-                                    </div>
-
-                                    <div class="col mb-3">
-                                        <label for="correctAnswer">Respuesta correcta</label>
-                                        <select class="custom-select d-block w-100" id="correctAnswer" required>
-                                            <option value="0">Respuesta 1</option>
-                                            <option value="1">Respuesta 2</option>
-                                            <option value="2">Respuesta 3</option>
-                                        </select>
-                                        <div class="invalid-feedback">
-                                            Por favor seleccione una respuesta correcta.
-                                        </div>
-                                    </div>
-                                </div>
-                        </div>
-                        <br>
-
-
-                        <hr class="mb-4" style="width: 100%">
-
-                        <center>
-                            <button class="btn btn-primary" onclick=addQuestion() type="button">Agregar pregunta</button>
-                        </center>
-                        </form>
-                        <br>
                     </div>
-                </div>
-                <br>
+                    <br>
             </div>
             <!-- End of Main Content -->
 
