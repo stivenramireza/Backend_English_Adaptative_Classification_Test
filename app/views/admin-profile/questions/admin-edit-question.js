@@ -18,14 +18,32 @@ $(document).ready(function() {
                     {"data": "opcion_correcta.0"},
                     {"data": "opcion_correcta.1"},
                     {"data": "opcion_correcta.2"},
-                    {"defaultContent": "<button class='btn btn-primary'><i class='fa fa-edit'></i></button>"}
-                    //{"defaultContent": "<center><button id='btnEditar'class='btn btn-primary'  type='button'><i class='fa fa-edit'></i></button></center> <br> <button class='btn btn-danger'><i class='fa fa-trash'></i></button></center>"}
+                    {"defaultContent": "<button id='btnEditar'class='btn btn-primary'><i class='fa fa-edit'></i></button> <br><br> <button id='btnEliminar'class='btn btn-danger'><i class='fa fa-trash'></i></button>"}
                 ]
             });
             $('#tabla_preguntas tbody').on( 'click', 'button', function () {
+                var action = this.id;
                 var data = table.row($(this).parents('tr')).data();
-                localStorage.setItem('item_pregunta', JSON.stringify(data.n_item))
-                window.location.replace('/admin/profile/edit-question/data');
+                if(action == 'btnEditar'){
+                    localStorage.setItem('item_pregunta', JSON.stringify(data.n_item))
+                    window.location.replace('/admin/profile/edit-question/data');
+                }
+                 else if(action == 'btnEliminar'){
+                    localStorage.setItem('item_pregunta', JSON.stringify(data.n_item))
+                    var http = new XMLHttpRequest();
+                    var item = localStorage.getItem('item_pregunta');
+                    console.log("item: ", item);
+                    var params = 'n_item='+item;
+                    http.responseType = 'json';
+                    http.open("DELETE", "/api/question/remove"+'?'+params, true); 
+                    http.setRequestHeader("Content-type", "application/json");
+                    http.send(null);
+                    http.onreadystatechange = function () {
+                        if (http.readyState == 4 && http.status == 200) {
+                            window.location.replace('/admin/profile/edit-question');
+                        }
+                    }
+                }
             });
         }
     }

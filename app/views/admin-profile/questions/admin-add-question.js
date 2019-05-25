@@ -22,14 +22,15 @@ let addQuestion = function () {
             http2.setRequestHeader("Content-type", "application/json");
             http2.onreadystatechange = function () {
                 if (http2.readyState == 4 && http2.status == 200) {
+                    window.location.replace('/admin/profile');
                 }
             }
             http2.send(JSON.stringify({
                 pregunta: document.getElementById("question").value,
                 parte: document.getElementById("difficult").value,
                 dificultad: document.getElementById("difficult").value,
-                opcion_correcta: opcion_correcta,
-                texto: texto,
+                opcion_correcta: texto,
+                texto: opcion_correcta,
                 n_item: findAllQuest + 1
             }));
         }

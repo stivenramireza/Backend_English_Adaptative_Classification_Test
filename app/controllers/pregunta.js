@@ -46,11 +46,11 @@ function actualizarPregunta(req, res){
     if(!errors.isEmpty()){
         return res.status(422).json({ errors: errors.array() });
     }
-    let item_pregunta = req.query.item_pregunta;
+    let idPregunta = req.query.idPregunta;
     let update = req.body
-    Pregunta.update({n_item: item_pregunta}, update, (err, questionUpdated) => {
+    Pregunta.update({_id: idPregunta}, update, (err, questionUpdated) => {
         if (err) return res.status(500).send({ message: `Error al actualizar la pregunta en la BD: ${err}`, status: 'failed' })
-        res.status(200).send({ new_candidate: questionUpdated, status: 'success' })
+        res.status(200).send({ nueva_pregunta: questionUpdated, status: 'success' })
     })
 }
 
@@ -59,7 +59,8 @@ function eliminarPregunta(req, res){
     if(!errors.isEmpty()){
         return res.status(422).json({ errors: errors.array() });
     }
-    Pregunta.remove({n_item: req.params.n_item}, function(error, questionDeleted){
+    let n_item = req.query.n_item;
+    Pregunta.remove({n_item: n_item}, function(error){
         if(error) return res.status(500).send({ message: `Error al eliminar la pregunta de la BD: ${err}`, status: 'failed' })
         res.status(200).send({message: 'Eliminación exitosa de la pregunta', status: 'success'})
     })
