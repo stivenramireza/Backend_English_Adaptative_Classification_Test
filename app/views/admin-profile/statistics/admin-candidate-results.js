@@ -113,4 +113,3 @@ function getQuestion(id_pregunta, respuesta_dada, tamano_preguntas, cont){
         }    
     }  
 }
-
