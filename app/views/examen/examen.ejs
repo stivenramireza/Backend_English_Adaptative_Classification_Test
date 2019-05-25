@@ -518,9 +518,7 @@
                     </center>
                 </div>
                 <center>
-                    <iframe width="500" height="300" src="https://youtu.be/RG1Gl2Ebzho"
-                        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/RG1Gl2Ebzho?start=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </center>
                 <div class="modal-footer">
                     <center>
@@ -550,7 +548,9 @@
             var n_item  = localStorage.getItem("n_item");
             $('#loadbar').show();
             $('#quiz').fadeOut();
-            document.getElementById("qid").innerHTML = count;
+            setTimeout(function () {
+                document.getElementById("qid").innerHTML = count;
+            }, 2000)
             questionPost(n_item, n_response);
             setTimeout(function () {
                 $('#quiz').show();

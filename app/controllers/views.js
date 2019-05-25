@@ -42,6 +42,10 @@ function loadEditQuestion(req, res){
     res.render("../views/admin-profile/questions/admin-edit-question.ejs");
 }
 
+function loadUpdateQuestion(req, res){
+    res.render("../views/admin-profile/questions/admin-edit-question-data.ejs");
+}
+
 function loadAdminEdit(req, res){
     res.render("../views/admin-profile/admins/admin-edit.ejs");
 }
@@ -65,6 +69,7 @@ function loadDesfase(req, res){
 function loadCandidateResults(req, res){
     res.render("../views/admin-profile/statistics/admin-candidate-results.ejs");
 }
+
 
 // Examen View
 
@@ -121,5 +126,6 @@ module.exports = {
     loadResult,
     loadLoginCandidate,
     loadSignupCandidate,
-    loadUpdateProfile
+    loadUpdateProfile,
+    loadUpdateQuestion
 };
