@@ -14,7 +14,7 @@ let signup = function () {
 
     if (doctype == '0' || docnumber == '' || firstname == '' || lastname == '' ||
         genero == '0' || birthdate == '' || city == '' || address == '' ||
-        phonenumber == '' || mobilephonenumber == '' || email == '') {
+        mobilephonenumber == '' || email == '') {
 
         alertify.set('notifier', 'position', 'bottom-center');
         alertify.notify('No se han completado todos los campos', 'error', 3);
@@ -46,7 +46,7 @@ let signup = function () {
         setTimeout(function () {
             if (http.response.status == 'failed') {
                 alertify.set('notifier', 'position', 'bottom-center');
-                alertify.notify('Ya existe un registro con el mismo número de documento de identidad o el Email dado', 'error', 5);
+                alertify.notify('Ya existe un registro con el mismo número de documento de identidad o el email dado', 'error', 5);
             } else {
                 alertify.set('notifier', 'position', 'bottom-center');
                 alertify.notify('El registro se ha completado exitosamente', 'success', 5);

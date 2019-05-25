@@ -200,35 +200,6 @@ req.onreadystatechange = function () {
             document.getElementById("final_result").innerHTML = nota_final;
             setTimeout(function () {
                 post();
-                document.getElementById("texto_span").innerHTML = "Porcentaje de aciertos";
-            Highcharts.chart('container', {
-                chart: {
-                    type: 'pie',
-                    options3d: {
-                        enabled: true,
-                        alpha: 45
-                    }
-                },
-                title: {
-                    text: ''
-                },
-                plotOptions: {
-                    pie: {
-                        innerSize: 100,
-                        depth: 45
-                    }
-                },
-                tooltip: {
-                    pointFormat: 'Porcentaje: <b>{point.y:.0f}%</b>'
-                },
-                series: [{
-                    name: 'Porcentaje',
-                    data: [
-                        ['Aciertos', ((textoId.part1 * 20) + (textoId.part2 * 20) + (textoId.part3 * 20) / 3)],
-                        ['Desaciertos', 100 - ((textoId.part1 * 20) + (textoId.part2 * 20) + (textoId.part3 * 20) / 3)],
-                    ]
-                }]
-            });
                 console.log("post melo")
                 setTimeout(function () {
                     updateExamen(nota_final, level);

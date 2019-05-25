@@ -76,6 +76,7 @@ let getGrades = function () {
                 alertify.notify('El número de documento de identidad es incorrecto', 'error', 3);
                 document.getElementById("table").style.display = "none";
                 x.style.display = "none";
+                y.style.display = "none";
             }
         }, 1000)
     }

@@ -120,11 +120,13 @@ router.get('/admin/profile/candidate-grades', viewsCtlr.loadAdminCandidateGrades
 router.get('/admin/profile/statistics', viewsCtlr.loadStatistics)
 router.get('/admin/profile/gap', viewsCtlr.loadDesfase);
 router.get('/admin/profile/individual-results', viewsCtlr.loadCandidateResults);
+router.get('/admin/profile/edit-question/data', viewsCtlr.loadUpdateQuestion);
 
 // CRUD de Preguntas
 router.get('/api/question/list', questionCtlr.obtenerPregunta);
 router.post('/api/register/question', questionCtlr.registrarPregunta); 
 router.put('/api/question/update', questionCtlr.actualizarPregunta);
-router.post('/api/question/remove', questionCtlr.eliminarPregunta);
+router.delete('/api/question/remove', questionCtlr.eliminarPregunta);
+router.get('/api/question/findall', questionCtlr.encontrarTodo);
 
 module.exports = router;
