@@ -26,7 +26,11 @@ let getGap = function () {
                 var texto = req.response.info_examen;
                 console.log(texto.classified_level);
                 clasificacion_escrita = texto.classified_level;
-                var nivel_escrito = parseInt(clasificacion_escrita, 10);
+                if (clasificacion_escrita == "Preparatorio") {
+                    var nivel_escrito = 0;
+                } else {
+                    var nivel_escrito = parseInt(clasificacion_escrita, 10);
+                }
                 console.log("clasificacion escrita: ", nivel_escrito);
                 var clasificacion_oral = texto.final_level;
                 var nivel_oral = parseInt(clasificacion_oral, 10);

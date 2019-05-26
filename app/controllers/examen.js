@@ -28,7 +28,7 @@ function saveTestStatus(req, res, data) {
         part2: 0.0,
         part3: 0.0, // To be updated
         classified_level: "0", // To be updated
-        final_level: "0",
+        final_level: "A falta de realización de la entrevista",
         hora_inicio: time, // Static
         hora_fin: time, // To be updated
         clasificador: clasificador, //Just a simple docn
