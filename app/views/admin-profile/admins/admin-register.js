@@ -22,17 +22,38 @@ let signup = function () {
 
     if (doctype == '0' || docnumber == '' || firstname == '' || lastname == '' ||
         genero == '0' || birthdate == '' || city == '' || address == '' ||
-        phonenumber == '' || mobilephonenumber == '' || email == '' || username == '' ||
-        password == '') {
+        mobilephonenumber == '' || email == '' || username == '' || password == '') {
 
         alertify.set('notifier', 'position', 'bottom-center');
         alertify.notify('No se han completado todos los campos', 'error', 3);
     } else {
 
-        if (password.length < 8) {
+        if (docnumber.length < 5) {
             alertify.set('notifier', 'position', 'bottom-center');
-            alertify.notify('La contraseña debe tener al menos 8 caracteres', 'error', 3);
+            alertify.notify('El número de documento de identidad debe tener almenos 5 caracteres', 'error', 3);
+        } else if (firstname.length < 4) {
+            alertify.set('notifier', 'position', 'bottom-center');
+            alertify.notify('El nombre debe tener almenos 4 caracteres', 'error', 3);
+        } else if (lastname.length < 4) {
+            alertify.set('notifier', 'position', 'bottom-center');
+            alertify.notify('Los apellidos deben tener 4 caracteres', 'error', 3);
+        } else if (username.length < 4) {
+            alertify.set('notifier', 'position', 'bottom-center');
+            alertify.notify('El usuario debe tener almenos 4 caracteres', 'error', 3);
+        } else if (password.length < 8) {
+            alertify.set('notifier', 'position', 'bottom-center');
+            alertify.notify('La contraseña debe tener almenos 8 caracteres', 'error', 3);
+        } else if (address.length < 4) {
+            alertify.set('notifier', 'position', 'bottom-center');
+            alertify.notify('La dirección de residencia debe tener almenos 4 caracteres', 'error', 3);
+        } else if (mobilephonenumber.length < 12) {
+            alertify.set('notifier', 'position', 'bottom-center');
+            alertify.notify('El número de celular debe tener almenos 12 caracteres', 'error', 3);
+        } else if (email.length < 7) {
+            alertify.set('notifier', 'position', 'bottom-center');
+            alertify.notify('El email debe tener almenos 7 caracteres', 'error', 3);
         } else {
+
 
             var exito = false;
             var http = new XMLHttpRequest();
@@ -43,7 +64,6 @@ let signup = function () {
                 if (http.readyState == 4 && http.status == 200) {
                     exito = true;
                     localStorage.setItem("mikey", http.response.token);
-                    window.location.replace('/admin/profile');
                 }
             }
             if (habilita | reactiva | gestiona | clasifica) {
@@ -69,10 +89,36 @@ let signup = function () {
                 }));
                 setTimeout(function () {
                     if (!exito) {
+                        if (http.response.status == 'failed') {
+                            if (http.response.message.includes("docnumber")) {
+                                alertify.set('notifier', 'position', 'bottom-center');
+                                alertify.notify('Ya existe un registro con el mismo número de documento de identidad dado', 'error', 5);
+                            } else if (http.response.message.includes("email")) {
+                                alertify.set('notifier', 'position', 'bottom-center');
+                                alertify.notify('Ya existe un registro con el mismo correo dado', 'error', 5);
+                            } else if (http.response.message.includes("username")) {
+                                alertify.set('notifier', 'position', 'bottom-center');
+                                alertify.notify('Ya existe un registro con el mismo usuario dado', 'error', 5);
+                            } else {
+                                alertify.set('notifier', 'position', 'bottom-center');
+                                alertify.notify('Ya existe un registro con el mismo número de documento de identidad, con el correo o con el usuario dado', 'error', 5);
+                            }
+                        } else {
+                            alertify.set('notifier', 'position', 'bottom-center');
+                            alertify.notify('Error en los datos suministrados: Verifique que el número de documento de identidad, el número de télefono, el número celular deben ser numéricos, y que el correo sea un correo válido', 'error', 8);
+                        }
+                    } else {
+
                         alertify.set('notifier', 'position', 'bottom-center');
-                        alertify.notify('Ya existe un registro con el mismo número de documento de identidad, con el correo o con el usuario dado', 'error', 5);
+                        alertify.notify('El registro se ha completado exitosamente', 'success', 5);
+
+                        setTimeout(function () {
+                        window.location.replace('/admin/profile');
+                        }, 2500)
+
                     }
-                } , 1000)
+                }, 1000)
+
             } else {
                 console.log("habilita | reactiva | gestiona | clasifica is not selected");
                 alertify.set('notifier', 'position', 'bottom-center');
