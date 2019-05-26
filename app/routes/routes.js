@@ -27,6 +27,7 @@ router.put('/api/test/update', examenCtlr.updateInfoExamen);
 router.put('/api/test/updatebydoc', examenCtlr.updateByDocNumber);
 router.post('/test/next_question', cors(corsOptions), examenCtlr.next_question);
 router.get('/test/info', cors(corsOptions), examenCtlr.getInfoExamen);
+router.get('/test/infoById', cors(corsOptions), examenCtlr.getInfoById);
 router.get('/test/statistics', cors(corsOptions), examenCtlr.statistics);
 router.get('/test/prestart', cors(corsOptions), function(req, res, next){
     request.get(QUERY_PATH + '/test/prestart', function(error, response, data){
@@ -62,7 +63,7 @@ router.post('/api/register/candidate', [
     check('genre').isNumeric().isIn([1, 2, 3]),
     check('currentcity').isAlphanumeric().isLength({min: 3}),
     check('address').matches('[a-zA-Z0-9\\#\\-\\°\\s]+').isLength({min: 4}),
-    check('phonenumber').isNumeric().isLength({min: 5}),
+    check('phonenumber'),
     check('mobilephonenumber').isMobilePhone().isLength({max: 12}),
     check('email').isEmail().isLength({min: 7}),
     check('examen_activo').isBoolean()
