@@ -48,8 +48,8 @@ $(document).ready(function() {
             $('#tabla_preguntas tbody').on( 'click', 'button', function () {
                 var action = this.id;
                 var data = table.row($(this).parents('tr')).data();
+                localStorage.setItem('item_pregunta', JSON.stringify(data.n_item))
                 if(action == 'btnEditar'){
-                    localStorage.setItem('item_pregunta', JSON.stringify(data.n_item))
                     window.location.replace('/admin/profile/edit-question/data');
                 }                
             });
