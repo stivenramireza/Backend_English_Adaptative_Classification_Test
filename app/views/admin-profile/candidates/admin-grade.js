@@ -23,25 +23,32 @@ let gradeCandidate = function () {
         http.onreadystatechange = function () {
             if (http.readyState == 4 && http.status == 200) {
                 exito = true;
+                console.log("Exito")
             }
         }
 
         setTimeout(function () {
             if (exito) {
+                var req = new XMLHttpRequest();
+                req.responseType = 'json';
+                req.open("GET", '/test/info' + '?' + params, true);
+                req.setRequestHeader("Content-type", "application/json");
+                req.send(null);
+                req.onreadystatechange = function () {
+                    if (req.readyState == 4 && req.status == 200) {
+                        var idExamen = req.response.info_examen._id;
+                        console.log(idExamen)
+                        var params2 = 'idExamen=' + idExamen;
+                        var http2 = new XMLHttpRequest();
+                        http2.responseType = 'json';
+                        http2.open("PUT", "/api/test/update" + '?' + params2, true);
+                        http2.setRequestHeader("Content-type", "application/json");
 
-                console.log("Params: " + params);
-                var http2 = new XMLHttpRequest();
-                http2.responseType = 'json';
-                http2.open("PUT", "/api/test/updatebydoc" + '?' + params, true);
-                http2.setRequestHeader("Content-type", "application/json");
-
-                console.log("id: " + id);
-                console.log("Level: " + lev)
-
-                http2.send(JSON.stringify({
-                    final_level: lev
-                }))
-
+                        http2.send(JSON.stringify({
+                            final_level: lev
+                        }))
+                    }
+                }
                 alertify.set('notifier', 'position', 'bottom-center');
                 alertify.notify('La clasificación del estudiante se ha realizado exitosamente', 'success', 5);
                 document.getElementById("dt").value = "0";

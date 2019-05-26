@@ -157,7 +157,7 @@ function statistics(req, res){
 
 function getInfoExamen(req, res){
     let docnumber = req.query.docnumber;
-    Examen.findOne({ docnumber: docnumber }, (err, info_examen) => {
+    Examen.findOne({docnumber: docnumber},{},{sort:{'_id':-1}}, (err, info_examen) => {
         if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}`, status: 'failed' })
         if (!info_examen) return res.status(404).send({ message: `El aspirante no tiene registrado exámenes de clasificación`, 
                                                         status: 'failed'
