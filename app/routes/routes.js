@@ -29,6 +29,11 @@ router.post('/test/next_question', cors(corsOptions), examenCtlr.next_question);
 router.get('/test/info', cors(corsOptions), examenCtlr.getInfoExamen);
 router.get('/test/infoById', cors(corsOptions), examenCtlr.getInfoById);
 router.get('/test/statistics', cors(corsOptions), examenCtlr.statistics);
+router.get('/test/statistics/lastyear', cors(corsOptions), examenCtlr.getLastYearExams);
+router.get('/test/statistics/lastmonth', cors(corsOptions), examenCtlr.getLastMonthExams);
+router.get('/test/statistics/lastweek', cors(corsOptions), examenCtlr.getLastWeekExams);
+router.get('/test/statistics/lastsemester', cors(corsOptions), examenCtlr.getLastSemesterExams);
+router.get('/test/statistics/all', cors(corsOptions), examenCtlr.getAllExams);
 router.get('/test/prestart', cors(corsOptions), function(req, res, next){
     request.get(QUERY_PATH + '/test/prestart', function(error, response, data){
         var _data = data;
