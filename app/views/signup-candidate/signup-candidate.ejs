@@ -60,11 +60,20 @@
             <p class="lead">Señor Aspirante, complete los campos desplegados a continuación para lograr un correcto
                 registro.</p>
         </div>
+
+        <center>
+            <div>
+                <label for="genero">Los campos con * son obligatorios.</label>
+            </div>
+        </center>
+
+        <br><br>
+
         <div class="row">
             <form class="needs-validation container" novalidate>
                 <div class="row">
                     <div class="col mb-3">
-                        <label for="country">Tipo de documento</label>
+                        <label for="country">Tipo de documento*</label>
                         <select class="custom-select d-block w-100" id="dt" required>
                             <option value="0">Seleccione el tipo de identificación...</option>
                             <option value="1">Cédula de Ciudadanía</option>
@@ -87,7 +96,7 @@
                     </div>
 
                     <div class="col mb-3 md-form">
-                        <label for="docnumber">Documento de identidad</label>
+                        <label for="docnumber">Documento de identidad*</label>
                         <input type="text" class="form-control" id="docnumber" placeholder="" value="" required>
                         <div class="invalid-feedback">
                             Se requiere que llene el campo "Documento de identidad" correctamente.
@@ -97,14 +106,14 @@
 
                 <div class="row">
                     <div class="col mb-3">
-                        <label for="firstName">Nombres</label>
+                        <label for="firstName">Nombres*</label>
                         <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
                         <div class="invalid-feedback">
                             Se requiere que llene el campo "Nombres" correctamente.
                         </div>
                     </div>
                     <div class="col mb-3">
-                        <label for="lastName">Apellidos</label>
+                        <label for="lastName">Apellidos*</label>
                         <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
                         <div class="invalid-feedback">
                             Se requiere que llene el campo "Apellidos" correctamente.
@@ -114,7 +123,7 @@
 
                 <div class="row">
                     <div class=" col mb-3">
-                        <label for="birthday">Fecha de nacimiento</label>
+                        <label for="birthday">Fecha de nacimiento*</label>
                         <div class="input-group">
                             <input type="date" class="form-control" id="birthday" required>
                             <div class="invalid-feedback" style="width: 100%;">
@@ -125,7 +134,7 @@
 
 
                     <div class="col mb-3">
-                        <label for="direccion">Dirección de residencia</label>
+                        <label for="direccion">Dirección de residencia*</label>
                         <input type="email" class="form-control" id="direccion" placeholder="">
                         <div class="invalid-feedback">
                             Se requiere que llene el campo "Dirección" correctamente.
@@ -143,7 +152,7 @@
                     </div>
 
                     <div class="col mb-3">
-                        <label for="celular">Celular</label>
+                        <label for="celular">Celular*</label>
                         <input type="text" class="form-control" id="celular" placeholder="Ej: 3017879645">
                     </div>
 
@@ -151,7 +160,7 @@
 
                 <div class="row">
                     <div class="col-md-5 mb-3">
-                        <label for="correo">Email</label>
+                        <label for="correo">Email*</label>
                         <input type="text" class="form-control" id="correo" placeholder="" required>
                         <div class="invalid-feedback">
                             Se requiere que llene el campo "Email" correctamente.
@@ -161,7 +170,7 @@
 
 
                     <div class="col mb-3">
-                        <label for="ciudad">Ciudad</label>
+                        <label for="ciudad">Ciudad*</label>
                         <select class="custom-select d-block w-100" id="city" required>
                             <option value="">Escoger...</option>
                             <option value="MEDELLIN">MEDELLÍN</option>
@@ -298,7 +307,7 @@
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label for="genero">Género</label>
+                        <label for="genero">Género*</label>
                         <select class="custom-select d-block w-100" id="genero" required>
                             <option value="0">Seleccionar...</option>
                             <option value="1">Masculino</option>
