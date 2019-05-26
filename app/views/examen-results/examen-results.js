@@ -126,7 +126,7 @@ function calcularNotas(array_respuestas, array_partes) {
     var arrayPartes = array_partes;
     var counter1 = 0, counter2 = 0, counter3 = 0;
     var i;
-    for (i = 0; i < arrayRespuestas.length ; i++) {
+    for (i = 0; i < arrayRespuestas.length; i++) {
         if (arrayPartes[i] == 1) {
             counter1++;
             if (arrayRespuestas[i] == true) {
@@ -151,7 +151,7 @@ function calcularNotas(array_respuestas, array_partes) {
     }
     if (counter2 == 0 && c_parte3 > 3) {
         c_parte2 = 5;
-    } else if (counter2 == 0){
+    } else if (counter2 == 0) {
         c_parte2 = 0;
     } else {
         c_parte2 = c_parte2 / counter2;
@@ -178,7 +178,7 @@ function calcularNotas(array_respuestas, array_partes) {
 var c_parte1 = 0, c_parte2 = 0, c_parte3 = 0, nota_final = 0, level = 0, gap = 0;
 var req = new XMLHttpRequest();
 var idExam = localStorage.getItem("idEx")
-console.log("ID examen recibido para el update: " , idExam);
+console.log("ID examen recibido para el update: ", idExam);
 var params = '_id=' + idExam;
 req.responseType = 'json';
 req.open("GET", '/test/infoById' + '?' + params, true);
@@ -197,7 +197,110 @@ req.onreadystatechange = function () {
         nota_final = calcularNotas(array_respuestas, array_partes);
         setTimeout(function () {
             console.log("Nota calculada: " + nota_final)
-            document.getElementById("final_result").innerHTML = nota_final;
+            console.log("Porcentaje parte 1: ", c_parte1 * 20);
+            console.log("Porcentaje parte 2: ", c_parte2 * 20);
+            console.log("Porcentaje parte 3: ", c_parte3 * 20);
+            document.getElementById("texto_span").innerHTML = "Porcentaje de aciertos en parte 1";
+            Highcharts.chart('container', {
+                chart: {
+                    type: 'pie',
+                    options3d: {
+                        enabled: true,
+                        alpha: 45
+                    }
+                },
+                title: {
+                    text: ''
+                },
+                plotOptions: {
+                    pie: {
+                        innerSize: 100,
+                        depth: 45
+                    }
+                },
+                tooltip: {
+                    pointFormat: 'Porcentaje: <b>{point.y:.0f}%</b>'
+                },
+                series: [{
+                    name: 'Porcentaje',
+                    data: [
+                        ['Aciertos', (c_parte1 * 20)],
+                        ['Desaciertos', 100 - (c_parte1 * 20)],
+                    ]
+                }]
+            });
+
+            if (c_parte2 == 0) {
+                var x = document.getElementById("myDIV2");
+                x.style.display = "none";
+            } else {
+
+                document.getElementById("texto_span2").innerHTML = "Porcentaje de aciertos en parte 2";
+                Highcharts.chart('container2', {
+                    chart: {
+                        type: 'pie',
+                        options3d: {
+                            enabled: true,
+                            alpha: 45
+                        }
+                    },
+                    title: {
+                        text: ''
+                    },
+                    plotOptions: {
+                        pie: {
+                            innerSize: 100,
+                            depth: 45
+                        }
+                    },
+                    tooltip: {
+                        pointFormat: 'Porcentaje: <b>{point.y:.0f}%</b>'
+                    },
+                    series: [{
+                        name: 'Porcentaje',
+                        data: [
+                            ['Aciertos', (c_parte2 * 20)],
+                            ['Desaciertos', 100 - (c_parte2 * 20)],
+                        ]
+                    }]
+                });
+            }
+
+            if (c_parte3 == 0) {
+                var x = document.getElementById("myDIV3");
+                x.style.display = "none";
+            } else {
+
+                document.getElementById("texto_span3").innerHTML = "Porcentaje de aciertos en parte 3";
+                Highcharts.chart('container3', {
+                    chart: {
+                        type: 'pie',
+                        options3d: {
+                            enabled: true,
+                            alpha: 45
+                        }
+                    },
+                    title: {
+                        text: ''
+                    },
+                    plotOptions: {
+                        pie: {
+                            innerSize: 100,
+                            depth: 45
+                        }
+                    },
+                    tooltip: {
+                        pointFormat: 'Porcentaje: <b>{point.y:.0f}%</b>'
+                    },
+                    series: [{
+                        name: 'Porcentaje',
+                        data: [
+                            ['Aciertos', (c_parte3 * 20)],
+                            ['Desaciertos', 100 - (c_parte3 * 20)],
+                        ]
+                    }]
+                });
+            }
             setTimeout(function () {
                 post();
                 console.log("post melo")
@@ -211,7 +314,5 @@ req.onreadystatechange = function () {
                 }, 1000)
             }, 1000);
         }, 1000);
-
-
     }
 }
