@@ -27,6 +27,7 @@ router.put('/api/test/update', examenCtlr.updateInfoExamen);
 router.put('/api/test/updatebydoc', examenCtlr.updateByDocNumber);
 router.post('/test/next_question', cors(corsOptions), examenCtlr.next_question);
 router.get('/test/info', cors(corsOptions), examenCtlr.getInfoExamen);
+router.get('/test/infoById', cors(corsOptions), examenCtlr.getInfoById);
 router.get('/test/statistics', cors(corsOptions), examenCtlr.statistics);
 router.get('/test/prestart', cors(corsOptions), function(req, res, next){
     request.get(QUERY_PATH + '/test/prestart', function(error, response, data){

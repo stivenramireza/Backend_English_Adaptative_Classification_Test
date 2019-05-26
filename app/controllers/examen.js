@@ -48,17 +48,17 @@ function saveTestStatus(req, res, data) {
                 title: _data.question.title,
                 responses: _data.question.responses,
                 n_item: _data.question.n_item,
-                ability: _data.question.ability
+                ability: _data.question.ability,
             },
-            status: 'success'
+            status: 'success',
+            examen: new_examen._id
         });
     });
 }
 
 function next_question(req, res) {
-    var doc_number = req.body.docnumber;
-    var doc_type = req.body.doctype;
-    Examen.findOne({docnumber: doc_number, doctype: doc_type}, function (err, examen) {
+    var idEx = req.body._id;
+    Examen.findOne({_id: idEx}, function (err, examen) {
         if (err) {
             return res.status(404).send({
                 message: 'Cannot find the specified test.',
@@ -166,6 +166,17 @@ function getInfoExamen(req, res){
     })
 }
 
+function getInfoById(req, res){
+    let idEx = req.query._id;
+    Examen.findOne({ _id: idEx }, (err, info_examen) => {
+        if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}`, status: 'failed' })
+        if (!info_examen) return res.status(404).send({ message: `El aspirante no tiene registrado exámenes de clasificación`, 
+                                                        status: 'failed'
+                                                    })
+        res.status(200).send({ info_examen, status: 'success' })
+    })
+}
+
 function updateInfoExamen(req, res){
     let idExamen = req.query.idExamen;
     let update = req.body
@@ -188,6 +199,7 @@ module.exports = {
     saveTestStatus,
     next_question,
     getInfoExamen,
+    getInfoById,
     updateInfoExamen,
     updateByDocNumber,
     statistics

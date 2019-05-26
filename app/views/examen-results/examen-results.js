@@ -119,8 +119,6 @@ function post() {
             console.log("Nivel: " + level);
         }
     }
-
-    console.log("Nivel Test: " + level);
 }
 
 function calcularNotas(array_respuestas, array_partes) {
@@ -153,6 +151,8 @@ function calcularNotas(array_respuestas, array_partes) {
     }
     if (counter2 == 0 && c_parte3 > 3) {
         c_parte2 = 5;
+    } else if (counter2 == 0){
+        c_parte2 = 0;
     } else {
         c_parte2 = c_parte2 / counter2;
     } if (c_parte1 < 4) {
@@ -177,10 +177,11 @@ function calcularNotas(array_respuestas, array_partes) {
 
 var c_parte1 = 0, c_parte2 = 0, c_parte3 = 0, nota_final = 0, level = 0, gap = 0;
 var req = new XMLHttpRequest();
-var doc_number = localStorage.getItem("docnumber");
-var params = 'docnumber=' + doc_number;
+var idExam = localStorage.getItem("idEx")
+console.log("ID examen recibido para el update: " , idExam);
+var params = '_id=' + idExam;
 req.responseType = 'json';
-req.open("GET", '/test/info' + '?' + params, true);
+req.open("GET", '/test/infoById' + '?' + params, true);
 req.setRequestHeader("Content-type", "application/json");
 req.send(null);
 req.onreadystatechange = function () {
@@ -191,7 +192,6 @@ req.onreadystatechange = function () {
         var textoId = req.response.info_examen;
         var id = textoId._id;
         localStorage.setItem("_idExamen", id);
-        console.log(id);
         var array_respuestas = texto.info_examen.responses;
         var array_partes = texto.info_examen.parts;
         nota_final = calcularNotas(array_respuestas, array_partes);
