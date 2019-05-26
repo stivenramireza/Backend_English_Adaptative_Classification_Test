@@ -10,6 +10,13 @@
     <meta name="author" content="">
 
     <title>Gestión de Roles</title>
+
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/alertify.min.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/alertify.min.css"/>
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/default.min.css"/>
+    
     <!-- Custom fonts for this template-->
     <link href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/fontawesome-free/css/all.min.css"
         rel="stylesheet" type="text/css">
@@ -159,11 +166,17 @@
                 <div class="container-fluid">
 
                     <div class="container" style="max-width: 700px; margin-top: 30px;">
+                        <center>
+                            <div>
+                                <label for="genero">Los campos con * son obligatorios.</label>
+                            </div>
+                        </center>
+                        <br><br>
                         <div class="container" style="width: 100%">
                                 <form class="needs-validation" novalidate>
                                     <div class="row">
                                         <div class="col mb-3">
-                                            <label for="country">Tipo de documento</label>
+                                            <label for="country">Tipo de documento*</label>
                                             <select class="custom-select d-block w-100" id="dt" required>
                                                 <option value="">Seleccione el tipo de identificación...</option>
                                                 <option value="Cédula de Ciudadanía">Cédula de Ciudadanía</option>
@@ -186,7 +199,7 @@
                                         </div>
 
                                         <div class="col mb-3">
-                                            <label for="firstName">Documento de identidad</label>
+                                            <label for="firstName">Documento de identidad*</label>
                                             <input type="text" class="form-control" id="docnumber" placeholder=""
                                                 value="" required>
                                             <div class="invalid-feedback">
@@ -197,7 +210,7 @@
 
                                     <div class="row">
                                         <div class="col mb-3">
-                                            <label for="firstName">Nombres</label>
+                                            <label for="firstName">Nombres*</label>
                                             <input type="text" class="form-control" id="firstName" placeholder=""
                                                 value="" required>
                                             <div class="invalid-feedback">
@@ -205,7 +218,7 @@
                                             </div>
                                         </div>
                                         <div class="col mb-3">
-                                            <label for="lastName">Apellidos</label>
+                                            <label for="lastName">Apellidos*</label>
                                             <input type="text" class="form-control" id="lastName" placeholder=""
                                                 value="" required>
                                             <div class="invalid-feedback">
@@ -216,7 +229,7 @@
 
                                     <div class="row">
                                         <div class="col mb-3">
-                                            <label for="firstName">Usuario</label>
+                                            <label for="firstName">Usuario*</label>
                                             <input type="text" class="form-control" id="username" placeholder=""
                                                 value="" required>
                                             <div class="invalid-feedback">
@@ -224,7 +237,7 @@
                                             </div>
                                         </div>
                                         <div class="col mb-3">
-                                            <label for="lastName">Contraseña</label>
+                                            <label for="lastName">Contraseña*</label>
                                             <input type="text" class="form-control" id="password" placeholder=""
                                                 value="" required>
                                             <div class="invalid-feedback">
@@ -235,7 +248,7 @@
 
                                     <div class="row">
                                         <div class=" col mb-3">
-                                            <label for="username">Fecha de nacimiento</label>
+                                            <label for="username">Fecha de nacimiento*</label>
                                             <div class="input-group">
                                                 <input type="date" class="form-control" id="birthdate" required>
                                                 <div class="invalid-feedback" style="width: 100%;">
@@ -247,7 +260,7 @@
 
 
                                         <div class="col mb-3">
-                                            <label for="email">Dirección de residencia</label>
+                                            <label for="email">Dirección de residencia*</label>
                                             <input type="email" class="form-control" id="direccion" placeholder="">
                                             <div class="invalid-feedback">
                                                 Se requiere que llene el campo "Dirección" correctamente.
@@ -259,21 +272,21 @@
                                         <div class="col mb-3">
                                             <label for="address">Teléfono</label>
                                             <input type="text" class="form-control" id="telefono"
-                                                placeholder="(999) 9999999" required>
+                                                placeholder="Ej: 2069807" required>
                                             <div class="invalid-feedback">
                                                 Se requiere que llene el campo "Teléfono" correctamente.
                                             </div>
                                         </div>
 
                                         <div class="col mb-3">
-                                            <label for="address2">Celular</label>
+                                            <label for="address2">Celular*</label>
                                             <input type="text" class="form-control" id="celular" placeholder="">
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col mb-3">
-                                            <label for="address">Email</label>
+                                            <label for="address">Email*</label>
                                             <input type="text" class="form-control" id="correo" placeholder="" required>
                                             <div class="invalid-feedback">
                                                 Se requiere que llene el campo "Email" correctamente.
@@ -281,7 +294,7 @@
                                         </div>
 
                                         <div class="col mb-3">
-                                            <label for="country">Ciudad</label>
+                                            <label for="country">Ciudad*</label>
                                             <select class="custom-select d-block w-100" id="city" required>
                                                 <option value="">Escoger...</option>
                                                 <option value="MEDELLIN">MEDELLÍN</option>
@@ -421,7 +434,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col mb-3">
-                                            <label for="state">Género</label>
+                                            <label for="state">Género*</label>
                                             <select class="custom-select d-block w-100" id="genero" required>
                                                 <option value="">Seleccionar...</option>
                                                 <option value="Masculino">Masculino</option>
@@ -434,7 +447,7 @@
                                         </div>
 
                                         <div class="col mb-3">
-                                            <label for="state">Estado</label>
+                                            <label for="state">Estado*</label>
                                             <select class="custom-select d-block w-100" id="estado_cuenta" required>
                                                 <option value="Activo/a">Activo/a</option>
                                                 <option value="Inactivo/a">Inactivo/a</option>
@@ -447,7 +460,7 @@
 
                                     <hr class="mb-4">
                                     <div class="text-center">
-                                        <p class="lead">Seleccione los roles que tendrá el administrador.</p>
+                                        <p class="lead">Seleccione los roles que tendrá el administrador*</p>
                                     </div>
                                     <br>
 
