@@ -63,6 +63,7 @@ function register(req, res) {
         lastname: req.body.lastname,
         genre: fromNumberToGenre(req.body.genre),
         birthdate: req.body.birthdate,
+        currentdepartment: req.body.currentdepartment,
         currentcity: req.body.currentcity,
         address: req.body.address,
         phonenumber: req.body.phonenumber,
