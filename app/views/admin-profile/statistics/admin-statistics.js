@@ -1,92 +1,107 @@
 var barGraphSeries, barGraphDrilldown, barGraphClasif, barAgrupClasif, barLine, barLineCat, barLineFinal,
-barLineCatFinal, barWrittenBar, barFinalBar, barAgrupWritten, barAgrupFinal ;
+    barLineCatFinal, barWrittenBar, barFinalBar, barAgrupWritten, barAgrupFinal;
 var nombre_completo = localStorage.getItem('nombre_admin');
 document.getElementById("nombreAdmin").innerHTML = nombre_completo;
 
 let queryStatistics = function () {
     document.getElementById("header").style.display = "inline";
+    var doctype = document.getElementById("dt").value;
     var clasificador = document.getElementById("clasificador").value;
     var fecha_inicio = document.getElementById("fecha_inicio").value;
     var fecha_fin = document.getElementById("fecha_fin").value;
     var classified_level = document.getElementById("nivel").value;
     var final_level = document.getElementById("nivel_final").value;
-    var req = new XMLHttpRequest();
-    var params = 'clasificador=' + clasificador + '&fecha_inicio=' + fecha_inicio + '&fecha_fin=' + fecha_fin + '&classified_level=' + classified_level + '&final_level=' + final_level;
-    req.responseType = 'json';
-    req.open("GET", '/test/statistics' + '?' + params, true);
-    req.setRequestHeader("Content-type", "application/json");
-    req.send(null);
-    req.onreadystatechange = function () {
-        if (req.readyState == 4 && req.status == 200) {
-            var query = req.response.info_examen;
-            document.getElementById("registros").innerHTML = query.length;
-            if (query.length == 0) {
-                console.log("No hay registros");
-                x.style.display = "block";
-                y.style.display = "none";
-            } else {
-            x.style.display = "block";
-            y.style.display = "block";
+    if (fecha_inicio != '' & fecha_fin == '') {
+        alertify.set('notifier', 'position', 'bottom-center');
+        alertify.notify('No se ha seleccionado la fecha final', 'error', 3);
+    } else if (fecha_inicio == '' & fecha_fin != '') {
+        alertify.set('notifier', 'position', 'bottom-center');
+        alertify.notify('No se ha seleccionado la fecha inicial', 'error', 3);
+    } else if (doctype == '0' && clasificador != '') {
+        alertify.set('notifier', 'position', 'bottom-center');
+        alertify.notify('No se ha seleccionado el tipo de documento de identidad', 'error', 3);
+    } else if (doctype != '0' && clasificador == '') {
+        alertify.set('notifier', 'position', 'bottom-center');
+        alertify.notify('No se ha seleccionado el número de documento de identidad', 'error', 3);
+    } else {
+        var req = new XMLHttpRequest();
+        var params = 'clasificador=' + clasificador + '&fecha_inicio=' + fecha_inicio + '&fecha_fin=' + fecha_fin + '&classified_level=' + classified_level + '&final_level=' + final_level;
+        req.responseType = 'json';
+        req.open("GET", '/test/statistics' + '?' + params, true);
+        req.setRequestHeader("Content-type", "application/json");
+        req.send(null);
+        req.onreadystatechange = function () {
+            if (req.readyState == 4 && req.status == 200) {
+                var query = req.response.info_examen;
+                document.getElementById("registros").innerHTML = query.length;
+                if (query.length == 0) {
+                    console.log("No hay registros");
+                    x.style.display = "block";
+                    y.style.display = "none";
+                } else {
+                    x.style.display = "block";
+                    y.style.display = "block";
 
-            var groupByCL = query.reduce(function (cl, a) {
-                cl[a.classified_level] = cl[a.classified_level] || [];
-                cl[a.classified_level].push(a);
-                return cl;
-            }, Object.create(null));
+                    var groupByCL = query.reduce(function (cl, a) {
+                        cl[a.classified_level] = cl[a.classified_level] || [];
+                        cl[a.classified_level].push(a);
+                        return cl;
+                    }, Object.create(null));
 
-            var groupByFL = query.reduce(function (fl, b) {
-                fl[b.final_level] = fl[b.final_level] || [];
-                fl[b.final_level].push(b);
-                return fl;
-            }, Object.create(null));
+                    var groupByFL = query.reduce(function (fl, b) {
+                        fl[b.final_level] = fl[b.final_level] || [];
+                        fl[b.final_level].push(b);
+                        return fl;
+                    }, Object.create(null));
 
-            var groupByClasificador = query.reduce(function (cla, c) {
-                cla[c.clasificador] = cla[c.clasificador] || [];
-                cla[c.clasificador].push(c);
-                return cla;
-            }, Object.create(null));
+                    var groupByClasificador = query.reduce(function (cla, c) {
+                        cla[c.clasificador] = cla[c.clasificador] || [];
+                        cla[c.clasificador].push(c);
+                        return cla;
+                    }, Object.create(null));
 
-            var groupByMonth = query.reduce(function (acc, obj) {
-                console.log(query)
-                var year, month, week
-                var b = obj.fecha.split(/\D/);
-                // Get custom week number, zero padded
-                var weekNum = '0' + Math.ceil(b[2] / 7);
-                // Add year if not already present
-                if (!acc[b[0]]) acc[b[0]] = {};
-                year = acc[b[0]];
-                // Add month if not already present
-                if (!year[b[1]]) year[b[1]] = {};
-                month = year[b[1]];
-                // Add week if not already present
-                if (!month[weekNum]) month[weekNum] = [];
-                // Add object to  week
-                month[weekNum].push(obj);
-                return acc;
-            }, Object.create(null))
+                    var groupByMonth = query.reduce(function (acc, obj) {
+                        console.log(query)
+                        var year, month, week
+                        var b = obj.fecha.split(/\D/);
+                        // Get custom week number, zero padded
+                        var weekNum = '0' + Math.ceil(b[2] / 7);
+                        // Add year if not already present
+                        if (!acc[b[0]]) acc[b[0]] = {};
+                        year = acc[b[0]];
+                        // Add month if not already present
+                        if (!year[b[1]]) year[b[1]] = {};
+                        month = year[b[1]];
+                        // Add week if not already present
+                        if (!month[weekNum]) month[weekNum] = [];
+                        // Add object to  week
+                        month[weekNum].push(obj);
+                        return acc;
+                    }, Object.create(null))
 
 
-            console.log("agrupacion por año, mes y semana")
-            console.log(groupByMonth);
-            console.log("agrupacion classified_level")
-            console.log(groupByCL)
-            console.log("agrupacion final_level")
-            console.log(groupByFL)
-            console.log("agrupacion clasificador")
-            console.log(groupByClasificador)
+                    console.log("agrupacion por año, mes y semana")
+                    console.log(groupByMonth);
+                    console.log("agrupacion classified_level")
+                    console.log(groupByCL)
+                    console.log("agrupacion final_level")
+                    console.log(groupByFL)
+                    console.log("agrupacion clasificador")
+                    console.log(groupByClasificador)
 
-            graphMonth(groupByMonth);
-            graphClasif(groupByClasificador);
-            graphClasifAgrup(groupByClasificador)
-            graphLine(groupByCL)
-            graphLineFinal(groupByFL)
-            graphWrittenBar(groupByCL)
-            graphFinalBar(groupByFL)
-            graphAgrupWritten(groupByCL)
-            graphAgrupFinal(groupByFL)
+                    graphMonth(groupByMonth);
+                    graphClasif(groupByClasificador);
+                    graphClasifAgrup(groupByClasificador)
+                    graphLine(groupByCL)
+                    graphLineFinal(groupByFL)
+                    graphWrittenBar(groupByCL)
+                    graphFinalBar(groupByFL)
+                    graphAgrupWritten(groupByCL)
+                    graphAgrupFinal(groupByFL)
 
+                }
+            }
         }
-    }
     }
 }
 
@@ -147,14 +162,14 @@ let graphClasifAgrup = function (clasifArray) {
     console.log(barAgrupClasif)
 }
 
-let graphLine = function (writtenArray){
+let graphLine = function (writtenArray) {
     var array = [], categories = []
     var jsonTemporal = " { \"name\": \"Curva de numero de registros por niveles\", \"data\": ["
-    for (const niv in writtenArray){
+    for (const niv in writtenArray) {
         categories.push(niv);
         jsonTemporal = jsonTemporal + writtenArray[niv].length + ", "
     }
-    jsonTemporal = jsonTemporal.substr(0, (jsonTemporal.length-2));
+    jsonTemporal = jsonTemporal.substr(0, (jsonTemporal.length - 2));
     jsonTemporal = jsonTemporal + "] }"
     array.push(JSON.parse(jsonTemporal));
     barLine = array;
@@ -189,14 +204,14 @@ let graphAgrupWritten = function (writtenArray) {
     console.log(barAgrupWritten)
 }
 
-let graphLineFinal = function (writtenArray){
+let graphLineFinal = function (writtenArray) {
     var array = [], categories = []
     var jsonTemporal = " { \"name\": \"Curva de numero de registros por niveles\", \"data\": ["
-    for (const niv in writtenArray){
+    for (const niv in writtenArray) {
         categories.push(niv);
         jsonTemporal = jsonTemporal + writtenArray[niv].length + ", "
     }
-    jsonTemporal = jsonTemporal.substr(0, (jsonTemporal.length-2));
+    jsonTemporal = jsonTemporal.substr(0, (jsonTemporal.length - 2));
     jsonTemporal = jsonTemporal + "] }"
     array.push(JSON.parse(jsonTemporal));
     barLineFinal = array;
@@ -415,7 +430,7 @@ let getGraph = function () {
                 data: barGraphClasif
             }]
         });
-    } else if (tipo_grafica == 5){
+    } else if (tipo_grafica == 5) {
         Highcharts.chart('g1', {
             chart: {
                 type: 'line'
@@ -444,7 +459,7 @@ let getGraph = function () {
             },
             series: barLine
         });
-    } else if (tipo_grafica == 6){ 
+    } else if (tipo_grafica == 6) {
         x.style.display = "block";
         Highcharts.chart('g1', {
             chart: {
@@ -534,7 +549,7 @@ let getGraph = function () {
             series:
                 barAgrupWritten
         });
-    } else if (tipo_grafica == 8){
+    } else if (tipo_grafica == 8) {
         Highcharts.chart('g1', {
             chart: {
                 type: 'line'
@@ -563,7 +578,7 @@ let getGraph = function () {
             },
             series: barLineFinal
         });
-    }else if (tipo_grafica == 9){ 
+    } else if (tipo_grafica == 9) {
         x.style.display = "block";
         Highcharts.chart('g1', {
             chart: {
