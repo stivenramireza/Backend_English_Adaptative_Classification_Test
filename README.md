@@ -16,7 +16,7 @@ Aplicación web para el examen adaptativo de clasificación de inglés del centr
 - [x] Reportes individuales del examen para administradores con tablas de las preguntas y respuestas dadas por los aspirantes (**Stiven**)
 - [x] CRUD de preguntas BD (**Juan Pablo**)
 - [ ] Autorización de aspirantes y administradores. (**Anderson**)
-- [ ] Corregir bugs e implementar **todas las alertas (notificaciones)** tanto para los administradores como para los administradores. (**Camilo**)
+- [ ] Corregir bugs e implementar **todas las alertas (notificaciones)** tanto para los administradores como para los aspirantes. (**Camilo**)
 
 ### Backend:
 
@@ -24,7 +24,7 @@ Aplicación web para el examen adaptativo de clasificación de inglés del centr
 - [x] CRUD de preguntas BD (**Juan Pablo**)
 - [ ] Manejo de sesiones para los usuarios. (**Anderson**)
 - [ ] Autorización de aspirantes y administradores. (**Anderson**)
-- [ ] Corregir bugs e implementar **todas las alertas (notificaciones)** tanto para los administradores como para los administradores. (**Camilo**)
+- [ ] Corregir bugs e implementar **todas las alertas (notificaciones)** tanto para los administradores como para los aspirantes. (**Camilo**)
 
 ### API de Inteligencia Artificial:
 
