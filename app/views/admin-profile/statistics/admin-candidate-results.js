@@ -69,10 +69,9 @@ let getGrades = function () {
                 var preguntas = textoId.questions;
                 var respuestas = textoId.responses;
                 var tamano_preguntas = preguntas.length;
-                var cont = 1;
                 $("#dataTable").append('<tbody>');
                 Object.keys(preguntas, respuestas).forEach(function (key) {
-                    getQuestion(preguntas[key], respuestas[key], tamano_preguntas, cont++);
+                    getQuestion(preguntas[key], respuestas[key], tamano_preguntas);
                 })
                 $("#dataTable").append('</tbody>');
             }
@@ -88,7 +87,7 @@ let getGrades = function () {
     }
 }
 
-function getQuestion(id_pregunta, respuesta_dada, tamano_preguntas, cont) {
+function getQuestion(id_pregunta, respuesta_dada, tamano_preguntas) {
     var req = new XMLHttpRequest();
     var params = 'n_item=' + id_pregunta;
     req.responseType = 'json';
@@ -113,7 +112,7 @@ function getQuestion(id_pregunta, respuesta_dada, tamano_preguntas, cont) {
                 lista_respuesta_dada = '<span class="iconify" data-icon="dashicons:no-alt" height="30" data-inline="false"></span>'
             }
 
-            $("#dataTable").append('<tr><td>' + (cont) + '</td>' +
+            $("#dataTable").append('<tr><td>' + ' ' + '</td>' +
                 '<td>' + lista_partes + '</td>' +
                 '<td>' + lista_preguntas + '</td>' +
                 '<td>' + lista_respuestas[0] + '</td>' +
