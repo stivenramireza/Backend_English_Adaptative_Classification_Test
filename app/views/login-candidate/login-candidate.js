@@ -57,10 +57,12 @@ let check = function () {
                 }
             } 
         }
-        if (!exito) {
-            alertify.set('notifier','position', 'bottom-center');
-            alertify.notify('El tipo de documento o el número de documento es incorrecto', 'error', 5);
-        }
+        setTimeout(function () {
+            if (!exito) {
+                alertify.set('notifier','position', 'bottom-center');
+                alertify.notify('El tipo de documento o el número de documento es incorrecto', 'error', 5);
+            }
+        }, 1000)
     }, 1000)
 }
 

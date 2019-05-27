@@ -27,7 +27,13 @@ router.put('/api/test/update', examenCtlr.updateInfoExamen);
 router.put('/api/test/updatebydoc', examenCtlr.updateByDocNumber);
 router.post('/test/next_question', cors(corsOptions), examenCtlr.next_question);
 router.get('/test/info', cors(corsOptions), examenCtlr.getInfoExamen);
+router.get('/test/infoById', cors(corsOptions), examenCtlr.getInfoById);
 router.get('/test/statistics', cors(corsOptions), examenCtlr.statistics);
+router.get('/test/statistics/lastyear', cors(corsOptions), examenCtlr.getLastYearExams);
+router.get('/test/statistics/lastmonth', cors(corsOptions), examenCtlr.getLastMonthExams);
+router.get('/test/statistics/lastweek', cors(corsOptions), examenCtlr.getLastWeekExams);
+router.get('/test/statistics/lastsemester', cors(corsOptions), examenCtlr.getLastSemesterExams);
+router.get('/test/statistics/all', cors(corsOptions), examenCtlr.getAllExams);
 router.get('/test/prestart', cors(corsOptions), function(req, res, next){
     request.get(QUERY_PATH + '/test/prestart', function(error, response, data){
         var _data = data;
@@ -60,10 +66,11 @@ router.post('/api/register/candidate', [
     check('firstname').matches('[a-zA-Z\\s]+').isLength({min: 4}),
     check('lastname').matches('[a-zA-Z\\s]+').isLength({min: 4}),
     check('genre').isNumeric().isIn([1, 2, 3]),
-    check('currentcity').isAlphanumeric().isLength({min: 3}),
+    check('currentdepartment').matches('[a-zA-Z\\s]+'),
+    check('currentcity').matches('[a-zA-Z\\s]+'),
     check('address').matches('[a-zA-Z0-9\\#\\-\\°\\s]+').isLength({min: 4}),
-    check('phonenumber').isNumeric().isLength({min: 5}),
-    check('mobilephonenumber').isMobilePhone().isLength({max: 12}),
+    check('phonenumber'),
+    check('mobilephonenumber').isMobilePhone().isLength({max: 18}),
     check('email').isEmail().isLength({min: 7}),
     check('examen_activo').isBoolean()
 ], studentCtrlr.register);
@@ -91,13 +98,13 @@ router.post('/api/register/admin', [
     check('lastname').matches('[a-zA-Z\\s]+').isLength({min: 4}),
     check('estado').isBoolean(),
     check('genre').isNumeric().isIn([1, 2, 3]),
-    check('currentcity').isAlphanumeric().isLength({min: 3}),
-    check('address').matches('[a-zA-Z0-9\\#\\-\\°\\s]+').isLength({min: 4}),
-    check('phonenumber').isNumeric().isLength({min: 7}),
-    check('mobilephonenumber').isMobilePhone().isLength({max: 12}),
+    check('currentdepartment').matches('[a-zA-Z\\s]+'),
+    check('currentcity').matches('[a-zA-Z\\s]+'),
+    check('phonenumber'),
     check('email').isEmail().isLength({min: 7}),
     check('username').matches('[a-zA-Z\\s]+').isLength({min: 4}),
     check('password').matches('[a-zA-Z0-9\\#\\-\\°\\s]+').isLength({min: 8}),
+    check('sede').matches('[a-zA-Z\\s]+'),
     check('habilitar_examenes').isBoolean(),
     check('reactivar_examenes').isBoolean(),
     check('gestionar_estadisticas').isBoolean(),

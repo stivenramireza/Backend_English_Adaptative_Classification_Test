@@ -55,21 +55,30 @@
 
     <div class="container" style="max-width: 700px">
         <div class="py-5 text-center">
-            <p class="lead">Señor Aspirante, antes de realizar el examen de Clasificación del Centro de Idiomas, por
-                favor diligencia el formulario con sus datos personales.</p>
+            <p class="lead">Señor Aspirante, antes de realizar el examen de clasificación del programa de Inglés para adultos, por
+                favor diligencie el formulario con sus datos personales.</p>
         </div>
+
+        <center>
+            <div>
+                <label for="genero">Los campos con * son obligatorios.</label>
+            </div>
+        </center>
+    
+        <br><br>
+
         <div class="row">
             <form class="needs-validation" novalidate>
                 <div class="row">
                     <div class="col mb-3">
-                        <label for="firstName">Nombres</label>
+                        <label for="firstName">Nombres*</label>
                         <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
                         <div class="invalid-feedback">
                             Se requiere que llene el campo "Nombres" correctamente.
                         </div>
                     </div>
                     <div class="col mb-3">
-                        <label for="lastName">Apellidos</label>
+                        <label for="lastName">Apellidos*</label>
                         <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
                         <div class="invalid-feedback">
                             Se requiere que llene el campo "Apellidos" correctamente.
@@ -79,7 +88,7 @@
 
                 <div class="row">
                 <div class=" col mb-3">
-                    <label for="username">Fecha de nacimiento</label>
+                    <label for="username">Fecha de nacimiento*</label>
                     <div class="input-group">
                         <input type="date" class="form-control" id="birthdate" required>
                         <div class="invalid-feedback" style="width: 100%;">
@@ -90,7 +99,7 @@
             
 
                 <div class="col mb-3">
-                    <label for="email">Dirección de residencia</label>
+                    <label for="email">Dirección de residencia*</label>
                     <input type="email" class="form-control" id="address" placeholder="">
                     <div class="invalid-feedback">
                         Se requiere que llene el campo "Dirección" correctamente.
@@ -101,14 +110,14 @@
             <div class="row">
                 <div class="col mb-3">
                     <label for="address">Teléfono</label>
-                    <input type="text" class="form-control" id="telefono" placeholder="(999) 9999999" required>
+                    <input type="text" class="form-control" id="telefono" placeholder="Ej: 2069807" required>
                     <div class="invalid-feedback">
                         Se requiere que llene el campo "Teléfono" correctamente.
                     </div>
                 </div>
 
                 <div class="col mb-3">
-                    <label for="address2">Celular</label>
+                    <label for="address2">Celular*</label>
                     <input type="text" class="form-control" id="celular" placeholder="">
                 </div>
 
@@ -116,7 +125,7 @@
 
             <div class="row">
                 <div class="col-md-5 mb-3">
-                    <label for="address">Email</label>
+                    <label for="address">Email*</label>
                     <input type="text" class="form-control" id="correo" placeholder="" required>
                     <div class="invalid-feedback">
                         Se requiere que llene el campo "Email" correctamente.
@@ -124,7 +133,7 @@
                 </div>
 
                     <div class="col mb-3">
-                        <label for="country">Ciudad</label>
+                        <label for="country">Ciudad*</label>
                         <select class="custom-select d-block w-100" id="city" required>
                             <option value="">Escoger...</option>
                             <option value="MEDELLIN">MEDELLÍN</option>
@@ -261,7 +270,7 @@
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label for="state">Género</label>
+                        <label for="state">Género*</label>
                         <select class="custom-select d-block w-100" id="genero" required>
                             <option value="">Seleccionar...</option>
                             <option value="Masculino">Masculino</option>
