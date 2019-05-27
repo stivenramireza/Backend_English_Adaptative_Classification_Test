@@ -13,20 +13,18 @@ Aplicación web para el examen adaptativo de clasificación de inglés del centr
 
 ### Frontend:
 
-- [x] Reportes individuales del examen para administradores con tablas de las preguntas y respuestas dadas por los aspirantes (**Stiven**)
-- [x] CRUD de preguntas BD (**Juan Pablo**)
-- [ ] Autorización de aspirantes y administradores. (**Anderson**)
-- [ ] Corregir bugs e implementar **todas las alertas (notificaciones)** tanto para los administradores como para los aspirantes. (**Camilo**)
+- [ ] Corregir la visualización de las opciones de respuesta de las preguntas, porque hay 1 opción que se pone más oscura que las otras y esto distrae a los aspirantes. (**Juan Pablo**)
+- [ ] Corregir botón de **Crear cuenta** pues está pequeño. (**Stiven**)
+- [ ] Autorización de aspirantes y administradores (Manejo de sesiones) (**Anderson**)
+- [ ] Corregir bugs y/o machetazos e implementar **todas las alertas (notificaciones)** tanto para los administradores como para los aspirantes. (**Camilo**)
 
 ### Backend:
 
-- [x] Reportes individuales del examen para administradores con tablas de las preguntas y respuestas dadas por los aspirantes (**Stiven**)
-- [x] CRUD de preguntas BD (**Juan Pablo**)
+- [ ] Corregir la visualización de las opciones de respuesta de las preguntas, porque hay 1 opción que se pone más oscura que las otras y esto distrae a los aspirantes. (**Juan Pablo**)
 - [ ] Manejo de sesiones para los usuarios. (**Anderson**)
-- [ ] Autorización de aspirantes y administradores. (**Anderson**)
-- [ ] Corregir bugs e implementar **todas las alertas (notificaciones)** tanto para los administradores como para los aspirantes. (**Camilo**)
+- [ ] Autorización de aspirantes y administradores (Manejo de sesiones) (**Anderson**)
+- [ ] Corregir bugs y/o machetazos e implementar **todas las alertas (notificaciones)** tanto para los administradores como para los aspirantes. (**Camilo**)
 
 ### API de Inteligencia Artificial:
 
-- [x] Diseñar e implementar un modelo similar al CAT para un Examen Adaptativo como lo quieren las PO (**Anderson**)
-- [x] Test API (**Anderson**)
+- [ ] Revisar por qué se están repitiendo preguntas en los exámenes (**Anderson**)

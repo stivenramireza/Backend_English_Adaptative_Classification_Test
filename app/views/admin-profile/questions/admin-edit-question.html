@@ -154,122 +154,56 @@
 
             <!-- Main Content -->
             <div id="content">
+
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                        <div class="container" style="max-width: 700px">
-                            <div class="py-5 text-center">
-                                <p class="lead">Modifique el siguiente formulario para actualizar la pregunta </p>
-                            </div>
-                            <div class="container" style="width: 100%">
-                                <form class="needs-validation" novalidate>
-                                    <div class="row">
-                                        <div class="col mb-3">
-                                            <label for="question">Pregunta</label>
-                                            <textarea name="textarea" style="width:640px;height:50px;" id="question" placeholder="" value=""
-                                            required></textarea>
-                                            <div class="invalid-feedback">
-                                                Se requiere que llene el campo "Pregunta" correctamente.
+                    <div class="container" style="max-width: 5000px">
+                        <div class="py-5 text-center">
+                            <p class="lead">Señor Administrador, presione el botón de la pregunta que desea actualizar o eliminar</p>
+                        </div>
+                        <!--Container-->
+                        <div class="container-fluid" style="width: 100%">
+                                
+
+                                        <!-- DataTales Example -->
+                                        <div class="card shadow mb-4">
+                                          <div class="card-header py-3">
+                                            <h6 class="m-0 font-weight-bold text-primary">Banco de Preguntas</h6>
+                                          </div>
+                                          <div class="card-body">
+                                            <div class="table-responsive">
+                                                <!--Table-->
+                                        <table id="tabla_preguntas" class="table table-striped table-bordered" style="width:100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Parte</th>
+                                                        <th>Pregunta</th>
+                                                        <th>A</th>
+                                                        <th>B</th>
+                                                        <th>C</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                <!--End table-->
                                             </div>
-                                        </div>
-                                    </div>
-                                    <hr class="mb-4">
-                                    <div class="row">
-                                        <div class="col mb-4">
-                                            <label for="answer1">Respuesta 1</label>
-                                            <input type="text" class="form-control" id="answer1" placeholder="" value=""
-                                                required>
-                                            <div class="invalid-feedback">
-                                                Se requiere que llene el campo "Respuesta 1" correctamente.
-                                            </div>
-                                        </div>
-                                    </div>
-    
-                                    <div class="row">
-                                        <div class="col mb-3">
-                                            <label for="answer2">Respuesta 2</label>
-                                            <input type="text" class="form-control" id="answer2" placeholder="" value=""
-                                                required>
-                                            <div class="invalid-feedback">
-                                                Se requiere que llene el campo "Respuesta 2" correctamente.
-                                            </div>
-                                        </div>
-                                    </div>
-    
-                                    <div class="row">
-                                        <div class="col mb-3">
-                                            <label for="answer3">Respuesta 3</label>
-                                            <input type="text" class="form-control" id="answer3" placeholder="" value=""
-                                                required>
-                                            <div class="invalid-feedback">
-                                                Se requiere que llene el campo "Respuesta 3" correctamente.
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr class="mb-4">
-                                    <div class="row">
-                                        <div class="col mb-3">
-                                            <label for="difficult">Dificultad de la pregunta</label>
-                                            <select class="custom-select d-block w-100" id="difficult" required>
-                                                <option value="1">Facil</option>
-                                                <option value="2">Intermedia</option>
-                                                <option value="3">Avanzada</option>
-                                            </select>
-                                            <div class="invalid-feedback">
-                                                Por favor seleccione una dificultad.
-                                            </div>
-                                        </div>
-    
-                                        <div class="col mb-3">
-                                            <label for="correctAnswer">Respuesta correcta</label>
-                                            <select class="custom-select d-block w-100" id="correctAnswer" required>
-                                                <option value="0">Respuesta 1</option>
-                                                <option value="1">Respuesta 2</option>
-                                                <option value="2">Respuesta 3</option>
-                                            </select>
-                                            <div class="invalid-feedback">
-                                                Por favor seleccione una respuesta correcta.
-                                            </div>
-                                        </div>
-                                    </div>
-                            </div>
-                            <br>
-    
-    
-                            <hr class="mb-4" style="width: 100%">
-    
-                            <center>
-                                <button class="btn btn-primary" onclick=update() type="button">Actualizar</button>
-                            </center>
-                            </form>
+                                          </div>
+                                      
+                              
+                                      </div>
+                                <!-- End container -->
+                                
+                           
                             <br>
                         </div>
                     </div>
                     <br>
-                
-            </div>
+                </div>
 
                 <!-- End of Main Content -->
-            <!-- Modal -->
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              ...
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-          </div>
-        </div>
-      </div>
+
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
@@ -311,18 +245,38 @@
         </div>
     </div>
 
+                <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Eliminar pregunta</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ¿Estás seguro(a) de eliminar la pregunta de la base de datos?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+              <button type="button" class="btn btn-danger" onclick=eliminar() class="btn btn-primary">Eliminar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     <!-- Bootstrap core JavaScript-->
     <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/jquery/jquery.min.js"></script>
     <script
         src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <!-- Core plugin JavaScript-->
     <script
         src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/jquery-easing/jquery.easing.min.js"></script>
-
     <!-- Custom scripts for all pages-->
     <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"></script>
-    <script src="/admin-profile/questions/admin-edit-question-data.js"></script>
+    <script src="./../../../js/admin-profile/questions/admin-edit-question.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>

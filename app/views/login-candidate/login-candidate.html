@@ -12,8 +12,7 @@
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/alertify.min.css"/>
 <!-- Default theme -->
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/default.min.css"/>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-    <script src="/login-candidate/login-candidate.js"></script>
+    
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/sign-in/">
 
     <!-- Bootstrap core CSS -->
@@ -72,11 +71,11 @@
   </div>
   <br>
   <button id="btnLogin"class="btn btn-lg btn-primary btn-block" onclick=login() type="button">Ingresar</button>
-  <br>
-  <p>¿Aún no estás registrado como Aspirante? <a href="/signup/candidate">Crea una cuenta</a>.</p>
+  <button class="btn btn-lg btn-secondary btn-block" onclick="window.location.href = '/signup/candidate';" type="button">Crear Cuenta</button>
   <p class="mt-5 mb-3 text-muted">© 2019 Universidad EAFIT</p>
   <div></div>
 </form>
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="./../../js/login-candidate/login-candidate.js"></script>
 </body>
 </html>
