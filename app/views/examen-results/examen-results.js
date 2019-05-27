@@ -200,7 +200,8 @@ req.onreadystatechange = function () {
             console.log("Porcentaje parte 1: ", c_parte1 * 20);
             console.log("Porcentaje parte 2: ", c_parte2 * 20);
             console.log("Porcentaje parte 3: ", c_parte3 * 20);
-            document.getElementById("texto_span").innerHTML = "Porcentaje de aciertos en parte 1";
+            var porcentajeAciertos = ((c_parte1 * 20) + (c_parte2 * 20) + (c_parte3 * 20) ) / 3;
+            document.getElementById("texto_span").innerHTML = "Porcentaje de aciertos y desaciertos";
             Highcharts.chart('container', {
                 chart: {
                     type: 'pie',
@@ -224,83 +225,11 @@ req.onreadystatechange = function () {
                 series: [{
                     name: 'Porcentaje',
                     data: [
-                        ['Aciertos', (c_parte1 * 20)],
-                        ['Desaciertos', 100 - (c_parte1 * 20)],
+                        ['Aciertos', porcentajeAciertos],
+                        ['Desaciertos', 100 - porcentajeAciertos],
                     ]
                 }]
             });
-
-            if (c_parte2 == 0) {
-                var x = document.getElementById("myDIV2");
-                x.style.display = "none";
-            } else {
-
-                document.getElementById("texto_span2").innerHTML = "Porcentaje de aciertos en parte 2";
-                Highcharts.chart('container2', {
-                    chart: {
-                        type: 'pie',
-                        options3d: {
-                            enabled: true,
-                            alpha: 45
-                        }
-                    },
-                    title: {
-                        text: ''
-                    },
-                    plotOptions: {
-                        pie: {
-                            innerSize: 100,
-                            depth: 45
-                        }
-                    },
-                    tooltip: {
-                        pointFormat: 'Porcentaje: <b>{point.y:.0f}%</b>'
-                    },
-                    series: [{
-                        name: 'Porcentaje',
-                        data: [
-                            ['Aciertos', (c_parte2 * 20)],
-                            ['Desaciertos', 100 - (c_parte2 * 20)],
-                        ]
-                    }]
-                });
-            }
-
-            if (c_parte3 == 0) {
-                var x = document.getElementById("myDIV3");
-                x.style.display = "none";
-            } else {
-
-                document.getElementById("texto_span3").innerHTML = "Porcentaje de aciertos en parte 3";
-                Highcharts.chart('container3', {
-                    chart: {
-                        type: 'pie',
-                        options3d: {
-                            enabled: true,
-                            alpha: 45
-                        }
-                    },
-                    title: {
-                        text: ''
-                    },
-                    plotOptions: {
-                        pie: {
-                            innerSize: 100,
-                            depth: 45
-                        }
-                    },
-                    tooltip: {
-                        pointFormat: 'Porcentaje: <b>{point.y:.0f}%</b>'
-                    },
-                    series: [{
-                        name: 'Porcentaje',
-                        data: [
-                            ['Aciertos', (c_parte3 * 20)],
-                            ['Desaciertos', 100 - (c_parte3 * 20)],
-                        ]
-                    }]
-                });
-            }
             setTimeout(function () {
                 post();
                 console.log("post melo")
