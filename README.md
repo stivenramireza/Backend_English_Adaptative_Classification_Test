@@ -14,9 +14,9 @@ Aplicación web para el examen adaptativo de clasificación de inglés del centr
 ### Frontend:
 
 - [ ] Corregir la visualización de las opciones de respuesta de las preguntas, porque hay 1 opción que se pone más oscura que las otras y esto distrae a los aspirantes. (**Juan Pablo**)
-- [ ] Corregir botón de **Crear cuenta** pues está pequeño. (**Stiven**)
 - [ ] Autorización de aspirantes y administradores (Manejo de sesiones) (**Anderson**)
 - [ ] Corregir bugs y/o machetazos e implementar **todas las alertas (notificaciones)** tanto para los administradores como para los aspirantes. (**Camilo**)
+- [ ] Organizar estructura del repositorio (**Stiven**)
 
 ### Backend:
 
@@ -24,6 +24,7 @@ Aplicación web para el examen adaptativo de clasificación de inglés del centr
 - [ ] Manejo de sesiones para los usuarios. (**Anderson**)
 - [ ] Autorización de aspirantes y administradores (Manejo de sesiones) (**Anderson**)
 - [ ] Corregir bugs y/o machetazos e implementar **todas las alertas (notificaciones)** tanto para los administradores como para los aspirantes. (**Camilo**)
+- [ ] Organizar estructura del repositorio (**Stiven**)
 
 ### API de Inteligencia Artificial:
 
