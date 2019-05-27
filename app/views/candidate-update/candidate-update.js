@@ -17,6 +17,7 @@ http.onreadystatechange = function () {
         var telefono = texto.phonenumber;
         var celular = texto.mobilephonenumber;
         var correo = texto.email;
+        var departamento = texto.currentdepartment;
         var ciudad = texto.currentcity;
         var genero = texto.genre;
 
@@ -25,10 +26,11 @@ http.onreadystatechange = function () {
             document.getElementById("firstName").value = nombres;
             document.getElementById("lastName").value = apellidos;
             document.getElementById("birthdate").value = fecha_nacimiento;
-            document.getElementById("address").value = direccion;
+            document.getElementById("direccion").value = direccion;
             document.getElementById("telefono").value = telefono;
             document.getElementById("celular").value = celular;
             document.getElementById("correo").value = correo;
+            document.getElementById("department").value = departamento;
             document.getElementById("city").value = ciudad;
             document.getElementById("genero").value = genero;
         }, 1000);
@@ -40,13 +42,14 @@ let update = function () {
     var last_name = document.getElementById("lastName").value;
     var genero = document.getElementById("genero").value;
     var birth_date = document.getElementById("birthdate").value;
+    var department = document.getElementById("department").value;
     var city = document.getElementById("city").value;
-    var direccion = document.getElementById("address").value;
+    var direccion = document.getElementById("direccion").value;
     var mobilephone_number = document.getElementById("celular").value;
     var correo = document.getElementById("correo").value;
 
     if (first_name == '' || last_name == '' || genero == '0' || birth_date == '' ||
-        city == '' || direccion == '' || mobilephone_number == '' || correo == '') {
+        department == '' || city == '' || direccion == '' || mobilephone_number == '' || correo == '') {
 
         alertify.set('notifier', 'position', 'bottom-center');
         alertify.notify('No se han completado todos los campos obligatorios', 'error', 3);
@@ -73,8 +76,9 @@ let update = function () {
                 lastname: document.getElementById("lastName").value,
                 genre: document.getElementById("genero").value,
                 birthdate: document.getElementById("birthdate").value,
+                currentdepartment: document.getElementById("department").value,
                 currentcity: document.getElementById("city").value,
-                address: document.getElementById("address").value,
+                address: document.getElementById("direccion").value,
                 phonenumber: document.getElementById("telefono").value,
                 mobilephonenumber: document.getElementById("celular").value,
                 email: document.getElementById("correo").value
