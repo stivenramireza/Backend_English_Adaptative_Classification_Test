@@ -8,8 +8,6 @@ Aplicación web para el examen adaptativo de clasificación de inglés del centr
   - Anderson Daniel Grajales Alzate - agrajal7@eafit.edu.co
   - Juan Pablo González Álvarez - jugonz31@eafit.edu.co
   - Camilo Ernesto Cruz Villegas - ccruzvi@eafit.edu.co
-<<<<<<< HEAD
-=======
 
 ## Listado de Tareas para la Entrega Final (28 de mayo)
 
@@ -32,4 +30,3 @@ Aplicación web para el examen adaptativo de clasificación de inglés del centr
 
 - [x] Diseñar e implementar un modelo similar al CAT para un Examen Adaptativo como lo quieren las PO (**Anderson**)
 - [x] Test API (**Anderson**)
->>>>>>> dev
