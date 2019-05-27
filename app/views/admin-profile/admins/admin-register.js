@@ -46,9 +46,9 @@ let signup = function () {
         } else if (address.length < 4) {
             alertify.set('notifier', 'position', 'bottom-center');
             alertify.notify('La dirección de residencia debe tener almenos 4 caracteres', 'error', 3);
-        } else if (mobilephonenumber.length < 12) {
+        } else if (mobilephonenumber.length > 18) {
             alertify.set('notifier', 'position', 'bottom-center');
-            alertify.notify('El número de celular debe tener almenos 12 caracteres', 'error', 3);
+            alertify.notify('El número de celular debe tener máximo 18 caracteres', 'error', 3);
         } else if (email.length < 7) {
             alertify.set('notifier', 'position', 'bottom-center');
             alertify.notify('El email debe tener almenos 7 caracteres', 'error', 3);
