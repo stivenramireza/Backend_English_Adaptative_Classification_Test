@@ -9,7 +9,7 @@ Aplicación web para el examen adaptativo de clasificación de inglés del centr
   - Juan Pablo González Álvarez - jugonz31@eafit.edu.co
   - Camilo Ernesto Cruz Villegas - ccruzvi@eafit.edu.co
 
-## Listado de Tareas para la Entrega Final (28 de mayo)
+## Listado de Tareas para la Entrega Final (Para hoy terminado)
 
 ### Frontend:
 
