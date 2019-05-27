@@ -85,7 +85,7 @@ let signup = function () {
                     alertify.notify('El registro se ha completado exitosamente', 'success', 5);
 
                     setTimeout(function () {
-                        window.location.replace('/signin');
+                        window.location.replace('/signin/candidate');
                     }, 2500)
 
                     setTimeout(function () {
