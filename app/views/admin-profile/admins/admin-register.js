@@ -8,21 +8,21 @@ let signup = function () {
     var lastname = $("#lastName").val();
     var genero = $("#genero").val();
     var birthdate = $("#birthday").val();
+    var department = $('#department').val();
     var city = $("#city").val();
-    var address = $("#direccion").val();
     var phonenumber = $("#telefono").val();
-    var mobilephonenumber = $("#celular").val();
     var email = $("#correo").val();
     var username = $("#username").val();
     var password = $("#password").val();
+    var sede = $("#sede").val();
     var habilita = document.getElementById("habilitaExamenes").checked;
     var reactiva = document.getElementById("reactivaExamenes").checked;
     var gestiona = document.getElementById("gestionaEstadisticas").checked;
     var clasifica = document.getElementById("clasificaAspirantes").checked;
 
     if (doctype == '0' || docnumber == '' || firstname == '' || lastname == '' ||
-        genero == '0' || birthdate == '' || city == '' || address == '' ||
-        mobilephonenumber == '' || email == '' || username == '' || password == '') {
+        genero == '0' || birthdate == '' || city == '' ||
+        email == '' || department == '' || sede == '' || username == '' || password == '') {
 
         alertify.set('notifier', 'position', 'bottom-center');
         alertify.notify('No se han completado todos los campos', 'error', 3);
@@ -30,25 +30,19 @@ let signup = function () {
 
         if (docnumber.length < 5) {
             alertify.set('notifier', 'position', 'bottom-center');
-            alertify.notify('El número de documento de identidad debe tener almenos 5 caracteres', 'error', 3);
+            alertify.notify('El número de documento de identidad debe tener al menos 5 caracteres', 'error', 3);
         } else if (firstname.length < 4) {
             alertify.set('notifier', 'position', 'bottom-center');
-            alertify.notify('El nombre debe tener almenos 4 caracteres', 'error', 3);
+            alertify.notify('El nombre debe tener a lmenos 4 caracteres', 'error', 3);
         } else if (lastname.length < 4) {
             alertify.set('notifier', 'position', 'bottom-center');
             alertify.notify('Los apellidos deben tener 4 caracteres', 'error', 3);
         } else if (username.length < 4) {
             alertify.set('notifier', 'position', 'bottom-center');
-            alertify.notify('El usuario debe tener almenos 4 caracteres', 'error', 3);
+            alertify.notify('El usuario debe tener al menos 4 caracteres', 'error', 3);
         } else if (password.length < 8) {
             alertify.set('notifier', 'position', 'bottom-center');
-            alertify.notify('La contraseña debe tener almenos 8 caracteres', 'error', 3);
-        } else if (address.length < 4) {
-            alertify.set('notifier', 'position', 'bottom-center');
-            alertify.notify('La dirección de residencia debe tener almenos 4 caracteres', 'error', 3);
-        } else if (mobilephonenumber.length < 12) {
-            alertify.set('notifier', 'position', 'bottom-center');
-            alertify.notify('El número de celular debe tener almenos 12 caracteres', 'error', 3);
+            alertify.notify('La contraseña debe tener al menos 8 caracteres', 'error', 3);
         } else if (email.length < 7) {
             alertify.set('notifier', 'position', 'bottom-center');
             alertify.notify('El email debe tener almenos 7 caracteres', 'error', 3);
@@ -75,13 +69,13 @@ let signup = function () {
                     lastname: document.getElementById("lastName").value,
                     genre: document.getElementById("genero").value,
                     birthdate: document.getElementById("birthday").value,
+                    currentdepartment: document.getElementById("department").value,
                     currentcity: document.getElementById("city").value,
-                    address: document.getElementById("direccion").value,
                     phonenumber: document.getElementById("telefono").value,
-                    mobilephonenumber: document.getElementById("celular").value,
                     email: document.getElementById("correo").value,
                     username: document.getElementById("username").value,
                     password: document.getElementById("password").value,
+                    sede: document.getElementById("sede").value,
                     habilitar_examenes: habilita,
                     reactivar_examenes: reactiva,
                     gestionar_estadisticas: gestiona,
@@ -120,7 +114,6 @@ let signup = function () {
                 }, 1000)
 
             } else {
-                console.log("habilita | reactiva | gestiona | clasifica is not selected");
                 alertify.set('notifier', 'position', 'bottom-center');
                 alertify.notify('No se ha seleccionado ningún rol que tendrá el aspirante', 'error', 3);
             }
