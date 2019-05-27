@@ -96,9 +96,10 @@ function getQuestion(id_pregunta, respuesta_dada, tamano_preguntas) {
     req.send(null);
     req.onreadystatechange = function () {
         if (req.readyState == 4 && req.status == 200) {
-            var lista_preguntas = '', lista_respuestas = '', lista_partes = '', lista_respuesta_dada = '';
+            var lista_preguntas = '', lista_respuestas = '', lista_partes = '', lista_respuesta_dada = '', lista_items = '';
             var texto = req.response.info_pregunta;
             for (var i = 0; i < tamano_preguntas; i++) {
+                lista_items = texto.n_item;
                 lista_preguntas = texto.pregunta;
                 lista_respuestas = texto.opcion_correcta;
                 lista_partes = texto.parte;
@@ -112,7 +113,7 @@ function getQuestion(id_pregunta, respuesta_dada, tamano_preguntas) {
                 lista_respuesta_dada = '<span class="iconify" data-icon="dashicons:no-alt" height="30" data-inline="false"></span>'
             }
 
-            $("#dataTable").append('<tr><td>' + ' ' + '</td>' +
+            $("#dataTable").append('<tr><td>' + lista_items + '</td>' +
                 '<td>' + lista_partes + '</td>' +
                 '<td>' + lista_preguntas + '</td>' +
                 '<td>' + lista_respuestas[0] + '</td>' +
