@@ -70,7 +70,7 @@ router.post('/api/register/candidate', [
     check('currentcity').matches('[a-zA-Z\\s]+'),
     check('address').matches('[a-zA-Z0-9\\#\\-\\°\\s]+').isLength({min: 4}),
     check('phonenumber'),
-    check('mobilephonenumber').isMobilePhone().isLength({max: 12}),
+    check('mobilephonenumber').isMobilePhone().isLength({max: 18}),
     check('email').isEmail().isLength({min: 7}),
     check('examen_activo').isBoolean()
 ], studentCtrlr.register);
