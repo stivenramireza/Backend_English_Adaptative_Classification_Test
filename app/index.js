@@ -7,7 +7,7 @@ const db = require('./db');
 require('dotenv').config();
 
 // Conexión a la base de datos
-let dbConn = 'mongodb://' + db.DB_USER + ":" + db.PASSWORD + "@" + db.DB_HOST;
+let dbConn = 'mongodb://' + db.DB_USER + ":" + db.DB_PASSWORD + "@" + db.DB_HOST;
 console.log(dbConn);
 mongoose.connect(dbConn, {useNewUrlParser: true}).then( (req, res) => {
   console.log("Conectado a la base de datos exitosamente");
