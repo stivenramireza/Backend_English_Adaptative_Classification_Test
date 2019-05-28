@@ -4,6 +4,7 @@ const routes = require('./routes/routes');
 const mongoose = require('mongoose');
 const path = require('path');
 const db = require('./db');
+require('dotenv').config();
 
 // Conexión a la base de datos
 let dbConn = 'mongodb://' + db.DB_USER + ":" + db.PASSWORD + "@" + db.DB_HOST;
