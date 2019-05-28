@@ -36,12 +36,17 @@ function login(req, res){
         return res.status(422).json({ errors: errors.array() });
     }
     //console.log("################## REQ ###################");
-    console.log(req.body);
+    //console.log(req.body);
     Student.findOne({ doctype: fromNumberToDocType(req.body.doctype), docnumber: req.body.docnumber }).select('doctype +docnumber').exec(function (err) {
         if (err) return res.status(500).send({ 
             message: err,
             status: 'failed' 
         })
+        req.session.user = {};
+        req.session.user.docnumber = req.body.docnumber;
+        req.session.user.doctype =   req.body.doctype;
+        req.session.user.views = 1;
+        req.session.user.type = 1;
         return res.status(200).send({
             message: 'Login exitoso del aspirante',
             docnumber: req.body.docnumber,

@@ -19,7 +19,7 @@ const AdminSchema = new Schema({
     password: {type: String, select: false},
     sede: {type: String, required: true},
     habilitar_examenes: {type: Boolean, required: true},
-    reactivar_examenes: {type: Boolean, required: true},
+    administrador_general: {type: Boolean, required: true},
     gestionar_estadisticas: {type: Boolean, required: true},
     clasificar_aspirantes: {type: Boolean, required: true}
 })
