@@ -25,6 +25,4 @@ var config = {
   }
 };
 console.log(config[env]);
-console.log(process.env.DB_USER);
-console.log(process.env);
 module.exports = config[env];
