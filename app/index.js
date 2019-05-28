@@ -8,6 +8,7 @@ require('dotenv').config();
 
 // Conexión a la base de datos
 let dbConn = 'mongodb://' + db.DB_USER + ":" + db.PASSWORD + "@" + db.DB_HOST;
+console.log(dbConn);
 mongoose.connect(dbConn, {useNewUrlParser: true}).then( (req, res) => {
   console.log("Conectado a la base de datos exitosamente");
 }).catch( err => {
