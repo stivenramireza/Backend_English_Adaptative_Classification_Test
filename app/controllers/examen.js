@@ -1,5 +1,5 @@
 const Examen = require('../models/examen');
-const {validationResult} = require('express-validator/check');
+const { validationResult } = require('express-validator/check');
 const mongoose = require('mongoose');
 
 var request = require('request')
@@ -26,9 +26,9 @@ function saveTestStatus(req, res, data) {
         grade: 0.0,
         part1: 0.0,
         part2: 0.0,
-        part3 : 0.0, // To be updated
+        part3: 0.0, // To be updated
         classified_level: "0", // To be updated
-        final_level: "0",
+        final_level: "A falta de realización de la entrevista",
         hora_inicio: time, // Static
         hora_fin: time, // To be updated
         clasificador: clasificador, //Just a simple docn
@@ -48,17 +48,17 @@ function saveTestStatus(req, res, data) {
                 title: _data.question.title,
                 responses: _data.question.responses,
                 n_item: _data.question.n_item,
-                ability: _data.question.ability
+                ability: _data.question.ability,
             },
-            status: 'success'
+            status: 'success',
+            examen: new_examen._id
         });
     });
 }
 
 function next_question(req, res) {
-    var doc_number = req.body.docnumber;
-    var doc_type = req.body.doctype;
-    Examen.findOne({docnumber: doc_number, doctype: doc_type}, function (err, examen) {
+    var idEx = req.body._id;
+    Examen.findOne({ _id: idEx }, function (err, examen) {
         if (err) {
             return res.status(404).send({
                 message: 'Cannot find the specified test.',
@@ -95,7 +95,7 @@ function next_question(req, res) {
                 },
                 json: true
             }, function (error, response, data) {
-                if(error){
+                if (error) {
                     return res.status(500).send({
                         message: 'Error ML API',
                         status: 'failed'
@@ -106,23 +106,23 @@ function next_question(req, res) {
                 examen.questions = _data.question.administered_items;
                 examen.responses = _data.question.response_vector;
                 examen.parts = _data.question.parts;
-                examen.save(function(err, doc){
-                   if(!err){
-                       return res.status(200).send(_data);
-                   }else{
-                       return res.status(500).send({
-                           message: 'Examen hasnt been saved',
-                           status: 'failed'
-                       });
-                   }
+                examen.save(function (err, doc) {
+                    if (!err) {
+                        return res.status(200).send(_data);
+                    } else {
+                        return res.status(500).send({
+                            message: 'Examen hasnt been saved',
+                            status: 'failed'
+                        });
+                    }
                 });
             });
         }
     });
 }
 
-function statistics(req, res){
-    
+function statistics(req, res) {
+
     let clasificador = req.query.clasificador;
     let fecha_inicio = req.query.fecha_inicio;
     let fecha_fin = req.query.fecha_fin;
@@ -131,21 +131,21 @@ function statistics(req, res){
 
     var queryString = "{ ";
 
-    if (clasificador!=""){
-        queryString = queryString + "\"clasificador\": "+ clasificador+ " ,"
-        
+    if (clasificador != "") {
+        queryString = queryString + "\"clasificador\": " + clasificador + " ,"
+
     }
-    if (fecha_inicio!="" && fecha_fin!=""){
-        queryString = queryString + "\"fecha\": { \"$gt\": \""+fecha_inicio+"\", \"$lt\": \""+fecha_fin+"\" }, ";
+    if (fecha_inicio != "" && fecha_fin != "") {
+        queryString = queryString + "\"fecha\": { \"$gt\": \"" + fecha_inicio + "\", \"$lt\": \"" + fecha_fin + "\" }, ";
     }
-    if (classified_level!=""){
+    if (classified_level != "") {
         queryString = queryString + "\"classified_level\": " + classified_level + ", ";
     }
-    if (final_level != ""){
+    if (final_level != "") {
         queryString = queryString + "\"final_level\": " + final_level + ", ";
     }
-    
-    queryString = queryString.substr(0, (queryString.length-2));
+
+    queryString = queryString.substr(0, (queryString.length - 2));
     queryString = queryString + " }";
 
     Examen.find(JSON.parse(queryString), (err, info_examen) => {
@@ -155,30 +155,110 @@ function statistics(req, res){
     })
 }
 
-function getInfoExamen(req, res){
-    let docnumber = req.query.docnumber;
-    Examen.findOne({ docnumber: docnumber }, (err, info_examen) => {
+function getLastYearExams(req, res) {
+    var today = new Date();
+    var d = new Date();
+    d.setMonth(d.getMonth() - 12);
+
+    queryString = "{ \"fecha\": { \"$gt\": \"" + d + "\", \"$lt\": \"" + today + "\" } }";
+    Examen.find(JSON.parse(queryString), (err, info_examen) => {
         if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}`, status: 'failed' })
-        if (!info_examen) return res.status(404).send({ message: `El aspirante no tiene registrado exámenes de clasificación`, 
-                                                        status: 'failed'
-                                                    })
+        if (!info_examen) return res.status(404).send({ message: `No hay registros`, status: 'success' })
         res.status(200).send({ info_examen, status: 'success' })
     })
 }
 
-function updateInfoExamen(req, res){
+function getLastMonthExams(req, res) {
+    var today = new Date();
+    var d = new Date();
+    var newMonth = d.getMonth() - 1;
+    if (newMonth < 0) {
+        newMonth += 12;
+        d.setYear(d.getYear() - 1);
+    }
+    d.setMonth(newMonth);
+
+
+    queryString = "{ \"fecha\": { \"$gt\": \"" + d + "\", \"$lt\": \"" + today + "\" } }";
+    Examen.find(JSON.parse(queryString), (err, info_examen) => {
+        if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}`, status: 'failed' })
+        if (!info_examen) return res.status(404).send({ message: `No hay registros`, status: 'success' })
+        res.status(200).send({ info_examen, status: 'success' })
+    })
+}
+
+function getLastWeekExams(req, res) {
+    var today = new Date()
+    var d = new Date();
+    d.setDate(d.getDate() - 7);
+
+    queryString = "{ \"fecha\": { \"$gt\": \"" + d + "\", \"$lt\": \"" + today + "\" } }";
+    Examen.find(JSON.parse(queryString), (err, info_examen) => {
+        if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}`, status: 'failed' })
+        if (!info_examen) return res.status(404).send({ message: `No hay registros`, status: 'success' })
+        res.status(200).send({ info_examen, status: 'success' })
+    })
+}
+
+function getLastSemesterExams(req, res) {
+    var today = new Date()
+    var d = new Date();
+    d.setMonth(d.getMonth() - 6);
+
+    queryString = "{ \"fecha\": { \"$gt\": \"" + d + "\", \"$lt\": \"" + today + "\" } }";
+    Examen.find(JSON.parse(queryString), (err, info_examen) => {
+        if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}`, status: 'failed' })
+        if (!info_examen) return res.status(404).send({ message: `No hay registros`, status: 'success' })
+        res.status(200).send({ info_examen, status: 'success' })
+    })
+}
+
+function getAllExams(req, res) {
+    Examen.find({}, (err, info_examen) => {
+        if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}`, status: 'failed' })
+        if (!info_examen) return res.status(404).send({ message: `No hay registros`, status: 'success' })
+        res.status(200).send({ info_examen, status: 'success' })
+    })
+}
+
+
+function getInfoExamen(req, res) {
+    let docnumber = req.query.docnumber;
+    Examen.findOne({ docnumber: docnumber }, {}, { sort: { '_id': -1 } }, (err, info_examen) => {
+        if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}`, status: 'failed' })
+        if (!info_examen) return res.status(404).send({
+            message: `El aspirante no tiene registrado exámenes de clasificación`,
+            status: 'failed'
+        })
+        res.status(200).send({ info_examen, status: 'success' })
+    })
+}
+
+function getInfoById(req, res) {
+    let idEx = req.query._id;
+    Examen.findOne({ _id: idEx }, (err, info_examen) => {
+        if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}`, status: 'failed' })
+        if (!info_examen) return res.status(404).send({
+            message: `El aspirante no tiene registrado exámenes de clasificación`,
+            status: 'failed'
+        })
+        res.status(200).send({ info_examen, status: 'success' })
+    })
+}
+
+function updateInfoExamen(req, res) {
     let idExamen = req.query.idExamen;
     let update = req.body
-    Examen.update({_id: idExamen}, update, (err, examUpdated) => {
+    Examen.update({ _id: idExamen }, update, (err, examUpdated) => {
         if (err) return res.status(500).send({ message: `Error al actualizar examen: ${err}`, status: 'failed' })
         res.status(200).send({ new_examen: examUpdated, status: 'success' })
     })
 }
 
-function updateByDocNumber(req, res){
+function updateByDocNumber(req, res) {
     let docnumber = req.query.docnumber;
     let update = req.body
-    Examen.updateOne({docnumber: docnumber}, update, (err, examUpdated) => {
+    Examen.updateOne({ docnumber: docnumber }, update, (err, examUpdated) => {
         if (err) return res.status(500).send({ message: `Error al actualizar examen: ${err}`, status: 'failed' })
         res.status(200).send({ new_examen: examUpdated, status: 'success' })
     })
@@ -188,7 +268,13 @@ module.exports = {
     saveTestStatus,
     next_question,
     getInfoExamen,
+    getInfoById,
     updateInfoExamen,
     updateByDocNumber,
-    statistics
+    statistics,
+    getLastYearExams,
+    getLastMonthExams,
+    getLastWeekExams,
+    getLastSemesterExams,
+    getAllExams
 };

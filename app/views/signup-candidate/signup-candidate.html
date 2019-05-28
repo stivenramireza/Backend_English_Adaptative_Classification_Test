@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>Registro de aspirante</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/alertify.min.css"/>
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/default.min.css"/>
+
+    
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/checkout/">
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="https://getbootstrap.com/docs/4.3/examples/checkout/form-validation.css" rel="stylesheet">
+    <link  rel="stylesheet" type="text/css" href="./../../css/styles/header.css">
+</head>
+
+<body class="bg-light">
+    <header class="enca" style="position: relative">
+        <div class="wrapper">
+            <div class="logo">
+                <img src="https://i.imgur.com/7x1qGuH.png" height="40px" style="vertical-align:middle;">
+            </div>
+            <nav>
+                <a style="color: white;">Registro de aspirantes</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container" style="max-width: 700px">
+        <div class="py-5 text-center">
+            <p class="lead">Señor Aspirante, complete los campos desplegados a continuación para lograr un correcto
+                registro.</p>
+        </div>
+
+        <center>
+            <div>
+                <label for="genero">Los campos con * son obligatorios.</label>
+            </div>
+        </center>
+
+        <br><br>
+
+        <div class="row">
+            <form class="needs-validation container" name="formulario1" action="#">
+                <div class="row">
+                    <div class="col mb-3">
+                        <label for="country">Tipo de documento*</label>
+                        <select class="custom-select d-block w-100" id="dt" required>
+                            <option value="0">Seleccione el tipo de identificación...</option>
+                            <option value="1">Cédula de Ciudadanía</option>
+                            <option value="2">Cédula de Ciudadanía Ecuatoriana</option>
+                            <option value="3">Cédula de Extranjería</option>
+                            <option value="4">Cédula de Guatemala</option>
+                            <option value="5">Cédula de Panamá</option>
+                            <option value="6">Código de Estudiante</option>
+                            <option value="7">Documento Nacional de Identidad</option>
+                            <option value="8">Documento Personal Identificación</option>
+                            <option value="9">Nro Único Identificación Personal</option>
+                            <option value="10">Otro</option>
+                            <option value="11">Pasaporte</option>
+                            <option value="12">Registro</option>
+                            <option value="13">Tarjeta de Identidad</option>
+                        </select>
+                        <div class="invalid-feedback ">
+                            Por favor seleccione un tipo de documento.
+                        </div>
+                    </div>
+
+                    <div class="col mb-3 md-form">
+                        <label for="docnumber">Documento de identidad*</label>
+                        <input type="text" class="form-control" id="docnumber" placeholder="" value="" required>
+                        <div class="invalid-feedback">
+                            Se requiere que llene el campo "Documento de identidad" correctamente.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col mb-3">
+                        <label for="firstName">Nombres*</label>
+                        <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                        <div class="invalid-feedback">
+                            Se requiere que llene el campo "Nombres" correctamente.
+                        </div>
+                    </div>
+                    <div class="col mb-3">
+                        <label for="lastName">Apellidos*</label>
+                        <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                        <div class="invalid-feedback">
+                            Se requiere que llene el campo "Apellidos" correctamente.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class=" col mb-3">
+                        <label for="birthday">Fecha de nacimiento*</label>
+                        <div class="input-group">
+                            <input type="date" class="form-control" id="birthday" required>
+                            <div class="invalid-feedback" style="width: 100%;">
+                                Se requiere que llene el campo "Fecha de nacimiento" con el formato indicado.
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col mb-3">
+                        <label for="direccion">Dirección de residencia*</label>
+                        <input type="email" class="form-control" id="direccion" placeholder="Ej: Calle 59 B Sur #41-118 (Apto 202)">
+                        <div class="invalid-feedback">
+                            Se requiere que llene el campo "Dirección" correctamente.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col mb-3">
+                        <label for="telefono">Teléfono</label>
+                        <input type="text" class="form-control" id="telefono" placeholder="Ej: 2069807" required>
+                        <div class="invalid-feedback">
+                            Se requiere que llene el campo "Teléfono" correctamente.
+                        </div>
+                    </div>
+
+                    <div class="col mb-3">
+                        <label for="celular">Celular*</label>
+                        <input type="text" class="form-control" id="celular" placeholder="Ej: 3017879645">
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col mb-3">
+                        <label for="department">Departamento*</label>
+                        <input type="text" class="form-control" id="department" placeholder="Ej: Antioquia" required>
+                        <div class="invalid-feedback">
+                            Se requiere que llene el campo "Municipio" correctamente.
+                        </div>
+                    </div>
+
+                    <div class="col mb-3">
+                        <label for="city">Municipio*</label>
+                        <input type="text" class="form-control" id="city" placeholder="Ej: Medellin" required>
+                        <div class="invalid-feedback">
+                            Se requiere que llene el campo "Municipio" correctamente.
+                        </div>
+                    </div>
+            </div>
+
+                <div class="row">
+                    <div class="col mb-3">
+                        <label for="correo">Email*</label>
+                        <input type="text" class="form-control" id="correo" placeholder="Ej: idiomas@eafit.edu.co" required>
+                        <div class="invalid-feedback">
+                            Se requiere que llene el campo "Email" correctamente.
+                        </div>
+                    </div>
+
+                    <div class="col mb-3">
+                        <label for="genero">Género*</label>
+                        <select class="custom-select d-block w-100" id="genero" required>
+                            <option value="0">Seleccionar...</option>
+                            <option value="1">Masculino</option>
+                            <option value="2">Femenino</option>
+                            <option value="3">Otro</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Por favor seleccione un género.
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <hr class="mb-4">
+
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="same-address">
+                    <label class="custom-control-label" for="same-address">Consiento y autorizo de manera previa,
+                        expresa e inequívoca que mis datos personales sean tratados conforme a lo previsto en el
+                        presente documento y/o autorización. </label>
+                </div>
+                <hr class="mb-4">
+                <center>
+                    <button id="btnSignUp" class="btn btn-primary" onclick=signup() type="button">Confirmar registro</button>
+                </center>
+            </form>
+            <br><br>
+        </div>
+
+        <footer class="my-5 pt-5 text-muted text-center text-small">
+            <p class="mb-1">&copy; 2019 Universidad EAFIT</p>
+        </footer>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/alertify.min.js"></script>
+    <script src="./../../js/signup-candidate/signup-candidate.js"></script>
+</body>
+
+</html>

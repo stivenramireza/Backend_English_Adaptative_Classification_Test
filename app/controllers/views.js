@@ -1,17 +1,20 @@
+'use strict'
+
+var path = require('path');
 // Main View
 
 function loadMainPage(req, res){
-    res.render('../views/main/main.ejs');
+    res.sendFile(path.resolve('app/views/main/main.html'));
 }
 
 // Admin View
 
 function loadLoginAdmin(req, res){
-    res.render("../views/login-admin/login-admin.ejs");
+    res.sendFile(path.resolve('app/views/login-admin/login-admin.html'));
 }
 
 function loadProfile(req, res){
-    res.render("../views/admin-profile/admin-profile.ejs");
+    res.sendFile(path.resolve('app/views/admin-profile/admin-profile.html'));
 }
 
 function logout(req, res){
@@ -19,88 +22,88 @@ function logout(req, res){
 }
 
 function loadProfileRegister(req, res){
-    res.render("../views/admin-profile/admins/admin-register.ejs");
+    res.sendFile(path.resolve('app/views/admin-profile/admins/admin-register.html'));
 }
 
 function loadExamEnable(req, res){
-    res.render("../views/admin-profile/candidates/admin-exam-enable.ejs");
+    res.sendFile(path.resolve('app/views/admin-profile/candidates/admin-exam-enable.html'));
 }
 
 function loadExamReactivate(req, res){
-    res.render("../views/admin-profile/candidates/admin-exam-reactivate.ejs");
+    res.sendFile(path.resolve('app/views/admin-profile/candidates/admin-exam-reactivate.html'));
 }
 
 function loadGrade(req, res){
-    res.render("../views/admin-profile/candidates/admin-grade.ejs");
+    res.sendFile(path.resolve('app/views/admin-profile/candidates/admin-grade.html'));
 }
 
 function loadAddQuestion(req, res){
-    res.render("../views/admin-profile/questions/admin-add-question.ejs");
+    res.sendFile(path.resolve('app/views/admin-profile/questions/admin-add-question.html'));
 }
 
 function loadEditQuestion(req, res){
-    res.render("../views/admin-profile/questions/admin-edit-question.ejs");
+    res.sendFile(path.resolve('app/views/admin-profile/questions/admin-edit-question.html'));
 }
 
 function loadUpdateQuestion(req, res){
-    res.render("../views/admin-profile/questions/admin-edit-question-data.ejs");
+    res.sendFile(path.resolve('app/views/admin-profile/questions/admin-edit-question-data.html'));
 }
 
 function loadAdminEdit(req, res){
-    res.render("../views/admin-profile/admins/admin-edit.ejs");
+    res.sendFile(path.resolve('app/views/admin-profile/admins/admin-edit.html'));
 }
 
 function loadAdminEditData(req, res){
-    res.render("../views/admin-profile/admins/admin-edit-data.ejs");
+    res.sendFile(path.resolve('app/views/admin-profile/admins/admin-edit-data.html'));
 }
 
 function loadAdminCandidateGrades(req, res){
-    res.render("../views/admin-profile/candidates/admin-candidate-grades.ejs");
+    res.sendFile(path.resolve('app/views/admin-profile/candidates/admin-candidate-grades.html'));
 }
 
 function loadStatistics(req, res){
-    res.render("../views/admin-profile/statistics/admin-statistics.ejs");
+    res.sendFile(path.resolve('app/views/admin-profile/statistics/admin-statistics.html'));
 }
 
 function loadDesfase(req, res){
-    res.render("../views/admin-profile/statistics/admin-desfase.ejs");
+    res.sendFile(path.resolve('app/views/admin-profile/statistics/admin-desfase.html'));
 }
 
 function loadCandidateResults(req, res){
-    res.render("../views/admin-profile/statistics/admin-candidate-results.ejs");
+    res.sendFile(path.resolve('app/views/admin-profile/statistics/admin-candidate-results.html'));
 }
 
 
 // Examen View
 
 function loadPreStarted(req, res) {
-    res.render('../views/test-prestarted/test-prestarted.ejs');
+    res.sendFile(path.resolve('app/views/test-prestarted/test-prestarted.html'));
 }
 
 function loadTest(req, res) {
-    res.render('../views/examen/examen.ejs');
+    res.sendFile(path.resolve('app/views/examen/examen.html'));
 }
 
 function loadTestError(req, res) {
-    res.render('../views/examen/exam-error.ejs');
+    res.sendFile(path.resolve('app/views/examen/exam-error.html'));
 }
 
 function loadResult(req, res) {
-    res.render('../views/examen-results/examen-results.ejs');
+    res.sendFile(path.resolve('app/views/examen-results/examen-results.html'));
 }
 
 // Candidate View
 
 function loadLoginCandidate(req, res){
-    res.render("../views/login-candidate/login-candidate.ejs")
+    res.sendFile(path.resolve('app/views/login-candidate/login-candidate.html'));
 }
 
 function loadSignupCandidate(req, res){
-    res.render("../views/signup-candidate/signup-candidate.ejs")
+    res.sendFile(path.resolve('app/views/signup-candidate/signup-candidate.html'));
 }
 
 function loadUpdateProfile(req, res){
-    res.render("../views/candidate-update/candidate-update.ejs")
+    res.sendFile(path.resolve('app/views/candidate-update/candidate-update.html'));
 }
 
 module.exports = {

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Edición de Preguntas</title>
+    <!-- Custom fonts for this template-->
+    <link href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/fontawesome-free/css/all.min.css"
+        rel="stylesheet" type="text/css">
+    
+    <!-- Custom styles for this template-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <ul class="navbar-nav sidebar sidebar-dark accordion" style="background-color: #001a72" id="accordionSidebar">
+
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown arrow">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <br>
+                    <span class="mr-2 d-none d-lg-inline text-white-600 small" id="nombreAdmin"></span>
+                </a>
+                <!-- Dropdown - User Information -->
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Cerrar sesión
+                    </a>
+                </div>
+            </li>
+            <br>
+
+            <hr class="sidebar-divider my-0">
+
+            <li class="nav-item ">
+                <a class="nav-link" href="/admin/profile">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+
+            <hr class="sidebar-divider">
+
+            <div class="sidebar-heading">
+                Aspirantes
+            </div>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/profile/exam-enable">
+                    <i class="fas fa-fw fa-pencil-alt"></i>
+                    <span>Habilitar examen</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/profile/candidate-grades">
+                    <i class="fas fa-fw fa-award"></i>
+                    <span>Resultados de examen</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/profile/grade">
+                    <i class="fas fa-fw fa-check"></i>
+                    <span>Clasificar aspirante</span></a>
+            </li>
+
+            <hr class="sidebar-divider">
+
+            <div class="sidebar-heading">
+                Administradores
+            </div>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/profile/register">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Registrar administrador</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="/admin/profile/edit-admin">
+                    <i class="fas fa-users-cog"></i>
+                    <span>Gestionar roles</span></a>
+            </li>
+
+            <hr class="sidebar-divider">
+
+            <div class="sidebar-heading">
+                Estadísticas
+            </div>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="/admin/profile/statistics">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Reportes</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="/admin/profile/individual-results">
+                    <i class="fas fa-fw fa-award"></i>
+                    <span>Calificaciones Individuales</span></a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="/admin/profile/gap">
+                    <i class="fas fa-chart-pie"></i>
+                    <span>Desfase Escrito vs Oral</span></a>
+            </li>
+
+            <hr class="sidebar-divider">
+
+            <div class="sidebar-heading">
+                Examen
+            </div>
+
+            <li class="nav-item active">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#preguntas"
+                    aria-expanded="true" aria-controls="preguntas">
+                    <i class="fas fa-question"></i>
+                    <span>Preguntas</span>
+                </a>
+                <div id="preguntas" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Gestón de preguntas:</h6>
+                        <a class="collapse-item"
+                            href="/admin/profile/add-question">Agregar
+                            pregunta nueva</a>
+                        <a class="collapse-item"
+                            href="/admin/profile/edit-question"><b>Gestionar
+                            preguntas</b></a>
+                    </div>
+                </div>
+            </li>
+
+            <hr class="sidebar-divider d-none d-md-block">
+
+        </ul>
+        <!-- End of Sidebar -->
+
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <div class="container" style="max-width: 5000px">
+                        <div class="py-5 text-center">
+                            <p class="lead">Señor Administrador, presione el botón de la pregunta que desea actualizar o eliminar</p>
+                        </div>
+                        <!--Container-->
+                        <div class="container-fluid" style="width: 100%">
+                                
+
+                                        <!-- DataTales Example -->
+                                        <div class="card shadow mb-4">
+                                          <div class="card-header py-3">
+                                            <h6 class="m-0 font-weight-bold text-primary">Banco de Preguntas</h6>
+                                          </div>
+                                          <div class="card-body">
+                                            <div class="table-responsive">
+                                                <!--Table-->
+                                        <table id="tabla_preguntas" class="table table-striped table-bordered" style="width:100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Parte</th>
+                                                        <th>Pregunta</th>
+                                                        <th>A</th>
+                                                        <th>B</th>
+                                                        <th>C</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                <!--End table-->
+                                            </div>
+                                          </div>
+                                      
+                              
+                                      </div>
+                                <!-- End container -->
+                                
+                           
+                            <br>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+
+                <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span> &copy; 2019 Universidad EAFIT</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">¿Estás seguro(a) de salir?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-primary" href="/admin/logout">Cerrar sesión</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Eliminar pregunta</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ¿Estás seguro(a) de eliminar la pregunta de la base de datos?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+              <button type="button" class="btn btn-danger" onclick=eliminar() class="btn btn-primary">Eliminar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/jquery/jquery.min.js"></script>
+    <script
+        src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script
+        src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"></script>
+    <script src="./../../../js/admin-profile/questions/admin-edit-question.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+</body>
+
+</html>

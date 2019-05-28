@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>Actualización de datos del aspirante</title>
+
+    <!-- CSS -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/alertify.min.css"/>
+<!-- Default theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/default.min.css"/>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/checkout/">
+    
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+    .bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}</style>
+    <!-- Custom styles for this template -->
+    <link href="https://getbootstrap.com/docs/4.3/examples/checkout/form-validation.css" rel="stylesheet">
+    <link  rel="stylesheet" type="text/css" href="./../../css/styles/header.css">
+</head>
+
+<body class="bg-light">
+    <header class="enca" style="position: relative">
+        <div class="wrapper">
+            <div class="logo">
+                <img src="https://i.imgur.com/7x1qGuH.png" height="40px" style="vertical-align:middle;">
+            </div>
+            <nav>
+                <a style="color: white;">Actualización de datos del aspirante</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container" style="max-width: 700px">
+        <div class="py-5 text-center">
+            <p class="lead">Señor Aspirante, antes de realizar el examen de clasificación del programa de Inglés para adultos, por
+                favor diligencie el formulario con sus datos personales.</p>
+        </div>
+
+        <center>
+            <div>
+                <label for="genero">Los campos con * son obligatorios.</label>
+            </div>
+        </center>
+    
+        <br><br>
+
+        <div class="row">
+            <form class="needs-validation" novalidate>
+                    <div class="row">
+                            <div class="col mb-3">
+                                <label for="firstName">Nombres*</label>
+                                <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                                <div class="invalid-feedback">
+                                    Se requiere que llene el campo "Nombres" correctamente.
+                                </div>
+                            </div>
+                            <div class="col mb-3">
+                                <label for="lastName">Apellidos*</label>
+                                <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                                <div class="invalid-feedback">
+                                    Se requiere que llene el campo "Apellidos" correctamente.
+                                </div>
+                            </div>
+                        </div>
+        
+                        <div class="row">
+                            <div class=" col mb-3">
+                                <label for="birthday">Fecha de nacimiento*</label>
+                                <div class="input-group">
+                                    <input type="date" class="form-control" id="birthdate" required>
+                                    <div class="invalid-feedback" style="width: 100%;">
+                                        Se requiere que llene el campo "Fecha de nacimiento" con el formato indicado.
+                                    </div>
+                                </div>
+                            </div>
+        
+        
+                            <div class="col mb-3">
+                                <label for="direccion">Dirección de residencia*</label>
+                                <input type="email" class="form-control" id="direccion" placeholder="Ej: Calle 59 B Sur #41-118 (Apto 202)">
+                                <div class="invalid-feedback">
+                                    Se requiere que llene el campo "Dirección" correctamente.
+                                </div>
+                            </div>
+                        </div>
+        
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label for="telefono">Teléfono</label>
+                                <input type="text" class="form-control" id="telefono" placeholder="Ej: 2069807" required>
+                                <div class="invalid-feedback">
+                                    Se requiere que llene el campo "Teléfono" correctamente.
+                                </div>
+                            </div>
+        
+                            <div class="col mb-3">
+                                <label for="celular">Celular*</label>
+                                <input type="text" class="form-control" id="celular" placeholder="Ej: 3017879645">
+                            </div>
+        
+                        </div>
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label for="department">Departamento*</label>
+                                <input type="text" class="form-control" id="department" placeholder="Ej: Antioquia" required>
+                                <div class="invalid-feedback">
+                                    Se requiere que llene el campo "Departamento" correctamente.
+                                </div>
+                            </div>
+        
+                            <div class="col mb-3">
+                                <label for="city">Municipio*</label>
+                                <input type="text" class="form-control" id="city" placeholder="Ej: Medellin" required>
+                                <div class="invalid-feedback">
+                                    Se requiere que llene el campo "Municipio" correctamente.
+                                </div>
+                            </div>
+                    </div>
+        
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label for="correo">Email*</label>
+                                <input type="text" class="form-control" id="correo" placeholder="Ej: idiomas@eafit.edu.co" required>
+                                <div class="invalid-feedback">
+                                    Se requiere que llene el campo "Email" correctamente.
+                                </div>
+                            </div>
+        
+                            <div class="col mb-3">
+                                <label for="genero">Género*</label>
+                                <select class="custom-select d-block w-100" id="genero" required>
+                                    <option value="">Seleccionar...</option>
+                                    <option value="Masculino">Masculino</option>
+                                    <option value="Femenino">Femenino</option>
+                                    <option value="Otro">Otro</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Por favor seleccione un género.
+                                </div>
+                            </div>
+        
+                        </div>
+                <hr class="mb-4">
+                <div class="pre-scrollable" style="background-color: white">
+                    <p style="text-align: justify;">DOCUMENTO DE AUTORIZACI&Oacute;N DE USO DE DATOS
+                        PERSONALES<br /><br />La Universidad EAFIT, como instituci&oacute;n de educaci&oacute;n
+                        superior, con domicilio en la Ciudad de Medell&iacute;n, Colombia, act&uacute;a y es Responsable
+                        del Tratamiento de los datos personales, en atenci&oacute;n a las actividades de
+                        recolecci&oacute;n y almacenamiento de datos personales que realiza. La Pol&iacute;tica de
+                        tratamiento de Datos Personales de la Universidad EAFIT contiene las pol&iacute;ticas para el
+                        tratamiento de la informaci&oacute;n recogida, as&iacute; como los procedimientos de consulta y
+                        reclamaci&oacute;n que le permitir&aacute;n hacer efectivos sus derechos al acceso, consulta,
+                        rectificaci&oacute;n, actualizaci&oacute;n y supresi&oacute;n de los datos; esta pol&iacute;tica
+                        puede ser consultada en el link:&nbsp;<br /><a
+                            href="http://www.eafit.edu.co/institucional/reglamentos/tratamiento-proteccion-datos-personales/"
+                            target="_new">http://www.eafit.edu.co/institucional/reglamentos/tratamiento-proteccion-datos-personales/</a><br /><br />Conforme
+                        a lo establecido en la normatividad vigente, nos permitimos informarle que sus datos personales
+                        ser&aacute;n incluidos en una base de datos y ser&aacute;n utilizados de manera directa o a
+                        trav&eacute;s de terceros designados, entre otras, y de manera meramente enunciativa para las
+                        siguientes finalidades directas e indirectas relacionadas con el objeto y prop&oacute;sitos de
+                        la Universidad:&nbsp;<br /><br />- Lograr una eficiente comunicaci&oacute;n relacionada con
+                        nuestros servicios, y dem&aacute;s actividades relacionadas con las funciones propias de la
+                        Universidad como instituci&oacute;n de educaci&oacute;n superior; alianzas, estudios,
+                        contenidos, as&iacute; como de las dem&aacute;s instituciones con las cuales tenga una
+                        relaci&oacute;n directa o indirecta, y para facilitarle el acceso general a la
+                        informaci&oacute;n de &eacute;stos;&nbsp;<br />- Proveer nuestros servicios;&nbsp;<br />-
+                        Informar sobre nuevos servicios que est&eacute;n relacionados con los ofrecidos o que tuviere la
+                        Universidad;&nbsp;<br />- Dar cumplimiento a obligaciones contra&iacute;das con nuestros
+                        estudiantes, profesores, contratistas, contratantes, clientes, proveedores, y
+                        empleados;&nbsp;<br />- Informar sobre cambios de los servicios de la Universidad;&nbsp;<br />-
+                        Evaluar la calidad del servicio;&nbsp;<br />- Realizar estudios internos sobre h&aacute;bitos de
+                        consumo de los servicios y productos ofrecidos por la Universidad.&nbsp;<br /><br />En
+                        consecuencia solicitamos su autorizaci&oacute;n libre, previa, expresa, voluntaria, y
+                        debidamente informada, para que permita a todas las dependencias acad&eacute;micas y/o
+                        administrativas, recolectar, recaudar, almacenar, usar, circular, suprimir, procesar, compilar,
+                        intercambiar, dar tratamiento, actualizar y disponer de los datos que suministrar y se
+                        incorporar&aacute;n a las distintas bases o bancos de datos, o en repositorios
+                        electr&oacute;nicos de todo tipo con que cuenta la Universidad EAFIT. Esta informaci&oacute;n
+                        es, y ser&aacute; utilizada en el desarrollo de las funciones propias de la Universidad en su
+                        condici&oacute;n de instituci&oacute;n de educaci&oacute;n superior, de forma directa o a
+                        trav&eacute;s de terceros.&nbsp;<br /><br />Si usted no desea que sus datos personales sean
+                        utilizados por LA UNIVERSIDAD, podr&aacute; revocar de manera parcial o total tal
+                        autorizaci&oacute;n de manera expresa e inequ&iacute;voca, directa, expresa y por escrito bien
+                        sea en medio f&iacute;sico o electr&oacute;nico; o de manera verbal, o por cualquier medio o
+                        conducta inequ&iacute;voca que permita concluir de forma razonable que se revoca tal
+                        autorizaci&oacute;n o consentimiento.&nbsp;<br /><br />C&oacute;mo
+                        contactarnos:<br />Direcci&oacute;n: Carrera 49 No. 7 Sur 50, Oficina Mercadeo
+                        Institucional<br />Correo electr&oacute;nico: datospersonales@eafit.edu.co<br />Tel&eacute;fono:
+                        2619500 Ext. 9312</p>
+                </div>
+                <hr class="mb-4">
+
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="same-address">
+                    <label class="custom-control-label" for="same-address">Consiento y autorizo de manera previa,
+                        expresa e inequívoca que mis datos personales sean tratados conforme a lo previsto en el
+                        presente documento y/o autorización. </label>
+                </div>
+                <hr class="mb-4">
+                <center>
+                    <button class="btn btn-primary" onclick=update() type="button">Guardar</button>
+                </center>
+            </form>
+            <br><br>
+            <p id="failed" style="color:#bd1a1a ;display: none;text-align: center";>No se ha aceptado la autorización.</p>
+            <br><br>
+        </div>
+
+        <footer class="my-5 pt-5 text-muted text-center text-small">
+            <p class="mb-1">&copy; 2019 Universidad EAFIT</p>
+        </footer>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/alertify.min.js"></script>
+    <script src="./../../js/candidate-update/candidate-update.js"></script>
+</body>
+</html>

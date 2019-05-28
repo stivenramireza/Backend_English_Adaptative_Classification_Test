@@ -60,8 +60,8 @@ function eliminarPregunta(req, res){
         return res.status(422).json({ errors: errors.array() });
     }
     let n_item = req.query.n_item;
-    Pregunta.remove({n_item: n_item}, function(error){
-        if(error) return res.status(500).send({ message: `Error al eliminar la pregunta de la BD: ${err}`, status: 'failed' })
+    Pregunta.remove({n_item: n_item}, function(err){
+        if(err) return res.status(500).send({ message: `Error al eliminar la pregunta de la BD: ${err}`, status: 'failed' })
         res.status(200).send({message: 'Eliminación exitosa de la pregunta', status: 'success'})
     })
 }
