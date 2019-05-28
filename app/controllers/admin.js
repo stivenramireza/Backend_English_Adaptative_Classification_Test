@@ -49,10 +49,10 @@ function loguearAdmin(req, res) {
     if(!errors.isEmpty()){
         return res.status(422).json({ errors: errors.array() });
     }
-    Admin.findOne({ username: req.body.username }).select('username +password').exec(function (err, new_admin) {
+    Admin.findOne({ username: req.body.username }).select('username password habilitar_examenes administrador_general gestionar_estadisticas clasificar_aspirantes').exec(function (err, new_admin) {
         if (err) return res.status(500).send({ 
             message: err,
-            status: 'failed' 
+            status: 'failed'
         })
         if (new_admin == null) {
             return res.status(404).send({ 
@@ -60,6 +60,12 @@ function loguearAdmin(req, res) {
                 status: 'failed'
             })
         }
+        req.session.user = {};
+        req.session.user.type = 2;
+        req.session.user.habilitar_examenes = new_admin.habilitar_examenes;
+        req.session.user.administrador_general = new_admin.administrador_general;
+        req.session.user.gestionar_estadisticas = new_admin.gestionar_estadisticas;
+        req.session.user.clasificar_aspirantes = new_admin.clasificar_aspirantes;
         if (bcrypt.compareSync(req.body.password, new_admin.password)) {
             req.new_admin = new_admin
             res.status(200).send({

@@ -18,6 +18,7 @@ function loadProfile(req, res){
 }
 
 function logout(req, res){
+    req.session.destroy();
     res.redirect('/');
 }
 
@@ -106,6 +107,10 @@ function loadUpdateProfile(req, res){
     res.sendFile(path.resolve('app/views/candidate-update/candidate-update.html'));
 }
 
+function loadForbiden(req, res) {
+    res.sendFile(path.resolve('app/views/forbiden/forbiden.html'));
+}
+
 module.exports = {
     loadMainPage,
     loadLoginAdmin,
@@ -130,5 +135,6 @@ module.exports = {
     loadLoginCandidate,
     loadSignupCandidate,
     loadUpdateProfile,
-    loadUpdateQuestion
+    loadUpdateQuestion,
+    loadForbiden
 };
