@@ -452,6 +452,7 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <!------ Include the above in your HEAD tag ---------->
 
     <div class="container-fluid">
@@ -460,7 +461,7 @@
                 <div class="modal-header">
                     <div class="row">
                         <div class="col-md-1"><span class="label label-warning" style="background-color:#001a72"
-                                id="qid">1</span></div>
+                                id="qid">Q.</span></div>
                         <div class="col" style="position: static; margin-right: 10px; margin-top:3px">
                             <h3><span id="qidc" style="padding-left:0px; position: static; text-align: justify"></span>
                             </h3>
@@ -547,16 +548,13 @@
                 var n_item  = localStorage.getItem("n_item");
                 $('#loadbar').show();
                 $('#quiz').fadeOut();
-                setTimeout(function () {
-                    document.getElementById("qid").innerHTML = count;
-                }, 2000)
                 questionPost(n_item, n_response);
                 setTimeout(function () {
                     $('#quiz').show();
                     $('#loadbar').fadeOut();
                     /* something else */
                 }, 2500);
-                if (count == 21){
+                if (count == 11){
                     window.location.replace("/candidate/test/final_result");
                 }
             });
@@ -564,7 +562,7 @@
     
     </script>
     <script src="./../../js/examen/examen.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    
 </body>
 
 
