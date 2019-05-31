@@ -61,7 +61,7 @@ let signup = function () {
                 phonenumber: phone,
                 mobilephonenumber: document.getElementById("celular").value,
                 email: document.getElementById("correo").value,
-                examen_activo: true
+                examen_activo: false
             }));
             console.log(http.readyState);
             console.log(http.status);

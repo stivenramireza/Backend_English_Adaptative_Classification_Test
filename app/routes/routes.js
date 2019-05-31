@@ -10,6 +10,8 @@ const auth = require('../middlewares/auth')
 var cors = require('cors')
 var request = require('request')
 
+
+const sessManCtlr = require('../controllers/session_manager');
 var corsOptions = {
     origin: 'http://ec2-34-207-193-227.compute-1.amazonaws.com',
     optionsSuccessStatus: 200
@@ -21,6 +23,9 @@ const QUERY_PATH = "http://ec2-34-207-193-227.compute-1.amazonaws.com";
 
 // Views de la Página Principal
 router.get('/signin', viewsCtlr.loadMainPage);
+
+
+router.get('/forbiden', viewsCtlr.loadForbiden);
 
 // CRUD del Examen
 router.put('/api/test/update', examenCtlr.updateInfoExamen);
@@ -40,7 +45,7 @@ router.get('/test/prestart', cors(corsOptions), function(req, res, next){
         examenCtlr.saveTestStatus(req, res, _data);
     });
 });
-router.post('/test/statistics/level', cors(corsOptions), function(req, res, next){
+router.post('/test/statistics/level', sessManCtlr.sessChecker, cors(corsOptions), function(req, res, next){
     request.post({url: QUERY_PATH + '/test/statistics/level', 
     body: {c_part1: req.body.c_part1, c_part2: req.body.c_part2, c_part3: req.body.c_part3}, 
     json: true},  
@@ -50,7 +55,7 @@ router.post('/test/statistics/level', cors(corsOptions), function(req, res, next
 });
 
 // Views del Examen
-router.get('/candidate/test/error', viewsCtlr.loadTestError);
+router.get('/candidate/test/error', sessManCtlr.sessChecker, viewsCtlr.loadTestError);
 
 // CRUD del Aspirante
 router.get('/api/candidate/list', studentCtrlr.getInfoCandidate);
@@ -76,12 +81,12 @@ router.post('/api/register/candidate', [
 ], studentCtrlr.register);
 
 // Views del Aspirante
-router.get('/signin/candidate', viewsCtlr.loadLoginCandidate); 
+router.get('/signin/candidate', viewsCtlr.loadLoginCandidate);
 router.get('/signup/candidate', viewsCtlr.loadSignupCandidate); 
-router.get('/candidate/profile', viewsCtlr.loadUpdateProfile); 
-router.get('/candidate/test/pre_started', viewsCtlr.loadPreStarted);
-router.get('/candidate/test/', viewsCtlr.loadTest); 
-router.get('/candidate/test/final_result', viewsCtlr.loadResult); 
+router.get('/candidate/profile', sessManCtlr.sessChecker, viewsCtlr.loadUpdateProfile);
+router.get('/candidate/test/pre_started', sessManCtlr.sessChecker, viewsCtlr.loadPreStarted);
+router.get('/candidate/test/', sessManCtlr.sessChecker, viewsCtlr.loadTest);
+router.get('/candidate/test/final_result', sessManCtlr.sessChecker, viewsCtlr.loadResult);
 
 // CRUD del Admin
 router.get('/api/admin/list', adminCtlr.getInfoAdmin); 
@@ -113,21 +118,21 @@ router.post('/api/register/admin', [
 
 // Views del Admin
 router.get('/signin/admin', viewsCtlr.loadLoginAdmin);
-router.get('/admin/profile', viewsCtlr.loadProfile); 
+router.get('/admin/profile', sessManCtlr.sessCheckGeneralAdmin, viewsCtlr.loadProfile);
 router.get('/admin/logout', viewsCtlr.logout); 
-router.get('/admin/profile/register', viewsCtlr.loadProfileRegister) 
-router.get('/admin/profile/exam-enable', viewsCtlr.loadExamEnable) 
-router.get('/admin/profile/exam-reactivate', viewsCtlr.loadExamReactivate) 
-router.get('/admin/profile/grade', viewsCtlr.loadGrade) 
-router.get('/admin/profile/add-question', viewsCtlr.loadAddQuestion)
-router.get('/admin/profile/edit-question', viewsCtlr.loadEditQuestion)
-router.get('/admin/profile/edit-admin', viewsCtlr.loadAdminEdit)
-router.get('/admin/profile/edit-admin/data', viewsCtlr.loadAdminEditData)
-router.get('/admin/profile/candidate-grades', viewsCtlr.loadAdminCandidateGrades)
-router.get('/admin/profile/statistics', viewsCtlr.loadStatistics)
-router.get('/admin/profile/gap', viewsCtlr.loadDesfase);
-router.get('/admin/profile/individual-results', viewsCtlr.loadCandidateResults);
-router.get('/admin/profile/edit-question/data', viewsCtlr.loadUpdateQuestion);
+router.get('/admin/profile/register', sessManCtlr.sessCheckerAdminManageQuestionsAndRoles, viewsCtlr.loadProfileRegister)
+router.get('/admin/profile/exam-enable', sessManCtlr.sessCheckerAdminEnableExam, viewsCtlr.loadExamEnable)
+router.get('/admin/profile/exam-reactivate', sessManCtlr.sessCheckerAdminEnableExam, viewsCtlr.loadExamReactivate)
+router.get('/admin/profile/grade', sessManCtlr.sessCheckerAdminManageStudent, viewsCtlr.loadGrade)
+router.get('/admin/profile/add-question', sessManCtlr.sessCheckerAdminManageQuestionsAndRoles, viewsCtlr.loadAddQuestion)
+router.get('/admin/profile/edit-question', sessManCtlr.sessCheckerAdminManageQuestionsAndRoles, viewsCtlr.loadEditQuestion)
+router.get('/admin/profile/edit-admin', sessManCtlr.sessCheckerAdminManageQuestionsAndRoles, viewsCtlr.loadAdminEdit)
+router.get('/admin/profile/edit-admin/data', sessManCtlr.sessCheckerAdminManageQuestionsAndRoles, viewsCtlr.loadAdminEditData)
+router.get('/admin/profile/candidate-grades', sessManCtlr.sessCheckerAdminManageStudent, viewsCtlr.loadAdminCandidateGrades)
+router.get('/admin/profile/statistics', sessManCtlr.sessCheckerAdminManageStatistics, viewsCtlr.loadStatistics)
+router.get('/admin/profile/gap', sessManCtlr.sessCheckerAdminManageStatistics, viewsCtlr.loadDesfase);
+router.get('/admin/profile/individual-results', sessManCtlr.sessCheckerAdminManageStatistics, viewsCtlr.loadCandidateResults);
+router.get('/admin/profile/edit-question/data', sessManCtlr.sessCheckerAdminManageQuestionsAndRoles, viewsCtlr.loadUpdateQuestion);
 
 // CRUD de Preguntas
 router.get('/api/question/list', questionCtlr.obtenerPregunta);
