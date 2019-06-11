@@ -286,31 +286,146 @@ router.post('/api/register/admin', [
 
 /** Views del Admin */
 
-
+/**
+ * Ruta GET que carga la vista del login del administrador
+ * @exports '/signin/admin'
+ */
 router.get('/signin/admin', viewsCtlr.loadLoginAdmin);
+
+/**
+ * Ruta GET que carga la vista del perfil del administrador
+ * @exports '/admin/profile'
+ * @exports sessManCtlr.sessCheckGeneralAdmin - Ruta segura
+ */
 router.get('/admin/profile', sessManCtlr.sessCheckGeneralAdmin, viewsCtlr.loadProfile);
+
+/**
+ * Ruta GET que carga la vista de sesión de un administrador
+ * @exports '/admin/logout'
+ */
 router.get('/admin/logout', viewsCtlr.logout); 
+
+/**
+ * Ruta GET que carga la vista de registro de un administrador
+ * @exports '/admin/profile/register'
+ * @exports sessManCtlr.sessCheckerAdminManageQuestionsAndRoles - Ruta segura
+ */
 router.get('/admin/profile/register', sessManCtlr.sessCheckerAdminManageQuestionsAndRoles, viewsCtlr.loadProfileRegister)
+
+/**
+ * Ruta GET que carga la vista de habilitación de exámenes
+ * @exports '/admin/profile/exam-enable'
+ * @exports sessManCtlr.sessCheckerAdminEnableExam - Ruta segura
+ */
 router.get('/admin/profile/exam-enable', sessManCtlr.sessCheckerAdminEnableExam, viewsCtlr.loadExamEnable)
+
+/**
+ * Ruta GET que carga la vista de activación de exámenes
+ * @exports '/admin/profile/exam-reactivate'
+ * @exports sessManCtlr.sessCheckerAdminEnableExam - Ruta segura
+ */
 router.get('/admin/profile/exam-reactivate', sessManCtlr.sessCheckerAdminEnableExam, viewsCtlr.loadExamReactivate)
+
+/**
+ * Ruta GET que carga la vista de notas del examen de un aspirante
+ * @exports '/admin/profile/grade'
+ * @exports sessManCtlr.sessCheckerAdminManageStudent - Ruta segura
+ */
 router.get('/admin/profile/grade', sessManCtlr.sessCheckerAdminManageStudent, viewsCtlr.loadGrade)
+
+/**
+ * Ruta GET que carga la vista de adición de preguntas
+ * @exports '/admin/profile/add-question'
+ * @exports sessManCtlr.sessCheckerAdminManageQuestionsAndRoles - Ruta segura
+ */
 router.get('/admin/profile/add-question', sessManCtlr.sessCheckerAdminManageQuestionsAndRoles, viewsCtlr.loadAddQuestion)
+
+/**
+ * Ruta GET que carga la vista de edición de preguntas
+ * @exports '/admin/profile/edit-question'
+ * @exports sessManCtlr.sessCheckerAdminManageQuestionsAndRoles - Ruta segura
+ */
 router.get('/admin/profile/edit-question', sessManCtlr.sessCheckerAdminManageQuestionsAndRoles, viewsCtlr.loadEditQuestion)
+
+/**
+ * Ruta GET que carga la vista para editar la información de un administrador
+ * @exports '/admin/profile/edit-admin'
+ * @exports sessManCtlr.sessCheckerAdminManageQuestionsAndRoles - Ruta segura
+ */
 router.get('/admin/profile/edit-admin', sessManCtlr.sessCheckerAdminManageQuestionsAndRoles, viewsCtlr.loadAdminEdit)
+
+/**
+ * Ruta GET que carga la vista de la información de un administrador a editar
+ * @exports '/admin/profile/edit-admin/data'
+ * @exports sessManCtlr.sessCheckerAdminManageQuestionsAndRoles - Ruta segura
+ */
 router.get('/admin/profile/edit-admin/data', sessManCtlr.sessCheckerAdminManageQuestionsAndRoles, viewsCtlr.loadAdminEditData)
+
+/**
+ * Ruta GET que carga la vista de las notas del examen de un aspirante
+ * @exports '/admin/profile/candidate-grades'
+ * @exports sessManCtlr.sessCheckerAdminManageStudent - Ruta segura
+ */
 router.get('/admin/profile/candidate-grades', sessManCtlr.sessCheckerAdminManageStudent, viewsCtlr.loadAdminCandidateGrades)
+
+/**
+ * Ruta GET que carga la vista de las estadísticas generales de los exámenes
+ * @exports '/admin/profile/statistics'
+ * @exports sessManCtlr.sessCheckerAdminManageStatistics - Ruta segura
+ */
 router.get('/admin/profile/statistics', sessManCtlr.sessCheckerAdminManageStatistics, viewsCtlr.loadStatistics)
+
+/**
+ * Ruta GET que carga la vista de desfase de clasificación escrita vs oral
+ * @exports '/admin/profile/gap'
+ * @exports sessManCtlr.sessCheckerAdminManageStatistics - Ruta segura
+ */
 router.get('/admin/profile/gap', sessManCtlr.sessCheckerAdminManageStatistics, viewsCtlr.loadDesfase);
+
+/**
+ * Ruta GET que carga la vista de resultados individuales de un aspirante
+ * @exports '/admin/profile/individual-results'
+ * @exports sessManCtlr.sessCheckerAdminManageStatistics - Ruta segura
+ */
 router.get('/admin/profile/individual-results', sessManCtlr.sessCheckerAdminManageStatistics, viewsCtlr.loadCandidateResults);
+
+/**
+ * Ruta GET que carga la vista con la información de una pregunta a editar
+ * @exports '/admin/profile/edit-question/data'
+ * @exports sessManCtlr.sessCheckerAdminManageQuestionsAndRoles - Ruta segura
+ */
 router.get('/admin/profile/edit-question/data', sessManCtlr.sessCheckerAdminManageQuestionsAndRoles, viewsCtlr.loadUpdateQuestion);
 
 /** CRUD de Preguntas */
 
-
+/**
+ * Ruta GET que permite obtener la información de una pregunta en específico
+ * @exports '/api/question/list'
+ */
 router.get('/api/question/list', questionCtlr.obtenerPregunta);
+
+/**
+ * Ruta POST que permite registrar una pregunta en la base de datos
+ * @exports '/api/register/question'
+ */
 router.post('/api/register/question', questionCtlr.registrarPregunta); 
+
+/**
+ * Ruta PUT que permite actualizar una pregunta en la base de datos
+ * @exports '/api/question/update'
+ */
 router.put('/api/question/update', questionCtlr.actualizarPregunta);
+
+/**
+ * Ruta DELETE que permite eliminar una pregunta de la base de datos
+ * @exports '/api/question/remove'
+ */
 router.delete('/api/question/remove', questionCtlr.eliminarPregunta);
+
+/**
+ * Ruta GET que permite obtener información de todas las preguntas
+ * @exports '/api/question/findall'
+ */
 router.get('/api/question/findall', questionCtlr.encontrarTodo);
 
 module.exports = router;
