@@ -191,21 +191,79 @@ router.post('/api/register/candidate', [
 
 /** Views del Aspirante */
 
+/**
+ * Ruta GET que carga la vista de login del aspirante
+ * @exports '/signin/candidate'
+ */
 router.get('/signin/candidate', viewsCtlr.loadLoginCandidate);
+
+/**
+ * Ruta GET que carga la vista de registro del aspirante
+ * @exports '/signup/candidate'
+ */
 router.get('/signup/candidate', viewsCtlr.loadSignupCandidate); 
+
+/**
+ * Ruta GET que carga la vista del perfil del aspirante
+ * @exports '/candidate/profile'
+ * @exports sessManCtlr.sessChecker - Ruta segura
+ */
 router.get('/candidate/profile', sessManCtlr.sessChecker, viewsCtlr.loadUpdateProfile);
+
+/**
+ * Ruta GET que carga la vista de las instrucciones del examen
+ * @exports '/candidate/test/pre_started'
+ * @exports sessManCtlr.sessChecker - Ruta segura
+ */
 router.get('/candidate/test/pre_started', sessManCtlr.sessChecker, viewsCtlr.loadPreStarted);
+
+/**
+ * Ruta GET que carga la vista del examen con sus preguntas
+ * @exports '/candidate/test/'
+ * @exports sessManCtlr.sessChecker - Ruta segura
+ */
 router.get('/candidate/test/', sessManCtlr.sessChecker, viewsCtlr.loadTest);
+
+/**
+ * Ruta GET que carga la vista del examen con su resultado final
+ * @exports '/candidate/test/final_result'
+ * @exports sessManCtlr.sessChecker
+ */
 router.get('/candidate/test/final_result', sessManCtlr.sessChecker, viewsCtlr.loadResult);
 
 /** CRUD del Admin */
+
+/**
+ * Ruta GET que obtiene la información del administrador
+ * @exports '/api/admin/list'
+ */
 router.get('/api/admin/list', adminCtlr.getInfoAdmin); 
+
+/**
+ * Ruta GET que permite editar los datos de un administrador
+ * @exports '/api/admin/edit'
+ */
 router.get('/api/admin/edit', adminCtlr.editarAdmin); 
-router.put('/api/admin/update', adminCtlr.updateInfoAdmin); 
+
+/**
+ * Ruta PUT que permite actualizar los datos de un administrador
+ * @exports '/api/admin/update'
+ */
+router.put('/api/admin/update', adminCtlr.updateInfoAdmin);
+
+/**
+ * Ruta POST que permite loguear al administrador
+ * @exports '/api/signin/admin'
+ */
 router.post('/api/signin/admin', [
     check('username').matches('[a-zA-Z\\s]+').isLength({min: 4}),
     check('password').matches('[a-zA-Z0-9\\#\\-\\°\\s]+').isLength({min: 8})
 ], adminCtlr.loguearAdmin); 
+
+/**
+ * Ruta POST que permite registrar al administrador
+ * @exports '/api/register/admin'
+ */
 router.post('/api/register/admin', [
     check('doctype').isNumeric().isIn([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]),
     check('docnumber').isNumeric().isLength({min: 5}),
@@ -227,6 +285,8 @@ router.post('/api/register/admin', [
 ], adminCtlr.registrarAdmin);
 
 /** Views del Admin */
+
+
 router.get('/signin/admin', viewsCtlr.loadLoginAdmin);
 router.get('/admin/profile', sessManCtlr.sessCheckGeneralAdmin, viewsCtlr.loadProfile);
 router.get('/admin/logout', viewsCtlr.logout); 
@@ -245,6 +305,8 @@ router.get('/admin/profile/individual-results', sessManCtlr.sessCheckerAdminMana
 router.get('/admin/profile/edit-question/data', sessManCtlr.sessCheckerAdminManageQuestionsAndRoles, viewsCtlr.loadUpdateQuestion);
 
 /** CRUD de Preguntas */
+
+
 router.get('/api/question/list', questionCtlr.obtenerPregunta);
 router.post('/api/register/question', questionCtlr.registrarPregunta); 
 router.put('/api/question/update', questionCtlr.actualizarPregunta);
