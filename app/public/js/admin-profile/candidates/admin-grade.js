@@ -23,7 +23,6 @@ let gradeCandidate = function () {
         http.onreadystatechange = function () {
             if (http.readyState == 4 && http.status == 200) {
                 exito = true;
-                console.log("Exito")
             }
         }
 
@@ -37,7 +36,6 @@ let gradeCandidate = function () {
                 req.onreadystatechange = function () {
                     if (req.readyState == 4 && req.status == 200) {
                         var idExamen = req.response.info_examen._id;
-                        console.log(idExamen)
                         var params2 = 'idExamen=' + idExamen;
                         var http2 = new XMLHttpRequest();
                         http2.responseType = 'json';

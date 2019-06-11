@@ -2,25 +2,25 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const ExamenSchema = new Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    doctype: {type: String, required: true}, // doctype del aspirante
-    docnumber: {type: String, required: true}, // docnumber del aspirante
-    questions: {type: [String], maxItems: 21}, // preguntas que le salieron
-    responses: {type: [Boolean], maxItems: 21}, // respuestas que entregó a esas preguntas
+    doctype: {type: String, required: true},
+    docnumber: {type: String, required: true}, 
+    questions: {type: [String], maxItems: 21}, 
+    responses: {type: [Boolean], maxItems: 21}, 
     grade: {type: Number, required: true},
     part1: {type: Number, required: true},
     part2: {type: Number, required: true},
-    part3: {type: Number, required: true}, // calificación total
-    classified_level: {type: String, required: true}, // nivel de clasificación
+    part3: {type: Number, required: true},
+    classified_level: {type: String, required: true}, 
     final_level: {type: String, required: true},
-    fecha: {type: Date, default: Date.now }, // fecha en la que realizó el examen
-    hora_inicio: {type: String, required: true}, // hora en la que empezó el examen
-    hora_fin: {type: String, required: true}, // hora en la que terminó el examen
-    clasificador: {type: String, required: true}, // clasificador del aspirante
-    last_ability: {type: Number, required: true}, // curva de aprendizaje del aspirante en el examen
-    parts: {type: [Number], maxItems: 21} // niveles de dificultad de las preguntas
+    fecha: {type: Date, default: Date.now }, 
+    hora_inicio: {type: String, required: true}, 
+    hora_fin: {type: String, required: true},
+    clasificador: {type: String, required: true}, 
+    last_ability: {type: Number, required: true}, 
+    parts: {type: [Number], maxItems: 21}
 },
 {
     timestamps: true
 });
 
-module.exports = mongoose.model('Examen', ExamenSchema, 'examenes'); // exportar
+module.exports = mongoose.model('Examen', ExamenSchema, 'examenes');

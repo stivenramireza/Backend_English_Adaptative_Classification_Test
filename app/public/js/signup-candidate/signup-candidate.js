@@ -43,7 +43,6 @@ let signup = function () {
             alertify.notify('El email debe tener almenos 7 caracteres', 'error', 3);
         } else {
             var phone = document.getElementById("telefono").value;
-            console.log(typeof phone);
             var http = new XMLHttpRequest();
             http.responseType = 'json';
             http.open("POST", "/api/register/candidate", true);
@@ -63,9 +62,6 @@ let signup = function () {
                 email: document.getElementById("correo").value,
                 examen_activo: false
             }));
-            console.log(http.readyState);
-            console.log(http.status);
-            console.log(http.response);
 
             setTimeout(function () {
                 var message = http.response.message;

@@ -1,6 +1,8 @@
 var path = require('path'),
     rootPath = path.normalize(__dirname + '/..'),
     env = process.env.NODE_ENV || 'test';
+    
+/** Configuraciòn de la base de datos */
 var config = {
   development: {
     PORT: process.env.PORT,
@@ -24,5 +26,4 @@ var config = {
     SECRET_TOKEN: process.env.JWT_TOKEN
   }
 };
-console.log(config[env]);
 module.exports = config[env];
