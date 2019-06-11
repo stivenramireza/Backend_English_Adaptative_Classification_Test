@@ -24,17 +24,14 @@ let getGap = function () {
             if (req.readyState == 4 && req.status == 200) {
                 exito = true;
                 var texto = req.response.info_examen;
-                console.log(texto.classified_level);
                 clasificacion_escrita = texto.classified_level;
                 if (clasificacion_escrita == "Preparatorio") {
                     var nivel_escrito = 0;
                 } else {
                     var nivel_escrito = parseInt(clasificacion_escrita, 10);
                 }
-                console.log("clasificacion escrita: ", nivel_escrito);
                 var clasificacion_oral = texto.final_level;
                 var nivel_oral = parseInt(clasificacion_oral, 10);
-                console.log("clasificacion oral: ", nivel_oral);
                 document.getElementById("texto_span").innerHTML = "Desfase Clasificación Escrita vs Oral";
                 if (tipo_grafica == '0') {
                     x.style.display = "none";

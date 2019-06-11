@@ -35,7 +35,6 @@ let queryStatistics = function () {
                 var query = req.response.info_examen;
                 document.getElementById("registros").innerHTML = query.length;
                 if (query.length == 0) {
-                    console.log("No hay registros");
                     x.style.display = "block";
                     y.style.display = "none";
                 } else {
@@ -61,7 +60,6 @@ let queryStatistics = function () {
                     }, Object.create(null));
 
                     var groupByMonth = query.reduce(function (acc, obj) {
-                        console.log(query)
                         var year, month, week
                         var b = obj.fecha.split(/\D/);
                         // Get custom week number, zero padded
@@ -78,17 +76,6 @@ let queryStatistics = function () {
                         month[weekNum].push(obj);
                         return acc;
                     }, Object.create(null))
-
-
-                    console.log("agrupacion por año, mes y semana")
-                    console.log(groupByMonth);
-                    console.log("agrupacion classified_level")
-                    console.log(groupByCL)
-                    console.log("agrupacion final_level")
-                    console.log(groupByFL)
-                    console.log("agrupacion clasificador")
-                    console.log(groupByClasificador)
-
                     graphMonth(groupByMonth);
                     graphClasif(groupByClasificador);
                     graphClasifAgrup(groupByClasificador)
@@ -118,7 +105,6 @@ let graphMonth = function (yearsArray) {
 
             for (const week in yearsArray[year][month]) {
                 tempMesTotal = tempMesTotal + yearsArray[year][month][week].length;
-                console.log("año: " + year + " mes: " + month + " semana: " + week + " #: " + yearsArray[year][month][week].length);
                 jsonTemporal2 = jsonTemporal2 + "[ \"Semana " + week + "\"," + yearsArray[year][month][week].length + "],"
             }
             jsonTemporal = jsonTemporal + " \"name\" : \"" + month + "/" + year + "\", \"y\" : " + tempMesTotal + ", \"drilldown\" : \"" + month + "/" + year + "\" }"
@@ -142,7 +128,6 @@ let graphClasif = function (clasifArray) {
         array.push(JSON.parse(jsonTemporal))
     }
     barGraphClasif = array;
-    console.log(barGraphClasif)
 }
 
 let graphClasifAgrup = function (clasifArray) {
@@ -159,7 +144,6 @@ let graphClasifAgrup = function (clasifArray) {
         array.push(JSON.parse(jsonTemporal))
     }
     barAgrupClasif = array;
-    console.log(barAgrupClasif)
 }
 
 let graphLine = function (writtenArray) {
@@ -184,7 +168,6 @@ let graphWrittenBar = function (writtenArray) {
         array.push(JSON.parse(jsonTemporal))
     }
     barWrittenBar = array;
-    console.log(barGraphClasif)
 }
 
 let graphAgrupWritten = function (writtenArray) {
@@ -201,7 +184,6 @@ let graphAgrupWritten = function (writtenArray) {
         array.push(JSON.parse(jsonTemporal))
     }
     barAgrupWritten = array;
-    console.log(barAgrupWritten)
 }
 
 let graphLineFinal = function (writtenArray) {
@@ -226,7 +208,6 @@ let graphFinalBar = function (writtenArray) {
         array.push(JSON.parse(jsonTemporal))
     }
     barFinalBar = array;
-    console.log(barGraphClasif)
 }
 
 let graphAgrupFinal = function (writtenArray) {
@@ -243,16 +224,11 @@ let graphAgrupFinal = function (writtenArray) {
         array.push(JSON.parse(jsonTemporal))
     }
     barAgrupFinal = array;
-    console.log(barAgrupFinal)
 }
 
 let getGraph = function () {
-    console.log(barGraphSeries)
-    console.log(barGraphDrilldown)
-    console.log(barAgrupClasif)
     y.style.display = "block";
     var tipo_grafica = document.getElementById("tipo_grafica").value;
-    console.log(tipo_grafica)
 
     if (tipo_grafica == 0) {
         y.style.display = "none";

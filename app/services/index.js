@@ -2,6 +2,9 @@ const jwt = require("jwt-simple")
 const moment = require('moment')
 const db = require("../db")
 
+/** Crea el token de un usuario
+ * @param  {user.username} user
+ */
 function createToken(user){
     const payload = {
         sub: user.username, 
@@ -10,7 +13,10 @@ function createToken(user){
     }
     return jwt.encode(payload, db.SECRET_TOKEN)
 }
-
+/**
+ * Decodifica el token del usuario
+ * @param  {string} token
+ */
 function decodeToken (token) {
     const decoded = new Promise((resolve, reject) => {
       try {
@@ -30,7 +36,7 @@ function decodeToken (token) {
       }
     })
     return decoded
-  }
+}
 
 module.exports = {
   createToken, 

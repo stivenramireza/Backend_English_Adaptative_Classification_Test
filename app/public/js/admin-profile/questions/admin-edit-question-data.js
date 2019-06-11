@@ -43,7 +43,6 @@ let update = function () {
         if (http.readyState == 4 && http.status == 200) {
             localStorage.setItem("mikey", http.response.token);
             window.location.replace('/admin/profile/edit-question');
-            console.log("Se actualizó la pregunta correctamente");
         }
     }
     var answer1 = document.getElementById("answer1").value, 

@@ -60,7 +60,6 @@ $(document).ready(function() {
 let eliminar = function(){
     var http = new XMLHttpRequest();
     var item = localStorage.getItem('item_pregunta');
-    console.log(item)
     var params = 'n_item='+item;
     http.responseType = 'json';
     http.open("DELETE", "/api/question/remove"+'?'+params, true); 

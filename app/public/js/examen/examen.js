@@ -14,7 +14,6 @@ req.onreadystatechange = function () {
         var texto = req.response;
         var idEx = texto.examen;
         localStorage.setItem("idEx", idEx);
-        console.log(texto);
         var title = texto.question.title;
         document.getElementById("qidc").innerHTML = title;
         var opcionA = texto.question.responses[0];
@@ -31,7 +30,6 @@ req.onreadystatechange = function () {
 // Obtiene las siguientes preguntas
 let questionPost = function (id, answer) {
     var idExam = localStorage.getItem("idEx")
-    console.log("ID examen recibido: " , idExam);
     var sendData = "{ \"_id\": \""+ idExam +"\", \"n_item\" : " + id + ", \"n_response\" : " + answer + "  }"
     var req = new XMLHttpRequest();
     req.responseType = 'json';

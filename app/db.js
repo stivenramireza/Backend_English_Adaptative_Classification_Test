@@ -24,5 +24,4 @@ var config = {
     SECRET_TOKEN: process.env.JWT_TOKEN
   }
 };
-console.log(config[env]);
 module.exports = config[env];

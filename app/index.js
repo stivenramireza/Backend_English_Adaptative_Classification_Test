@@ -7,16 +7,13 @@ const db = require('./db');
 require('dotenv').config();
 const session = require('express-session');
 
-// Conexión a la base de datos
 let dbConn = 'mongodb://' + db.DB_USER + ":" + db.DB_PASSWORD + "@" + db.DB_HOST;
-console.log(dbConn);
 mongoose.connect(dbConn, {useNewUrlParser: true}).then( (req, res) => {
   console.log("Conectado a la base de datos exitosamente");
 }).catch( err => {
   console.log("Error al conectarse a la base de datos: ", err);
 });
 
- // Middleware
 const bodyParser = require('body-parser');
 server.use(express.static(path.join(__dirname, 'public')));
 server.use(bodyParser.urlencoded({ extended: false }))
@@ -25,22 +22,20 @@ server.use(bodyParser.json())
 var sess = {
   secret: 'keyboard cat',
   cookie: {
-    maxAge: 5 * 60000 // Five minutes
+    maxAge: 5 * 60000 
   },
   resave: true,
   saveUninitialized: true
 }
 server.use(session(sess));
 
- // Attach routes as middleware
 server.use(routes);
 
 const PORT = 8000;
 const HOST = '0.0.0.0'; 
 
-
 server.listen(PORT, HOST, function(req, res){
-  console.log('\nApp web corriendo en http://localhost:'+PORT+'\n');
+  console.log('\nApp web corriendo en el puerto:'+PORT+'\n');
 });
 
 server.get('/', (req, res) => {

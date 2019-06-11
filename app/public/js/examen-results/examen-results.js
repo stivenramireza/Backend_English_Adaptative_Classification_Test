@@ -2,7 +2,6 @@ function updateCandidate() {
     var http2 = new XMLHttpRequest();
     var dn = localStorage.getItem('docnumber');
     var params3 = 'docnumber=' + dn;
-    console.log(params)
     http2.responseType = 'json';
     http2.open("PUT", "/api/candidate/update-doc" + '?' + params3, true);
     http2.setRequestHeader("Content-type", "application/json");
@@ -17,14 +16,9 @@ function updateExamen(nota_final, level) {
     var http = new XMLHttpRequest();
     var id = localStorage.getItem('_idExamen');
     var params2 = 'idExamen=' + id;
-    console.log("Params: " + params2);
     http.responseType = 'json';
     http.open("PUT", "/api/test/update" + '?' + params2, true);
     http.setRequestHeader("Content-type", "application/json");
-
-    console.log("id: " + id);
-    console.log("Nota final: " + nota_final)
-    console.log("Level: " + level)
     localStorage.setItem("lv", level);
 
 
@@ -48,16 +42,6 @@ function post() {
         if (req.readyState == 4 && req.status == 200) {
             var texto = req.response;
             gap = texto.student.level;
-            console.log("Nota 1: " + c_parte1);
-            console.log("Nota 2: " + c_parte2);
-            console.log("Nota 3: " + c_parte3);
-            console.log("Rango: " + gap);
-
-            //gap = 1;
-            //c_parte1 = "3.25";
-            //c_parte3 = 0;
-            //c_parte2 = 0;
-
             if (gap == 0) {
                 level = "Preparatorio";
             } else if (gap == 1) {
@@ -115,8 +99,6 @@ function post() {
                     level = "18";
                 }
             }
-
-            console.log("Nivel: " + level);
         }
     }
 }
@@ -178,15 +160,12 @@ function calcularNotas(array_respuestas, array_partes) {
 var c_parte1 = 0, c_parte2 = 0, c_parte3 = 0, nota_final = 0, level = 0, gap = 0;
 var req = new XMLHttpRequest();
 var idExam = localStorage.getItem("idEx")
-console.log("ID examen recibido para el update: ", idExam);
 var params = '_id=' + idExam;
 req.responseType = 'json';
 req.open("GET", '/test/infoById' + '?' + params, true);
 req.setRequestHeader("Content-type", "application/json");
 req.send(null);
 req.onreadystatechange = function () {
-    console.log("readyState = " + req.readyState)
-    console.log("status = " + req.status)
     if (req.readyState == 4 && req.status == 200) {
         var texto = req.response;
         var textoId = req.response.info_examen;
@@ -196,10 +175,6 @@ req.onreadystatechange = function () {
         var array_partes = texto.info_examen.parts;
         nota_final = calcularNotas(array_respuestas, array_partes);
         setTimeout(function () {
-            console.log("Nota calculada: " + nota_final)
-            console.log("Porcentaje parte 1: ", c_parte1 * 20);
-            console.log("Porcentaje parte 2: ", c_parte2 * 20);
-            console.log("Porcentaje parte 3: ", c_parte3 * 20);
             var porcentajeAciertos = ((c_parte1 * 20) + (c_parte2 * 20) + (c_parte3 * 20) ) / 3;
             document.getElementById("texto_span").innerHTML = "Porcentaje de aciertos y desaciertos";
             Highcharts.chart('container', {
@@ -232,13 +207,10 @@ req.onreadystatechange = function () {
             });
             setTimeout(function () {
                 post();
-                console.log("post melo")
                 setTimeout(function () {
                     updateExamen(nota_final, level);
-                    console.log("update melo")
                     setTimeout(function () {
                         updateCandidate();
-                        console.log("candidate updated")
                     }, 1000)
                 }, 1000)
             }, 1000);
