@@ -1,9 +1,12 @@
 var nombre_completo = localStorage.getItem('nombre_admin');
 document.getElementById("nombreAdmin").innerHTML = nombre_completo;
+
+/**
+ * Función que permite actualizar los datos de un administrador desde el frontend
+ */
 let gestionar = function () {
     var doctype = document.getElementById("dt").value;
     var docnumber = document.getElementById("docnumber").value;
-
     if (doctype == '0' || docnumber == '') {
         alertify.set('notifier', 'position', 'bottom-center');
         alertify.notify('No se han completado todos los campos', 'error', 3);

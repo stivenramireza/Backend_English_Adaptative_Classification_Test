@@ -1,3 +1,6 @@
+/**
+ * Función que permite añadir una pregunta desde el frontend
+ */
 let addQuestion = function () {
     var answer1 = document.getElementById("answer1").value,
         answer2 = document.getElementById("answer2").value,

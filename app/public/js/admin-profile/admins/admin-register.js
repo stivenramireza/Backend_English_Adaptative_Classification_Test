@@ -1,7 +1,10 @@
 var nombre_completo = localStorage.getItem('nombre_admin');
 document.getElementById("nombreAdmin").innerHTML = nombre_completo;
-let signup = function () {
 
+/**
+ * Función que permite registrar un administrador desde el frontend
+ */
+let signup = function () {
     var doctype = $("#dt").val();
     var docnumber = $("#docnumber").val();
     var firstname = $("#firstName").val();

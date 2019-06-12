@@ -1,6 +1,9 @@
 var nombre_completo = localStorage.getItem('nombre_admin');
 document.getElementById("nombreAdmin").innerHTML = nombre_completo;
 
+/**
+ * Función que permite habilitar el examen de un aspirante desde el frontend
+ */
 let habilitarExamen = function () {
     var doctype = $("#doc_type").val();
     var docnumber = $("#docnumber").val();
@@ -39,6 +42,10 @@ let habilitarExamen = function () {
     }
 }
 
+/**
+ * Función que permite actualizar la habilitación de un examen de un aspirante por id
+ * @param {string} id 
+ */
 let update = function (id) {
     var http = new XMLHttpRequest();
     var params2 = 'idCandidate=' + id;

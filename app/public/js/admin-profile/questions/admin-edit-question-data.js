@@ -1,5 +1,7 @@
 var nombre_completo = localStorage.getItem('nombre_admin');
 document.getElementById("nombreAdmin").innerHTML = nombre_completo;
+
+/** Petición GET que obtiene la primera pregunta del examen */
 var http = new XMLHttpRequest();
 var item = localStorage.getItem('item_pregunta');
 var params = 'n_item='+item;
@@ -32,6 +34,10 @@ http.onreadystatechange = function () {
     }
 }
 
+/**
+ * Función que permite actualizar las preguntas que va respondiendo el aspirante
+ * en tiempo real y enviándolas a la API de Inteligencia Artificial
+ */
 let update = function () {
     var http = new XMLHttpRequest();
     var id = localStorage.getItem('id_pregunta');

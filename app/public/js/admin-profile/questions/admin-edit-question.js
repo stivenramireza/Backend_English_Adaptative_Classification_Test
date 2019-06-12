@@ -1,5 +1,6 @@
 var nombre_completo = localStorage.getItem('nombre_admin');
 document.getElementById("nombreAdmin").innerHTML = nombre_completo;
+/** Petición GET que permite mostrar todas las preguntas de la base de datos en el frontend */
 $(document).ready(function() {
     var http = new XMLHttpRequest();
     http.responseType = 'json';
@@ -57,6 +58,9 @@ $(document).ready(function() {
     }
 });
 
+/**
+ * Función que permite eliminar una pregunta de la base de datos desde el frontend
+ */
 let eliminar = function(){
     var http = new XMLHttpRequest();
     var item = localStorage.getItem('item_pregunta');

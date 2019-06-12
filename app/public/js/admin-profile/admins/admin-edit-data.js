@@ -1,3 +1,4 @@
+/** Petición GET de los campos para actualizar el administrador */
 var nombre_completo = localStorage.getItem('nombre_admin');
 document.getElementById("nombreAdmin").innerHTML = nombre_completo;
 var http = new XMLHttpRequest();
@@ -54,6 +55,9 @@ http.onreadystatechange = function () {
     }
 }
 
+/**
+ * Función permite actualizar la información de un administrador desde el frontend
+ */
 let update = function () {
     var doctype = $("#dt").val();
     var docnumber = $("#docnumber").val();
