@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+
+/** Modelo de datos del Examen */
 const ExamenSchema = new Schema({
     _id: mongoose.Schema.Types.ObjectId,
     doctype: {type: String, required: true},

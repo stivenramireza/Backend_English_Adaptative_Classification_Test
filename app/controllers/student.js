@@ -3,6 +3,12 @@ const service = require("../services")
 const {validationResult} = require('express-validator/check');
 const mongoose = require('mongoose');
 
+/**
+ * Función que obtiene la información de un aspirante
+ * @param {json} req 
+ * @param {json} res 
+ * @returns JSON de la información del aspirante
+ */
 function getInfoCandidate(req, res) {
     let docnumber = req.query.docnumber;
     Student.findOne({ docnumber: docnumber }, (err, info_candidate) => {
@@ -12,6 +18,12 @@ function getInfoCandidate(req, res) {
     })
 }
 
+/**
+ * Función que actualiza la información del aspirante
+ * @param {json} req 
+ * @param {json} res 
+ * @returns JSON de la actualización de la información del aspirante
+ */
 function updateInfoCandidate(req, res){
     let idCandidate = req.query.idCandidate;
     let update = req.body
@@ -21,6 +33,12 @@ function updateInfoCandidate(req, res){
     })
 }
 
+/**
+ * Función que actualiza la información del aspirante por número de documento
+ * @param {json} req 
+ * @param {json} res 
+ * @returns JSON de la actualización de la información del aspirante
+ */
 function updateCandidateByDoc(req, res){
     let docnumber = req.query.docnumber;
     let update = req.body
@@ -30,6 +48,12 @@ function updateCandidateByDoc(req, res){
     })
 }
 
+/**
+ * Función que permite loguear al aspirante
+ * @param {json} req 
+ * @param {json} res
+ * @returns JSON del aspirante logueado 
+ */
 function login(req, res){
     var errors = validationResult(req);
     if(!errors.isEmpty()){
@@ -53,6 +77,12 @@ function login(req, res){
     })
 }
 
+/**
+ * Función que permite registrar al aspirante en la base de datos
+ * @param {json} req 
+ * @param {json} res 
+ * @returns JSON del aspirante registrado
+ */
 function register(req, res) {
     var errors = validationResult(req);
     if(!errors.isEmpty()){
@@ -87,6 +117,11 @@ function register(req, res) {
     })
 }
 
+/**
+ * Función que recibe un número y lo convierte en un string del tipo de documento
+ * @param  {int} _number
+ * @returns Tipo de documento
+ */
 function fromNumberToDocType(_number){
     _number = parseInt(_number);
     switch(_number){
@@ -120,6 +155,11 @@ function fromNumberToDocType(_number){
     return "";
 }
 
+/**
+ * Función que recibe un número y lo convierte en un string de un tipo de género
+ * @param  {int} _number
+ * @returns Género
+ */
 function fromNumberToGenre(_number){
     _number = parseInt(_number);
     switch(_number){
