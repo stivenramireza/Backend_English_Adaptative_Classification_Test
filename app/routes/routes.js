@@ -10,13 +10,13 @@ const sessManCtlr = require('../controllers/session_manager');
 
 /** El módulo 'corsOptions' permite el acceso a esta URL en cualquier browser */
 var corsOptions = {
-    origin: 'http://ec2-34-207-193-227.compute-1.amazonaws.com',
+    origin: 'http://ec2-54-161-199-236.compute-1.amazonaws.com',
     optionsSuccessStatus: 200
 }
 
 const router = express.Router();
 const {check} = require('express-validator/check');
-const QUERY_PATH = "http://ec2-34-207-193-227.compute-1.amazonaws.com";
+const QUERY_PATH = "http://ec2-54-161-199-236.compute-1.amazonaws.com";
 
 /**
  * Ruta GET que carga la vista de la página principal
