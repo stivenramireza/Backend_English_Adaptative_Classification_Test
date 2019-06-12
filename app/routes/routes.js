@@ -16,7 +16,7 @@ var corsOptions = {
 
 const router = express.Router();
 const {check} = require('express-validator/check');
-const QUERY_PATH = "http://ec2-54-161-199-236.compute-1.amazonaws.com;
+const QUERY_PATH = "http://ec2-54-161-199-236.compute-1.amazonaws.com";
 
 /**
  * Ruta GET que carga la vista de la página principal
