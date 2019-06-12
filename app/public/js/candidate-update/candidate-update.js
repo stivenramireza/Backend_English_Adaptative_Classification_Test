@@ -1,3 +1,4 @@
+/** Petición GET que permite obtener la información del aspirante por número de documento */
 var http = new XMLHttpRequest();
 var doc_number = localStorage.getItem("docnumber");
 var params = 'docnumber=' + doc_number;
@@ -37,6 +38,9 @@ http.onreadystatechange = function () {
     }
 }
 
+/**
+ * Función que permite actualizar los datos del aspirante
+ */
 let update = function () {
     var first_name = document.getElementById("firstName").value;
     var last_name = document.getElementById("lastName").value;
@@ -47,14 +51,12 @@ let update = function () {
     var direccion = document.getElementById("direccion").value;
     var mobilephone_number = document.getElementById("celular").value;
     var correo = document.getElementById("correo").value;
-
     if (first_name == '' || last_name == '' || genero == '0' || birth_date == '' ||
         department == '' || city == '' || direccion == '' || mobilephone_number == '' || correo == '') {
 
         alertify.set('notifier', 'position', 'bottom-center');
         alertify.notify('No se han completado todos los campos obligatorios', 'error', 3);
     } else {
-
         var http = new XMLHttpRequest();
         var id = localStorage.getItem('_id');
         var params = 'idCandidate=' + id;

@@ -1,3 +1,7 @@
+/**
+ * Función que permite actualizar el estado de habilitación de examen del aspirante
+ * y ponerlo en false para que no puede presentar más exámenes hasta que un admin lo decida
+ */
 function updateCandidate() {
     var http2 = new XMLHttpRequest();
     var dn = localStorage.getItem('docnumber');
@@ -11,7 +15,12 @@ function updateCandidate() {
 
 }
 
-
+/**
+ * Función que permite actualizar la nota final, el curso al cual aspiraría, y las
+ * notas que sacó una persona en cada una de las partes (niveles de dificultad) del examen
+ * @param {string} nota_final 
+ * @param {string} level 
+ */
 function updateExamen(nota_final, level) {
     var http = new XMLHttpRequest();
     var id = localStorage.getItem('_idExamen');
@@ -20,8 +29,6 @@ function updateExamen(nota_final, level) {
     http.open("PUT", "/api/test/update" + '?' + params2, true);
     http.setRequestHeader("Content-type", "application/json");
     localStorage.setItem("lv", level);
-
-
     http.send(JSON.stringify({
         grade: nota_final,
         classified_level: level,
@@ -31,6 +38,10 @@ function updateExamen(nota_final, level) {
     }))
 }
 
+/**
+ * Función que permite registrar en la base de datos el curso al cual el aspirante clasificaría
+ * con base en los resultados de su examen escrito
+ */
 function post() {
     var sendData = "{ \"c_part1\": " + c_parte1 + ", \"c_part2\":" + c_parte2 + ", \"c_part3\" : " + c_parte3 + "  }"
     var req = new XMLHttpRequest();
@@ -103,6 +114,12 @@ function post() {
     }
 }
 
+/**
+ * Función que permite calcular las notas en cada una de las partes (niveles de dificultad)
+ * del examen con base en las respuestas dadas por el aspirante
+ * @param {array} array_respuestas 
+ * @param {array} array_partes 
+ */
 function calcularNotas(array_respuestas, array_partes) {
     var arrayRespuestas = array_respuestas;
     var arrayPartes = array_partes;
@@ -157,6 +174,7 @@ function calcularNotas(array_respuestas, array_partes) {
     return nota_final;
 }
 
+/** Petición GET que obtiene la información del examen del aspirante por id y grafica su porcentaje de aciertos y desaciertos */
 var c_parte1 = 0, c_parte2 = 0, c_parte3 = 0, nota_final = 0, level = 0, gap = 0;
 var req = new XMLHttpRequest();
 var idExam = localStorage.getItem("idEx")
