@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: session_manager.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: session_manager.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Función que permite validar si un aspirante ha iniciado sesión
+ * @param  {json} req
+ * @param  {json} res
+ * @param  {json} next
+ * @returns JSON del aspirante que ha iniciado sesión, de lo contrario redirección a la página de no acceso
+ */
+function sessChecker(req, res, next){
+    let sess = req.session;
+    if(sess){
+        if(sess.user &amp;&amp; sess.user.type == 1) {
+            return next();
+        }else{
+            return res.redirect('/forbiden');
+        }
+    }else{
+        return res.redirect('/forbiden');
+    }
+}
+
+/**
+ * Función que permite validar si un administrador ha iniciado sesión
+ * @param  {json} req
+ * @param  {json} res
+ * @param  {json} next
+ * @returns JSON del admin que ha iniciado sesión, de lo contrario redirección a la página de no acceso
+ */
+function sessCheckGeneralAdmin(req, res, next){
+    let sess = req.session;
+    if(sess){
+        if(sess.user){
+            if(sess.user.type != 2) {
+                return res.redirect('/forbiden');
+            }else{
+                return next();
+            }
+        }else{
+            return res.redirect('/forbiden');
+        }
+    }else{
+        return res.redirect('/forbiden');
+    }
+}
+
+/**
+ * Función que permite validar si un administrador puede habilitar exámenes o tener todos los roles
+ * @param  {json} req
+ * @param  {json} res
+ * @param  {json} next
+ * @returns JSON del admin que tiene estos permisos, de lo contrario redirección a la página de no acceso
+ */
+function sessCheckerAdminEnableExam(req, res, next){
+    let sess = req.session;
+    if(sess){
+        if(sess.user){
+            if(sess.user.type != 2) {
+                return res.redirect('/forbiden');
+            }else{
+                if(sess.user.habilitar_examenes || sess.user.administrador_general){
+                    return next();
+                }else{
+                    return res.redirect('/admin/profile');
+                }
+            }
+        }else{
+            return res.redirect('/forbiden');
+        }
+    }else{
+        return res.redirect('/forbiden');
+    }
+}
+
+/**
+ * Función que permite validar si un administrador puede gestionar estadísticas o tener todos los roles
+ * @param  {json} req
+ * @param  {json} res
+ * @param  {json} next
+ * @returns JSON del admin que tiene estos permisos, de lo contrario redirección a la página de no acceso
+ */
+function sessCheckerAdminManageStatistics(req, res, next){
+    let sess = req.session;
+    if(sess){
+        if(sess.user){
+            if(sess.user.type != 2) {
+                return res.redirect('/forbiden');
+            }else{
+                if(sess.user.gestionar_estadisticas || sess.user.administrador_general){
+                    return next();
+                }else{
+                    return res.redirect('/admin/profile');
+                }
+            }
+        }else{
+            return res.redirect('/forbiden');
+        }
+    }else{
+        return res.redirect('/forbiden');
+    }
+}
+
+/**
+ * Función que permite validar si un administrador puede clasificar aspirantes o tener todos los roles
+ * @param  {json} req
+ * @param  {json} res
+ * @param  {json} next
+ * @returns JSON del admin que tiene estos permisos, de lo contrario redirección a la página de no acceso
+ */
+function sessCheckerAdminManageStudent(req, res, next){
+    let sess = req.session;
+    if(sess){
+        if(sess.user){
+            if(sess.user.type != 2) {
+                return res.redirect('/forbiden');
+            }else{
+                if(sess.user.clasificar_aspirantes || sess.user.administrador_general){
+                    return next();
+                }else{
+                    return res.redirect('/admin/profile');
+                }
+            }
+        }else{
+            return res.redirect('/forbiden');
+        }
+    }else{
+        return res.redirect('/forbiden');
+    }
+}
+
+/**
+ * Función que permite validar si un administrador puede gestionar preguntas o tener todos los roles
+ * @param  {json} req
+ * @param  {json} res
+ * @param  {json} next
+ * @returns JSON del admin que tiene estos permisos, de lo contrario redirección a la página de no acceso
+ */
+function sessCheckerAdminManageQuestionsAndRoles(req, res, next){
+    let sess = req.session;
+    if(sess){
+        if(sess.user){
+            if(sess.user.type != 2) {
+                return res.redirect('/forbiden');
+            }else{
+                if(sess.user.administrador_general){
+                    return next();
+                }else{
+                    return res.redirect('/admin/profile');
+                }
+            }
+        }else{
+            return res.redirect('/forbiden');
+        }
+    }else{
+        return res.redirect('/forbiden');
+    }
+}
+
+module.exports = {
+    sessChecker,
+    sessCheckerAdminEnableExam,
+    sessCheckerAdminManageStatistics,
+    sessCheckerAdminManageStudent,
+    sessCheckGeneralAdmin,
+    sessCheckerAdminManageQuestionsAndRoles
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#actualizarPregunta">actualizarPregunta</a></li><li><a href="global.html#editarAdmin">editarAdmin</a></li><li><a href="global.html#eliminarPregunta">eliminarPregunta</a></li><li><a href="global.html#encontrarTodo">encontrarTodo</a></li><li><a href="global.html#fromNumberToDocType">fromNumberToDocType</a></li><li><a href="global.html#fromNumberToGenre">fromNumberToGenre</a></li><li><a href="global.html#getAllExams">getAllExams</a></li><li><a href="global.html#getInfoAdmin">getInfoAdmin</a></li><li><a href="global.html#getInfoById">getInfoById</a></li><li><a href="global.html#getInfoCandidate">getInfoCandidate</a></li><li><a href="global.html#getInfoExamen">getInfoExamen</a></li><li><a href="global.html#getLastMonthExams">getLastMonthExams</a></li><li><a href="global.html#getLastSemesterExams">getLastSemesterExams</a></li><li><a href="global.html#getLastWeekExams">getLastWeekExams</a></li><li><a href="global.html#getLastYearExams">getLastYearExams</a></li><li><a href="global.html#loadAddQuestion">loadAddQuestion</a></li><li><a href="global.html#loadAdminCandidateGrades">loadAdminCandidateGrades</a></li><li><a href="global.html#loadAdminEdit">loadAdminEdit</a></li><li><a href="global.html#loadAdminEditData">loadAdminEditData</a></li><li><a href="global.html#loadCandidateResults">loadCandidateResults</a></li><li><a href="global.html#loadDesfase">loadDesfase</a></li><li><a href="global.html#loadEditQuestion">loadEditQuestion</a></li><li><a href="global.html#loadExamEnable">loadExamEnable</a></li><li><a href="global.html#loadExamReactivate">loadExamReactivate</a></li><li><a href="global.html#loadForbiden">loadForbiden</a></li><li><a href="global.html#loadGrade">loadGrade</a></li><li><a href="global.html#loadLoginAdmin">loadLoginAdmin</a></li><li><a href="global.html#loadLoginCandidate">loadLoginCandidate</a></li><li><a href="global.html#loadMainPage">loadMainPage</a></li><li><a href="global.html#loadPreStarted">loadPreStarted</a></li><li><a href="global.html#loadProfile">loadProfile</a></li><li><a href="global.html#loadProfileRegister">loadProfileRegister</a></li><li><a href="global.html#loadResult">loadResult</a></li><li><a href="global.html#loadSignupCandidate">loadSignupCandidate</a></li><li><a href="global.html#loadStatistics">loadStatistics</a></li><li><a href="global.html#loadTest">loadTest</a></li><li><a href="global.html#loadTestError">loadTestError</a></li><li><a href="global.html#loadUpdateProfile">loadUpdateProfile</a></li><li><a href="global.html#loadUpdateQuestion">loadUpdateQuestion</a></li><li><a href="global.html#login">login</a></li><li><a href="global.html#logout">logout</a></li><li><a href="global.html#loguearAdmin">loguearAdmin</a></li><li><a href="global.html#next_question">next_question</a></li><li><a href="global.html#obtenerPregunta">obtenerPregunta</a></li><li><a href="global.html#register">register</a></li><li><a href="global.html#registrarAdmin">registrarAdmin</a></li><li><a href="global.html#registrarPregunta">registrarPregunta</a></li><li><a href="global.html#saveTestStatus">saveTestStatus</a></li><li><a href="global.html#sessChecker">sessChecker</a></li><li><a href="global.html#sessCheckerAdminEnableExam">sessCheckerAdminEnableExam</a></li><li><a href="global.html#sessCheckerAdminManageQuestionsAndRoles">sessCheckerAdminManageQuestionsAndRoles</a></li><li><a href="global.html#sessCheckerAdminManageStatistics">sessCheckerAdminManageStatistics</a></li><li><a href="global.html#sessCheckerAdminManageStudent">sessCheckerAdminManageStudent</a></li><li><a href="global.html#sessCheckGeneralAdmin">sessCheckGeneralAdmin</a></li><li><a href="global.html#statistics">statistics</a></li><li><a href="global.html#updateByDocNumber">updateByDocNumber</a></li><li><a href="global.html#updateCandidateByDoc">updateCandidateByDoc</a></li><li><a href="global.html#updateInfoAdmin">updateInfoAdmin</a></li><li><a href="global.html#updateInfoCandidate">updateInfoCandidate</a></li><li><a href="global.html#updateInfoExamen">updateInfoExamen</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.2</a> on Tue Jun 11 2019 22:05:56 GMT-0500 (hora estándar de Colombia)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

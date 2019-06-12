@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: admin-statistics.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: admin-statistics.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>var barGraphSeries, barGraphDrilldown, barGraphClasif, barAgrupClasif, barLine, barLineCat, barLineFinal,
+    barLineCatFinal, barWrittenBar, barFinalBar, barAgrupWritten, barAgrupFinal;
+var nombre_completo = localStorage.getItem('nombre_admin');
+document.getElementById("nombreAdmin").innerHTML = nombre_completo;
+
+/**
+ * Función que permite obtener las estadísticas de los exámenes
+ */
+let queryStatistics = function () {
+    document.getElementById("header").style.display = "inline";
+    var doctype = document.getElementById("dt").value;
+    var clasificador = document.getElementById("clasificador").value;
+    var fecha_inicio = document.getElementById("fecha_inicio").value;
+    var fecha_fin = document.getElementById("fecha_fin").value;
+    var classified_level = document.getElementById("nivel").value;
+    var final_level = document.getElementById("nivel_final").value;
+    if (fecha_inicio != '' &amp; fecha_fin == '') {
+        alertify.set('notifier', 'position', 'bottom-center');
+        alertify.notify('No se ha seleccionado la fecha final', 'error', 3);
+    } else if (fecha_inicio == '' &amp; fecha_fin != '') {
+        alertify.set('notifier', 'position', 'bottom-center');
+        alertify.notify('No se ha seleccionado la fecha inicial', 'error', 3);
+    } else if (doctype == '0' &amp;&amp; clasificador != '') {
+        alertify.set('notifier', 'position', 'bottom-center');
+        alertify.notify('No se ha seleccionado el tipo de documento de identidad', 'error', 3);
+    } else if (doctype != '0' &amp;&amp; clasificador == '') {
+        alertify.set('notifier', 'position', 'bottom-center');
+        alertify.notify('No se ha seleccionado el número de documento de identidad', 'error', 3);
+    } else {
+        var req = new XMLHttpRequest();
+        var params = 'clasificador=' + clasificador + '&amp;fecha_inicio=' + fecha_inicio + '&amp;fecha_fin=' + fecha_fin + '&amp;classified_level=' + classified_level + '&amp;final_level=' + final_level;
+        req.responseType = 'json';
+        req.open("GET", '/test/statistics' + '?' + params, true);
+        req.setRequestHeader("Content-type", "application/json");
+        req.send(null);
+        req.onreadystatechange = function () {
+            if (req.readyState == 4 &amp;&amp; req.status == 200) {
+                var query = req.response.info_examen;
+                document.getElementById("registros").innerHTML = query.length;
+                if (query.length == 0) {
+                    x.style.display = "block";
+                    y.style.display = "none";
+                } else {
+                    x.style.display = "block";
+                    y.style.display = "block";
+
+                    var groupByCL = query.reduce(function (cl, a) {
+                        cl[a.classified_level] = cl[a.classified_level] || [];
+                        cl[a.classified_level].push(a);
+                        return cl;
+                    }, Object.create(null));
+
+                    var groupByFL = query.reduce(function (fl, b) {
+                        fl[b.final_level] = fl[b.final_level] || [];
+                        fl[b.final_level].push(b);
+                        return fl;
+                    }, Object.create(null));
+
+                    var groupByClasificador = query.reduce(function (cla, c) {
+                        cla[c.clasificador] = cla[c.clasificador] || [];
+                        cla[c.clasificador].push(c);
+                        return cla;
+                    }, Object.create(null));
+
+                    var groupByMonth = query.reduce(function (acc, obj) {
+                        var year, month, week
+                        var b = obj.fecha.split(/\D/);
+                        // Get custom week number, zero padded
+                        var weekNum = '0' + Math.ceil(b[2] / 7);
+                        // Add year if not already present
+                        if (!acc[b[0]]) acc[b[0]] = {};
+                        year = acc[b[0]];
+                        // Add month if not already present
+                        if (!year[b[1]]) year[b[1]] = {};
+                        month = year[b[1]];
+                        // Add week if not already present
+                        if (!month[weekNum]) month[weekNum] = [];
+                        // Add object to  week
+                        month[weekNum].push(obj);
+                        return acc;
+                    }, Object.create(null))
+                    graphMonth(groupByMonth);
+                    graphClasif(groupByClasificador);
+                    graphClasifAgrup(groupByClasificador)
+                    graphLine(groupByCL)
+                    graphLineFinal(groupByFL)
+                    graphWrittenBar(groupByCL)
+                    graphFinalBar(groupByFL)
+                    graphAgrupWritten(groupByCL)
+                    graphAgrupFinal(groupByFL)
+                }
+            }
+        }
+    }
+}
+
+/**
+ * Función que permite graficar las estadísticas por meses
+ * @param {array} yearsArray 
+ */
+let graphMonth = function (yearsArray) {
+    var array = [];
+    var array2 = [];
+    var tempMesTotal = 0
+    var jsonTemporal, jsonTemporal2
+    for (const year in yearsArray) {
+        for (const month in yearsArray[year]) {
+
+            jsonTemporal = "{ "
+            jsonTemporal2 = "{ \"name\" : \"" + month + "/" + year + "\", \"id\" : \"" + month + "/" + year + "\", \"data\" : [ "
+
+            for (const week in yearsArray[year][month]) {
+                tempMesTotal = tempMesTotal + yearsArray[year][month][week].length;
+                jsonTemporal2 = jsonTemporal2 + "[ \"Semana " + week + "\"," + yearsArray[year][month][week].length + "],"
+            }
+            jsonTemporal = jsonTemporal + " \"name\" : \"" + month + "/" + year + "\", \"y\" : " + tempMesTotal + ", \"drilldown\" : \"" + month + "/" + year + "\" }"
+            tempMesTotal = 0
+            jsonTemporal2 = jsonTemporal2.substr(0, (jsonTemporal2.length - 1));
+            jsonTemporal2 = jsonTemporal2 + "] }"
+            array.push(JSON.parse(jsonTemporal))
+            array2.push(JSON.parse(jsonTemporal2))
+
+            barGraphSeries = array;
+            barGraphDrilldown = array2;
+        }
+    }
+}
+
+/**
+ * Función que permite graficar las estadísticas de clasificaciones por gráfica de barras
+ * @param {array} clasifArray 
+ */
+let graphClasif = function (clasifArray) {
+    var array = [];
+    var jsonTemporal
+    for (const clasif in clasifArray) {
+        jsonTemporal = "{ \"name\" : \"" + clasif + "\", \"y\" : " + clasifArray[clasif].length + " }"
+        array.push(JSON.parse(jsonTemporal))
+    }
+    barGraphClasif = array;
+}
+
+/**
+ * Función que permite graficar las estadísticas de clasficiaciones por gráficas de agrupamiento
+ * @param {array} clasifArray 
+ */
+let graphClasifAgrup = function (clasifArray) {
+    var array = [];
+    var jsonTemporal
+    for (const clasif in clasifArray) {
+        jsonTemporal = "{ \"name\" : \"" + clasif + "\", \"data\" : ["
+        for (i = 0; i &lt; clasifArray[clasif].length; i++) {
+            jsonTemporal = jsonTemporal + "{ \"value\" : 100 },"
+        }
+        jsonTemporal = jsonTemporal.substr(0, (jsonTemporal.length - 1));
+        jsonTemporal = jsonTemporal + "] }"
+
+        array.push(JSON.parse(jsonTemporal))
+    }
+    barAgrupClasif = array;
+}
+
+/**
+ * Función que permite graficar las estadísticas de exámenes escritos por gráfica de líneas
+ * @param {array} writtenArray 
+ */
+let graphLine = function (writtenArray) {
+    var array = [], categories = []
+    var jsonTemporal = " { \"name\": \"Curva de numero de registros por niveles\", \"data\": ["
+    for (const niv in writtenArray) {
+        categories.push(niv);
+        jsonTemporal = jsonTemporal + writtenArray[niv].length + ", "
+    }
+    jsonTemporal = jsonTemporal.substr(0, (jsonTemporal.length - 2));
+    jsonTemporal = jsonTemporal + "] }"
+    array.push(JSON.parse(jsonTemporal));
+    barLine = array;
+    barLineCat = categories;
+}
+
+/**
+ * Función que permite graficar las estadísticas de exámenes escritos por gráfica de barras
+ * @param {array} writtenArray 
+ */
+let graphWrittenBar = function (writtenArray) {
+    var array = [];
+    var jsonTemporal
+    for (const level in writtenArray) {
+        jsonTemporal = "{ \"name\" : \"" + level + "\", \"y\" : " + writtenArray[level].length + " }"
+        array.push(JSON.parse(jsonTemporal))
+    }
+    barWrittenBar = array;
+}
+
+/**
+ * Función que permite graficar las estadísticas de exámenes escritos por gráficas de agrupamiento
+ * @param {array} writtenArray 
+ */
+let graphAgrupWritten = function (writtenArray) {
+    var array = [];
+    var jsonTemporal
+    for (const level in writtenArray) {
+        jsonTemporal = "{ \"name\" : \"Nivel " + level + "\", \"data\" : ["
+        for (i = 0; i &lt; writtenArray[level].length; i++) {
+            jsonTemporal = jsonTemporal + "{ \"value\" : 100 },"
+        }
+        jsonTemporal = jsonTemporal.substr(0, (jsonTemporal.length - 1));
+        jsonTemporal = jsonTemporal + "] }"
+
+        array.push(JSON.parse(jsonTemporal))
+    }
+    barAgrupWritten = array;
+}
+
+/**
+ * Función que permite graficar las estadísticas de exámenes orales por gráfica de líneas
+ * @param {array} writtenArray 
+ */
+let graphLineFinal = function (writtenArray) {
+    var array = [], categories = []
+    var jsonTemporal = " { \"name\": \"Curva de numero de registros por niveles\", \"data\": ["
+    for (const niv in writtenArray) {
+        categories.push(niv);
+        jsonTemporal = jsonTemporal + writtenArray[niv].length + ", "
+    }
+    jsonTemporal = jsonTemporal.substr(0, (jsonTemporal.length - 2));
+    jsonTemporal = jsonTemporal + "] }"
+    array.push(JSON.parse(jsonTemporal));
+    barLineFinal = array;
+    barLineCatFinal = categories;
+}
+
+/**
+ * Función que permite graficar las estadísticas de exámenes orales por gráfica de barras
+ * @param {array} writtenArray 
+ */
+let graphFinalBar = function (writtenArray) {
+    var array = [];
+    var jsonTemporal
+    for (const level in writtenArray) {
+        jsonTemporal = "{ \"name\" : \"" + level + "\", \"y\" : " + writtenArray[level].length + " }"
+        array.push(JSON.parse(jsonTemporal))
+    }
+    barFinalBar = array;
+}
+
+/**
+ * Función que permite graficar las estadísticas de exámenes orales por gráfica de agrupamiento
+ * @param {array} writtenArray 
+ */
+let graphAgrupFinal = function (writtenArray) {
+    var array = [];
+    var jsonTemporal
+    for (const level in writtenArray) {
+        jsonTemporal = "{ \"name\" : \"Nivel " + level + "\", \"data\" : ["
+        for (i = 0; i &lt; writtenArray[level].length; i++) {
+            jsonTemporal = jsonTemporal + "{ \"value\" : 100 },"
+        }
+        jsonTemporal = jsonTemporal.substr(0, (jsonTemporal.length - 1));
+        jsonTemporal = jsonTemporal + "] }"
+
+        array.push(JSON.parse(jsonTemporal))
+    }
+    barAgrupFinal = array;
+}
+
+/**
+ * Función que permite seleccionar el tipo de gráfica
+ */
+let getGraph = function () {
+    y.style.display = "block";
+    var tipo_grafica = document.getElementById("tipo_grafica").value;
+
+    if (tipo_grafica == 0) {
+        y.style.display = "none";
+    } else if (tipo_grafica == 1) {
+        x.style.display = "block";
+        Highcharts.chart('g1', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Registro de examenes por meses, años y semanas'
+            },
+            subtitle: {
+                text: 'Haz click en las barras para ver más información'
+            },
+            xAxis: {
+                type: 'category',
+
+            },
+            yAxis: {
+                title: {
+                    text: 'Numero de registros'
+                }
+
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y:.0f}'
+                    }
+                }
+            },
+
+            tooltip: {
+                headerFormat: '&lt;span style="font-size:11px">{series.name}&lt;/span>&lt;br>',
+                pointFormat: '&lt;span style="color:{point.color}">{point.name}&lt;/span>: &lt;b>{point.y:.0f}&lt;/b> registros del total&lt;br/>'
+            },
+
+            series: [
+                {
+                    name: " Meses y años",
+                    colorByPoint: true,
+                    data: barGraphSeries
+                }
+            ],
+            drilldown: {
+                series: barGraphDrilldown
+            }
+        });
+
+    } else if (tipo_grafica == 2) {
+        x.style.display = "block";
+        Highcharts.chart('g1', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Registro de clasificadores'
+            },
+            xAxis: {
+                type: 'category',
+                title: {
+                    text: 'Identificacion del clasificador'
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Numero de registros'
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y:.0f}'
+                    }
+                }
+            },
+            tooltip: {
+                headerFormat: '&lt;span style="font-size:11px">{series.name}&lt;/span>&lt;br>',
+                pointFormat: '&lt;span style="color:{point.color}">{point.name}&lt;/span>: &lt;b>{point.y:.0f}&lt;/b> registros del total&lt;br/>'
+            },
+            series: [
+                {
+                    name: "Id del clasificador",
+                    colorByPoint: true,
+                    data: barGraphClasif
+                }
+            ]
+        });
+    } else if (tipo_grafica == 3) {
+        Highcharts.chart('g1', {
+            chart: {
+                type: 'packedbubble',
+                height: '60%'
+            },
+            title: {
+                text: 'Grafica de agrupamiento de clasificadores'
+            },
+            tooltip: {
+                useHTML: true,
+                pointFormat: '&lt;b>Examen realizado&lt;/b>'
+            },
+            plotOptions: {
+                packedbubble: {
+                    minSize: '20%',
+                    maxSize: '100%',
+                    zMin: 0,
+                    zMax: 1000,
+                    layoutAlgorithm: {
+                        gravitationalConstant: 0.05,
+                        splitSeries: true,
+                        seriesInteraction: false,
+                        dragBetweenSeries: true,
+                        parentNodeLimit: true
+                    },
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.name}',
+                        filter: {
+                            property: 'y',
+                            operator: '>',
+                            value: 250
+                        },
+                        style: {
+                            color: 'black',
+                            textOutline: 'none',
+                            fontWeight: 'normal'
+                        }
+                    }
+                }
+            },
+            series:
+                barAgrupClasif
+        });
+    } else if (tipo_grafica == 4) {
+        Highcharts.chart('g1', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: 'Estadistica de clasificadores'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: &lt;b>{point.percentage:.0f}%&lt;/b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '&lt;b>{point.name}&lt;/b>: {point.percentage:.0f}%',
+                        style: {
+                            color: (Highcharts.theme &amp;&amp; Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: 'Clasificadores',
+                colorByPoint: true,
+                data: barGraphClasif
+            }]
+        });
+    } else if (tipo_grafica == 5) {
+        Highcharts.chart('g1', {
+            chart: {
+                type: 'line'
+            },
+            title: {
+                text: 'Curva de examenes de clasificación escritos'
+            },
+            subtitle: {
+                text: 'Registros encontrados'
+            },
+            xAxis: {
+                categories: barLineCat
+            },
+            yAxis: {
+                title: {
+                    text: 'Numero de registros'
+                }
+            },
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: true
+                    },
+                    enableMouseTracking: false
+                }
+            },
+            series: barLine
+        });
+    } else if (tipo_grafica == 6) {
+        x.style.display = "block";
+        Highcharts.chart('g1', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Registro de examenes de clasificacion escritos'
+            },
+            xAxis: {
+                type: 'category',
+                title: {
+                    text: 'Nivel clasificado'
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Numero de registros'
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y:.0f}'
+                    }
+                }
+            },
+            tooltip: {
+                headerFormat: '&lt;span style="font-size:11px">{series.name}&lt;/span>&lt;br>',
+                pointFormat: '&lt;span style="color:{point.color}">{point.name}&lt;/span>: &lt;b>{point.y:.0f}&lt;/b> registros del total&lt;br/>'
+            },
+            series: [
+                {
+                    name: "Nivel",
+                    colorByPoint: true,
+                    data: barWrittenBar
+                }
+            ]
+        });
+
+    } else if (tipo_grafica == 7) {
+        Highcharts.chart('g1', {
+            chart: {
+                type: 'packedbubble',
+                height: '60%'
+            },
+            title: {
+                text: 'Grafica de agrupamiento de examenes escritos'
+            },
+            tooltip: {
+                useHTML: true,
+                pointFormat: '&lt;b>Examen realizado&lt;/b>'
+            },
+            plotOptions: {
+                packedbubble: {
+                    minSize: '20%',
+                    maxSize: '100%',
+                    zMin: 0,
+                    zMax: 1000,
+                    layoutAlgorithm: {
+                        gravitationalConstant: 0.05,
+                        splitSeries: true,
+                        seriesInteraction: false,
+                        dragBetweenSeries: true,
+                        parentNodeLimit: true
+                    },
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.name}',
+                        filter: {
+                            property: 'y',
+                            operator: '>',
+                            value: 250
+                        },
+                        style: {
+                            color: 'black',
+                            textOutline: 'none',
+                            fontWeight: 'normal'
+                        }
+                    }
+                }
+            },
+            series:
+                barAgrupWritten
+        });
+    } else if (tipo_grafica == 8) {
+        Highcharts.chart('g1', {
+            chart: {
+                type: 'line'
+            },
+            title: {
+                text: 'Curva de clasificaciones finales'
+            },
+            subtitle: {
+                text: 'Registros encontrados'
+            },
+            xAxis: {
+                categories: barLineCatFinal
+            },
+            yAxis: {
+                title: {
+                    text: 'Numero de registros'
+                }
+            },
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: true
+                    },
+                    enableMouseTracking: false
+                }
+            },
+            series: barLineFinal
+        });
+    } else if (tipo_grafica == 9) {
+        x.style.display = "block";
+        Highcharts.chart('g1', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Registro de clasificaciones finales'
+            },
+            xAxis: {
+                type: 'category',
+                title: {
+                    text: 'Nivel establecido'
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Numero de registros'
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y:.0f}'
+                    }
+                }
+            },
+            tooltip: {
+                headerFormat: '&lt;span style="font-size:11px">{series.name}&lt;/span>&lt;br>',
+                pointFormat: '&lt;span style="color:{point.color}">{point.name}&lt;/span>: &lt;b>{point.y:.0f}&lt;/b> registros del total&lt;br/>'
+            },
+            series: [
+                {
+                    name: "Nivel",
+                    colorByPoint: true,
+                    data: barFinalBar
+                }
+            ]
+        });
+    } else if (tipo_grafica == 10) {
+        Highcharts.chart('g1', {
+            chart: {
+                type: 'packedbubble',
+                height: '60%'
+            },
+            title: {
+                text: 'Grafica de agrupamiento de niveles clasificados'
+            },
+            tooltip: {
+                useHTML: true,
+                pointFormat: '&lt;b>Estudiante clasificado&lt;/b>'
+            },
+            plotOptions: {
+                packedbubble: {
+                    minSize: '20%',
+                    maxSize: '100%',
+                    zMin: 0,
+                    zMax: 1000,
+                    layoutAlgorithm: {
+                        gravitationalConstant: 0.05,
+                        splitSeries: true,
+                        seriesInteraction: false,
+                        dragBetweenSeries: true,
+                        parentNodeLimit: true
+                    },
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.name}',
+                        filter: {
+                            property: 'y',
+                            operator: '>',
+                            value: 250
+                        },
+                        style: {
+                            color: 'black',
+                            textOutline: 'none',
+                            fontWeight: 'normal'
+                        }
+                    }
+                }
+            },
+            series:
+                barAgrupFinal
+        });
+    }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#getGap">getGap</a></li><li><a href="global.html#getGrades">getGrades</a></li><li><a href="global.html#getGraph">getGraph</a></li><li><a href="global.html#getQuestion">getQuestion</a></li><li><a href="global.html#graphAgrupFinal">graphAgrupFinal</a></li><li><a href="global.html#graphAgrupWritten">graphAgrupWritten</a></li><li><a href="global.html#graphClasif">graphClasif</a></li><li><a href="global.html#graphClasifAgrup">graphClasifAgrup</a></li><li><a href="global.html#graphFinalBar">graphFinalBar</a></li><li><a href="global.html#graphLine">graphLine</a></li><li><a href="global.html#graphLineFinal">graphLineFinal</a></li><li><a href="global.html#graphMonth">graphMonth</a></li><li><a href="global.html#graphWrittenBar">graphWrittenBar</a></li><li><a href="global.html#queryStatistics">queryStatistics</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.2</a> on Tue Jun 11 2019 22:07:42 GMT-0500 (hora estándar de Colombia)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
