@@ -4,7 +4,7 @@ const db = require("../db")
 
 /** Crea el token de un usuario
  * @param  {user.username} user
- * @return {string} El token codificado
+ * @returns El token codificado
  */
 function createToken(user){
     const payload = {
@@ -17,7 +17,7 @@ function createToken(user){
 /**
  * Decodifica el token del usuario
  * @param  {string} token
- * @return {string} El token decodificado
+ * @returns El token decodificado
  */
 function decodeToken (token) {
     const decoded = new Promise((resolve, reject) => {

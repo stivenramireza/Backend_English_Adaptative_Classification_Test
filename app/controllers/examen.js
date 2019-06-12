@@ -1,9 +1,15 @@
 const Examen = require('../models/examen');
 const { validationResult } = require('express-validator/check');
 const mongoose = require('mongoose');
-
 var request = require('request')
 
+/**
+ * Función que permite registrar el examen y lanzar la primera pregunta
+ * @param  {json} req
+ * @param  {json} res
+ * @param  {json} data
+ * @returns JSON de la primera pregunta
+ */
 function saveTestStatus(req, res, data) {
     var errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -19,21 +25,21 @@ function saveTestStatus(req, res, data) {
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     const new_examen = new Examen({
         _id: mongoose.Types.ObjectId(),
-        doctype: doctype, //Just a simple doct
-        docnumber: docnumber, // Just a simple docn
-        questions: _data.question.administered_items, // To be updated
-        responses: _data.question.response_vector, // To be updated
+        doctype: doctype, 
+        docnumber: docnumber,
+        questions: _data.question.administered_items, 
+        responses: _data.question.response_vector, 
         grade: 0.0,
         part1: 0.0,
         part2: 0.0,
-        part3: 0.0, // To be updated
-        classified_level: "0", // To be updated
+        part3: 0.0, 
+        classified_level: "0", 
         final_level: "A falta de realización de la entrevista",
-        hora_inicio: time, // Static
-        hora_fin: time, // To be updated
-        clasificador: clasificador, //Just a simple docn
-        last_ability: _data.question.ability, // To be updated
-        parts: _data.question.parts // To be updated
+        hora_inicio: time, 
+        hora_fin: time, 
+        clasificador: clasificador, 
+        last_ability: _data.question.ability, 
+        parts: _data.question.parts 
     });
     new_examen.save((err) => {
         if (err) {
@@ -56,6 +62,12 @@ function saveTestStatus(req, res, data) {
     });
 }
 
+/**
+ * Función que permite enviar la información de la siguiente pregunta de un examen
+ * @param  {json} req
+ * @param  {json} res
+ * @returns JSON de la siguiente pregunta
+ */
 function next_question(req, res) {
     var idEx = req.body._id;
     Examen.findOne({ _id: idEx }, function (err, examen) {
@@ -66,21 +78,21 @@ function next_question(req, res) {
             });
         } else {
             var obj = {
-                doctype: examen.doc_type, //Just a simple doct
-                docnumber: examen.doc_number, // Just a simple docn
-                questions: examen.questions, // To be updated
-                responses: examen.responses, // To be updated
+                doctype: examen.doc_type, 
+                docnumber: examen.doc_number, 
+                questions: examen.questions, 
+                responses: examen.responses, 
                 grade: examen.grade,
-                part1: examen.part1, // To be updated
+                part1: examen.part1,
                 part2: examen.part2,
                 part3: examen.part3,
-                classified_level: examen.classified_level, // To be updated
+                classified_level: examen.classified_level,
                 final_level: examen.final_level,
                 hora_inicio: examen.hora_inicio,
-                hora_fin: examen.hora_fin, // To be updated
-                clasificador: examen.clasificador, //Just a simple docn
-                last_ability: examen.last_ability, // To be updated
-                parts: examen.parts // To be updated
+                hora_fin: examen.hora_fin,
+                clasificador: examen.clasificador,
+                last_ability: examen.last_ability,
+                parts: examen.parts
             };
             const QUERY_PATH = "http://ec2-34-207-193-227.compute-1.amazonaws.com";
             request.post({
@@ -121,16 +133,19 @@ function next_question(req, res) {
     });
 }
 
+/**
+ * Función que permite obtener las estadísticas de los exámenes por diferentes filtros de búsqueda
+ * @param  {json} req
+ * @param  {json} res
+ * @returns JSON de las estadísticas de los exámenes
+ */
 function statistics(req, res) {
-
     let clasificador = req.query.clasificador;
     let fecha_inicio = req.query.fecha_inicio;
     let fecha_fin = req.query.fecha_fin;
     let classified_level = req.query.classified_level;
     let final_level = req.query.final_level;
-
     var queryString = "{ ";
-
     if (clasificador != "") {
         queryString = queryString + "\"clasificador\": " + clasificador + " ,"
 
@@ -144,10 +159,8 @@ function statistics(req, res) {
     if (final_level != "") {
         queryString = queryString + "\"final_level\": " + final_level + ", ";
     }
-
     queryString = queryString.substr(0, (queryString.length - 2));
     queryString = queryString + " }";
-
     Examen.find(JSON.parse(queryString), (err, info_examen) => {
         if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}`, status: 'failed' })
         if (!info_examen) return res.status(404).send({ message: `No hay registros`, status: 'success' })
@@ -155,6 +168,12 @@ function statistics(req, res) {
     })
 }
 
+/**
+ * Función que permite obtener la cantidad de exámenes realizados en el último año
+ * @param  {json} req
+ * @param  {json} res
+ * @returns JSON de la cantidad de exámenes realizados en el último año
+ */
 function getLastYearExams(req, res) {
     var today = new Date();
     var d = new Date();
@@ -168,6 +187,12 @@ function getLastYearExams(req, res) {
     })
 }
 
+/**
+ * Función que permite obtener la cantidad de exámenes realizados en el último mes
+ * @param  {json} req
+ * @param  {json} res
+ * @returns JSON de la cantidad de exámenes realizados en el último mes
+ */
 function getLastMonthExams(req, res) {
     var today = new Date();
     var d = new Date();
@@ -177,8 +202,6 @@ function getLastMonthExams(req, res) {
         d.setYear(d.getYear() - 1);
     }
     d.setMonth(newMonth);
-
-
     queryString = "{ \"fecha\": { \"$gt\": \"" + d + "\", \"$lt\": \"" + today + "\" } }";
     Examen.find(JSON.parse(queryString), (err, info_examen) => {
         if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}`, status: 'failed' })
@@ -187,11 +210,16 @@ function getLastMonthExams(req, res) {
     })
 }
 
+/** 
+ * Función que permite obtener la cantidad de exámenes realizados en la última semana
+ * @param  {json} req
+ * @param  {json} res
+ * @returns JSON de la cantidad de exámenes realizados en la última semana
+ */
 function getLastWeekExams(req, res) {
     var today = new Date()
     var d = new Date();
     d.setDate(d.getDate() - 7);
-
     queryString = "{ \"fecha\": { \"$gt\": \"" + d + "\", \"$lt\": \"" + today + "\" } }";
     Examen.find(JSON.parse(queryString), (err, info_examen) => {
         if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}`, status: 'failed' })
@@ -200,6 +228,12 @@ function getLastWeekExams(req, res) {
     })
 }
 
+/**
+ * Función que permite obtener la cantidad de exámenes realizados en el último semestre
+ * @param  {json} req
+ * @param  {json} res
+ * @returns JSON de la cantidad de exámenes realizados en el último semestre
+ */
 function getLastSemesterExams(req, res) {
     var today = new Date()
     var d = new Date();
@@ -213,6 +247,12 @@ function getLastSemesterExams(req, res) {
     })
 }
 
+/**
+ * Función que permite obtener la información de todos los exámenes
+ * @param  {json} req
+ * @param  {json} res
+ * @returns JSON de la información de todos los exámenes
+ */
 function getAllExams(req, res) {
     Examen.find({}, (err, info_examen) => {
         if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}`, status: 'failed' })
@@ -221,7 +261,12 @@ function getAllExams(req, res) {
     })
 }
 
-
+/**
+ * Función que permite obtener la información de un examen por número de documento
+ * @param  {json} req
+ * @param  {json} res
+ * @returns JSON con la información del examen
+ */
 function getInfoExamen(req, res) {
     let docnumber = req.query.docnumber;
     Examen.findOne({ docnumber: docnumber }, {}, { sort: { '_id': -1 } }, (err, info_examen) => {
@@ -234,6 +279,12 @@ function getInfoExamen(req, res) {
     })
 }
 
+/**
+ * Función que permite obtener la información de un examen por id
+ * @param  {json} req
+ * @param  {json} res
+ * @returns JSON con la información del examen
+ */
 function getInfoById(req, res) {
     let idEx = req.query._id;
     Examen.findOne({ _id: idEx }, (err, info_examen) => {
@@ -246,6 +297,12 @@ function getInfoById(req, res) {
     })
 }
 
+/**
+ * Función que permite actualizar la información de un examen
+ * @param  {json} req
+ * @param  {json} res
+ * @returns JSON con la información actualizada de un examen
+ */
 function updateInfoExamen(req, res) {
     let idExamen = req.query.idExamen;
     let update = req.body
@@ -255,6 +312,12 @@ function updateInfoExamen(req, res) {
     })
 }
 
+/**
+ * Función que permite actualizar la información de un examen por número de documento
+ * @param  {json} req
+ * @param  {json} res
+ * @returns JSON con la información actualizada de un examen
+ */
 function updateByDocNumber(req, res) {
     let docnumber = req.query.docnumber;
     let update = req.body

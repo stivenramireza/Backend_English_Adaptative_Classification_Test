@@ -1,11 +1,13 @@
 var nombre_completo = localStorage.getItem('nombre_admin');
 document.getElementById("nombreAdmin").innerHTML = nombre_completo;
 var nota1 = 0, nota2 = 0, nota3 = 0;
-let getGrades = function () {
 
+/**
+ * Función que permite obtener las notas de los aspirantes
+ */
+let getGrades = function () {
     var doctype = $("#dt").val();
     var docnumber = $("#docnumber").val();
-
     if (doctype == '0' || docnumber == '') {
         alertify.set('notifier', 'position', 'bottom-center');
         alertify.notify('No se han completado todos los campos', 'error', 3);
@@ -82,6 +84,9 @@ let getGrades = function () {
     }
 }
 
+/**
+ * Función que permite obtener el porcentaje de aciertos y desaciertos y graficarlos en diferentes tipos
+ */
 let getPercentage = function () {
     y.style.display = "block";
     var tipo_grafica = document.getElementById("tipo_grafica").value;

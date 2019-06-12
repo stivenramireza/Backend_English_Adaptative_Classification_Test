@@ -3,6 +3,9 @@ var barGraphSeries, barGraphDrilldown, barGraphClasif, barAgrupClasif, barLine, 
 var nombre_completo = localStorage.getItem('nombre_admin');
 document.getElementById("nombreAdmin").innerHTML = nombre_completo;
 
+/**
+ * Función que permite obtener las estadísticas de los exámenes
+ */
 let queryStatistics = function () {
     document.getElementById("header").style.display = "inline";
     var doctype = document.getElementById("dt").value;
@@ -85,13 +88,16 @@ let queryStatistics = function () {
                     graphFinalBar(groupByFL)
                     graphAgrupWritten(groupByCL)
                     graphAgrupFinal(groupByFL)
-
                 }
             }
         }
     }
 }
 
+/**
+ * Función que permite graficar las estadísticas por meses
+ * @param {array} yearsArray 
+ */
 let graphMonth = function (yearsArray) {
     var array = [];
     var array2 = [];
@@ -120,6 +126,10 @@ let graphMonth = function (yearsArray) {
     }
 }
 
+/**
+ * Función que permite graficar las estadísticas de clasificaciones por gráfica de barras
+ * @param {array} clasifArray 
+ */
 let graphClasif = function (clasifArray) {
     var array = [];
     var jsonTemporal
@@ -130,6 +140,10 @@ let graphClasif = function (clasifArray) {
     barGraphClasif = array;
 }
 
+/**
+ * Función que permite graficar las estadísticas de clasficiaciones por gráficas de agrupamiento
+ * @param {array} clasifArray 
+ */
 let graphClasifAgrup = function (clasifArray) {
     var array = [];
     var jsonTemporal
@@ -146,6 +160,10 @@ let graphClasifAgrup = function (clasifArray) {
     barAgrupClasif = array;
 }
 
+/**
+ * Función que permite graficar las estadísticas de exámenes escritos por gráfica de líneas
+ * @param {array} writtenArray 
+ */
 let graphLine = function (writtenArray) {
     var array = [], categories = []
     var jsonTemporal = " { \"name\": \"Curva de numero de registros por niveles\", \"data\": ["
@@ -160,6 +178,10 @@ let graphLine = function (writtenArray) {
     barLineCat = categories;
 }
 
+/**
+ * Función que permite graficar las estadísticas de exámenes escritos por gráfica de barras
+ * @param {array} writtenArray 
+ */
 let graphWrittenBar = function (writtenArray) {
     var array = [];
     var jsonTemporal
@@ -170,6 +192,10 @@ let graphWrittenBar = function (writtenArray) {
     barWrittenBar = array;
 }
 
+/**
+ * Función que permite graficar las estadísticas de exámenes escritos por gráficas de agrupamiento
+ * @param {array} writtenArray 
+ */
 let graphAgrupWritten = function (writtenArray) {
     var array = [];
     var jsonTemporal
@@ -186,6 +212,10 @@ let graphAgrupWritten = function (writtenArray) {
     barAgrupWritten = array;
 }
 
+/**
+ * Función que permite graficar las estadísticas de exámenes orales por gráfica de líneas
+ * @param {array} writtenArray 
+ */
 let graphLineFinal = function (writtenArray) {
     var array = [], categories = []
     var jsonTemporal = " { \"name\": \"Curva de numero de registros por niveles\", \"data\": ["
@@ -200,6 +230,10 @@ let graphLineFinal = function (writtenArray) {
     barLineCatFinal = categories;
 }
 
+/**
+ * Función que permite graficar las estadísticas de exámenes orales por gráfica de barras
+ * @param {array} writtenArray 
+ */
 let graphFinalBar = function (writtenArray) {
     var array = [];
     var jsonTemporal
@@ -210,6 +244,10 @@ let graphFinalBar = function (writtenArray) {
     barFinalBar = array;
 }
 
+/**
+ * Función que permite graficar las estadísticas de exámenes orales por gráfica de agrupamiento
+ * @param {array} writtenArray 
+ */
 let graphAgrupFinal = function (writtenArray) {
     var array = [];
     var jsonTemporal
@@ -226,6 +264,9 @@ let graphAgrupFinal = function (writtenArray) {
     barAgrupFinal = array;
 }
 
+/**
+ * Función que permite seleccionar el tipo de gráfica
+ */
 let getGraph = function () {
     y.style.display = "block";
     var tipo_grafica = document.getElementById("tipo_grafica").value;

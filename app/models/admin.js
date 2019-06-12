@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const bcrypt = require('bcrypt')
 
+/** Modelo de datos del Administrador */
 const AdminSchema = new Schema({
     _id: mongoose.Schema.Types.ObjectId,
     doctype: {type: String, required: true},
@@ -24,6 +25,10 @@ const AdminSchema = new Schema({
     clasificar_aspirantes: {type: Boolean, required: true}
 })
 
+/**
+ * Módulo que permite guardar la contraseña encriptada
+ * @exports 'save'
+ */
 AdminSchema.pre('save', function (next) {
     let admin = this
     bcrypt.hash(admin.password, 10, function (err, hash) {

@@ -2,6 +2,12 @@ const Pregunta = require('../models/pregunta');
 const {validationResult} = require('express-validator/check');
 const mongoose = require('mongoose');
 
+/**
+ * Función que permite registrar una pregunta en la base de datos
+ * @param  {json} req
+ * @param  {json} res
+ * @returns JSON de la pregunta registrada
+ */
 function registrarPregunta(req, res) {
     var errors = validationResult(req);
     if(!errors.isEmpty()){
@@ -28,6 +34,12 @@ function registrarPregunta(req, res) {
     })
 }
 
+/**
+ * Función que obtiene una pregunta de la base de datos
+ * @param  {json} req
+ * @param  {json} res
+ * @returns JSON de la información de la pregunta
+ */
 function obtenerPregunta(req, res){
     var errors = validationResult(req);
     if(!errors.isEmpty()){
@@ -41,6 +53,12 @@ function obtenerPregunta(req, res){
     })
 }
 
+/**
+ * Función que actualiza la información de la pregunta en la base de datos
+ * @param  {json} req
+ * @param  {json} res
+ * @returns JSON de la pregunta actualizada
+ */
 function actualizarPregunta(req, res){
     var errors = validationResult(req);
     if(!errors.isEmpty()){
@@ -54,6 +72,12 @@ function actualizarPregunta(req, res){
     })
 }
 
+/**
+ * Función que elimina una pregunta de la base de datos
+ * @param  {json} req
+ * @param  {json} res
+ * @returns JSON de la pregunta eliminada
+ */
 function eliminarPregunta(req, res){
     var errors = validationResult(req);
     if(!errors.isEmpty()){
@@ -66,6 +90,12 @@ function eliminarPregunta(req, res){
     })
 }
 
+/**
+ * Función que obtiene la información de todas las preguntas de la base de datos
+ * @param  {json} req
+ * @param  {json} res
+ * @returns JSON de todas las preguntas registradas
+ */
 function encontrarTodo(req, res){
     Pregunta.find({}, (err, preguntas) => {
         if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}`, status: 'failed' })

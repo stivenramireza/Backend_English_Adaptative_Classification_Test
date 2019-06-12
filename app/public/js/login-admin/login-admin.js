@@ -1,3 +1,6 @@
+/**
+ * Función que permite loguearse a un administrador
+ */
 let login = function () {
     var http = new XMLHttpRequest();
     http.responseType = 'json';

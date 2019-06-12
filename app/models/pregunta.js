@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+
+/** Modelo de datos de la Pregunta */
 const PreguntaSchema = new Schema({
     _id: mongoose.Schema.Types.ObjectId,
     pregunta: {type: String, required: true},

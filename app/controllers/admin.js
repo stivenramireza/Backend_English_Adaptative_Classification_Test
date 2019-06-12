@@ -1,10 +1,15 @@
 const Admin = require("../models/admin")
 const bcrypt = require('bcrypt');
 const service = require("../services")
-
 const {validationResult} = require('express-validator/check');
 const mongoose = require('mongoose');
 
+/**
+ * Functión que permite registrar un administrador en la base de datos
+ * @param  {json} req
+ * @param  {json} res
+ * @returns JSON del administrador registrado
+ */
 function registrarAdmin(req, res) {
     var errors = validationResult(req);
     if(!errors.isEmpty()){
@@ -44,6 +49,12 @@ function registrarAdmin(req, res) {
     })
 }
 
+/**
+ * Función que permite loguear a un administrador al sistema
+ * @param  {json} req
+ * @param  {json} res
+ * @returns JSON del administrador logueado
+ */
 function loguearAdmin(req, res) {
     var errors = validationResult(req);
     if(!errors.isEmpty()){
@@ -83,6 +94,11 @@ function loguearAdmin(req, res) {
     })
 }
 
+/**
+ * Función que recibe un número y lo convierte en un string del tipo de documento
+ * @param  {int} _number
+ * @returns Tipo de documento
+ */
 function fromNumberToDocType(_number){
     _number = parseInt(_number);
     switch(_number){
@@ -116,6 +132,11 @@ function fromNumberToDocType(_number){
     return "";
 }
 
+/**
+ * Función que recibe un número y lo convierte en un string de un tipo de género
+ * @param  {int} _number
+ * @returns Género
+ */
 function fromNumberToGenre(_number){
     _number = parseInt(_number);
     switch(_number){
@@ -129,6 +150,12 @@ function fromNumberToGenre(_number){
     return "";
 }
 
+/**
+ * Función que permite obtener la información del administrador
+ * @param  {json} req
+ * @param  {json} res
+ * @returns JSON de la información del administrador
+ */
 function getInfoAdmin(req, res) {
     let username = req.query.username;
     Admin.find({ username: username }, (err, info_admin) => {
@@ -138,6 +165,12 @@ function getInfoAdmin(req, res) {
     })
 }
 
+/**
+ * Función que permite actualizar la información del administrador
+ * @param  {json} req
+ * @param  {json} res
+ * @returns JSON de la actualización del administrador
+ */
 function updateInfoAdmin(req, res){
     var errors = validationResult(req);
     if(!errors.isEmpty()){
@@ -151,6 +184,12 @@ function updateInfoAdmin(req, res){
     })
 }
 
+/**
+ * Función que permite editar la información del administrador
+ * @param  {json} req
+ * @param  {json} res
+ * @returns JSON de la edición del administrador
+ */
 function editarAdmin(req, res){
     let docnumber = req.query.docnumber;
     Admin.findOne({docnumber: docnumber }, (err, info_admin) => {

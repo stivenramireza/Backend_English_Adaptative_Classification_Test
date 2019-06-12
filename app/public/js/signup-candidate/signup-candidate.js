@@ -1,3 +1,6 @@
+/**
+ * Función que permite registrar la información de un aspirante en la base de datos desde el frontend
+ */
 let signup = function () {
     var doctype = $("#dt").val();
     var docnumber = $("#docnumber").val();

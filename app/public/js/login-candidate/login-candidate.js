@@ -1,3 +1,6 @@
+/**
+ * Función que permite loguearse a un aspirante
+ */
 let login = function () {
     var http = new XMLHttpRequest();
     http.responseType = 'json';
@@ -31,6 +34,9 @@ let login = function () {
     }, 500)
 }
 
+/**
+ * Función que revisa si el aspirante tiene exámenes activos o no
+ */
 let check = function () {
     setTimeout(function () {
         var exito = false;
@@ -65,7 +71,6 @@ let check = function () {
         }, 1000)
     }, 1000)
 }
-
 
 $(document).ready(function () {
     $('#btnLogin').click(function () {

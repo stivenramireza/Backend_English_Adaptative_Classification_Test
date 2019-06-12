@@ -1,4 +1,8 @@
 var nota1 = 0, nota2 = 0, nota3 = 0;
+
+/**
+ * Función que permite obtener las 3 notas (parte 1, parte 2 y parte 3) desde la API de Inteligencia Artificial
+ */
 let getGrades = function () {
 
     var doctype = $("#dt").val();
@@ -87,6 +91,12 @@ let getGrades = function () {
     }
 }
 
+/**
+ * Función que permite obtener la información de un aspirante al terminar su examen y mostrarlo en una tabla.
+ * @param {string} id_pregunta 
+ * @param {array} respuesta_dada 
+ * @param {array} tamano_preguntas 
+ */
 function getQuestion(id_pregunta, respuesta_dada, tamano_preguntas) {
     var req = new XMLHttpRequest();
     var params = 'n_item=' + id_pregunta;

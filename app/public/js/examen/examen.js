@@ -1,4 +1,4 @@
-// Obtiene la 1era pregunta
+/** Petición GET que obtiene la primera pregunta del examen */
 var req = new XMLHttpRequest();
 var doc_type = localStorage.getItem("doctype");
 var tmp_doc_type = localStorage.setItem("doc_type", doc_type);
@@ -27,7 +27,12 @@ req.onreadystatechange = function () {
     }
 }
 
-// Obtiene las siguientes preguntas
+/**
+ * Función que permite obtener la siguiente pregunta del examen con base en el id de la pregunta respondida
+ * y la respuesta dada por el aspirante
+ * @param {string} id 
+ * @param {string} answer 
+ */
 let questionPost = function (id, answer) {
     var idExam = localStorage.getItem("idEx")
     var sendData = "{ \"_id\": \""+ idExam +"\", \"n_item\" : " + id + ", \"n_response\" : " + answer + "  }"

@@ -1,3 +1,10 @@
+/**
+ * Función que permite validar si un aspirante ha iniciado sesión
+ * @param  {json} req
+ * @param  {json} res
+ * @param  {json} next
+ * @returns JSON del aspirante que ha iniciado sesión, de lo contrario redirección a la página de no acceso
+ */
 function sessChecker(req, res, next){
     let sess = req.session;
     if(sess){
@@ -11,6 +18,13 @@ function sessChecker(req, res, next){
     }
 }
 
+/**
+ * Función que permite validar si un administrador ha iniciado sesión
+ * @param  {json} req
+ * @param  {json} res
+ * @param  {json} next
+ * @returns JSON del admin que ha iniciado sesión, de lo contrario redirección a la página de no acceso
+ */
 function sessCheckGeneralAdmin(req, res, next){
     let sess = req.session;
     if(sess){
@@ -28,6 +42,13 @@ function sessCheckGeneralAdmin(req, res, next){
     }
 }
 
+/**
+ * Función que permite validar si un administrador puede habilitar exámenes o tener todos los roles
+ * @param  {json} req
+ * @param  {json} res
+ * @param  {json} next
+ * @returns JSON del admin que tiene estos permisos, de lo contrario redirección a la página de no acceso
+ */
 function sessCheckerAdminEnableExam(req, res, next){
     let sess = req.session;
     if(sess){
@@ -48,6 +69,14 @@ function sessCheckerAdminEnableExam(req, res, next){
         return res.redirect('/forbiden');
     }
 }
+
+/**
+ * Función que permite validar si un administrador puede gestionar estadísticas o tener todos los roles
+ * @param  {json} req
+ * @param  {json} res
+ * @param  {json} next
+ * @returns JSON del admin que tiene estos permisos, de lo contrario redirección a la página de no acceso
+ */
 function sessCheckerAdminManageStatistics(req, res, next){
     let sess = req.session;
     if(sess){
@@ -68,6 +97,14 @@ function sessCheckerAdminManageStatistics(req, res, next){
         return res.redirect('/forbiden');
     }
 }
+
+/**
+ * Función que permite validar si un administrador puede clasificar aspirantes o tener todos los roles
+ * @param  {json} req
+ * @param  {json} res
+ * @param  {json} next
+ * @returns JSON del admin que tiene estos permisos, de lo contrario redirección a la página de no acceso
+ */
 function sessCheckerAdminManageStudent(req, res, next){
     let sess = req.session;
     if(sess){
@@ -88,6 +125,14 @@ function sessCheckerAdminManageStudent(req, res, next){
         return res.redirect('/forbiden');
     }
 }
+
+/**
+ * Función que permite validar si un administrador puede gestionar preguntas o tener todos los roles
+ * @param  {json} req
+ * @param  {json} res
+ * @param  {json} next
+ * @returns JSON del admin que tiene estos permisos, de lo contrario redirección a la página de no acceso
+ */
 function sessCheckerAdminManageQuestionsAndRoles(req, res, next){
     let sess = req.session;
     if(sess){
@@ -108,6 +153,7 @@ function sessCheckerAdminManageQuestionsAndRoles(req, res, next){
         return res.redirect('/forbiden');
     }
 }
+
 module.exports = {
     sessChecker,
     sessCheckerAdminEnableExam,

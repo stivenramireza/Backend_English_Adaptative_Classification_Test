@@ -1,6 +1,9 @@
 var nombre_completo = localStorage.getItem('nombre_admin');
 document.getElementById("nombreAdmin").innerHTML = nombre_completo;
 
+/**
+ * Función que permite obtener los resultados del examen de un aspirante desde el frontend
+ */
 let gradeCandidate = function () {
 
     var doctype = $("#dt").val();

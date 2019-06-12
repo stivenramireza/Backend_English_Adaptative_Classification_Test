@@ -1,16 +1,18 @@
 var nombre_completo = localStorage.getItem('nombre_admin');
 document.getElementById("nombreAdmin").innerHTML = nombre_completo;
-let getGap = function () {
 
+/**
+ * Función que permite obtener la información del examen de un aspirante y observar
+ * en diferentes tipos de gráfica el desfase de su clasificación escrita vs oral
+ */
+let getGap = function () {
     var doctype = $("#doc_type").val();
     var docnumber = $("#docnumber").val();
     var tipo_grafica = $("#tipo_grafica").val();
-
     if (doctype == '' || docnumber == '' || tipo_grafica == "0") {
         alertify.set('notifier', 'position', 'bottom-center');
         alertify.notify('No se han completado todos los campos', 'error', 3);
     } else {
-
         var exito = false;
         var doc_number = document.getElementById("docnumber").value;
         var tipo_grafica = document.getElementById("tipo_grafica").value;
