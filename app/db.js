@@ -2,7 +2,6 @@ var path = require('path'),
     rootPath = path.normalize(__dirname + '/..'),
     env = process.env.NODE_ENV || 'test';
     
-/** Configuraciòn de la base de datos */
 var config = {
   development: {
     PORT: process.env.PORT,
