@@ -80,7 +80,7 @@ let signup = function () {
                     password: document.getElementById("password").value,
                     sede: document.getElementById("sede").value,
                     habilitar_examenes: habilita,
-                    reactivar_examenes: reactiva,
+                    administrador_general: reactiva,
                     gestionar_estadisticas: gestiona,
                     clasificar_aspirantes: clasifica
                 }));

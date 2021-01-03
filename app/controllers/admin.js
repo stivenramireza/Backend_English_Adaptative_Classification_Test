@@ -32,7 +32,7 @@ function registrarAdmin(req, res) {
         password: req.body.password,
         sede: req.body.sede,
         habilitar_examenes: req.body.habilitar_examenes,
-        reactivar_examenes: req.body.reactivar_examenes,
+        administrador_general: req.body.administrador_general,
         gestionar_estadisticas: req.body.gestionar_estadisticas,
         clasificar_aspirantes: req.body.clasificar_aspirantes
     });

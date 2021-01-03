@@ -1,4 +1,5 @@
 const express = require('express');
+const secrets = require('../db');
 const adminCtlr = require('../controllers/admin');
 const studentCtrlr = require('./../controllers/student');
 const examenCtlr = require('../controllers/examen');
@@ -10,13 +11,13 @@ const sessManCtlr = require('../controllers/session_manager');
 
 /** El módulo 'corsOptions' permite el acceso a esta URL en cualquier browser */
 var corsOptions = {
-    origin: 'http://ec2-54-161-199-236.compute-1.amazonaws.com',
+    origin: secrets.API_EACI,
     optionsSuccessStatus: 200
 }
 
 const router = express.Router();
 const {check} = require('express-validator/check');
-const QUERY_PATH = "http://ec2-54-161-199-236.compute-1.amazonaws.com";
+const QUERY_PATH = secrets.API_EACI;
 
 /**
  * Ruta GET que carga la vista de la página principal
@@ -279,7 +280,7 @@ router.post('/api/register/admin', [
     check('password').matches('[a-zA-Z0-9\\#\\-\\°\\s]+').isLength({min: 8}),
     check('sede').matches('[a-zA-Z\\s]+'),
     check('habilitar_examenes').isBoolean(),
-    check('reactivar_examenes').isBoolean(),
+    check('administrador_general').isBoolean(),
     check('gestionar_estadisticas').isBoolean(),
     check('clasificar_aspirantes').isBoolean()
 ], adminCtlr.registrarAdmin);

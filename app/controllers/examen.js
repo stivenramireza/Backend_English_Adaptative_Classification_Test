@@ -2,6 +2,7 @@ const Examen = require('../models/examen');
 const { validationResult } = require('express-validator/check');
 const mongoose = require('mongoose');
 var request = require('request')
+const secrets = require('../db');
 
 /**
  * Función que permite registrar el examen y lanzar la primera pregunta
@@ -94,7 +95,7 @@ function next_question(req, res) {
                 last_ability: examen.last_ability,
                 parts: examen.parts
             };
-            const QUERY_PATH = "http://ec2-34-207-193-227.compute-1.amazonaws.com";
+            const QUERY_PATH = secrets.API_EACI;
             request.post({
                 url: QUERY_PATH + '/test/next_question',
                 body: {

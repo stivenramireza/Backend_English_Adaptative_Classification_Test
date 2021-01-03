@@ -46,8 +46,8 @@ http.onreadystatechange = function () {
         }
         var habilitar = texto.habilitar_examenes;
         document.getElementById("habilitaExamenes").checked = habilitar;
-        var reactivar = texto.reactivar_examenes;
-        document.getElementById("reactivaExamenes").checked = reactivar;
+        var general = texto.administrador_general;
+        document.getElementById("reactivaExamenes").checked = general;
         var gestionar = texto.gestionar_estadisticas;
         document.getElementById("gestionaEstadisticas").checked = gestionar;
         var clasificar = texto.clasificar_aspirantes;
@@ -138,7 +138,7 @@ let update = function () {
                     password: document.getElementById("password").value,
                     sede: document.getElementById("sede").value,
                     habilitar_examenes: habilita,
-                    reactivar_examenes: reactiva,
+                    administrador_general: reactiva,
                     gestionar_estadisticas: gestiona,
                     clasificar_aspirantes: clasifica
                 }));

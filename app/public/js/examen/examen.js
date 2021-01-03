@@ -3,7 +3,7 @@ var req = new XMLHttpRequest();
 var doc_type = localStorage.getItem("doctype");
 var tmp_doc_type = localStorage.setItem("doc_type", doc_type);
 var doc_number = localStorage.getItem("docnumber");
-var doc_clasificador = "1039472987";
+var doc_clasificador = "1234567890";
 var params = 'doctype='+doc_type+'&docnumber='+doc_number+'&clasificador='+doc_clasificador;
 req.responseType = 'json';
 req.open("GET", '/test/prestart'+'?'+params, true);

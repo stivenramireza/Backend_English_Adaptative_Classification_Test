@@ -7,13 +7,13 @@ const db = require('./db');
 require('dotenv').config();
 const session = require('express-session');
 
-let dbConn = 'mongodb://' + db.DB_USER + ":" + db.DB_PASSWORD + "@" + db.DB_HOST;
+let dbConn = 'mongodb+srv://' + db.DB_USER + ":" + db.DB_PASSWORD + "@" + db.DB_HOST + "/" + db.DB_NAME + '?retryWrites=true&w=majority';
 
 /**
  * @param  {string} dbConn - El string URL de conexión a la BD
  * @param  {true} useNewUrlParser - Parseo del string URL de conexión a la BD
  */
-mongoose.connect(dbConn, {useNewUrlParser: true}).then( (req, res) => {
+mongoose.connect(dbConn, {useNewUrlParser: true, useUnifiedTopology: true}).then( (req, res) => {
   console.log("Conectado a la base de datos exitosamente");
 }).catch( err => {
   console.log("Error al conectarse a la base de datos: ", err);
@@ -37,7 +37,7 @@ server.use(session(sess));
 
 server.use(routes);
 
-const PORT = 8000;
+const PORT = db.PORT;
 const HOST = '0.0.0.0'; 
 
 /**
