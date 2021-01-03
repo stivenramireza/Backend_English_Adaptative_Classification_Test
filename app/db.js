@@ -1,6 +1,8 @@
 var path = require('path'),
     rootPath = path.normalize(__dirname + '/..'),
-    env = process.env.NODE_ENV || 'test';
+    env = process.env.NODE_ENV || 'production';
+
+console.log(`Loading ${env} env variables`)
     
 /** Configuraciòn de la base de datos */
 var config = {
