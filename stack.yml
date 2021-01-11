@@ -1,6 +1,6 @@
 version: '3'
 services:
-  eaci:
+  eaci_app:
     image: eaci_app:latest
     networks:
       - traefik-public
@@ -11,7 +11,7 @@ services:
         - traefik.enable=true
         - traefik.tags=traefik-public
         - traefik.port=8000
-        - traefik.frontend.rule=Host:stivenramireza.eaci.com
+        - traefik.frontend.rule=Host:web.eaci.com
         - traefik.docker.network=traefik-public
         - traefik.redirectorservice.frontend.entryPoints=http
         - traefik.redirectorservice.frontend.redirect.entryPoint=https
