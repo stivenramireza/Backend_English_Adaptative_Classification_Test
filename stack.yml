@@ -6,12 +6,20 @@ services:
       - traefik-public
     ports:
       - 8000
+    environment:
+      - PORT=${PORT?Variable PORT not set}
+      - DB_HOST=${DB_HOST?Variable DB_HOST not set}
+      - DB_USER=${DB_USER?Variable DB_USER not set}
+      - DB_PASSWORD=${DB_PASSWORD?Variable DB_PASSWORD not set}
+      - DB_NAME=${DB_NAME?Variable DB_NAME not set}
+      - SECRET_TOKEN=${SECRET_TOKEN?Variable SECRET_TOKEN not set}
+      - API_EACI=${API_EACI?Variable API_EACI not set}
     deploy:
       labels:
         - traefik.enable=true
         - traefik.tags=traefik-public
         - traefik.port=8000
-        - traefik.frontend.rule=Host:web.eaci.com
+        - traefik.frontend.rule=Host:eaci.stivenramireza.com
         - traefik.docker.network=traefik-public
         - traefik.redirectorservice.frontend.entryPoints=http
         - traefik.redirectorservice.frontend.redirect.entryPoint=https
