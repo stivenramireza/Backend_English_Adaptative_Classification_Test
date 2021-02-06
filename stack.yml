@@ -19,7 +19,7 @@ services:
         - traefik.enable=true
         - traefik.tags=traefik-public
         - traefik.port=8000
-        - traefik.frontend.rule=Host:eaci.stivenramireza.com
+        - traefik.frontend.rule=Host:eaci.com
         - traefik.docker.network=traefik-public
         - traefik.redirectorservice.frontend.entryPoints=http
         - traefik.redirectorservice.frontend.redirect.entryPoint=https
